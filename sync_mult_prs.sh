@@ -15,9 +15,9 @@ cd "$SCRIPT_DIR"
 # The PRs will be synced in the order of the following statements.
 ./sync_pr.sh preview/pingcap/docs/15702
 ./sync_pr.sh preview/pingcap/docs-cn/15667
-./sync_pr.sh preview/pingcap/docs/15702
+./sync_pr.sh preview/pingcap/docs/16041
 ./sync_pr.sh preview/pingcap/docs-cn/16060
-# ./sync_pr.sh preview-cloud/pingcap/docs/16041
+# ./sync_pr.sh preview-cloud/pingcap/docs/xxxx
 # ./sync_pr.sh preview-operator/pingcap/docs-tidb-operator/"$OPERATOR_DOCS_PR"
 
 # Synchronize the content from master to release-7.6 directories.
