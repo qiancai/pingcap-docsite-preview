@@ -116,15 +116,6 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.6/quick-start-with-
 
     For more information, see [documentation](/ddl-v2.md).
 
-* The optimizer enhances support for multi-valued indexes [#47759](https://github.com/pingcap/tidb/issues/47759) [#46539](https://github.com/pingcap/tidb/issues/46539) @[Arenatlx](https://github.com/Arenatlx) @[time-and-fate](https://github.com/time-and-fate) **tw@ran-huang** <!--1405/1584-->
-
-    Starting from v6.6.0, TiDB introduced [multi-value indexes](/sql-statements/sql-statement-create-index.md#multi-valued-indexes) to improve query performance for JSON data types. In v7.6.0, the optimizer enhances its support for multi-valued indexes and can correctly identify and utilize them to optimize queries in complex scenarios.
-
-    * Statistics on multi-valued indexes are collected and applied by the optimizer for estimation. When a SQL statement might select multiple multi-valued indexes, the optimizer can identify the index with lower cost.
-    * When there are multiple `member of` conditions connected by `OR`, the optimizer is able to match an effective index partial path for each DNF item (a `member of` condition) and combine multiple paths using Union to form an `Index Merge`. This allows more efficient condition filtering and data querying.
-
-  For more information, see [documentation](/sql-statements/sql-statement-create-index.md#multi-valued-indexes).
-
 * Support periodic full compaction (experimental) [#12729](https://github.com/tikv/tikv/issues/12729) **tw@Oreoxmt** <!--1610-->
 
     Starting from v7.6.0, TiDB supports periodic full compaction for TiKV. This feature serves as enhancement to Garbage Collection (GC) to eliminate redundant data versions. In scenarios where application activity shows obvious peaks and valleys, you can use this feature to perform data compaction during idle periods to improve the performance during peak periods.
@@ -170,7 +161,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.6/quick-start-with-
 
 * `LOAD DATA` supports explicit transactions and rollbacks [#49079](https://github.com/pingcap/tidb/pull/49079) @[ekexium](https://github.com/ekexium) **tw@Oreoxmt** <!--1422-->
 
-    Compared with MySQL, the transactional behavior of the`LOAD DATA` statement varies in different TiDB versions before v7.6.0, so you might need to make additional adjustments when using this statement. Specifically, before v4.0.0, `LOAD DATA` commits every 20000 rows. From v4.0.0 to v6.6.0, TiDB commits all rows in one transaction by default and also supports committing every fixed number of rows by setting the [`tidb_dml_batch_size`](/system-variables.md#tidb_dml_batch_size) system variable. Starting from v7.0.0, `tidb_dml_batch_size` no longer takes effect on `LOAD DATA` and TiDB commits all rows in one transaction.
+    Compared with MySQL, the transactional behavior of the `LOAD DATA` statement varies in different TiDB versions before v7.6.0, so you might need to make additional adjustments when using this statement. Specifically, before v4.0.0, `LOAD DATA` commits every 20000 rows. From v4.0.0 to v6.6.0, TiDB commits all rows in one transaction by default and also supports committing every fixed number of rows by setting the [`tidb_dml_batch_size`](/system-variables.md#tidb_dml_batch_size) system variable. Starting from v7.0.0, `tidb_dml_batch_size` no longer takes effect on `LOAD DATA` and TiDB commits all rows in one transaction.
 
     Starting from v7.6.0, TiDB processes `LOAD DATA` in transactions in the same way as other DML statements, especially in the same way as MySQL. The `LOAD DATA` statement in a transaction no longer automatically commits the current transaction or starts a new transaction. Moreover, you can explicitly commit or roll back the `LOAD DATA` statement in a transaction. Additionally, the `LOAD DATA` statement is affected by the TiDB transaction mode setting (optimistic or pessimistic transaction). These improvements simplify the migration process from MySQL to TiDB and offer a more unified and controllable experience for data import.
 
@@ -226,11 +217,11 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.6/quick-start-with-
 
     As more and more users use resource groups to isolate application workloads, Resource Control provides enhanced data based on resource groups. This helps you monitor resource group workloads and settings, ensuring that you can quickly identify and accurately diagnose problems, including:
 
-    * [Slow Queries](/identify-slow-queries.md): add the resource group name, RU consumption, and time for waiting for resources.
+    * [Slow Queries](/identify-slow-queries.md): add the resource group name, resource unit (RU) consumption, and time for waiting for resources.
     * [Statement Summary Tables](/statement-summary-tables.md): add the resource group name, RU consumption, and time for waiting for resources.
     * In the system variable [`tidb_last_query_info`](/system-variables.md#tidb_last_query_info-new-in-v4014), add a new entry `ru_consumption` to indicate the consumed [RU](/tidb-resource-control.md#what-is-request-unit-ru) by SQL statements. You can use this variable to get the resource consumption of the last statement in the session.
     * Add database metrics based on resource groups: QPS/TPS, execution time (P999/P99/P95), number of failures, number of connections.
-    * Add the system table [`request_unit_by_group`](/mysql-schema.md#system-tables-related-to-resource-control) to record the history records of daily consumed resource units (RUs) of all resource groups.
+    * Add the system table [`request_unit_by_group`](/mysql-schema.md#system-tables-related-to-resource-control) to record the history records of daily consumed RUs of all resource groups.
 
   For more information, see [Identify Slow Queries](/identify-slow-queries.md), [Statement Summary Tables](/statement-summary-tables.md), and [Key Monitoring Metrics of Resource Control](/grafana-resource-control-dashboard.md).
 
@@ -256,7 +247,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.6/quick-start-with-
 
 * TiCDC adds support for three-character delimiters with CSV output protocol [#9969](https://github.com/pingcap/tiflow/issues/9969) @[zhangjinpeng1987](https://github.com/zhangjinpeng1987) **tw@hfxsd** <!--1653-->
 
-    Starting from v7.6.0, you can specify the CSV output protocol delimiters as 1 to 3 characters long. With this change, you can configure TiCDC to generate file output using two character delimiters (such as `||` or `$^`) or three character delimiters (such as `|@|`) to separate fields in the output.
+    Starting from v7.6.0, you can specify the CSV output protocol delimiters as 1 to 3 characters long. With this change, you can configure TiCDC to generate file output using two-character delimiters (such as `||` or `$^`) or three-character delimiters (such as `|@|`) to separate fields in the output.
 
     For more information, see [documentation](/ticdc/ticdc-csv.md).
 
@@ -278,7 +269,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.6/quick-start-with-
 | [`tidb_ddl_version`](/system-variables.md#tidb_ddl_version-new-in-v760)  |  Newly added  | Controls whether to enable [TiDB DDL V2](/ddl-v2.md). Set the value to `2` to enable it and `1` to disable it. The default value is `1`. When TiDB DDL V2 is enabled, DDL statements will be executed using TiDB DDL V2. The execution speed of DDL statements for creating tables is increased by 10 times compared with TiDB DDL V1. |
 | [`tidb_enable_global_index`](/system-variables.md#tidb_enable_global_index-new-in-v760)  |  Newly added   | Controls whether to support creating `Global indexes` for partitioned tables. The default value is `OFF`. `Global index` is currently in the development stage. **It is not recommended to modify the value of this system variable**. |
 | [`tidb_idle_transaction_timeout`](/system-variables.md#tidb_idle_transaction_timeout-new-in-v760) | Newly added | Controls the idle timeout for transactions in a user session. When a user session is in a transactional state and remains idle for a duration exceeding the value of this variable, TiDB will terminate the session. The default value `0` means unlimited. |
-| [`tidb_opt_enable_fuzzy_binding`](/system-variables.md#tidb_opt_enable_fuzzy_binding-new-in-v760) | Newly added | Controls whether to enable the cross-database binding feature. The default value `OFF` means cross-database binding is disabled by default. |
+| [`tidb_opt_enable_fuzzy_binding`](/system-variables.md#tidb_opt_enable_fuzzy_binding-new-in-v760) | Newly added | Controls whether to enable the cross-database binding feature. The default value `OFF` means cross-database binding is disabled. |
 | [`tidb_txn_entry_size_limit`](/system-variables.md#tidb_txn_entry_size_limit-new-in-v760) | Newly added | Dynamically modifies the TiDB configuration item [`performance.txn-entry-size-limit`](/tidb-configuration-file.md#txn-entry-size-limit-new-in-v50). It limits the size of a single row of data in TiDB. The default value of this variable is `0`, which means that TiDB uses the value of the configuration item `txn-entry-size-limit` by default. When this variable is set to a non-zero value, `txn-entry-size-limit` is also set to the same value. |
 | [`pd_enable_follower_handle_region`](/system-variables.md#pd_enable_follower_handle_region-new-in-v760) | Newly added | Controls whether to enable the [Active PD Follower](/tune-region-performance.md#use-the-active-pd-follower-feature-to-enhance-the-scalability-of-pds-region-information-query-service) feature (experimental). When the value is `OFF`, TiDB only obtains Region information from the PD leader. When the value is `ON`, TiDB evenly distributes requests for Region information to all PD servers, and PD followers can also handle Region requests, thereby reducing the CPU pressure on the PD leader. |
 
@@ -288,18 +279,19 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v7.6/quick-start-with-
 | -------- | -------- | -------- | -------- |
 | TiDB | [`tls-version`](/tidb-configuration-file.md#tls-version) | Modified | The default value is "". The default supported TLS versions of TiDB are changed from `TLS1.1` or higher to `TLS1.2` or higher. |
 | TiKV | [`blob-file-compression`](/tikv-configuration-file.md#blob-file-compression) | Modified | The algorithm used for compressing values in Titan, which takes value as the unit. Starting from TiDB v7.6.0, the default compression algorithm is `zstd`. |
-| TiKV | [`rocksdb.defaultcf.titan.min-blob-size`](/tikv-configuration-file.md#min-blob-size) | Modified   | Starting with TiDB v7.6.0, the default value for new clusters is `32KB`. For existing clusters upgrading to v7.6.0, the default value `1KB` remains unchanged. |
+| TiKV | [`rocksdb.defaultcf.titan.min-blob-size`](/tikv-configuration-file.md#min-blob-size) | Modified   | Starting from TiDB v7.6.0, the default value for new clusters is `32KB`. For existing clusters upgrading to v7.6.0, the default value `1KB` remains unchanged. |
 | TiKV | [`rocksdb.titan.enabled`](/tikv-configuration-file.md#enabled) | Modified  |  Enables or disables Titan. For v7.5.0 and earlier versions, the default value is `false`. Starting from v7.6.0, the default value is `true` for only new clusters. Existing clusters upgraded to v7.6.0 or later versions will retain the original configuration. |
 | TiDB Lightning| [`tidb.pd-addr`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task) | Modified  | Configures the addresses of the PD Servers. Starting from v7.6.0, TiDB supports setting multiple PD addresses. |
-| TiDB Lightning | [`block-size`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task) | Newly added | Controls the I/O block size for sorting local files in the physical import (`backend='local'`). The default value is `16KiB`. When the disk IOPS is a bottleneck, you can increase this value to improve performance. |
-| TiKV | [`raftstore.periodic-full-compact-start-times`](/tikv-configuration-file.md#periodic-full-compact-start-times-new-in-v760) | Newly added | Sets the specific times that TiKV initiates periodic full compaction. The default value `[]` means periodic full compaction is disabled by default. |
+| TiDB Lightning | [`block-size`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task) | Newly added | Controls the I/O block size for sorting local files in Physical Import Mode (`backend='local'`). The default value is `16KiB`. When the disk IOPS is a bottleneck, you can increase this value to improve performance. |
+| TiKV | [`gc.num-threads`](/tikv-configuration-file.md#num-threads-new-in-v760) | Newly added | When `enable-compaction-filter` is set to `false`, this parameter controls the number of GC threads. The default value is `1`. |
+| TiKV | [`raftstore.periodic-full-compact-start-times`](/tikv-configuration-file.md#periodic-full-compact-start-times-new-in-v760) | Newly added | Sets the specific times that TiKV initiates periodic full compaction. The default value `[]` means periodic full compaction is disabled. |
 | TiKV | [`raftstore.periodic-full-compact-start-max-cpu`](/tikv-configuration-file.md#periodic-full-compact-start-max-cpu-new-in-v760) | Newly added | Limits the maximum CPU usage rate for TiKV periodic full compaction. The default value is `0.1`. |
 | TiKV | [`zstd-dict-size`](/tikv-configuration-file.md#zstd-dict-size) |  Newly added | Specifies the `zstd` dictionary compression size. The default value is `"0KB"`, which means to disable the `zstd` dictionary compression. |
 | BR | `--granularity` | Newly added | Uses the coarse-grained Region scatter algorithm (experimental) by specifying `--granularity="coarse-grained"`. This accelerates restore speed in large-scale Region scenarios. |
 | BR | `--tikv-max-restore-concurrency` | Newly added | Controls the concurrency of download tasks for each TiKV node when using the coarse-grained Region scatter algorithm. |
-| TiCDC | [`encoding-worker-num`](/ticdc/ticdc-changefeed-config.md) | Newly added | Controls the number of encoding and decoding workers in the redo module. The default value is 16. |
-| TiCDC | [`flush-worker-num`](/ticdc/ticdc-changefeed-config.md) | Newly added | Controls the number of flushing workers in the redo module. The default value is 8. |
 | TiCDC | [`compression`](/ticdc/ticdc-changefeed-config.md) | Newly added | Controls the behavior to compress redo log files. |
+| TiCDC | [`encoding-worker-num`](/ticdc/ticdc-changefeed-config.md) | Newly added | Controls the number of encoding and decoding workers in the redo module. The default value is `16`. |
+| TiCDC | [`flush-worker-num`](/ticdc/ticdc-changefeed-config.md) | Newly added | Controls the number of flushing workers in the redo module. The default value is `8`. |
 | TiCDC | [`sink.cloud-storage-config`](/ticdc/ticdc-changefeed-config.md) | Newly added | Sets the automatic cleanup of historical data when replicating data to object storage. |
 
 ### System tables
@@ -411,7 +403,7 @@ Starting from v7.6.0, the `TiDB-community-server` [binary-package](/binary-packa
     - Fix the issue that invalid `EXTRA` column type in `INFORMATION_SCHEMA.COLUMNS` leads to the error `Data Too Long, field len 30, data len 45` [#42030](https://github.com/pingcap/tidb/issues/42030) @[tangenta](https://github.com/tangenta)
     - Fix the issue that `IN (...) ` causes different plan digests in `INFORMATION_SCHEMA.STATEMENTS_SUMMARY` [#33559](https://github.com/pingcap/tidb/issues/33559) @[King-Dylan](https://github.com/King-Dylan)
     - Fix the issue that when converting the `TIME` type to the `YEAR` type, the returned result mixes `TIME` and the year [#48557](https://github.com/pingcap/tidb/issues/48557) @[YangKeao](https://github.com/YangKeao)
-    - Fix the issue that disabling `tidb_enable_collect_execution_info` causes the coppercessor cache to panic [#48212](https://github.com/pingcap/tidb/issues/48212) @[you06](https://github.com/you06)
+    - Fix the issue that disabling `tidb_enable_collect_execution_info` causes the coprocessor cache to panic [#48212](https://github.com/pingcap/tidb/issues/48212) @[you06](https://github.com/you06)
     - Fix the issue that TiDB crashes when `shuffleExec` quits unexpectedly [#48230](https://github.com/pingcap/tidb/issues/48230) @[wshwsh12](https://github.com/wshwsh12)
     - Fix the issue that static `CALIBRATE RESOURCE` relies on the Prometheus data [#49174](https://github.com/pingcap/tidb/issues/49174) @[glorv](https://github.com/glorv)
     - Fix the issue that when adding a large interval to a date, it returns an incorrect result. After the fix, an interval with an invalid prefix or the string `true` is treated as zero, which is consistent with MySQL 8.0 [#49227](https://github.com/pingcap/tidb/issues/49227) @[lcwangchao](https://github.com/lcwangchao)
