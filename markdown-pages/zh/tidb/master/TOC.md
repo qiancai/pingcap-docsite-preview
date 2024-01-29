@@ -4,7 +4,7 @@
 - [文档中心](https://docs.pingcap.com/zh)
 - 关于 TiDB
   - [TiDB 简介](/overview.md)
-  - [TiDB 7.6 Release Notes](/releases/release-7.6.0.md)
+  - [TiDB 7.5 Release Notes](/releases/release-7.5.0.md)
   - [功能概览](/basic-features.md)
   - [与 MySQL 的兼容性](/mysql-compatibility.md)
   - [使用限制](/tidb-limitations.md)
@@ -45,6 +45,8 @@
       - [mysql2](/develop/dev-guide-sample-application-ruby-mysql2.md)
       - [Rails](/develop/dev-guide-sample-application-ruby-rails.md)
   - 连接到 TiDB
+    - GUI 数据库工具
+      - [MySQL Workbench](/develop/dev-guide-gui-mysql-workbench.md)
     - [选择驱动或 ORM 框架](/develop/dev-guide-choose-driver-or-orm.md)
     - [连接到 TiDB](/develop/dev-guide-connect-to-tidb.md)
     - [连接池与连接参数](/develop/dev-guide-connection-parameters.md)
@@ -105,7 +107,6 @@
   - 规划集群拓扑
     - [最小部署拓扑结构](/minimal-deployment-topology.md)
     - [TiFlash 部署拓扑](/tiflash-deployment-topology.md)
-    - [TiProxy 部署拓扑](/tiproxy/tiproxy-deployment-topology.md)
     - [TiCDC 部署拓扑](/ticdc-deployment-topology.md)
     - [TiDB Binlog 部署拓扑](/tidb-binlog-deployment-topology.md)
     - [TiSpark 部署拓扑](/tispark-deployment-topology.md)
@@ -614,13 +615,6 @@
     - [不同库名或表名的数据校验](/sync-diff-inspector/route-diff.md)
     - [分库分表场景下的数据校验](/sync-diff-inspector/shard-diff.md)
     - [基于 DM 同步场景下的数据校验](/sync-diff-inspector/dm-diff.md)
-  - TiProxy
-    - [概述](/tiproxy/tiproxy-overview.md)
-    - [配置文件](/tiproxy/tiproxy-configuration.md)
-    - [命令行参数](/tiproxy/tiproxy-command-line-flags.md)
-    - [监控指标](/tiproxy/tiproxy-grafana.md)
-    - [故障诊断](/tiproxy/troubleshoot-tiproxy.md)
-    - [性能测试报告](/tiproxy/tiproxy-performance-test.md)
 - 参考指南
   - 架构
     - [概述](/tidb-architecture.md)
@@ -715,7 +709,6 @@
       - [`ADMIN PAUSE DDL`](/sql-statements/sql-statement-admin-pause-ddl.md)
       - [`ADMIN RECOVER INDEX`](/sql-statements/sql-statement-admin-recover.md)
       - [`ADMIN RESUME DDL`](/sql-statements/sql-statement-admin-resume-ddl.md)
-      - [`ADMIN [SET|SHOW|UNSET] BDR ROLE`](/sql-statements/sql-statement-admin-bdr-role.md)
       - [`ADMIN SHOW DDL [JOBS|QUERIES]`](/sql-statements/sql-statement-admin-show-ddl.md)
       - [`ADMIN SHOW TELEMETRY`](/sql-statements/sql-statement-admin-show-telemetry.md)
       - [`ALTER DATABASE`](/sql-statements/sql-statement-alter-database.md)
@@ -768,7 +761,7 @@
       - [`EXECUTE`](/sql-statements/sql-statement-execute.md)
       - [`EXPLAIN ANALYZE`](/sql-statements/sql-statement-explain-analyze.md)
       - [`EXPLAIN`](/sql-statements/sql-statement-explain.md)
-      - [`FLASHBACK CLUSTER`](/sql-statements/sql-statement-flashback-cluster.md)
+      - [`FLASHBACK CLUSTER TO TIMESTAMP`](/sql-statements/sql-statement-flashback-to-timestamp.md)
       - [`FLASHBACK DATABASE`](/sql-statements/sql-statement-flashback-database.md)
       - [`FLASHBACK TABLE`](/sql-statements/sql-statement-flashback-table.md)
       - [`FLUSH PRIVILEGES`](/sql-statements/sql-statement-flush-privileges.md)
@@ -825,7 +818,9 @@
       - [`SHOW FIELDS FROM`](/sql-statements/sql-statement-show-fields-from.md)
       - [`SHOW GRANTS`](/sql-statements/sql-statement-show-grants.md)
       - [`SHOW IMPORT JOB`](/sql-statements/sql-statement-show-import-job.md)
+      - [`SHOW INDEX`](/sql-statements/sql-statement-show-index.md)
       - [`SHOW INDEXES`](/sql-statements/sql-statement-show-indexes.md)
+      - [`SHOW KEYS`](/sql-statements/sql-statement-show-keys.md)
       - [`SHOW MASTER STATUS`](/sql-statements/sql-statement-show-master-status.md)
       - [`SHOW PLACEMENT`](/sql-statements/sql-statement-show-placement.md)
       - [`SHOW PLACEMENT FOR`](/sql-statements/sql-statement-show-placement-for.md)
@@ -973,7 +968,6 @@
         - [概述](/performance-schema/performance-schema.md)
         - [`SESSION_CONNECT_ATTRS`](/performance-schema/performance-schema-session-connect-attrs.md)
     - [元数据锁](/metadata-lock.md)
-    - [TiDB DDL V2](/ddl-v2.md)
   - UI
     - TiDB Dashboard
       - [简介](/dashboard/dashboard-intro.md)
@@ -1027,8 +1021,6 @@
   - [版本发布时间线](/releases/release-timeline.md)
   - [TiDB 版本规则](/releases/versioning.md)
   - [TiDB 离线包](/binary-package.md)
-  - v7.6
-    - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
     - [7.5.0](/releases/release-7.5.0.md)
   - v7.4
