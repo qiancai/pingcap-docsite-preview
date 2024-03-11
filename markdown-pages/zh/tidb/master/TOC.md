@@ -439,7 +439,6 @@
       - [过滤 binlog 事件](/dm/dm-binlog-event-filter.md)
       - [通过 SQL 表达式过滤 DML](/dm/feature-expression-filter.md)
       - [Online DDL 工具支持](/dm/dm-online-ddl-tool-support.md)
-      - [自定义加解密 key](dm/dm-customized-secret-key.md)
       - 迁移任务操作
         - [任务前置检查](/dm/dm-precheck.md)
         - [创建任务](/dm/dm-create-task.md)
@@ -1040,6 +1039,7 @@
   - v7.6
     - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
+    - [7.5.1](/releases/release-7.5.1.md)
     - [7.5.0](/releases/release-7.5.0.md)
   - v7.4
     - [7.4.0-DMR](/releases/release-7.4.0.md)
@@ -1048,6 +1048,7 @@
   - v7.2
     - [7.2.0-DMR](/releases/release-7.2.0.md)
   - v7.1
+    - [7.1.4](/releases/release-7.1.4.md)
     - [7.1.3](/releases/release-7.1.3.md)
     - [7.1.2](/releases/release-7.1.2.md)
     - [7.1.1](/releases/release-7.1.1.md)
