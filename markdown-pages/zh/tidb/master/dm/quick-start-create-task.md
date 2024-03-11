@@ -86,7 +86,7 @@ mv tidb-latest-linux-amd64/bin/tidb-server ./
 
 > **注意：**
 >
-> 从 v8.0.0 开始，DM-master 必须配置 [`secret-key-path`](dm/dm-master-configuration-file.md) 后才可使用 `tiup dmctl encrypt` 命令。
+> 从 v8.0.0 开始，DM-master 必须配置 [`secret-key-path`](dm/dm-master-configuration-file.md) 后才可使用 `dmctl encrypt` 命令。
 
 ```bash
 ./dmctl encrypt "123456"
