@@ -2,6 +2,9 @@ name: Sync doc changes from multiple PRs
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'sync_mult_prs.sh'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
