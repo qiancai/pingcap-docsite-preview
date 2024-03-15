@@ -21,6 +21,8 @@ cd "$SCRIPT_DIR"
 ./sync_pr.sh preview/pingcap/docs/16683
 # ./sync_pr.sh preview-cloud/pingcap/docs/"$CLOUD_DOCS_PR"
 # ./sync_pr.sh preview-operator/pingcap/docs-tidb-operator/"$OPERATOR_DOCS_PR"
+./sync_pr.sh preview-operator/pingcap/docs-tidb-operator/2478
+
 
 # Synchronize the content from master to release-x.y directories.
 # rsync -av markdown-pages/zh/tidb/master/ markdown-pages/zh/tidb/"$RELEASE_DIR"/
