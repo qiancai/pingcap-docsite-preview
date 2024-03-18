@@ -87,8 +87,8 @@ data-key-rotation-period = "168h" # 7 days
 
 If encryption is enabled (that is, the value of `data-encryption-method` is not `"plaintext"`), you must specify a master key in either of the following ways:
 
-- [Specify a master key via KMS](#specify-the-master-key-via-kms)
-- [Specify a master key via a file](#specify-the-master-key-via-file)
+- [Specify a master key via KMS](#specify-a-master-key-via-kms)
+- [Specify a master key via a file](#specify-a-master-key-via-file)
 
 #### Specify a master key via KMS
 
@@ -131,8 +131,8 @@ endpoint = "https://kms.us-west-2.amazonaws.com"
 The `key-id` specifies the key ID for the KMS CMK. The `region` is the AWS region name for the KMS CMK. The `endpoint` is optional and you do not need to specify it normally unless you are using an AWS KMS-compatible service from a non-AWS vendor or need to use a [VPC endpoint for KMS](https://docs.aws.amazon.com/kms/latest/developerguide/kms-vpc-endpoint.html).
 
 You can also use [multi-Region keys](https://docs.aws.amazon.com/kms/latest/developerguide/multi-region-keys-overview.html) in AWS. For this, you need to set up a primary key in a specific region and add replica keys in the regions you require.
-</div>
 
+</div>
 <div label="Google Cloud KMS">
 
 **Step 1: Create a master key**
@@ -175,7 +175,6 @@ credential-file-path = "/path/to/credential.json"
 - `credential-file-path` specifies the path of the authentication credentials file, which currently supports two types of credentials: Service Account and Authentication User. If the TiKV environment is already configured with [application default credentials](https://cloud.google.com/docs/authentication/application-default-credentials), there is no need to configure `credential-file-path`.
 
 </div>
-
 <div label="Azure KMS">
 
 **Step 1: Create a master key**
@@ -185,7 +184,6 @@ To create a key on Azure, refer to the instructions in [Set and retrieve a key f
 **Step 2: Configure the master key**
 
 To specify the master key using Azure KMS, add the `[security.encryption.master-key]` configuration after the `[security.encryption]` section in the TiKV configuration file:
-
 
 ```
 [security.encryption.master-key]
@@ -209,8 +207,8 @@ client_secret = ""
 ```
 
 Except `vendor`, you need to modify the values of other fields in the preceding configuration to the corresponding configuration of the actual key.
-</div>
 
+</div>
 </SimpleTab>
 
 #### Specify a master key via a file
