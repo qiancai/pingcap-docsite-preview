@@ -1,12 +1,11 @@
 ---
 title: PD 微服务
 summary: 介绍如何开启 PD 微服务模式提高服务质量。
-aliases: ['/docs-cn/tidb-in-kubernetes/dev/pd-microservices/']
 ---
 
 # PD 微服务
 
-从 v8.0.0 开始，PD 支持微服务架构。该架构可将 PD 的时间戳分配和集群调度功能拆分为以下微服务单独部署，从而与 PD 的路由功能解耦，让 PD 专注于元数据的路由服务。
+从 v8.0.0 开始，PD 支持微服务模式。该模式可将 PD 的时间戳分配和集群调度功能拆分为以下微服务单独部署，从而与 PD 的路由功能解耦，让 PD 专注于元数据的路由服务。
 
 - TSO 微服务：为整个集群提供单调递增的时间戳分配。
 - Scheduling 微服务：为整个集群提供调度功能，包括但不限于负载均衡、热点处理、副本修复、副本放置等。
@@ -17,7 +16,7 @@ aliases: ['/docs-cn/tidb-in-kubernetes/dev/pd-microservices/']
 
 PD 微服务通常用于解决 PD 出现性能瓶颈的问题，提高 PD 服务质量。利用该特性，你可以避免以下问题：
 
-- PD 集群压力过大而导致 TSO 分配的长尾或者抖动现象
+- PD 集群压力过大而导致 TSO 分配的长尾延迟或者抖动现象
 - 调度模块故障导致整个集群服务不可用的问题
 - PD 自身单点瓶颈的问题
 
@@ -25,11 +24,11 @@ PD 微服务通常用于解决 PD 出现性能瓶颈的问题，提高 PD 服务
 
 > **注意：**
 >
-> 如果性能瓶颈本身不在 PD，则无需开启微服务。微服务本身会增加组件数量，提高运维成本。
+> 如果集群的性能瓶颈不是 PD 引起的，则无需开启微服务。微服务本身会增加组件数量，提高运维成本。
 
 ## 使用限制
 
-- TSO 微服务目前不支持动态启停，开启或关闭 TSO 微服务需要重启 PD 集群。
+- TSO 微服务目前不支持动态启停，开启或关闭 TSO 微服务后你需要重启 PD 集群才会生效。
 - 只有 TiDB 组件支持通过服务发现直接连接 TSO 微服务，其他的组件是通过请求转发的方式，将请求通过 PD 转发到 TSO 微服务以获取时间戳。
 - 当前微服务与[同步部署模式 (DR Auto-Sync)](https://docs.pingcap.com/zh/tidb/stable/two-data-centers-in-one-city-deployment) 特性不兼容。
 - 与 TiDB 系统变量 [`tidb_enable_tso_follower_proxy`](https://docs.pingcap.com/zh/tidb/stable/system-variables#tidb_enable_tso_follower_proxy-从-v530-版本开始引入) 不兼容。
@@ -61,4 +60,3 @@ PD 微服务通常用于解决 PD 出现性能瓶颈的问题，提高 PD 服务
 - 如何判断 PD 是否达到了性能瓶颈?
 
   在集群自身状态正常的前提下，可以查看 Grafana PD 面板中的监控指标。如果 `TiDB - PD server TSO handle time` 指标出现明显延迟上涨或 `Heartbeat - TiKV side heartbeat statistics` 指标出现大量 pending，说明 PD 达到了性能瓶颈。
-
