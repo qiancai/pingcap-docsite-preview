@@ -209,24 +209,11 @@ To mount multiple PVs for TiCDC:
 
 <div label="PD microservices">
 
-To mount multiple PVs for PD microservices (taking the TSO microservice as an example):
+To mount multiple PVs for PD microservices (taking the `tso` microservice as an example):
 
 > **Note:**
 >
-> Starting from v8.0.0, PD supports the [microservice mode](pd-microservices.md).
-
-```yaml
-  pd:
-    mode: "ms"
-  pdms:
-  - name: "tso"
-    config: |
-      [log.file]
-        filename = "/pdms/log/tso.log"
-    storageVolumes:
-    - name: log
-      storageSize: "10Gi"
-      mountPath: "/pdms/log"
+> Starting from v8.0.0, PD supports the [microservice mode](https://docs.pingcap.com/tidb/dev/pd-microservices).
 
 ```yaml
   pd:
@@ -287,9 +274,9 @@ The deployed cluster topology by default has three PD Pods, three TiKV Pods, and
 
 > **Notes:**
 >
-> Starting from v8.0.0, PD supports the [microservice mode](pd-microservices.md).
+> Starting from v8.0.0, PD supports the [microservice mode](https://docs.pingcap.com/tidb/dev/pd-microservices).
 
-To enable PD microservices in your cluster, you need to configure `spec.pd.mode` and `spec.pdms` in the `${cluster_name}/tidb-cluster.yaml` file:
+To enable PD microservices in your cluster, configure `spec.pd.mode` and `spec.pdms` in the `${cluster_name}/tidb-cluster.yaml` file:
 
 ```yaml
 spec:
@@ -304,8 +291,8 @@ spec:
     replicas: 1
 ```
 
-- `spec.pd.mode` is used to enable or disable PD microservices. `"ms"` indicates enabling the PD microservice, while `""` indicates disabling PD microservices.
-- `spec.pdms.config` is used to configure the PD microservice, and the specific configuration parameters are the same as `spec.pd.config`. To get all the parameters that can be configured for PD microservices, see [PD configuration file](https://docs.pingcap.com/tidb/stable/pd-configuration-file).
+- `spec.pd.mode` is used to enable or disable PD microservices. Setting it to `"ms"` enables PD microservices, while setting it to `""` or removing this field disables PD microservices.
+- `spec.pdms.config` is used to configure PD microservices, and the specific configuration parameters are the same as `spec.pd.config`. To get all the parameters that can be configured for PD microservices, see [PD configuration file](https://docs.pingcap.com/tidb/stable/pd-configuration-file).
 
 #### Enable TiProxy
 
@@ -446,9 +433,9 @@ For all the configurable parameters of PD, refer to [PD Configuration File](http
 
 > **Notes:**
 >
-> Starting from v8.0.0, PD supports the [microservice mode](pd-microservices.md).
+> Starting from v8.0.0, PD supports the [microservice mode](https://docs.pingcap.com/tidb/dev/pd-microservices).
 
-You can configure PD microservice using the `spec.pd.mode` and `spec.pdms` parameters of the TidbCluster CR. Currently, PD supports two microservices: the TSO microservice and the scheduling microservice (configured as `tso` and `scheduling`). The configuration example is as follows:
+You can configure PD microservice using the `spec.pd.mode` and `spec.pdms` parameters of the TidbCluster CR. Currently, PD supports two microservices: the `tso` microservice and the `scheduling` microservice. The configuration example is as follows:
 
 ```yaml
 spec:
@@ -469,12 +456,14 @@ spec:
         filename = "/pdms/log/scheduling.log"
 ```
 
-In the preceding configuration, `spec.pdms` is used to configure the PD microservice, and the specific configuration parameters are the same as `spec.pd.config`. To get all the parameters that can be configured for PD microservices, see [PD configuration file](https://docs.pingcap.com/tidb/stable/pd-configuration-file).
+In the preceding configuration, `spec.pdms` is used to configure PD microservices, and the specific configuration parameters are the same as `spec.pd.config`. To get all the parameters that can be configured for PD microservices, see [PD configuration file](https://docs.pingcap.com/tidb/stable/pd-configuration-file).
 
 > **Note:**
 >
 > - If you deploy your TiDB cluster using CR, make sure that `config: {}` is set, no matter you want to modify `config` or not. Otherwise, PD microservice components might not be started successfully. This step is meant to be compatible with `Helm` deployment.
-> - After the cluster is started for the first time, some configuration items of the PD microservice are persisted in etcd. The persisted configuration in etcd takes precedence over that in PD. Therefore, after the first start, you cannot modify these configuration items using parameters.
+> - If you enable the PD microservice mode when you deploy a TiDB cluster, some configuration items of PD microservices are persisted in etcd. The persisted configuration in etcd takes precedence over that in PD.
+> - If you enable the PD microservice mode for an existing TiDB cluster, some configuration items of PD microservices adopt the same values in PD configuration and are persisted in etcd. The persisted configuration in etcd takes precedence over that in PD.
+> - Hence, after the first startup of PD microservices, you cannot modify these configuration items using parameters. Instead, you can modify them dynamically using [SQL statements](https://docs.pingcap.com/tidb/stable/dynamic-config/#modify-pd-configuration-dynamically), [pd-ctl](https://docs.pingcap.com/tidb/stable/pd-control#config-show--set-option-value--placement-rules), or PD server API. Currently, among all the configuration items listed in [Modify PD configuration dynamically](https://docs.pingcap.com/tidb/stable/dynamic-config#modify-pd-configuration-dynamically), except `log.level`, all the other configuration items cannot be modified using parameters after the first startup of PD microservices.
 
 #### Configure TiProxy parameters
 

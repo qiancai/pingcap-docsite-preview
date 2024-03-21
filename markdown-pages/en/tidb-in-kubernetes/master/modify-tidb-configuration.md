@@ -43,11 +43,13 @@ For TiDB clusters deployed on Kubernetes, if you need to modify the PD configura
 
 > **Note:**
 >
-> Starting from v8.0.0, PD supports the [microservice mode](pd-microservices.md).
+> Starting from v8.0.0, PD supports the [microservice mode](https://docs.pingcap.com/tidb/dev/pd-microservices).
 
-After each component of the PD microservices is started for the first time, some PD configuration items are persisted in etcd. The persisted configuration in etcd takes precedence over the configuration file in PD. Therefore, after the first start, you cannot modify some PD configuration items by using the `TidbCluster` CR.
+After each component of the PD microservices is started for the first time, some PD configuration items are persisted in etcd. The persisted configuration in etcd takes precedence over the configuration file in PD. Therefore, after the first start of each PD microservice component, you cannot modify some PD configuration items by using the `TidbCluster` CR.
 
-Among all the configuration items of PD microservices listed in [Modify PD configuration online](https://docs.pingcap.com/tidb/stable/dynamic-config/#modify-pd-configuration-online), after the first start of each PD microservice component, only `log.level` can be modified by using the `TidbCluster` CR. Other configurations cannot be modified by using CR.
+Among all the configuration items of PD microservices listed in [Modify PD configuration dynamically](https://docs.pingcap.com/tidb/stable/dynamic-config/#modify-pd-configuration-online), after the first start of each PD microservice component, only `log.level` can be modified by using the `TidbCluster` CR. Other configurations cannot be modified by using CR.
+
+For TiDB clusters deployed on Kubernetes, if you need to modify configuration items of PD microservices, you can modify them dynamically using [SQL statements](https://docs.pingcap.com/tidb/stable/dynamic-config/#modify-pd-configuration-dynamically), [pd-ctl](https://docs.pingcap.com/tidb/stable/pd-control#config-show--set-option-value--placement-rules), or PD server API.
 
 ## Modify TiProxy configuration
 

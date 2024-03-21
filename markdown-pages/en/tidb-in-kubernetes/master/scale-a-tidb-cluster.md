@@ -170,19 +170,19 @@ When all Pods are rebuilt and in the `Running` state, the vertical scaling is co
 
 > **Notes:**
 >
-> Starting from v8.0.0, PD supports the [microservice mode](pd-microservices.md).
+> Starting from v8.0.0, PD supports the [microservice mode](https://docs.pingcap.com/tidb/dev/pd-microservices).
 
-PD microservices are typically used to address performance bottlenecks in PD and improve the quality of PD services. To determine whether it is necessary to scale your PD microservices, see [PD microservice FAQs](pd-microservices.md#FAQ).
+PD microservices are typically used to address performance bottlenecks in PD and improve the quality of PD services. To determine whether it is necessary to scale PD microservices, see [PD microservice FAQs](https://docs.pingcap.com/tidb/dev/pd-microservices#FAQ).
 
-- Currently, the PD microservices mode disaggregates the timestamp allocation and cluster scheduling functions of PD into two independently deployed components: the TSO microservice and the scheduling microservice.
-    - The TSO microservice implements a primary-secondary architecture. If the TSO microservice becomes the bottleneck, it is recommended to scale it vertically.
-    - The Scheduling microservice serves as a scheduling component. If the Scheduling microservice becomes the  bottleneck, it is recommended to scale it horizontally.
+- Currently, the PD microservices mode disaggregates the timestamp allocation and cluster scheduling functions of PD into two independently deployed components: the `tso` microservice and the `scheduling` microservice.
+    - The `tso` microservice implements a primary-secondary architecture. If the `tso` microservice becomes the bottleneck, it is recommended to scale it vertically.
+    - The `scheduling` microservice serves as a scheduling component. If the `scheduling` microservice becomes the bottleneck, it is recommended to scale it horizontally.
 
 - To vertically scale each component of PD microservices, use the `kubectl` command to modify the `spec.pdms.resources` of the `TidbCluster` object corresponding to the cluster to your desired value.
 
 - To horizontally scale each component of PD microservices, use the `kubectl` command to modify `spec.pdms.replicas` of the `TidbCluster` object corresponding to the cluster to your desired value.
 
-Taking the scheduling microservice as an example, the steps for horizontal scaling are as follows:
+Taking the `scheduling` microservice as an example, the steps for horizontal scaling are as follows:
 
 1. Modify the `replicas` value of the corresponding `TidbCluster` object to your desired value. For example, run the following command to set the `replicas` value of `scheduling` to `3`:
 
@@ -190,13 +190,13 @@ Taking the scheduling microservice as an example, the steps for horizontal scali
     kubectl patch -n ${namespace} tc ${cluster_name} --type merge --patch '{"spec":{"pdms":{"name":"scheduling", "replicas":3}}}'
     ```
 
-2. Check whether the corresponding TiDB cluster configuration in the Kubernetes cluster is updated:
+2. Check whether the corresponding TiDB cluster configuration for the Kubernetes cluster is updated:
 
     ```shell
     kubectl get tidbcluster ${cluster_name} -n ${namespace} -oyaml
     ```
 
-    In the output of this command, the `scheduling.replicas` value of `spec.pdms` is expected to be the same as the value you configured.
+    In the output of this command, the `scheduling.replicas` value of `spec.pdms` in `TidbCluster` is expected to be the same as the value you configured.
 
 3. Observe whether the number of `TidbCluster` Pods is increased or decreased:
 
