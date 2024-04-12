@@ -4,7 +4,7 @@
 - [Docs Home](https://docs.pingcap.com/)
 - About TiDB
   - [TiDB Introduction](/overview.md)
-  - [TiDB 7.6 Release Notes](/releases/release-7.6.0.md)
+  - [TiDB 8.0 Release Notes](/releases/release-8.0.0.md)
   - [Features](/basic-features.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
   - [TiDB Limitations](/tidb-limitations.md)
@@ -328,6 +328,7 @@
   - [Use Load Base Split](/configure-load-base-split.md)
   - [Use Store Limit](/configure-store-limit.md)
   - [DDL Execution Principles and Best Practices](/ddl-introduction.md)
+  - [Use PD Microservices](/pd-microservices.md)
 - TiDB Tools
   - [Overview](/ecosystem-tool-user-guide.md)
   - [Use Cases](/ecosystem-tool-user-case.md)
@@ -446,6 +447,7 @@
       - [Binlog Event Filter](/dm/dm-binlog-event-filter.md)
       - [Filter DMLs Using SQL Expressions](/dm/feature-expression-filter.md)
       - [Online DDL Tool Support](/dm/dm-online-ddl-tool-support.md)
+      - [Customize a Secret Key for Encryption and Decryption](/dm/dm-customized-secret-key.md)
       - Manage a Data Migration Task
         - [Precheck a Task](/dm/dm-precheck.md)
         - [Create a Task](/dm/dm-create-task.md)
@@ -564,6 +566,7 @@
       - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
       - [Data Integrity Validation for Single-Row Data](/ticdc/ticdc-integrity-check.md)
       - [Data Consistency Validation for TiDB Upstream/Downstream Clusters](/ticdc/ticdc-upstream-downstream-check.md)
+      - [TiCDC Behavior Changes](/ticdc/ticdc-behavior-change.md)
     - Monitor and Alert
       - [Monitoring Metrics Summary](/ticdc/ticdc-summary-monitor.md)
       - [Monitoring Metrics Details](/ticdc/monitor-ticdc.md)
@@ -575,8 +578,10 @@
       - Output Protocols
         - [TiCDC Avro Protocol](/ticdc/ticdc-avro-protocol.md)
         - [TiCDC Canal-JSON Protocol](/ticdc/ticdc-canal-json.md)
-        - [TiCDC Open Protocol](/ticdc/ticdc-open-protocol.md)
         - [TiCDC CSV Protocol](/ticdc/ticdc-csv.md)
+        - [TiCDC Debezium Protocol](/ticdc/ticdc-debezium.md)
+        - [TiCDC Open Protocol](/ticdc/ticdc-open-protocol.md)
+        - [TiCDC Simple Protocol](/ticdc/ticdc-simple-protocol.md)
       - [TiCDC Open API v2](/ticdc/ticdc-open-api-v2.md)
       - [TiCDC Open API v1](/ticdc/ticdc-open-api.md)
       - TiCDC Data Consumption
@@ -960,6 +965,7 @@
         - [`TIDB_HOT_REGIONS`](/information-schema/information-schema-tidb-hot-regions.md)
         - [`TIDB_HOT_REGIONS_HISTORY`](/information-schema/information-schema-tidb-hot-regions-history.md)
         - [`TIDB_INDEXES`](/information-schema/information-schema-tidb-indexes.md)
+        - [`TIDB_INDEX_USAGE`](/information-schema/information-schema-tidb-index-usage.md)
         - [`TIDB_SERVERS_INFO`](/information-schema/information-schema-tidb-servers-info.md)
         - [`TIDB_TRX`](/information-schema/information-schema-tidb-trx.md)
         - [`TIFLASH_REPLICA`](/information-schema/information-schema-tiflash-replica.md)
@@ -976,8 +982,11 @@
       - PERFORMANCE_SCHEMA
         - [Overview](/performance-schema/performance-schema.md)
         - [`SESSION_CONNECT_ATTRS`](/performance-schema/performance-schema-session-connect-attrs.md)
+      - SYS
+        - [Overview](/sys-schema/sys-schema.md)
+        - [`schema_unused_indexes`](/sys-schema/sys-schema-unused-indexes.md)
     - [Metadata Lock](/metadata-lock.md)
-    - [TiDB DDL V2](/ddl-v2.md)
+    - [TiDB Accelerated Table Creation](/accelerated-table-creation.md)
   - UI
     - TiDB Dashboard
       - [Overview](/dashboard/dashboard-intro.md)
@@ -1032,8 +1041,10 @@
   - [Release Timeline](/releases/release-timeline.md)
   - [TiDB Versioning](/releases/versioning.md)
   - [TiDB Installation Packages](/binary-package.md)
+  - v8.0
+    - [8.0.0-DMR](/releases/release-8.0.0.md)
   - v7.6
-    - [7.6.0](/releases/release-7.6.0.md)
+    - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
     - [7.5.1](/releases/release-7.5.1.md)
     - [7.5.0](/releases/release-7.5.0.md)
@@ -1054,6 +1065,7 @@
   - v6.6
     - [6.6.0-DMR](/releases/release-6.6.0.md)
   - v6.5
+    - [6.5.9](/releases/release-6.5.9.md)
     - [6.5.8](/releases/release-6.5.8.md)
     - [6.5.7](/releases/release-6.5.7.md)
     - [6.5.6](/releases/release-6.5.6.md)
