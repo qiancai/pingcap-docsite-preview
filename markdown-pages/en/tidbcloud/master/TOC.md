@@ -630,7 +630,7 @@
       - [list](/tidb-cloud/ticloud-cluster-list.md)
       - [update](/tidb-cloud/ticloud-serverless-update.md)
       - [spending-limit](/tidb-cloud/ticloud-serverless-spending-limit.md)
-      - [regions](/tidb-cloud/ticloud-serverless-regions.md)
+      - [region](/tidb-cloud/ticloud-serverless-region.md)
       - [shell](/tidb-cloud/ticloud-serverless-shell.md)
       - branch
         - [create](/tidb-cloud/ticloud-branch-create.md)
@@ -642,10 +642,7 @@
         - [cancel](/tidb-cloud/ticloud-import-cancel.md)
         - [describe](/tidb-cloud/ticloud-import-describe.md)
         - [list](/tidb-cloud/ticloud-import-list.md)
-        - start
-          - [local](/tidb-cloud/ticloud-import-start-local.md)
-          - [s3](/tidb-cloud/ticloud-import-start-s3.md)
-          - [mysql](/tidb-cloud/ticloud-import-start-mysql.md)
+        - [start](/tidb-cloud/ticloud-import-start.md)
       - export
         - [create](/tidb-cloud/ticloud-serverless-export-create.md)
         - [describe](/tidb-cloud/ticloud-serverless-export-describe.md)
@@ -653,6 +650,7 @@
         - [cancel](/tidb-cloud/ticloud-serverless-export-cancel.md)
         - [download](/tidb-cloud/ticloud-serverless-export-download.md)
     - [ai](/tidb-cloud/ticloud-ai.md)
+    - [completion](/tidb-cloud/ticloud-completion.md)
     - config
       - [create](/tidb-cloud/ticloud-config-create.md)
       - [delete](/tidb-cloud/ticloud-config-delete.md)
@@ -664,6 +662,7 @@
     - project
       - [list](/tidb-cloud/ticloud-project-list.md)
     - [update](/tidb-cloud/ticloud-update.md)
+    - [help](/tidb-cloud/ticloud-help.md)
   - [Table Filter](/table-filter.md)
   - [Resource Control](/tidb-resource-control.md)
   - [URI Formats of External Storage Services](/external-storage-uri.md)

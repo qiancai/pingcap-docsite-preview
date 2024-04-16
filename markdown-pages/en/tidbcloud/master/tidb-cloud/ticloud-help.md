@@ -1,40 +1,37 @@
 ---
-title: ticloud serverless import cancel
-summary: The reference of `ticloud serverless import cancel`.
+title: ticloud help
+summary: The reference of `ticloud help`.
 ---
 
-# ticloud serverless import cancel
+# ticloud help
 
-Cancel a data import task:
+Get help information for any command in TiDB Cloud CLI:
 
 ```shell
-ticloud serverless import cancel [flags]
+ticloud help [command] [flags]
 ```
 
 ## Examples
 
-Cancel an import task in interactive mode:
+To get help for the `auth` command:
 
 ```shell
-ticloud serverless import cancel
+ticloud help auth
 ```
 
-Cancel an import task in non-interactive mode:
+To get help for the `serveless create` command:
 
 ```shell
-ticloud serverless import cancel --cluster-id <cluster-id> --import-id <import-id>
+ticloud help serveless create
 ```
 
 ## Flags
 
 In non-interactive mode, you need to manually enter the required flags. In interactive mode, you can just follow CLI prompts to fill them in.
 
-| Flag                    | Description                                  | Required | Note                                                 |
-|-------------------------|----------------------------------------------|----------|------------------------------------------------------|
-| -c, --cluster-id string | Specifies the ID of the cluster.                                  | Yes      | Only works in non-interactive mode.                  |
-| --force                 | Cancels an import task without confirmation. | No       | Works in both non-interactive and interactive modes. |
-| -h, --help              | Shows help information for this command.     | No       | Works in both non-interactive and interactive modes. |
-| --import-id string      | Specifies the ID of the import task.         | Yes      | Only works in non-interactive mode.                  |
+| Flag                    | Description                                                   | Required | Note                                                 |
+|-------------------------|---------------------------------------------------------------|----------|------------------------------------------------------|
+| -h, --help              | Shows help information for this command.                      | No       | Works in both non-interactive and interactive modes. |
 
 ## Inherited flags
 
