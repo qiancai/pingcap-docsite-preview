@@ -526,10 +526,13 @@
     - [Target Database Requirements](/tidb-lightning/tidb-lightning-requirements.md)
     - Data Sources
       - [Data Match Rules](/tidb-lightning/tidb-lightning-data-source.md)
+      - [Rename databases and tables](/tidb-lightning/tidb-lightning-data-source.md#rename-databases-and-tables)
       - [CSV](/tidb-lightning/tidb-lightning-data-source.md#csv)
       - [SQL](/tidb-lightning/tidb-lightning-data-source.md#sql)
       - [Parquet](/tidb-lightning/tidb-lightning-data-source.md#parquet)
+      - [Compressed files](/tidb-lightning/tidb-lightning-data-source.md#compressed-files)
       - [Customized File](/tidb-lightning/tidb-lightning-data-source.md#match-customized-files)
+      - [Import data from Amazon S3](/tidb-lightning/tidb-lightning-data-source.md#import-data-from-amazon-s3)
     - Physical Import Mode
       - [Requirements and Limitations](/tidb-lightning/tidb-lightning-physical-import-mode.md)
       - [Use Physical Import Mode](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md)
@@ -714,6 +717,7 @@
       - [Expression Syntax](/expression-syntax.md)
       - [Comment Syntax](/comment-syntax.md)
     - SQL Statements
+      - [Overview](/sql-statements/sql-statement-overview.md)
       - [`ADD COLUMN`](/sql-statements/sql-statement-add-column.md)
       - [`ADD INDEX`](/sql-statements/sql-statement-add-index.md)
       - [`ADMIN`](/sql-statements/sql-statement-admin.md)
@@ -733,6 +737,7 @@
       - [`ALTER PLACEMENT POLICY`](/sql-statements/sql-statement-alter-placement-policy.md)
       - [`ALTER RANGE`](/sql-statements/sql-statement-alter-range.md)
       - [`ALTER RESOURCE GROUP`](/sql-statements/sql-statement-alter-resource-group.md)
+      - [`ALTER SEQUENCE`](/sql-statements/sql-statement-alter-sequence.md)
       - [`ALTER TABLE`](/sql-statements/sql-statement-alter-table.md)
       - [`ALTER TABLE COMPACT`](/sql-statements/sql-statement-alter-table-compact.md)
       - [`ALTER USER`](/sql-statements/sql-statement-alter-user.md)
@@ -846,7 +851,7 @@
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
       - [`SHOW STATS_HEALTHY`](/sql-statements/sql-statement-show-stats-healthy.md)
-      - [`SHOW STATS_HISTOGRAMS`](/sql-statements/sql-statement-show-histograms.md)
+      - [`SHOW STATS_HISTOGRAMS`](/sql-statements/sql-statement-show-stats-histograms.md)
       - [`SHOW STATS_LOCKED`](/sql-statements/sql-statement-show-stats-locked.md)
       - [`SHOW STATS_META`](/sql-statements/sql-statement-show-stats-meta.md)
       - [`SHOW STATUS`](/sql-statements/sql-statement-show-status.md)
@@ -893,6 +898,7 @@
       - [Miscellaneous Functions](/functions-and-operators/miscellaneous-functions.md)
       - [Precision Math](/functions-and-operators/precision-math.md)
       - [Set Operations](/functions-and-operators/set-operators.md)
+      - [Sequence Functions](/functions-and-operators/sequence-functions.md)
       - [List of Expressions for Pushdown](/functions-and-operators/expressions-pushed-down.md)
       - [TiDB Specific Functions](/functions-and-operators/tidb-functions.md)
       - [Comparisons between Functions and Syntax of Oracle and TiDB](/oracle-functions-to-tidb.md)
@@ -1055,6 +1061,7 @@
   - v7.2
     - [7.2.0-DMR](/releases/release-7.2.0.md)
   - v7.1
+    - [7.1.5](/releases/release-7.1.5.md)
     - [7.1.4](/releases/release-7.1.4.md)
     - [7.1.3](/releases/release-7.1.3.md)
     - [7.1.2](/releases/release-7.1.2.md)
