@@ -242,7 +242,6 @@
   - [Manage Data App](/tidb-cloud/data-service-manage-data-app.md)
   - [Manage Endpoint](/tidb-cloud/data-service-manage-endpoint.md)
   - [API Key](/tidb-cloud/data-service-api-key.md)
-  - [Custom Domain](/tidb-cloud/data-service-custom-domain.md)
   - [Run in Postman](/tidb-cloud/data-service-postman-integration.md)
   - [Deploy Automatically with GitHub](/tidb-cloud/data-service-manage-github-connection.md)
   - [Use OpenAPI Specification with Next.js](/tidb-cloud/data-service-oas-with-nextjs.md)
@@ -279,16 +278,12 @@
 - Billing
   - [Invoices](/tidb-cloud/tidb-cloud-billing.md#invoices)
   - [Billing Details](/tidb-cloud/tidb-cloud-billing.md#billing-details)
-  - [Cost Explorer](/tidb-cloud/tidb-cloud-billing.md#cost-explorer)
-  - [Billing Profile](/tidb-cloud/tidb-cloud-billing.md#billing-profile)
   - [Credits](/tidb-cloud/tidb-cloud-billing.md#credits)
   - [Payment Method Setting](/tidb-cloud/tidb-cloud-billing.md#payment-method)
   - [Billing from AWS or GCP Marketplace](/tidb-cloud/tidb-cloud-billing.md#billing-from-aws-marketplace-or-google-cloud-marketplace)
   - [Billing for Changefeed](/tidb-cloud/tidb-cloud-billing-ticdc-rcu.md)
   - [Billing for Data Migration](/tidb-cloud/tidb-cloud-billing-dm.md)
-- Managed Service Provider Program
-  - [Managed Service Provider](/tidb-cloud/managed-service-provider.md)
-  - [MSP Customer](/tidb-cloud/managed-service-provider-customer.md)
+- API
 - API
   - [API Overview](/tidb-cloud/api-overview.md)
   - API Reference
@@ -334,14 +329,11 @@
     - [TiDB Global Sort](/tidb-global-sort.md)
   - Benchmarks
     - TiDB v7.5
-      - [TPC-C Performance Test Report](/tidb-cloud/v7.5-performance-benchmarking-with-tpcc.md)
-      - [Sysbench Performance Test Report](/tidb-cloud/v7.5-performance-benchmarking-with-sysbench.md)
+      - [TPC-C Performance Test Report](/tidb-cloud/v7.5.0-performance-benchmarking-with-tpcc.md)
+      - [Sysbench Performance Test Report](/tidb-cloud/v7.5.0-performance-benchmarking-with-sysbench.md)
     - TiDB v7.1
-      - [TPC-C Performance Test Report](/tidb-cloud/v7.1-performance-benchmarking-with-tpcc.md)
-      - [Sysbench Performance Test Report](/tidb-cloud/v7.1-performance-benchmarking-with-sysbench.md)
-    - TiDB v6.5
-      - [TPC-C Performance Test Report](/tidb-cloud/v6.5-performance-benchmarking-with-tpcc.md)
-      - [Sysbench Performance Test Report](/tidb-cloud/v6.5-performance-benchmarking-with-sysbench.md)
+      - [TPC-C Performance Test Report](/tidb-cloud/v7.1.0-performance-benchmarking-with-tpcc.md)
+      - [Sysbench Performance Test Report](/tidb-cloud/v7.1.0-performance-benchmarking-with-sysbench.md)
   - SQL
     - [Explore SQL with TiDB](/basic-sql-operations.md)
     - SQL Language Structure and Syntax
@@ -356,6 +348,7 @@
       - [Expression Syntax](/expression-syntax.md)
       - [Comment Syntax](/comment-syntax.md)
     - SQL Statements
+      - [Overview](/sql-statements/sql-statement-overview.md)
       - [`ADD COLUMN`](/sql-statements/sql-statement-add-column.md)
       - [`ADD INDEX`](/sql-statements/sql-statement-add-index.md)
       - [`ADMIN`](/sql-statements/sql-statement-admin.md)
@@ -373,6 +366,7 @@
       - [`ALTER PLACEMENT POLICY`](/sql-statements/sql-statement-alter-placement-policy.md)
       - [`ALTER RANGE`](/sql-statements/sql-statement-alter-range.md)
       - [`ALTER RESOURCE GROUP`](/sql-statements/sql-statement-alter-resource-group.md)
+      - [`ALTER SEQUENCE`](/sql-statements/sql-statement-alter-sequence.md)
       - [`ALTER TABLE`](/sql-statements/sql-statement-alter-table.md)
       - [`ALTER TABLE COMPACT`](/sql-statements/sql-statement-alter-table-compact.md)
       - [`ALTER USER`](/sql-statements/sql-statement-alter-user.md)
@@ -480,7 +474,7 @@
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
       - [`SHOW STATS_HEALTHY`](/sql-statements/sql-statement-show-stats-healthy.md)
-      - [`SHOW STATS_HISTOGRAMS`](/sql-statements/sql-statement-show-histograms.md)
+      - [`SHOW STATS_HISTOGRAMS`](/sql-statements/sql-statement-show-stats-histograms.md)
       - [`SHOW STATS_LOCKED`](/sql-statements/sql-statement-show-stats-locked.md)
       - [`SHOW STATS_META`](/sql-statements/sql-statement-show-stats-meta.md)
       - [`SHOW STATUS`](/sql-statements/sql-statement-show-status.md)
@@ -526,6 +520,7 @@
       - [Miscellaneous Functions](/functions-and-operators/miscellaneous-functions.md)
       - [Precision Math](/functions-and-operators/precision-math.md)
       - [Set Operations](/functions-and-operators/set-operators.md)
+      - [Sequence Functions](/functions-and-operators/sequence-functions.md)
       - [List of Expressions for Pushdown](/functions-and-operators/expressions-pushed-down.md)
       - [TiDB Specific Functions](/functions-and-operators/tidb-functions.md)
     - [Clustered Indexes](/clustered-indexes.md)
@@ -573,6 +568,7 @@
         - [`DDL_JOBS`](/information-schema/information-schema-ddl-jobs.md)
         - [`DEADLOCKS`](/information-schema/information-schema-deadlocks.md)
         - [`ENGINES`](/information-schema/information-schema-engines.md)
+        - [`KEYWORDS`](/information-schema/information-schema-keywords.md)
         - [`KEY_COLUMN_USAGE`](/information-schema/information-schema-key-column-usage.md)
         - [`MEMORY_USAGE`](/information-schema/information-schema-memory-usage.md)
         - [`MEMORY_USAGE_OPS_HISTORY`](/information-schema/information-schema-memory-usage-ops-history.md)
@@ -592,6 +588,7 @@
         - [`TABLE_STORAGE_STATS`](/information-schema/information-schema-table-storage-stats.md)
         - [`TIDB_HOT_REGIONS_HISTORY`](/information-schema/information-schema-tidb-hot-regions-history.md)
         - [`TIDB_INDEXES`](/information-schema/information-schema-tidb-indexes.md)
+        - [`TIDB_INDEX_USAGE`](/information-schema/information-schema-tidb-index-usage.md)
         - [`TIDB_SERVERS_INFO`](/information-schema/information-schema-tidb-servers-info.md)
         - [`TIDB_TRX`](/information-schema/information-schema-tidb-trx.md)
         - [`TIFLASH_REPLICA`](/information-schema/information-schema-tiflash-replica.md)
@@ -607,8 +604,12 @@
       - PERFORMANCE_SCHEMA
         - [Overview](/performance-schema/performance-schema.md)
         - [`SESSION_CONNECT_ATTRS`](/performance-schema/performance-schema-session-connect-attrs.md)
+      - SYS
+        - [Overview](/sys-schema/sys-schema.md)
+        - [`schema_unused_indexes`](/sys-schema/sys-schema-unused-indexes.md)
     - [Metadata Lock](/metadata-lock.md)
     - [Use UUIDs](/best-practices/uuid.md)
+    - [TiDB Accelerated Table Creation](/accelerated-table-creation.md)
   - [System Variables](/system-variables.md)
   - [Server Status Variables](/status-variables.md)
   - Storage Engines
@@ -620,37 +621,18 @@
       - [Spill to Disk](/tiflash/tiflash-spill-disk.md)
   - CLI
     - [Overview](/tidb-cloud/cli-reference.md)
-    - auth
-      - [login](/tidb-cloud/ticloud-auth-login.md)
-      - [logout](/tidb-cloud/ticloud-auth-logout.md)
-    - serverless
+    - cluster
       - [create](/tidb-cloud/ticloud-cluster-create.md)
       - [delete](/tidb-cloud/ticloud-cluster-delete.md)
       - [describe](/tidb-cloud/ticloud-cluster-describe.md)
       - [list](/tidb-cloud/ticloud-cluster-list.md)
-      - [update](/tidb-cloud/ticloud-serverless-update.md)
-      - [spending-limit](/tidb-cloud/ticloud-serverless-spending-limit.md)
-      - [region](/tidb-cloud/ticloud-serverless-region.md)
-      - [shell](/tidb-cloud/ticloud-serverless-shell.md)
-      - branch
-        - [create](/tidb-cloud/ticloud-branch-create.md)
-        - [delete](/tidb-cloud/ticloud-branch-delete.md)
-        - [describe](/tidb-cloud/ticloud-branch-describe.md)
-        - [list](/tidb-cloud/ticloud-branch-list.md)
-        - [shell](/tidb-cloud/ticloud-branch-shell.md)
-      - import
-        - [cancel](/tidb-cloud/ticloud-import-cancel.md)
-        - [describe](/tidb-cloud/ticloud-import-describe.md)
-        - [list](/tidb-cloud/ticloud-import-list.md)
-        - [start](/tidb-cloud/ticloud-import-start.md)
-      - export
-        - [create](/tidb-cloud/ticloud-serverless-export-create.md)
-        - [describe](/tidb-cloud/ticloud-serverless-export-describe.md)
-        - [list](/tidb-cloud/ticloud-serverless-export-list.md)
-        - [cancel](/tidb-cloud/ticloud-serverless-export-cancel.md)
-        - [download](/tidb-cloud/ticloud-serverless-export-download.md)
-    - [ai](/tidb-cloud/ticloud-ai.md)
-    - [completion](/tidb-cloud/ticloud-completion.md)
+      - [connect-info](/tidb-cloud/ticloud-cluster-connect-info.md)
+    - branch
+      - [create](/tidb-cloud/ticloud-branch-create.md)
+      - [delete](/tidb-cloud/ticloud-branch-delete.md)
+      - [describe](/tidb-cloud/ticloud-branch-describe.md)
+      - [list](/tidb-cloud/ticloud-branch-list.md)
+      - [connect-info](/tidb-cloud/ticloud-branch-connect-info.md)
     - config
       - [create](/tidb-cloud/ticloud-config-create.md)
       - [delete](/tidb-cloud/ticloud-config-delete.md)
@@ -659,10 +641,18 @@
       - [list](/tidb-cloud/ticloud-config-list.md)
       - [set](/tidb-cloud/ticloud-config-set.md)
       - [use](/tidb-cloud/ticloud-config-use.md)
+    - [connect](/tidb-cloud/ticloud-connect.md)
+    - import
+      - [cancel](/tidb-cloud/ticloud-import-cancel.md)
+      - [describe](/tidb-cloud/ticloud-import-describe.md)
+      - [list](/tidb-cloud/ticloud-import-list.md)
+      - start
+        - [local](/tidb-cloud/ticloud-import-start-local.md)
+        - [s3](/tidb-cloud/ticloud-import-start-s3.md)
+        - [mysql](/tidb-cloud/ticloud-import-start-mysql.md)
     - project
       - [list](/tidb-cloud/ticloud-project-list.md)
     - [update](/tidb-cloud/ticloud-update.md)
-    - [help](/tidb-cloud/ticloud-help.md)
   - [Table Filter](/table-filter.md)
   - [Resource Control](/tidb-resource-control.md)
   - [URI Formats of External Storage Services](/external-storage-uri.md)
@@ -674,14 +664,11 @@
   - [TiDB Cloud FAQs](/tidb-cloud/tidb-cloud-faq.md)
   - [TiDB Serverless FAQs](/tidb-cloud/serverless-faqs.md)
 - Release Notes
-  - [2024](/tidb-cloud/tidb-cloud-release-notes.md)
-  - [2023](/tidb-cloud/release-notes-2023.md)
+  - [2023](/tidb-cloud/tidb-cloud-release-notes.md)
   - [2022](/tidb-cloud/release-notes-2022.md)
   - [2021](/tidb-cloud/release-notes-2021.md)
   - [2020](/tidb-cloud/release-notes-2020.md)
 - Maintenance Notification
-  - [[2024-04-18] TiDB Cloud Data Migration (DM) Feature Maintenance Notification](/tidb-cloud/notification-2024-04-18-dm-feature-maintenance.md)
-  - [[2024-04-11] TiDB Cloud Data Migration (DM) Feature Maintenance Notification](/tidb-cloud/notification-2024-04-11-dm-feature-maintenance.md)
   - [[2023-11-14] TiDB Dedicated Scale Feature Maintenance Notification](/tidb-cloud/notification-2023-11-14-scale-feature-maintenance.md)
   - [[2023-09-26] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2023-09-26-console-maintenance.md)
   - [[2023-08-31] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2023-08-31-console-maintenance.md)
