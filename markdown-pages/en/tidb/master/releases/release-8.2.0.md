@@ -99,7 +99,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v8.2/quick-start-with-
 
 * TiDB supports the JSON schema validation function [#52779](https://github.com/pingcap/tidb/issues/52779) @[dveeden](https://github.com/dveeden) **tw@hfxsd** <!--1840-->
 
-    Before v8.2.0, you need to rely on external tools or customized validation logic for JSON data validation, which increases the complexity of development and maintenance, and reduces development efficiency. Starting from v8.2.0, the `JSON_SCHEMA_VALID()` function is introduced, which lets you verify the validity of JSON data directly in TiDB, improving the integrity and consistency of the data, and increasing the development efficiency.
+    Before v8.2.0, you need to rely on external tools or customized validation logic for JSON data validation, which increases the complexity of development and maintenance, and reduces development efficiency. Starting from v8.2.0, the `JSON_SCHEMA_VALID()` function is introduced. Using `JSON_SCHEMA_VALID()` in the `CHECK` constraint can help prevent non-conforming data from being inserted, rather than checking the data after it has been added. This function lets you verify the validity of JSON data directly in TiDB, improving the integrity and consistency of the data, and increasing the development efficiency.
 
     For more information, see [documentation](/functions-and-operators/json-functions.md#validation-functions).
 
@@ -169,26 +169,26 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v8.2/quick-start-with-
 
 | Variable name  | Change type   | Description |
 |--------|------------------------------|------|
-| [`tidb_analyze_distsql_scan_concurrency`](/system-variables.md#tidb_analyze_distsql_scan_concurrency-new-in-v760) | Modified  |  Changes the minimum value from `1` to `0`. When you set it to `0`, TiDB adaptively adjusts the concurrency based on the cluster size.**tw@hfxsd** <!--xxx--> |
-| [`tidb_analyze_skip_column_types`](/system-variables.md#tidb_analyze_skip_column_types-new-in-v720) | Modified  | Starting from v8.2.0, TiDB does not collect columns of `mediumtext` and `longtext` types by default to avoid potential OOM risks. **tw@hfxsd** <!--1759--> |
+| [`tidb_analyze_distsql_scan_concurrency`](/system-variables.md#tidb_analyze_distsql_scan_concurrency-new-in-v760) | Modified  |  Changes the minimum value from `1` to `0`. When you set it to `0`, TiDB adaptively adjusts the concurrency of the `scan` operation when executing the `ANALYZE` operation based on the cluster size.**tw@hfxsd** <!--xxx--> |
+| [`tidb_analyze_skip_column_types`](/system-variables.md#tidb_analyze_skip_column_types-new-in-v720) | Modified  | Starting from v8.2.0, TiDB does not collect columns of `MEDIUMTEXT` and `LONGTEXT` types by default to avoid potential OOM risks. **tw@hfxsd** <!--1759--> |
 | [`tidb_enable_historical_stats`](/system-variables.md#tidb_enable_historical_stats) | Modified   |  Changes the default value from `ON` to `OFF`, which turns off historical statistics to avoid potential stability issues. **tw@hfxsd** <!--1759--> |
 | [`tidb_executor_concurrency`](/system-variables.md#tidb_executor_concurrency-new-in-v50) | Modified | Adds support for setting the concurrency of the `sort` operator. |
+| [`tidb_sysproc_scan_concurrency`](/system-variables.md#tidb_sysproc_scan_concurrency-new-in-v650) | Modified    | Changes the minimum value from `1` to `0`. When you set it to `0`, TiDB adaptively adjusts the concurrency of `scan` operations performed when executing internal SQL statements based on the cluster size.**tw@hfxsd** <!--xxx--> |
 | [`tidb_resource_control_strict_mode`](/system-variables.md#tidb_resource_control_strict_mode-new-in-v820) | Newly added | Controls whether privilege control is applied to the [`SET RESOURCE GROUP`](/sql-statements/sql-statement-set-resource-group.md) statement and the [`RESOURCE_GROUP()`](/optimizer-hints.md#resource_groupresource_group_name) optimizer hint. **tw@lilin90** <!--1740--> |
-| [`tidb_sysproc_scan_concurrency`](/system-variables.md#tidb_sysproc_scan_concurrency-new-in-v650) | Modified    | Changes the minimum value from `1` to `0`. When you set it to `0`, TiDB adaptively adjusts the concurrency based on the cluster size.**tw@hfxsd** <!--xxx--> |
 
 ### Configuration file parameters
 
 | Configuration file | Configuration parameter | Change type | Description |
 | -------- | -------- | -------- | -------- |
-| TiDB | [`stats-load-concurrency`](/tidb-configuration-file.md#stats-load-concurrency-new-in-v540) | Modified | Changes the default value from `5` to `0`, and the minimum value from `1` to `0`. The value `0` means the automatic mode, which adjusts concurrency based on the configuration of the server. |
+| TiDB | [`stats-load-concurrency`](/tidb-configuration-file.md#stats-load-concurrency-new-in-v540) | Modified | Changes the default value from `5` to `0`, and the minimum value from `1` to `0`. The value `0` means the automatic mode, which automatically adjusts concurrency based on the configuration of the server. |
 | TiDB | [`token-limit`](/tidb-configuration-file.md#token-limit) | Modified | Changes the maximum value from `18446744073709551615` (64-bit platform) and `4294967295` (32-bit platform) to `1048576` to avoid causing TiDB Server OOM when setting it too large. It means that the number of sessions that can execute requests concurrently can be configured to a maximum of `1048576`. |
-| TiKV | [`max-apply-unpersisted-log-limit`](/tikv-configuration-file.md#max-apply-unpersisted-log-limit-new-in-v820) | Modified | Changes the default value from `0` to `1024` to reduce long-tail latency caused by IO jitter on the TiKV node. It means that the maximum number of committed but not persisted Raft logs that can be applied is `1024` by default. |
+| TiKV | [`max-apply-unpersisted-log-limit`](/tikv-configuration-file.md#max-apply-unpersisted-log-limit-new-in-v820) | Modified | Changes the default value from `0` to `1024` to reduce long-tail latency caused by I/O jitter on the TiKV node. It means that the maximum number of committed but not persisted Raft logs that can be applied is `1024` by default. |
 | TiKV | [`server.grpc-compression-type`](/tikv-configuration-file.md#grpc-compression-type) | Modified | This configuration item now also controls the compression algorithm of response messages sent from TiKV to TiDB. Enabling compression might consume more CPU resources. |
-| TiFlash | [`security.redact_info_log`](/tiflash/tiflash-configuration.md#configure-the-tiflashtoml-file) | Modified | Introduces a new value option `marker`. When this option is enabled, all user data in the log is wrapped in `‹ ›`. |
+| TiFlash | [`security.redact_info_log`](/tiflash/tiflash-configuration.md#configure-the-tiflashtoml-file) | Modified | Introduces a new value option `marker`. When you set the value to `marker`, all user data in the log is wrapped in `‹ ›`. |
 
 ### Compiler versions
 
-To improve the TiFlash development experience, the minimum version of LLVM required to compile and build TiDB has been upgraded from 13.0 to 17.0. If you are a TiDB developer, you need to upgrade the version of your LLVM compiler to ensure a smooth build. [#7193](https://github.com/pingcap/tiflash/issues/7193) @[Lloyd-Pottiger](https://github.com/Lloyd-Pottiger)
+* To improve the TiFlash development experience, the minimum version of LLVM required to compile and build TiDB has been upgraded from 13.0 to 17.0. If you are a TiDB developer, you need to upgrade the version of your LLVM compiler to ensure a smooth build. [#7193](https://github.com/pingcap/tiflash/issues/7193) @[Lloyd-Pottiger](https://github.com/Lloyd-Pottiger)
 
 ## Deprecated features
 
@@ -204,11 +204,11 @@ To improve the TiFlash development experience, the minimum version of LLVM requi
     * In v8.0.0, TiDB introduces the [`tidb_enable_parallel_hashagg_spill`](/system-variables.md#tidb_enable_parallel_hashagg_spill-new-in-v800) system variable to control whether TiDB supports disk spill for the concurrent HashAgg algorithm. In future versions, the [`tidb_enable_parallel_hashagg_spill`](/system-variables.md#tidb_enable_parallel_hashagg_spill-new-in-v800) system variable will be deprecated.
     * In v7.5.0, TiDB introduces the [`tidb_enable_async_merge_global_stats`](/system-variables.md#tidb_enable_async_merge_global_stats-new-in-v750) system variable to enable TiDB to merge partition statistics asynchronously to avoid OOM issues. In future versions, partition statistics will be merged asynchronously by default, and the [`tidb_enable_async_merge_global_stats`](/system-variables.md#tidb_enable_async_merge_global_stats-new-in-v750) system variable will be deprecated.
     * It is planned to redesign [the auto-evolution of execution plan bindings](/sql-plan-management.md#baseline-evolution) in subsequent releases, and the related variables and behavior will change.
-    * The TiDB Lightning parameter [`conflict.max-record-rows`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task) is planned for deprecation in a future release and will be subsequently removed. This parameter will be replaced by `conflict.threshold`, which means that the maximum number of conflicting records is consistent with the maximum number of conflicting records that can be tolerated in a single import task.
+    * The TiDB Lightning parameter [`conflict.max-record-rows`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task) is planned for deprecation in a future release and will be subsequently removed. This parameter will be replaced by [`conflict.threshold`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task), which means that the maximum number of conflicting records is consistent with the maximum number of conflicting records that can be tolerated in a single import task.
 
 * The following features are planned for removal in future versions:
 
-    * Starting from v8.0.0, TiDB Lightning deprecates the [old version of conflict detection](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md#the-old-version-of-conflict-detection-deprecated-in-v800) strategy for the physical import mode, and enables you to control the conflict detection strategy for both logical and physical import modes via the [`conflict.strategy`](/tidb-lightning/tidb-lightning-configuration.md) parameter. The [`duplicate-resolution`](/tidb-lightning/tidb-lightning-configuration.md) parameter for the old version of conflict detection will be removed in a future release.
+    * Starting from v8.0.0, TiDB Lightning deprecates the [old version of conflict detection](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md#the-old-version-of-conflict-detection-deprecated-in-v800) strategy for the physical import mode, and enables you to control the conflict detection strategy for both logical and physical import modes via the [`conflict.strategy`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task) parameter. The [`duplicate-resolution`](/tidb-lightning/tidb-lightning-configuration.md) parameter for the old version of conflict detection will be removed in a future release.
 
 ## Improvements
 
@@ -299,21 +299,21 @@ To improve the TiFlash development experience, the minimum version of LLVM requi
     - Fix the issue that `REGEXP()` does not explicitly report an error for empty pattern arguments [#53221](https://github.com/pingcap/tidb/issues/53221) @[yibin87](https://github.com/yibin87)
     - Fix the issue that converting JSON to datetime might lose precision in some cases [#53352](https://github.com/pingcap/tidb/issues/53352) @[YangKeao](https://github.com/YangKeao)
     - Fix the issue that `JSON_QUOTE()` returns incorrect results in some cases [#37294](https://github.com/pingcap/tidb/issues/37294) @[dveeden](https://github.com/dveeden)
-    - Fix the issue that `ALTER TABLE ... REMOVE PARTITIONING` might cause data loss [#53385](https://github.com/pingcap/tidb/issues/53385) @[mjonss](https://github.com/mjonss)
+    - Fix the issue that executing `ALTER TABLE ... REMOVE PARTITIONING` might cause data loss [#53385](https://github.com/pingcap/tidb/issues/53385) @[mjonss](https://github.com/mjonss)
     - Fix the issue that TiDB fails to reject unauthenticated user connections in some cases when using the `auth_socket` authentication plugin [#54031](https://github.com/pingcap/tidb/issues/54031) @[lcwangchao](https://github.com/lcwangchao)
     - Fix the issue that JSON-related functions return errors inconsistent with MySQL in some cases [#53799](https://github.com/pingcap/tidb/issues/53799) @[dveeden](https://github.com/dveeden)
-    - Fix the issue that the `INDEX_LENGTH` field of partitioned tables in `INFORMATION_SCHEMA.PARTITIONS` is displayed incorrectly [#54173](https://github.com/pingcap/tidb/issues/54173) @[Defined2014](https://github.com/Defined2014)
-    - Fix the issue that the `TIDB_ROW_ID_SHARDING_INFO` field in the `INFOMATION_SCHEMA.TABLES` table is displayed incorrectly [#52330](https://github.com/pingcap/tidb/issues/52330) @[tangenta](https://github.com/tangenta)
+    - Fix the issue that the `INDEX_LENGTH` field of partitioned tables in `INFORMATION_SCHEMA.PARTITIONS` is incorrect [#54173](https://github.com/pingcap/tidb/issues/54173) @[Defined2014](https://github.com/Defined2014)
+    - Fix the issue that the `TIDB_ROW_ID_SHARDING_INFO` field in the `INFOMATION_SCHEMA.TABLES` table is incorrect [#52330](https://github.com/pingcap/tidb/issues/52330) @[tangenta](https://github.com/tangenta)
     - Fix the issue that a generated columns returns illegal timestamps [#52509](https://github.com/pingcap/tidb/issues/52509) @[lcwangchao](https://github.com/lcwangchao)
     - Fix the issue that setting `max-index-length` causes TiDB to panic when adding indexes using the Distributed eXecution Framework (DXF) [#53281](https://github.com/pingcap/tidb/issues/53281) @[zimulala](https://github.com/zimulala)
     - Fix the issue that the illegal column type `DECIMAL(0,0)` can be created in some cases [#53779](https://github.com/pingcap/tidb/issues/53779) @[tangenta](https://github.com/tangenta)
     - Fix the issue that using `CURRENT_DATE()` as the default value for a column results in incorrect query results [#53746](https://github.com/pingcap/tidb/issues/53746) @[tangenta](https://github.com/tangenta)
     - Fix the issue that the `ALTER DATABASE ... SET TIFLASH REPLICA` statement incorrectly adds TiFlash replicas to the `SEQUENCE` table [#51990](https://github.com/pingcap/tidb/issues/51990) @[jiyfhust](https://github.com/jiyfhust)
-    - Fix the issue that the `REFERENCED_TABLE_SCHEMA` field in the `INFORMATION_SCHEMA.KEY_COLUMN_USAGE` table is displayed incorrectly [#52350](https://github.com/pingcap/tidb/issues/52350) @[wd0517](https://github.com/wd0517)
+    - Fix the issue that the `REFERENCED_TABLE_SCHEMA` field in the `INFORMATION_SCHEMA.KEY_COLUMN_USAGE` table is incorrect [#52350](https://github.com/pingcap/tidb/issues/52350) @[wd0517](https://github.com/wd0517)
     - Fix the issue that inserting multiple rows in a single statement causes the `AUTO_INCREMENT` column to be discontinuous when `AUTO_ID_CACHE=1` [#52465](https://github.com/pingcap/tidb/issues/52465) @[tiancaiamao](https://github.com/tiancaiamao)
     - Fix the format of deprecation warnings [#52515](https://github.com/pingcap/tidb/issues/52515) @[dveeden](https://github.com/dveeden)
     - Fix the issue that the `TRACE` command is missing in `copr.buildCopTasks` [#53085](https://github.com/pingcap/tidb/issues/53085) @[time-and-fate](https://github.com/time-and-fate)
-    - Fix the issue that bindings containing `memory_quota` might not work in subqueries [#53834](https://github.com/pingcap/tidb/issues/53834) @[qw4990](https://github.com/qw4990)
+    - Fix the issue that the `memory_quota` hint might not work in subqueries [#53834](https://github.com/pingcap/tidb/issues/53834) @[qw4990](https://github.com/qw4990)
     - Fix the issue that improper use of metadata locks might lead to writing anomalous data when using the plan cache under certain circumstances [#53634](https://github.com/pingcap/tidb/issues/53634) @[zimulala](https://github.com/zimulala)
 
 + TiKV <!--tw@lilin90: 以下 8 条-->
@@ -365,7 +365,7 @@ To improve the TiFlash development experience, the minimum version of LLVM requi
     + TiDB Data Migration (DM) <!--tw@Oreoxmt: 1 条-->
 
         - (dup): release-7.5.2.md > Bug fixes> Tools> TiDB Data Migration (DM) - Fix the connection blocking issue by upgrading `go-mysql` [#11041](https://github.com/pingcap/tiflow/issues/11041) @[D3Hunter](https://github.com/D3Hunter)
-        - Fix the issue that `SET` statements cause DM to panic when migrating MariaDB data [#10206](https://github.com/pingcap/tiflow/issues/10206) @[dveeden](https://github.com/dveeden)
+        - Fix the issue that `SET` statements cause DM to panic during the migration of MariaDB data [#10206](https://github.com/pingcap/tiflow/issues/10206) @[dveeden](https://github.com/dveeden)
 
     + TiDB Lightning <!--tw@Oreoxmt: 1 条-->
 
