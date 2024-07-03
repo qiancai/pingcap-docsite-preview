@@ -99,7 +99,7 @@ TiDB 版本：8.2.0
 
 * TiDB 支持 JSON Schema Validation 函数 [#52779](https://github.com/pingcap/tidb/issues/52779) @[dveeden](https://github.com/dveeden) **tw@hfxsd** <!--1840-->
 
-    在 v8.2.0 之前，你需要依赖外部工具或自定义验证逻辑进行 JSON 数据验证，开发和维护比较复杂，开发效率低。从 v8.2.0 版本开始，引入了 `JSON_SCHEMA_VALID()` 函数，你可以在 TiDB 中直接验证 JSON 数据的有效性，提高数据的完整性和一致性，提升了开发效率。
+    在 v8.2.0 之前，你需要依赖外部工具或自定义验证逻辑进行 JSON 数据验证，开发和维护比较复杂，开发效率低。从 v8.2.0 版本开始，引入了 `JSON_SCHEMA_VALID()` 函数。通过在 `CHECK` 约束中使用 `JSON_SCHEMA_VALID()`，可以避免插入不符合要求的数据，而不是事后检查数据。你可以在 TiDB 中直接验证 JSON 数据的有效性，提高数据的完整性和一致性，提升了开发效率。
 
     更多信息，请参考[用户文档](/functions-and-operators/json-functions.md#验证函数)。
 
@@ -167,11 +167,11 @@ TiDB 版本：8.2.0
 
 | 变量名  | 修改类型（包括新增/修改/删除）    | 描述 |
 |--------|------------------------------|------|
-| [`tidb_analyze_distsql_scan_concurrency`](/system-variables.md#tidb_analyze_distsql_scan_concurrency-从-v760-版本开始引入) | 修改 | 最小值从 `1` 改为 `0`。当设置为 `0` 时，TiDB 会根据集群规模自适应调整并发度。**tw@hfxsd** <!--xxx--> |
-| [`tidb_analyze_skip_column_types`](/system-variables.md#tidb_analyze_skip_column_types-从-v720-版本开始引入) | 修改 | 从 v8.2.0 开始，默认设置下，TiDB 不会收集类型为 `mediumtext` 和 `longtext` 的列，避免潜在的 OOM 风险。**tw@hfxsd** <!--1759--> |
-| [`tidb_enable_historical_stats`](/system-variables.md#tidb_enable_historical_stats) | 修改 | 默认值改为 `OFF`，即关闭历史统计信息，避免潜在的稳定性问题。 **tw@hfxsd** <!--1759--> |
+| [`tidb_analyze_distsql_scan_concurrency`](/system-variables.md#tidb_analyze_distsql_scan_concurrency-从-v760-版本开始引入) | 修改 | 最小值从 `1` 改为 `0`。当设置为 `0` 时，TiDB 会根据集群规模自适应调整执行 `ANALYZE` 时 `scan` 操作的并发度。**tw@hfxsd** <!--xxx--> |
+| [`tidb_analyze_skip_column_types`](/system-variables.md#tidb_analyze_skip_column_types-从-v720-版本开始引入) | 修改 | 从 v8.2.0 开始，默认设置下，TiDB 不会收集类型为 `MEDIUMTEXT` 和 `LONGTEXT` 的列，避免潜在的 OOM 风险。**tw@hfxsd** <!--1759--> |
+| [`tidb_enable_historical_stats`](/system-variables.md#tidb_enable_historical_stats) | 修改 | 默认值从 `ON` 修改为 `OFF`，即默认关闭历史统计信息，避免潜在的稳定性问题。 **tw@hfxsd** <!--1759--> |
 | [`tidb_executor_concurrency`](/system-variables.md#tidb_executor_concurrency-从-v50-版本开始引入) | 修改 | 新增支持对 `sort` 算子的并发度进行设置。 |
-| [`tidb_sysproc_scan_concurrency`](/system-variables.md#tidb_sysproc_scan_concurrency-从-v650-版本开始引入) | 修改 | 最小值从 `1` 改为 `0`。当设置为 `0` 时，TiDB 会根据集群规模自适应调整并发度。**tw@hfxsd** <!--xxx--> |
+| [`tidb_sysproc_scan_concurrency`](/system-variables.md#tidb_sysproc_scan_concurrency-从-v650-版本开始引入) | 修改 | 最小值从 `1` 改为 `0`。当设置为 `0` 时，TiDB 会根据集群规模自适应调整执行内部 SQL 语句时 `scan` 操作的并发度。**tw@hfxsd** <!--xxx--> |
 | [`tidb_resource_control_strict_mode`](/system-variables.md#tidb_resource_control_strict_mode-从-v820-版本开始引入) | 新增 | [`SET RESOURCE GROUP`](/sql-statements/sql-statement-set-resource-group.md) 和优化器 [`RESOURCE_GROUP()`](/optimizer-hints.md#resource_groupresource_group_name) Hint 权限控制的开关。 **tw@lilin90** <!--1740--> |
 
 ### 配置文件参数
@@ -180,9 +180,9 @@ TiDB 版本：8.2.0
 |----------------|--------------------|------|------------------------------------|
 | TiDB | [`stats-load-concurrency`](/tidb-configuration-file.md#stats-load-concurrency-从-v540-版本开始引入) | 修改 | 默认值从 `5` 修改为 `0`，最小值从 `1` 修改为 `0`。`0` 为自动模式，根据服务器情况，自动调节并发度。 |
 | TiDB | [`token-limit`](/tidb-configuration-file.md#token-limit) | 修改 | 最大值从 `18446744073709551615` （64 位平台）和 `4294967295`（32 位平台）修改为 `1048576`，代表同时执行请求的 session 个数最多可以设置为 `1048576`，避免设置过大导致 TiDB Server OOM。|
-| TiKV | [`max-apply-unpersisted-log-limit`](/tikv-configuration-file.md#max-apply-unpersisted-log-limit-从-v820-版本开始引入) | 修改 | 默认值从 ` 0` 修改为 `1024`，代表允许 apply 已经 `commit` 但尚未持久化的 Raft 日志的最大数量为 1024，用于降低 TiKV 节点上因 IO 抖动导致的长尾延迟。 |
+| TiKV | [`max-apply-unpersisted-log-limit`](/tikv-configuration-file.md#max-apply-unpersisted-log-limit-从-v820-版本开始引入) | 修改 | 默认值从 `0` 修改为 `1024`，代表允许 apply 已经 `commit` 但尚未持久化的 Raft 日志的最大数量为 1024，用于降低 TiKV 节点上因 I/O 抖动导致的长尾延迟。 |
 | TiKV | [`server.grpc-compression-type`](/tikv-configuration-file.md#grpc-compression-type) | 修改 | 该配置项现在也会影响 TiKV 向 TiDB 发送的响应消息的压缩算法。开启压缩可能消耗更多 CPU 资源。 |
-| TiFlash | [`security.redact_info_log`](/tiflash/tiflash-configuration.md#配置文件-tiflashtoml) | 修改 | 可选值新增 `marker` 选项。该选项被启用时，日志中的用户数据会被标记符号 `‹ ›` 包裹。 |
+| TiFlash | [`security.redact_info_log`](/tiflash/tiflash-configuration.md#配置文件-tiflashtoml) | 修改 | 可选值新增 `marker` 选项。当配置项的值设置为 `marker` 时，日志中的用户数据会被标记符号 `‹ ›` 包裹。 |
 
 ### 编译器版本
 
@@ -202,11 +202,11 @@ TiDB 版本：8.2.0
     * TiDB 在 v8.0.0 引入了系统变量 [`tidb_enable_parallel_hashagg_spill`](/system-variables.md#tidb_enable_parallel_hashagg_spill-从-v800-版本开始引入)，用于控制 TiDB 是否支持并行 HashAgg 进行落盘。在未来版本中，系统变量 [`tidb_enable_parallel_hashagg_spill`](/system-variables.md#tidb_enable_parallel_hashagg_spill-从-v800-版本开始引入) 将被废弃。
     * TiDB 在 v7.5.0 引入了系统变量 [`tidb_enable_async_merge_global_stats`](/system-variables.md#tidb_enable_async_merge_global_stats-从-v750-版本开始引入)，用于设置 TiDB 使用异步方式合并分区统计信息，以避免 OOM 问题。在未来版本中，分区统计信息将统一使用异步方式进行合并，系统变量 [`tidb_enable_async_merge_global_stats`](/system-variables.md#tidb_enable_async_merge_global_stats-从-v750-版本开始引入) 将被废弃。
     * 计划在后续版本重新设计[执行计划绑定的自动演进](/sql-plan-management.md#自动演进绑定-baseline-evolution)，相关的变量和行为会发生变化。
-    * TiDB Lightning 参数 [`conflict.max-record-rows`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-任务配置) 计划在未来版本中废弃，并在后续版本中删除。该参数将由 `conflict.threshold` 替代，即记录的冲突记录数和单个导入任务允许出现的冲突记录数的上限数保持一致。
+    * TiDB Lightning 参数 [`conflict.max-record-rows`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-任务配置) 计划在未来版本中废弃，并在后续版本中删除。该参数将由 [`conflict.threshold`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-任务配置) 替代，即记录的冲突记录数和单个导入任务允许出现的冲突记录数的上限数保持一致。
 
 * 以下为计划将在未来版本中移除的功能：
 
-    * 从 v8.0.0 开始，TiDB Lightning 废弃了物理导入模式下的[旧版冲突检测](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md#旧版冲突检测从-v800-开始已被废弃)策略，支持通过 [`conflict.strategy`](/tidb-lightning/tidb-lightning-configuration.md) 参数统一控制逻辑导入和物理导入模式的冲突检测策略。旧版冲突检测的参数 [`duplicate-resolution`](/tidb-lightning/tidb-lightning-configuration.md) 将在未来版本中被移除。
+    * 从 v8.0.0 开始，TiDB Lightning 废弃了物理导入模式下的[旧版冲突检测](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md#旧版冲突检测从-v800-开始已被废弃)策略，支持通过 [`conflict.strategy`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-任务配置) 参数统一控制逻辑导入和物理导入模式的冲突检测策略。旧版冲突检测的参数 [`duplicate-resolution`](/tidb-lightning/tidb-lightning-configuration.md) 将在未来版本中被移除。
 
 ## 改进提升
 
@@ -306,10 +306,10 @@ TiDB 版本：8.2.0
     - 修复使用 `CURRENT_DATE()` 作为列默认值时查询结果错误的问题 [#53746](https://github.com/pingcap/tidb/issues/53746) @[tangenta](https://github.com/tangenta)
     - 修复 `ALTER DATABASE ... SET TIFLASH REPLICA` 语句错误地给 `SEQUENCE` 表添加 TiFlash 副本的问题 [#51990](https://github.com/pingcap/tidb/issues/51990) @[jiyfhust](https://github.com/jiyfhust)
     - 修复 `INFORMATION_SCHEMA.KEY_COLUMN_USAGE` 表中 `REFERENCED_TABLE_SCHEMA` 字段显示不正确的问题 [#52350](https://github.com/pingcap/tidb/issues/52350) @[wd0517](https://github.com/wd0517)
-    - 修复 `AUTO_ID_CACHE=1` 时，单条语句插入多行导致 `AUTO_INCREMENT` 列不连续的问题 [#52465](https://github.com/pingcap/tidb/issues/52465) @[tiancaiamao](https://github.com/tiancaiamao)
-    - 修复弃用警告的格式 [#52515](https://github.com/pingcap/tidb/issues/52515) @[dveeden](https://github.com/dveeden)
+    - 修复 `AUTO_ID_CACHE=1` 时，单条语句插入多行数据导致 `AUTO_INCREMENT` 列不连续的问题 [#52465](https://github.com/pingcap/tidb/issues/52465) @[tiancaiamao](https://github.com/tiancaiamao)
+    - 修复弃用警告的格式问题 [#52515](https://github.com/pingcap/tidb/issues/52515) @[dveeden](https://github.com/dveeden)
     - 修复 `TRACE` 命令在 `copr.buildCopTasks` 中丢失的问题 [#53085](https://github.com/pingcap/tidb/issues/53085) @[time-and-fate](https://github.com/time-and-fate)
-    - 修复包含 `memory_quota` 的绑定在子查询中可能不生效的问题 [#53834](https://github.com/pingcap/tidb/issues/53834) @[qw4990](https://github.com/qw4990)
+    - 修复 `memory_quota` Hint 在子查询中可能不生效的问题 [#53834](https://github.com/pingcap/tidb/issues/53834) @[qw4990](https://github.com/qw4990)
     - 修复在某些情况下，元数据锁使用不当可能导致使用 plan cache 时写入异常数据的问题 [#53634](https://github.com/pingcap/tidb/issues/53634) @[zimulala](https://github.com/zimulala)
 
 + TiKV <!--tw@lilin90: 以下 8 条-->
