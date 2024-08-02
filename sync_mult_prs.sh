@@ -11,7 +11,7 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 cd "$SCRIPT_DIR"
 
 
-# Define the PRs to sync.
+# Define the PRs to sync. 
 # The PRs will be synced in the order of the following statements. 
 # ./sync_pr.sh preview/pingcap/docs/"$DOCS_PR"
 ./sync_pr.sh preview/pingcap/docs-cn/18232
