@@ -579,7 +579,7 @@
       - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
       - [Data Integrity Validation for Single-Row Data](/ticdc/ticdc-integrity-check.md)
       - [Data Consistency Validation for TiDB Upstream/Downstream Clusters](/ticdc/ticdc-upstream-downstream-check.md)
-      - [TiCDC Behavior Changes](/ticdc/ticdc-behavior-change.md)
+      - [TiCDC Behavior in Splitting UPDATE Events](/ticdc/ticdc-split-update-behavior.md)
     - Monitor and Alert
       - [Monitoring Metrics Summary](/ticdc/ticdc-summary-monitor.md)
       - [Monitoring Metrics Details](/ticdc/monitor-ticdc.md)
@@ -860,7 +860,7 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
@@ -907,7 +907,15 @@
       - [Encryption and Compression Functions](/functions-and-operators/encryption-and-compression-functions.md)
       - [Locking Functions](/functions-and-operators/locking-functions.md)
       - [Information Functions](/functions-and-operators/information-functions.md)
-      - [JSON Functions](/functions-and-operators/json-functions.md)
+      - JSON Functions
+        - [Overview](/functions-and-operators/json-functions.md)
+        - [Functions That Create JSON](/functions-and-operators/json-functions/json-functions-create.md)
+        - [Functions That Search JSON](/functions-and-operators/json-functions/json-functions-search.md)
+        - [Functions That Modify JSON](/functions-and-operators/json-functions/json-functions-modify.md)
+        - [Functions That Return JSON](/functions-and-operators/json-functions/json-functions-return.md)
+        - [JSON Utility Functions](/functions-and-operators/json-functions/json-functions-utility.md)
+        - [Functions That Aggregate JSON](/functions-and-operators/json-functions/json-functions-aggregate.md)
+        - [Functions That Validate JSON](/functions-and-operators/json-functions/json-functions-validate.md)
       - [Aggregate (GROUP BY) Functions](/functions-and-operators/aggregate-group-by-functions.md)
       - [GROUP BY Modifiers](/functions-and-operators/group-by-modifier.md)
       - [Window Functions](/functions-and-operators/window-functions.md)
@@ -939,7 +947,9 @@
       - [GBK](/character-set-gbk.md)
     - [Placement Rules in SQL](/placement-rules-in-sql.md)
     - System Tables
-      - [`mysql`](/mysql-schema.md)
+      - `mysql` Schema
+        - [Overview](/mysql-schema/mysql-schema.md)
+        - [`user`](/mysql-schema/mysql-schema-user.md)
       - INFORMATION_SCHEMA
         - [Overview](/information-schema/information-schema.md)
         - [`ANALYZE_STATUS`](/information-schema/information-schema-analyze-status.md)
@@ -1066,12 +1076,14 @@
   - v8.2
     - [8.2.0-DMR](/releases/release-8.2.0.md)
   - v8.1
+    - [8.1.1](/releases/release-8.1.1.md)
     - [8.1.0](/releases/release-8.1.0.md)
   - v8.0
     - [8.0.0-DMR](/releases/release-8.0.0.md)
   - v7.6
     - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
+    - [7.5.3](/releases/release-7.5.3.md)
     - [7.5.2](/releases/release-7.5.2.md)
     - [7.5.1](/releases/release-7.5.1.md)
     - [7.5.0](/releases/release-7.5.0.md)
