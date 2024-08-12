@@ -581,7 +581,7 @@
       - [双向复制](/ticdc/ticdc-bidirectional-replication.md)
       - [单行数据正确性校验](/ticdc/ticdc-integrity-check.md)
       - [主从集群一致性读和数据校验](/ticdc/ticdc-upstream-downstream-check.md)
-      - [TiCDC 行为变更说明](/ticdc/ticdc-behavior-change.md)
+      - [拆分 UPDATE 事件行为说明](/ticdc/ticdc-split-update-behavior.md)
     - 监控告警
       - [基本监控指标](/ticdc/ticdc-summary-monitor.md)
       - [详细监控指标](/ticdc/monitor-ticdc.md)
@@ -734,6 +734,7 @@
       - [表达式语法](/expression-syntax.md)
       - [注释语法](/comment-syntax.md)
     - SQL 语句
+      - [概览](/sql-statements/sql-statement-overview.md)
       - [`ADMIN`](/sql-statements/sql-statement-admin.md)
       - [`ADMIN CANCEL DDL`](/sql-statements/sql-statement-admin-cancel-ddl.md)
       - [`ADMIN CHECKSUM TABLE`](/sql-statements/sql-statement-admin-checksum-table.md)
@@ -841,6 +842,7 @@
       - [`SHOW BUILTINS`](/sql-statements/sql-statement-show-builtins.md)
       - [`SHOW CHARACTER SET`](/sql-statements/sql-statement-show-character-set.md)
       - [`SHOW COLLATION`](/sql-statements/sql-statement-show-collation.md)
+      - [`SHOW COLUMN_STATS_USAGE`](/sql-statements/sql-statement-show-column-stats-usage.md)
       - [`SHOW COLUMNS FROM`](/sql-statements/sql-statement-show-columns-from.md)
       - [`SHOW CONFIG`](/sql-statements/sql-statement-show-config.md)
       - [`SHOW CREATE PLACEMENT POLICY`](/sql-statements/sql-statement-show-create-placement-policy.md)
@@ -863,14 +865,16 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
+      - [`SHOW STATS_BUCKETS`](/sql-statements/sql-statement-show-stats-buckets.md)
       - [`SHOW STATS_HEALTHY`](/sql-statements/sql-statement-show-stats-healthy.md)
       - [`SHOW STATS_HISTOGRAMS`](/sql-statements/sql-statement-show-stats-histograms.md)
       - [`SHOW STATS_LOCKED`](/sql-statements/sql-statement-show-stats-locked.md)
       - [`SHOW STATS_META`](/sql-statements/sql-statement-show-stats-meta.md)
+      - [`SHOW STATS_TOPN`](/sql-statements/sql-statement-show-stats-topn.md)
       - [`SHOW STATUS`](/sql-statements/sql-statement-show-status.md)
       - [`SHOW TABLE NEXT_ROW_ID`](/sql-statements/sql-statement-show-table-next-rowid.md)
       - [`SHOW TABLE REGIONS`](/sql-statements/sql-statement-show-table-regions.md)
@@ -908,7 +912,15 @@
       - [加密和压缩函数](/functions-and-operators/encryption-and-compression-functions.md)
       - [锁函数](/functions-and-operators/locking-functions.md)
       - [信息函数](/functions-and-operators/information-functions.md)
-      - [JSON 函数](/functions-and-operators/json-functions.md)
+      - JSON 函数
+        - [概览](/functions-and-operators/json-functions.md)
+        - [创建 JSON 的函数](/functions-and-operators/json-functions/json-functions-create.md)
+        - [搜索 JSON 的函数](/functions-and-operators/json-functions/json-functions-search.md)
+        - [修改 JSON 的函数](/functions-and-operators/json-functions/json-functions-modify.md)
+        - [返回 JSON 的函数](/functions-and-operators/json-functions/json-functions-return.md)
+        - [JSON 效用函数](/functions-and-operators/json-functions/json-functions-utility.md)
+        - [聚合 JSON 的函数](/functions-and-operators/json-functions/json-functions-aggregate.md)
+        - [验证 JSON 的函数](/functions-and-operators/json-functions/json-functions-validate.md)
       - [GROUP BY 聚合函数](/functions-and-operators/aggregate-group-by-functions.md)
       - [GROUP BY 修饰符](/functions-and-operators/group-by-modifier.md)
       - [窗口函数](/functions-and-operators/window-functions.md)
@@ -935,12 +947,14 @@
     - [临时表](/temporary-tables.md)
     - [缓存表](/cached-tables.md)
     - [外键约束](/foreign-key.md)
-    - 字符集和排序
+    - 字符集和排序规则
       - [概述](/character-set-and-collation.md)
       - [GBK](/character-set-gbk.md)
     - [Placement Rules in SQL](/placement-rules-in-sql.md)
     - 系统表
-      - [`mysql`](/mysql-schema.md)
+      - `mysql` Schema
+        - [概述](/mysql-schema/mysql-schema.md)
+        - [`user`](/mysql-schema/mysql-schema-user.md)
       - INFORMATION_SCHEMA
         - [概述](/information-schema/information-schema.md)
         - [`ANALYZE_STATUS`](/information-schema/information-schema-analyze-status.md)
@@ -1066,12 +1080,14 @@
   - v8.2
     - [8.2.0-DMR](/releases/release-8.2.0.md)
   - v8.1
+    - [8.1.1](/releases/release-8.1.1.md)
     - [8.1.0](/releases/release-8.1.0.md)
   - v8.0
     - [8.0.0-DMR](/releases/release-8.0.0.md)
   - v7.6
     - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
+    - [7.5.3](/releases/release-7.5.3.md)
     - [7.5.2](/releases/release-7.5.2.md)
     - [7.5.1](/releases/release-7.5.1.md)
     - [7.5.0](/releases/release-7.5.0.md)
