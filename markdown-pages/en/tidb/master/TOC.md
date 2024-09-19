@@ -2,9 +2,9 @@
 <!-- markdownlint-disable MD041 -->
 
 - [Docs Home](https://docs.pingcap.com/)
-- About TiDB
-  - [TiDB Introduction](/overview.md)
-  - [TiDB 8.2 Release Notes](/releases/release-8.2.0.md)
+- About TiDB Self-Managed
+  - [What is TiDB Self-Managed](/overview.md)
+  - [TiDB 8.3 Release Notes](/releases/release-8.3.0.md)
   - [Features](/basic-features.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
   - [TiDB Limitations](/tidb-limitations.md)
@@ -19,7 +19,7 @@
 - Develop
   - [Overview](/develop/dev-guide-overview.md)
   - Quick Start
-    - [Build a TiDB Serverless Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
+    - [Build a TiDB Cloud Serverless Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
     - [CRUD SQL in TiDB](/develop/dev-guide-tidb-crud-sql.md)
   - Example Applications
     - Java
@@ -604,7 +604,7 @@
     - [Troubleshoot](/ticdc/troubleshoot-ticdc.md)
     - [FAQs](/ticdc/ticdc-faq.md)
     - [Glossary](/ticdc/ticdc-glossary.md)
-  - TiDB Binlog
+  - TiDB Binlog (Deprecated)
     - [Overview](/tidb-binlog/tidb-binlog-overview.md)
     - [Quick Start](/tidb-binlog/get-started-with-tidb-binlog.md)
     - [Deploy](/tidb-binlog/deploy-tidb-binlog.md)
@@ -1073,6 +1073,8 @@
   - [Release Timeline](/releases/release-timeline.md)
   - [TiDB Versioning](/releases/versioning.md)
   - [TiDB Installation Packages](/binary-package.md)
+  - v8.3
+    - [8.3.0-DMR](/releases/release-8.3.0.md)
   - v8.2
     - [8.2.0-DMR](/releases/release-8.2.0.md)
   - v8.1
@@ -1105,6 +1107,7 @@
   - v6.6
     - [6.6.0-DMR](/releases/release-6.6.0.md)
   - v6.5
+    - [6.5.11](/releases/release-6.5.11.md)
     - [6.5.10](/releases/release-6.5.10.md)
     - [6.5.9](/releases/release-6.5.9.md)
     - [6.5.8](/releases/release-6.5.8.md)
