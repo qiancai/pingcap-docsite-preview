@@ -18,7 +18,7 @@
 - 应用开发
   - [概览](/develop/dev-guide-overview.md)
   - 快速开始
-    - [使用 TiDB Serverless 构建 TiDB 集群](/develop/dev-guide-build-cluster-in-cloud.md)
+    - [使用 TiDB Cloud Serverless 构建 TiDB 集群](/develop/dev-guide-build-cluster-in-cloud.md)
     - [使用 TiDB 的增删改查 SQL](/develop/dev-guide-tidb-crud-sql.md)
   - 示例程序
     - Java
@@ -151,6 +151,14 @@
     - [与 Confluent Cloud 和 Snowflake 进行数据集成](/ticdc/integrate-confluent-using-ticdc.md)
     - [与 Apache Kafka 和 Apache Flink 进行数据集成](/replicate-data-to-kafka.md)
 - 运维操作
+  - 安全加固
+    - [TiDB 安全配置最佳实践](/best-practices-for-security-configuration.md)
+    - [为 TiDB 客户端服务端间通信开启加密传输](/enable-tls-between-clients-and-servers.md)
+    - [为 TiDB 组件间通信开启加密传输](/enable-tls-between-components.md)
+    - [生成自签名证书](/generate-self-signed-certificates.md)
+    - [静态加密](/encryption-at-rest.md)
+    - [为 TiDB 落盘文件开启加密](/enable-disk-spill-encrypt.md)
+    - [日志脱敏](/log-redaction.md)
   - 升级 TiDB 版本
     - [使用 TiUP 升级](/upgrade-tidb-using-tiup.md)
     - [使用 TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
@@ -218,7 +226,7 @@
       - [分析慢查询](/analyze-slow-queries.md)
     - [TiDB OOM 故障排查](/troubleshoot-tidb-oom.md)
     - [热点问题处理](/troubleshoot-hot-spot-issues.md)
-    - [CPU 占用过多导致读写延迟增加](/troubleshoot-cpu-issues.md)
+    - [读写延迟增加](/troubleshoot-cpu-issues.md)
     - [写冲突与写性能下降](/troubleshoot-write-conflicts.md)
     - [磁盘 I/O 过高](/troubleshoot-high-disk-io.md)
     - [锁冲突与 TTL 超时](/troubleshoot-lock-conflicts.md)
@@ -239,6 +247,7 @@
     - [TiFlash 性能分析方法](/tiflash-performance-tuning-methods.md)
     - [TiCDC 性能分析方法](/ticdc-performance-tuning-methods.md)
     - [延迟的拆解分析](/latency-breakdown.md)
+    - [在公有云上部署 TiDB 的最佳实践](/best-practices-on-public-cloud.md)
   - 配置调优
       - [操作系统性能参数调优](/tune-operating-system.md)
       - [TiDB 内存调优](/configure-memory-usage.md)
@@ -518,10 +527,13 @@
     - [目标数据库要求](/tidb-lightning/tidb-lightning-requirements.md)
     - 数据源
       - [文件匹配规则](/tidb-lightning/tidb-lightning-data-source.md)
+      - [表库重命名](/tidb-lightning/tidb-lightning-data-source.md#表库重命名)
       - [CSV](/tidb-lightning/tidb-lightning-data-source.md#csv)
       - [SQL](/tidb-lightning/tidb-lightning-data-source.md#sql)
       - [Parquet](/tidb-lightning/tidb-lightning-data-source.md#parquet)
+      - [压缩文件](/tidb-lightning/tidb-lightning-data-source.md#压缩文件)
       - [自定义文件匹配](/tidb-lightning/tidb-lightning-data-source.md#自定义文件匹配)
+      - [从 Amazon S3 导入数据](/tidb-lightning/tidb-lightning-data-source.md#从-amazon-s3-导入数据)
     - 物理导入模式
       - [概述](/tidb-lightning/tidb-lightning-physical-import-mode.md)
       - [必要条件及限制](/tidb-lightning/tidb-lightning-physical-import-mode.md#必要条件及限制)
@@ -564,7 +576,7 @@
       - [双向复制](/ticdc/ticdc-bidirectional-replication.md)
       - [单行数据正确性校验](/ticdc/ticdc-integrity-check.md)
       - [主从集群一致性读和数据校验](/ticdc/ticdc-upstream-downstream-check.md)
-      - [TiCDC 行为变更说明](/ticdc/ticdc-behavior-change.md)
+      - [拆分 UPDATE 事件行为说明](/ticdc/ticdc-split-update-behavior.md)
     - 监控告警
       - [基本监控指标](/ticdc/ticdc-summary-monitor.md)
       - [详细监控指标](/ticdc/monitor-ticdc.md)
@@ -653,6 +665,7 @@
     - [TiDB 分布式执行框架介绍](/tidb-distributed-execution-framework.md)
     - [TiDB 全局排序](/tidb-global-sort.md)
   - [系统变量](/system-variables.md)
+  - [服务器状态变量](/status-variables.md)
   - 配置文件参数
     - [tidb-server](/tidb-configuration-file.md)
     - [tikv-server](/tikv-configuration-file.md)
@@ -678,13 +691,6 @@
     - [TiFlash 监控指标](/tiflash/monitor-tiflash.md)
     - [TiCDC 监控指标](/ticdc/monitor-ticdc.md)
     - [Resource Control 监控指标](/grafana-resource-control-dashboard.md)
-  - 安全加固
-    - [为 TiDB 客户端服务端间通信开启加密传输](/enable-tls-between-clients-and-servers.md)
-    - [为 TiDB 组件间通信开启加密传输](/enable-tls-between-components.md)
-    - [生成自签名证书](/generate-self-signed-certificates.md)
-    - [静态加密](/encryption-at-rest.md)
-    - [为 TiDB 落盘文件开启加密](/enable-disk-spill-encrypt.md)
-    - [日志脱敏](/log-redaction.md)
   - 权限
     - [与 MySQL 安全特性差异](/security-compatibility-with-mysql.md)
     - [权限管理](/privilege-management.md)
@@ -723,6 +729,7 @@
       - [`ALTER PLACEMENT POLICY`](/sql-statements/sql-statement-alter-placement-policy.md)
       - [`ALTER RANGE`](/sql-statements/sql-statement-alter-range.md)
       - [`ALTER RESOURCE GROUP`](/sql-statements/sql-statement-alter-resource-group.md)
+      - [`ALTER SEQUENCE`](/sql-statements/sql-statement-alter-sequence.md)
       - [`ALTER TABLE`](/sql-statements/sql-statement-alter-table.md)
       - [`ALTER TABLE COMPACT`](/sql-statements/sql-statement-alter-table-compact.md)
       - [`ALTER USER`](/sql-statements/sql-statement-alter-user.md)
@@ -831,7 +838,7 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
@@ -883,6 +890,7 @@
       - [其它函数](/functions-and-operators/miscellaneous-functions.md)
       - [精度数学](/functions-and-operators/precision-math.md)
       - [集合运算](/functions-and-operators/set-operators.md)
+      - [序列函数](/functions-and-operators/sequence-functions.md)
       - [下推到 TiKV 的表达式列表](/functions-and-operators/expressions-pushed-down.md)
       - [TiDB 特有的函数](/functions-and-operators/tidb-functions.md)
       - [Oracle 与 TiDB 函数和语法差异对照](/oracle-functions-to-tidb.md)
@@ -902,7 +910,7 @@
     - [临时表](/temporary-tables.md)
     - [缓存表](/cached-tables.md)
     - [外键约束](/foreign-key.md)
-    - 字符集和排序
+    - 字符集和排序规则
       - [概述](/character-set-and-collation.md)
       - [GBK](/character-set-gbk.md)
     - [Placement Rules in SQL](/placement-rules-in-sql.md)
@@ -932,6 +940,7 @@
         - [`INSPECTION_RESULT`](/information-schema/information-schema-inspection-result.md)
         - [`INSPECTION_RULES`](/information-schema/information-schema-inspection-rules.md)
         - [`INSPECTION_SUMMARY`](/information-schema/information-schema-inspection-summary.md)
+        - [`KEYWORDS`](/information-schema/information-schema-keywords.md)
         - [`KEY_COLUMN_USAGE`](/information-schema/information-schema-key-column-usage.md)
         - [`MEMORY_USAGE`](/information-schema/information-schema-memory-usage.md)
         - [`MEMORY_USAGE_OPS_HISTORY`](/information-schema/information-schema-memory-usage-ops-history.md)
@@ -1025,6 +1034,9 @@
   - [TiDB 版本规则](/releases/versioning.md)
   - [TiDB 离线包](/binary-package.md)
   - v7.5
+    - [7.5.4](/releases/release-7.5.4.md)
+    - [7.5.3](/releases/release-7.5.3.md)
+    - [7.5.2](/releases/release-7.5.2.md)
     - [7.5.1](/releases/release-7.5.1.md)
     - [7.5.0](/releases/release-7.5.0.md)
   - v7.4
@@ -1034,6 +1046,7 @@
   - v7.2
     - [7.2.0-DMR](/releases/release-7.2.0.md)
   - v7.1
+    - [7.1.5](/releases/release-7.1.5.md)
     - [7.1.4](/releases/release-7.1.4.md)
     - [7.1.3](/releases/release-7.1.3.md)
     - [7.1.2](/releases/release-7.1.2.md)
@@ -1044,6 +1057,9 @@
   - v6.6
     - [6.6.0-DMR](/releases/release-6.6.0.md)
   - v6.5
+    - [6.5.11](/releases/release-6.5.11.md)
+    - [6.5.10](/releases/release-6.5.10.md)
+    - [6.5.9](/releases/release-6.5.9.md)
     - [6.5.8](/releases/release-6.5.8.md)
     - [6.5.7](/releases/release-6.5.7.md)
     - [6.5.6](/releases/release-6.5.6.md)

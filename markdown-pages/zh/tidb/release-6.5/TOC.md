@@ -149,6 +149,14 @@
     - [与 Confluent Cloud 和 Snowflake 进行数据集成](/ticdc/integrate-confluent-using-ticdc.md)
     - [与 Apache Kafka 和 Apache Flink 进行数据集成](/replicate-data-to-kafka.md)
 - 运维操作
+  - 安全加固
+    - [TiDB 安全配置最佳实践](/best-practices-for-security-configuration.md)
+    - [为 TiDB 客户端服务端间通信开启加密传输](/enable-tls-between-clients-and-servers.md)
+    - [为 TiDB 组件间通信开启加密传输](/enable-tls-between-components.md)
+    - [生成自签名证书](/generate-self-signed-certificates.md)
+    - [静态加密](/encryption-at-rest.md)
+    - [为 TiDB 落盘文件开启加密](/enable-disk-spill-encrypt.md)
+    - [日志脱敏](/log-redaction.md)
   - 升级 TiDB 版本
     - [使用 TiUP 升级](/upgrade-tidb-using-tiup.md)
     - [使用 TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
@@ -213,7 +221,7 @@
       - [分析慢查询](/analyze-slow-queries.md)
     - [TiDB OOM 故障排查](/troubleshoot-tidb-oom.md)
     - [热点问题处理](/troubleshoot-hot-spot-issues.md)
-    - [CPU 占用过多导致读写延迟增加](/troubleshoot-cpu-issues.md)
+    - [读写延迟增加](/troubleshoot-cpu-issues.md)
     - [写冲突与写性能下降](/troubleshoot-write-conflicts.md)
     - [磁盘 I/O 过高](/troubleshoot-high-disk-io.md)
     - [锁冲突与 TTL 超时](/troubleshoot-lock-conflicts.md)
@@ -234,6 +242,7 @@
     - [TiFlash 性能分析方法](/tiflash-performance-tuning-methods.md)
     - [TiCDC 性能分析方法](/ticdc-performance-tuning-methods.md)
     - [延迟的拆解分析](/latency-breakdown.md)
+    - [在公有云上部署 TiDB 的最佳实践](/best-practices-on-public-cloud.md)
   - 配置调优
       - [操作系统性能参数调优](/tune-operating-system.md)
       - [TiDB 内存调优](/configure-memory-usage.md)
@@ -553,7 +562,7 @@
       - [DDL 同步](/ticdc/ticdc-ddl.md)
       - [双向复制](/ticdc/ticdc-bidirectional-replication.md)
       - [主从集群一致性读和数据校验](/ticdc/ticdc-upstream-downstream-check.md)
-      - [TiCDC 行为变更说明](/ticdc/ticdc-behavior-change.md)
+      - [拆分 UPDATE 事件行为说明](/ticdc/ticdc-split-update-behavior.md)
     - 监控告警
       - [监控指标](/ticdc/monitor-ticdc.md)
       - [报警规则](/ticdc/ticdc-alert-rules.md)
@@ -655,13 +664,6 @@
     - [TiKV 面板](/grafana-tikv-dashboard.md)
     - [TiFlash 监控指标](/tiflash/monitor-tiflash.md)
     - [TiCDC 监控指标](/ticdc/monitor-ticdc.md)
-  - 安全加固
-    - [为 TiDB 客户端服务端间通信开启加密传输](/enable-tls-between-clients-and-servers.md)
-    - [为 TiDB 组件间通信开启加密传输](/enable-tls-between-components.md)
-    - [生成自签名证书](/generate-self-signed-certificates.md)
-    - [静态加密](/encryption-at-rest.md)
-    - [为 TiDB 落盘文件开启加密](/enable-disk-spill-encrypt.md)
-    - [日志脱敏](/log-redaction.md)
   - 权限
     - [与 MySQL 安全特性差异](/security-compatibility-with-mysql.md)
     - [权限管理](/privilege-management.md)
@@ -797,7 +799,7 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW [FULL] PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
@@ -866,7 +868,7 @@
     - [分区表](/partitioned-table.md)
     - [临时表](/temporary-tables.md)
     - [缓存表](/cached-tables.md)
-    - 字符集和排序
+    - 字符集和排序规则
       - [概述](/character-set-and-collation.md)
       - [GBK](/character-set-gbk.md)
     - [Placement Rules in SQL](/placement-rules-in-sql.md)
@@ -981,6 +983,9 @@
   - [TiDB 版本规则](/releases/versioning.md)
   - [TiDB 离线包](/binary-package.md)
   - v6.5
+    - [6.5.11](/releases/release-6.5.11.md)
+    - [6.5.10](/releases/release-6.5.10.md)
+    - [6.5.9](/releases/release-6.5.9.md)
     - [6.5.8](/releases/release-6.5.8.md)
     - [6.5.7](/releases/release-6.5.7.md)
     - [6.5.6](/releases/release-6.5.6.md)

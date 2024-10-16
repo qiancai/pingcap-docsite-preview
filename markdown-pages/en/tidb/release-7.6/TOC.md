@@ -524,10 +524,13 @@
     - [Target Database Requirements](/tidb-lightning/tidb-lightning-requirements.md)
     - Data Sources
       - [Data Match Rules](/tidb-lightning/tidb-lightning-data-source.md)
+      - [Rename databases and tables](/tidb-lightning/tidb-lightning-data-source.md#rename-databases-and-tables)
       - [CSV](/tidb-lightning/tidb-lightning-data-source.md#csv)
       - [SQL](/tidb-lightning/tidb-lightning-data-source.md#sql)
       - [Parquet](/tidb-lightning/tidb-lightning-data-source.md#parquet)
+      - [Compressed files](/tidb-lightning/tidb-lightning-data-source.md#compressed-files)
       - [Customized File](/tidb-lightning/tidb-lightning-data-source.md#match-customized-files)
+      - [Import data from Amazon S3](/tidb-lightning/tidb-lightning-data-source.md#import-data-from-amazon-s3)
     - Physical Import Mode
       - [Requirements and Limitations](/tidb-lightning/tidb-lightning-physical-import-mode.md)
       - [Use Physical Import Mode](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md)
@@ -564,6 +567,7 @@
       - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
       - [Data Integrity Validation for Single-Row Data](/ticdc/ticdc-integrity-check.md)
       - [Data Consistency Validation for TiDB Upstream/Downstream Clusters](/ticdc/ticdc-upstream-downstream-check.md)
+      - [TiCDC Behavior Changes](/ticdc/ticdc-behavior-change.md)
     - Monitor and Alert
       - [Monitoring Metrics Summary](/ticdc/ticdc-summary-monitor.md)
       - [Monitoring Metrics Details](/ticdc/monitor-ticdc.md)
@@ -728,6 +732,7 @@
       - [`ALTER PLACEMENT POLICY`](/sql-statements/sql-statement-alter-placement-policy.md)
       - [`ALTER RANGE`](/sql-statements/sql-statement-alter-range.md)
       - [`ALTER RESOURCE GROUP`](/sql-statements/sql-statement-alter-resource-group.md)
+      - [`ALTER SEQUENCE`](/sql-statements/sql-statement-alter-sequence.md)
       - [`ALTER TABLE`](/sql-statements/sql-statement-alter-table.md)
       - [`ALTER TABLE COMPACT`](/sql-statements/sql-statement-alter-table-compact.md)
       - [`ALTER USER`](/sql-statements/sql-statement-alter-user.md)
@@ -836,7 +841,7 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
@@ -888,6 +893,7 @@
       - [Miscellaneous Functions](/functions-and-operators/miscellaneous-functions.md)
       - [Precision Math](/functions-and-operators/precision-math.md)
       - [Set Operations](/functions-and-operators/set-operators.md)
+      - [Sequence Functions](/functions-and-operators/sequence-functions.md)
       - [List of Expressions for Pushdown](/functions-and-operators/expressions-pushed-down.md)
       - [TiDB Specific Functions](/functions-and-operators/tidb-functions.md)
       - [Comparisons between Functions and Syntax of Oracle and TiDB](/oracle-functions-to-tidb.md)
@@ -1035,6 +1041,7 @@
   - v7.6
     - [7.6.0](/releases/release-7.6.0.md)
   - v7.5
+    - [7.5.2](/releases/release-7.5.2.md)
     - [7.5.1](/releases/release-7.5.1.md)
     - [7.5.0](/releases/release-7.5.0.md)
   - v7.4
@@ -1044,6 +1051,7 @@
   - v7.2
     - [7.2.0-DMR](/releases/release-7.2.0.md)
   - v7.1
+    - [7.1.5](/releases/release-7.1.5.md)
     - [7.1.4](/releases/release-7.1.4.md)
     - [7.1.3](/releases/release-7.1.3.md)
     - [7.1.2](/releases/release-7.1.2.md)
@@ -1054,6 +1062,8 @@
   - v6.6
     - [6.6.0-DMR](/releases/release-6.6.0.md)
   - v6.5
+    - [6.5.10](/releases/release-6.5.10.md)
+    - [6.5.9](/releases/release-6.5.9.md)
     - [6.5.8](/releases/release-6.5.8.md)
     - [6.5.7](/releases/release-6.5.7.md)
     - [6.5.6](/releases/release-6.5.6.md)

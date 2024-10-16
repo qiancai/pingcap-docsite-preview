@@ -154,6 +154,14 @@
     - [Integrate with Confluent and Snowflake](/ticdc/integrate-confluent-using-ticdc.md)
     - [Integrate with Apache Kafka and Apache Flink](/replicate-data-to-kafka.md)
 - Maintain
+  - Security
+    - [Best Practices for TiDB Security Configuration](/best-practices-for-security-configuration.md)
+    - [Enable TLS Between TiDB Clients and Servers](/enable-tls-between-clients-and-servers.md)
+    - [Enable TLS Between TiDB Components](/enable-tls-between-components.md)
+    - [Generate Self-signed Certificates](/generate-self-signed-certificates.md)
+    - [Encryption at Rest](/encryption-at-rest.md)
+    - [Enable Encryption for Disk Spill](/enable-disk-spill-encrypt.md)
+    - [Log Redaction](/log-redaction.md)
   - Upgrade
     - [Use TiUP](/upgrade-tidb-using-tiup.md)
     - [Use TiDB Operator](https://docs.pingcap.com/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
@@ -552,6 +560,7 @@
       - [DDL Replication](/ticdc/ticdc-ddl.md)
       - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
       - [Data Consistency Validation for TiDB Upstream/Downstream Clusters](/ticdc/ticdc-upstream-downstream-check.md)
+      - [TiCDC Behavior in Splitting UPDATE Events](/ticdc/ticdc-split-update-behavior.md)
     - Monitor and Alert
       - [Monitoring Metrics](/ticdc/monitor-ticdc.md)
       - [Alert Rules](/ticdc/ticdc-alert-rules.md)
@@ -650,13 +659,6 @@
     - [TiKV](/grafana-tikv-dashboard.md)
     - [TiFlash](/tiflash/monitor-tiflash.md)
     - [TiCDC](/ticdc/monitor-ticdc.md)
-  - Security
-    - [Enable TLS Between TiDB Clients and Servers](/enable-tls-between-clients-and-servers.md)
-    - [Enable TLS Between TiDB Components](/enable-tls-between-components.md)
-    - [Generate Self-signed Certificates](/generate-self-signed-certificates.md)
-    - [Encryption at Rest](/encryption-at-rest.md)
-    - [Enable Encryption for Disk Spill](/enable-disk-spill-encrypt.md)
-    - [Log Redaction](/log-redaction.md)
   - Privileges
     - [Security Compatibility with MySQL](/security-compatibility-with-mysql.md)
     - [Privilege Management](/privilege-management.md)
@@ -792,7 +794,7 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW [FULL] PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
@@ -977,6 +979,9 @@
   - [TiDB Versioning](/releases/versioning.md)
   - [TiDB Installation Packages](/binary-package.md)
   - v6.5
+    - [6.5.11](/releases/release-6.5.11.md)
+    - [6.5.10](/releases/release-6.5.10.md)
+    - [6.5.9](/releases/release-6.5.9.md)
     - [6.5.8](/releases/release-6.5.8.md)
     - [6.5.7](/releases/release-6.5.7.md)
     - [6.5.6](/releases/release-6.5.6.md)

@@ -2,8 +2,8 @@
 <!-- markdownlint-disable MD041 -->
 
 - [Docs Home](https://docs.pingcap.com/)
-- About TiDB
-  - [TiDB Introduction](/overview.md)
+- About TiDB Self-Managed
+  - [What is TiDB Self-Managed](/overview.md)
   - [TiDB 7.5 Release Notes](/releases/release-7.5.0.md)
   - [Features](/basic-features.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
@@ -19,7 +19,7 @@
 - Develop
   - [Overview](/develop/dev-guide-overview.md)
   - Quick Start
-    - [Build a TiDB Serverless Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
+    - [Build a TiDB Cloud Serverless Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
     - [CRUD SQL in TiDB](/develop/dev-guide-tidb-crud-sql.md)
   - Example Applications
     - Java
@@ -156,6 +156,14 @@
     - [Integrate with Confluent and Snowflake](/ticdc/integrate-confluent-using-ticdc.md)
     - [Integrate with Apache Kafka and Apache Flink](/replicate-data-to-kafka.md)
 - Maintain
+  - Security
+    - [Best Practices for TiDB Security Configuration](/best-practices-for-security-configuration.md)
+    - [Enable TLS Between TiDB Clients and Servers](/enable-tls-between-clients-and-servers.md)
+    - [Enable TLS Between TiDB Components](/enable-tls-between-components.md)
+    - [Generate Self-signed Certificates](/generate-self-signed-certificates.md)
+    - [Encryption at Rest](/encryption-at-rest.md)
+    - [Enable Encryption for Disk Spill](/enable-disk-spill-encrypt.md)
+    - [Log Redaction](/log-redaction.md)
   - Upgrade
     - [Use TiUP](/upgrade-tidb-using-tiup.md)
     - [Use TiDB Operator](https://docs.pingcap.com/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
@@ -523,10 +531,13 @@
     - [Target Database Requirements](/tidb-lightning/tidb-lightning-requirements.md)
     - Data Sources
       - [Data Match Rules](/tidb-lightning/tidb-lightning-data-source.md)
+      - [Rename databases and tables](/tidb-lightning/tidb-lightning-data-source.md#rename-databases-and-tables)
       - [CSV](/tidb-lightning/tidb-lightning-data-source.md#csv)
       - [SQL](/tidb-lightning/tidb-lightning-data-source.md#sql)
       - [Parquet](/tidb-lightning/tidb-lightning-data-source.md#parquet)
+      - [Compressed files](/tidb-lightning/tidb-lightning-data-source.md#compressed-files)
       - [Customized File](/tidb-lightning/tidb-lightning-data-source.md#match-customized-files)
+      - [Import data from Amazon S3](/tidb-lightning/tidb-lightning-data-source.md#import-data-from-amazon-s3)
     - Physical Import Mode
       - [Requirements and Limitations](/tidb-lightning/tidb-lightning-physical-import-mode.md)
       - [Use Physical Import Mode](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md)
@@ -563,6 +574,7 @@
       - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
       - [Data Integrity Validation for Single-Row Data](/ticdc/ticdc-integrity-check.md)
       - [Data Consistency Validation for TiDB Upstream/Downstream Clusters](/ticdc/ticdc-upstream-downstream-check.md)
+      - [TiCDC Behavior in Splitting UPDATE Events](/ticdc/ticdc-split-update-behavior.md)
     - Monitor and Alert
       - [Monitoring Metrics Summary](/ticdc/ticdc-summary-monitor.md)
       - [Monitoring Metrics Details](/ticdc/monitor-ticdc.md)
@@ -674,13 +686,6 @@
     - [TiFlash](/tiflash/monitor-tiflash.md)
     - [TiCDC](/ticdc/monitor-ticdc.md)
     - [Resource Control](/grafana-resource-control-dashboard.md)
-  - Security
-    - [Enable TLS Between TiDB Clients and Servers](/enable-tls-between-clients-and-servers.md)
-    - [Enable TLS Between TiDB Components](/enable-tls-between-components.md)
-    - [Generate Self-signed Certificates](/generate-self-signed-certificates.md)
-    - [Encryption at Rest](/encryption-at-rest.md)
-    - [Enable Encryption for Disk Spill](/enable-disk-spill-encrypt.md)
-    - [Log Redaction](/log-redaction.md)
   - Privileges
     - [Security Compatibility with MySQL](/security-compatibility-with-mysql.md)
     - [Privilege Management](/privilege-management.md)
@@ -701,8 +706,6 @@
       - [Expression Syntax](/expression-syntax.md)
       - [Comment Syntax](/comment-syntax.md)
     - SQL Statements
-      - [`ADD COLUMN`](/sql-statements/sql-statement-add-column.md)
-      - [`ADD INDEX`](/sql-statements/sql-statement-add-index.md)
       - [`ADMIN`](/sql-statements/sql-statement-admin.md)
       - [`ADMIN CANCEL DDL`](/sql-statements/sql-statement-admin-cancel-ddl.md)
       - [`ADMIN CHECKSUM TABLE`](/sql-statements/sql-statement-admin-checksum-table.md)
@@ -714,13 +717,22 @@
       - [`ADMIN SHOW DDL [JOBS|JOB QUERIES]`](/sql-statements/sql-statement-admin-show-ddl.md)
       - [`ADMIN SHOW TELEMETRY`](/sql-statements/sql-statement-admin-show-telemetry.md)
       - [`ALTER DATABASE`](/sql-statements/sql-statement-alter-database.md)
-      - [`ALTER INDEX`](/sql-statements/sql-statement-alter-index.md)
       - [`ALTER INSTANCE`](/sql-statements/sql-statement-alter-instance.md)
       - [`ALTER PLACEMENT POLICY`](/sql-statements/sql-statement-alter-placement-policy.md)
       - [`ALTER RANGE`](/sql-statements/sql-statement-alter-range.md)
       - [`ALTER RESOURCE GROUP`](/sql-statements/sql-statement-alter-resource-group.md)
-      - [`ALTER TABLE`](/sql-statements/sql-statement-alter-table.md)
-      - [`ALTER TABLE COMPACT`](/sql-statements/sql-statement-alter-table-compact.md)
+      - [`ALTER SEQUENCE`](/sql-statements/sql-statement-alter-sequence.md)
+      - `ALTER TABLE`
+        - [Overview](/sql-statements/sql-statement-alter-table.md)
+        - [`ADD COLUMN`](/sql-statements/sql-statement-add-column.md)
+        - [`ADD INDEX`](/sql-statements/sql-statement-add-index.md)
+        - [`ALTER INDEX`](/sql-statements/sql-statement-alter-index.md)
+        - [`CHANGE COLUMN`](/sql-statements/sql-statement-change-column.md)
+        - [`COMPACT`](/sql-statements/sql-statement-alter-table-compact.md)
+        - [`DROP COLUMN`](/sql-statements/sql-statement-drop-column.md)
+        - [`DROP INDEX`](/sql-statements/sql-statement-drop-index.md)
+        - [`MODIFY COLUMN`](/sql-statements/sql-statement-modify-column.md)
+        - [`RENAME INDEX`](/sql-statements/sql-statement-rename-index.md)
       - [`ALTER USER`](/sql-statements/sql-statement-alter-user.md)
       - [`ANALYZE TABLE`](/sql-statements/sql-statement-analyze-table.md)
       - [`BACKUP`](/sql-statements/sql-statement-backup.md)
@@ -728,7 +740,6 @@
       - [`BEGIN`](/sql-statements/sql-statement-begin.md)
       - [`CALIBRATE RESOURCE`](/sql-statements/sql-statement-calibrate-resource.md)
       - [`CANCEL IMPORT JOB`](/sql-statements/sql-statement-cancel-import-job.md)
-      - [`CHANGE COLUMN`](/sql-statements/sql-statement-change-column.md)
       - [`COMMIT`](/sql-statements/sql-statement-commit.md)
       - [`CHANGE DRAINER`](/sql-statements/sql-statement-change-drainer.md)
       - [`CHANGE PUMP`](/sql-statements/sql-statement-change-pump.md)
@@ -749,9 +760,7 @@
       - [`DESCRIBE`](/sql-statements/sql-statement-describe.md)
       - [`DO`](/sql-statements/sql-statement-do.md)
       - [`DROP BINDING`](/sql-statements/sql-statement-drop-binding.md)
-      - [`DROP COLUMN`](/sql-statements/sql-statement-drop-column.md)
       - [`DROP DATABASE`](/sql-statements/sql-statement-drop-database.md)
-      - [`DROP INDEX`](/sql-statements/sql-statement-drop-index.md)
       - [`DROP PLACEMENT POLICY`](/sql-statements/sql-statement-drop-placement-policy.md)
       - [`DROP RESOURCE GROUP`](/sql-statements/sql-statement-drop-resource-group.md)
       - [`DROP ROLE`](/sql-statements/sql-statement-drop-role.md)
@@ -778,12 +787,10 @@
       - [`LOAD STATS`](/sql-statements/sql-statement-load-stats.md)
       - [`LOCK STATS`](/sql-statements/sql-statement-lock-stats.md)
       - [`[LOCK|UNLOCK] TABLES`](/sql-statements/sql-statement-lock-tables-and-unlock-tables.md)
-      - [`MODIFY COLUMN`](/sql-statements/sql-statement-modify-column.md)
       - [`PREPARE`](/sql-statements/sql-statement-prepare.md)
       - [`QUERY WATCH`](/sql-statements/sql-statement-query-watch.md)
       - [`RECOVER TABLE`](/sql-statements/sql-statement-recover-table.md)
       - [`RENAME USER`](/sql-statements/sql-statement-rename-user.md)
-      - [`RENAME INDEX`](/sql-statements/sql-statement-rename-index.md)
       - [`RENAME TABLE`](/sql-statements/sql-statement-rename-table.md)
       - [`REPLACE`](/sql-statements/sql-statement-replace.md)
       - [`RESTORE`](/sql-statements/sql-statement-restore.md)
@@ -827,7 +834,7 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
@@ -879,6 +886,7 @@
       - [Miscellaneous Functions](/functions-and-operators/miscellaneous-functions.md)
       - [Precision Math](/functions-and-operators/precision-math.md)
       - [Set Operations](/functions-and-operators/set-operators.md)
+      - [Sequence Functions](/functions-and-operators/sequence-functions.md)
       - [List of Expressions for Pushdown](/functions-and-operators/expressions-pushed-down.md)
       - [TiDB Specific Functions](/functions-and-operators/tidb-functions.md)
       - [Comparisons between Functions and Syntax of Oracle and TiDB](/oracle-functions-to-tidb.md)
@@ -928,6 +936,7 @@
         - [`INSPECTION_RESULT`](/information-schema/information-schema-inspection-result.md)
         - [`INSPECTION_RULES`](/information-schema/information-schema-inspection-rules.md)
         - [`INSPECTION_SUMMARY`](/information-schema/information-schema-inspection-summary.md)
+        - [`KEYWORDS`](/information-schema/information-schema-keywords.md)
         - [`KEY_COLUMN_USAGE`](/information-schema/information-schema-key-column-usage.md)
         - [`MEMORY_USAGE`](/information-schema/information-schema-memory-usage.md)
         - [`MEMORY_USAGE_OPS_HISTORY`](/information-schema/information-schema-memory-usage-ops-history.md)
@@ -1022,6 +1031,9 @@
   - [TiDB Versioning](/releases/versioning.md)
   - [TiDB Installation Packages](/binary-package.md)
   - v7.5
+    - [7.5.4](/releases/release-7.5.4.md)
+    - [7.5.3](/releases/release-7.5.3.md)
+    - [7.5.2](/releases/release-7.5.2.md)
     - [7.5.1](/releases/release-7.5.1.md)
     - [7.5.0](/releases/release-7.5.0.md)
   - v7.4
@@ -1031,6 +1043,7 @@
   - v7.2
     - [7.2.0-DMR](/releases/release-7.2.0.md)
   - v7.1
+    - [7.1.5](/releases/release-7.1.5.md)
     - [7.1.4](/releases/release-7.1.4.md)
     - [7.1.3](/releases/release-7.1.3.md)
     - [7.1.2](/releases/release-7.1.2.md)
@@ -1041,6 +1054,9 @@
   - v6.6
     - [6.6.0-DMR](/releases/release-6.6.0.md)
   - v6.5
+    - [6.5.11](/releases/release-6.5.11.md)
+    - [6.5.10](/releases/release-6.5.10.md)
+    - [6.5.9](/releases/release-6.5.9.md)
     - [6.5.8](/releases/release-6.5.8.md)
     - [6.5.7](/releases/release-6.5.7.md)
     - [6.5.6](/releases/release-6.5.6.md)

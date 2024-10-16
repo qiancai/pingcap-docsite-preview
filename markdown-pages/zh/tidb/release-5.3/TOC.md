@@ -50,6 +50,14 @@
   - [从 SQL 文件迁移到 TiDB](/migrate-from-mysql-dumpling-files.md)
   - [将 TiDB 集群的增量数据同步到另一集群](/incremental-replication-between-clusters.md)
 - 运维操作
+  - 安全加固
+    - [TiDB 安全配置最佳实践](/best-practices-for-security-configuration.md)
+    - [为 TiDB 客户端服务端间通信开启加密传输](/enable-tls-between-clients-and-servers.md)
+    - [为 TiDB 组件间通信开启加密传输](/enable-tls-between-components.md)
+    - [生成自签名证书](/generate-self-signed-certificates.md)
+    - [静态加密](/encryption-at-rest.md)
+    - [为 TiDB 落盘文件开启加密](/enable-disk-spill-encrypt.md)
+    - [日志脱敏](/log-redaction.md)
   - 升级 TiDB 版本
     - [使用 TiUP 升级](/upgrade-tidb-using-tiup.md)
     - [使用 TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
@@ -87,7 +95,7 @@
   - [TiDB 集群常见问题](/troubleshoot-tidb-cluster.md)
   - [TiDB 集群问题导图](/tidb-troubleshooting-map.md)
   - [热点问题处理](/troubleshoot-hot-spot-issues.md)
-  - [CPU 占用过多导致读写延迟增加](/troubleshoot-cpu-issues.md)
+  - [读写延迟增加](/troubleshoot-cpu-issues.md)
   - [写冲突与写性能下降](/troubleshoot-write-conflicts.md)
   - [磁盘 I/O 过高](/troubleshoot-high-disk-io.md)
   - [锁冲突与 TTL 超时](/troubleshoot-lock-conflicts.md)
@@ -284,13 +292,6 @@
     - [TiKV 面板](/grafana-tikv-dashboard.md)
     - [TiFlash 监控指标](/tiflash/monitor-tiflash.md)
     - [TiCDC 监控指标](/ticdc/monitor-ticdc.md)
-  - 安全加固
-    - [为 TiDB 客户端服务端间通信开启加密传输](/enable-tls-between-clients-and-servers.md)
-    - [为 TiDB 组件间通信开启加密传输](/enable-tls-between-components.md)
-    - [生成自签名证书](/generate-self-signed-certificates.md)
-    - [静态加密](/encryption-at-rest.md)
-    - [为 TiDB 落盘文件开启加密](/enable-disk-spill-encrypt.md)
-    - [日志脱敏](/log-redaction.md)
   - 权限
     - [与 MySQL 安全特性差异](/security-compatibility-with-mysql.md)
     - [权限管理](/privilege-management.md)
@@ -418,7 +419,7 @@
       - [`SHOW PLACEMENT LABELS`](/sql-statements/sql-statement-show-placement-labels.md)
       - [`SHOW PLUGINS`](/sql-statements/sql-statement-show-plugins.md)
       - [`SHOW PRIVILEGES`](/sql-statements/sql-statement-show-privileges.md)
-      - [`SHOW [FULL] PROCESSSLIST`](/sql-statements/sql-statement-show-processlist.md)
+      - [`SHOW PROCESSLIST`](/sql-statements/sql-statement-show-processlist.md)
       - [`SHOW PROFILES`](/sql-statements/sql-statement-show-profiles.md)
       - [`SHOW PUMP STATUS`](/sql-statements/sql-statement-show-pump-status.md)
       - [`SHOW SCHEMAS`](/sql-statements/sql-statement-show-schemas.md)
