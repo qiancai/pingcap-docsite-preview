@@ -2,8 +2,8 @@ name: Sync docs on schedule
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 */6 * * *" # every 6 hours
+  # schedule:
+  #   - cron: "0 */3 * * *" # every 3 hours
 
 jobs:
   sync_scheduler:
@@ -19,6 +19,6 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Sync preview branch (multiple PRs) on schedule
-      if: github.event_name == 'schedule' && github.event.schedule == '0 */6 * * *'
+      if: github.event_name == 'schedule' && github.event.schedule == '0 */3 * * *'
       run: |
-        gh workflow run sync_mult_prs.yml --ref v8.0-preview
+        gh workflow run sync_mult_prs.yml --ref v8.4-preview
