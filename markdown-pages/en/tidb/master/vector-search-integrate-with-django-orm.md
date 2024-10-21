@@ -239,6 +239,14 @@ class Document(models.Model):
    embedding = VectorField(dimensions=3)
 ```
 
+### Store documents with embeddings
+
+```python
+Document.objects.create(content="dog", embedding=[1, 2, 1])
+Document.objects.create(content="fish", embedding=[1, 2, 4])
+Document.objects.create(content="tree", embedding=[1, 0, 0])
+```
+
 ### Search the nearest neighbor documents
 
 TiDB Vector support the following distance functions:
