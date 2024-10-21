@@ -40,7 +40,7 @@ To complete this tutorial, you need:
 **If you don't have a TiDB cluster, you can create one as follows:**
 
 - (Recommended) Follow [Creating a TiDB Cloud Serverless cluster](/develop/dev-guide-build-cluster-in-cloud.md) to create your own TiDB Cloud cluster.
-- Follow [Deploy a local test TiDB cluster](https://docs.pingcap.com/tidb/stable/quick-start-with-tidb#deploy-a-local-test-cluster) or [Deploy a production TiDB cluster](https://docs.pingcap.com/tidb/stable/production-deployment-using-tiup) to create a local cluster.
+- Follow [Deploy a local test TiDB cluster](https://docs.pingcap.com/tidb/stable/quick-start-with-tidb#deploy-a-local-test-cluster) or [Deploy a production TiDB cluster](https://docs.pingcap.com/tidb/stable/production-deployment-using-tiup) to create a local cluster of v8.4.0 or a later version.
 
 </CustomContent>
 
@@ -199,34 +199,6 @@ class Document(Base):
     id = Column(Integer, primary_key=True)
     content = Column(Text)
     embedding = Column(VectorType(3))
-```
-
-#### Define a vector column optimized with index
-
-> **Note**
->
-> This section is only applicable to [TiDB Serverless](https://docs.pingcap.com/tidbcloud/select-cluster-tier#tidb-serverless) clusters.
-
-Define a 3-dimensional vector column and optimize it with a [vector search index](/vector-search-index.md) (HNSW index).
-
-```python
-class DocumentWithIndex(Base):
-    __tablename__ = 'sqlalchemy_demo_documents_with_index'
-    id = Column(Integer, primary_key=True)
-    content = Column(Text)
-    embedding = Column(VectorType(3), comment="hnsw(distance=cosine)")
-```
-
-TiDB will use this index to accelerate vector search queries based on the cosine distance function.
-
-### Store documents with embeddings
-
-```python
-with Session(engine) as session:
-   session.add(Document(content="dog", embedding=[1, 2, 1]))
-   session.add(Document(content="fish", embedding=[1, 2, 4]))
-   session.add(Document(content="tree", embedding=[1, 0, 0]))
-   session.commit()
 ```
 
 ### Search the nearest neighbor documents
