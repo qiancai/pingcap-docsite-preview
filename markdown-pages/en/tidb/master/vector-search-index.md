@@ -37,7 +37,7 @@ Currently, TiDB supports the [HNSW (Hierarchical Navigable Small World)](https:/
 
 ## Create the HNSW vector index
 
-[HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world) is one of the most popular vector indexing algorithms. The HNSW index provides good performance with relatively high accuracy (> 98% in typical cases).
+[HNSW](https://en.wikipedia.org/wiki/Hierarchical_navigable_small_world) is one of the most popular vector indexing algorithms. The HNSW index provides good performance with relatively high accuracy, up to 98% in specific cases.
 
 In TiDB, you can create an HNSW index for a column with a [vector data type](/vector-search-data-types.md) in either of the following ways:
 
@@ -74,7 +74,7 @@ When creating an HNSW vector index, you need to specify the distance function fo
 - Cosine Distance: `((VEC_COSINE_DISTANCE(embedding)))`
 - L2 Distance: `((VEC_L2_DISTANCE(embedding)))`
 
-The vector index can only be created for fixed-dimensional vector columns, such as a column defined as `VECTOR(3)`. It cannot be created for mixed-dimensional vector columns (such as a column defined as `VECTOR`) because vector distances can only be calculated between vectors with the same dimensions.
+The vector index can only be created for fixed-dimensional vector columns, such as a column defined as `VECTOR(3)`. It cannot be created for mixed-dimensional vector columns (such as a column defined as `VECTOR`) because vector distances can only be calculated between vectors with the same dimension.
 
 For restrictions and limitations of vector search indexes, see [Restrictions](#restrictions).
 
@@ -88,8 +88,6 @@ FROM foo
 ORDER BY VEC_COSINE_DISTANCE(embedding, '[1, 2, 3, 4, 5]')
 LIMIT 10
 ```
-
-You must use the same distance metric as you have defined when creating the vector index if you want to utilize the index in vector search.
 
 To use an index in a vector search, make sure that the `ORDER BY ... LIMIT` clause uses the same distance function as the one specified when creating the vector index.
 
@@ -106,9 +104,7 @@ ORDER BY VEC_COSINE_DISTANCE(embedding, '[1, 2, 3]')
 LIMIT 5;
 ```
 
-To use the vector index with filters, consider the following workarounds:
-
-**Post-filter after vector search:** Query for the K-Nearest neighbors first, then filter out unwanted results:
+To use the vector index with filters, query for the K-Nearest neighbors first using vector search, and then filter out unwanted results:
 
 ```sql
 -- For the following query, the `WHERE` filter is performed after KNN, so the vector index cannot be used:
@@ -123,42 +119,6 @@ WHERE category = "document";
 
 -- Note that this query might return fewer than 5 results if some are filtered out.
 ```
-
-**Use table partitioning**: Queries within a table [partition](/partitioned-table.md) can fully utilize the vector index. This can be useful if you want to perform equality filters, as equality filters can be turned into accessing specified partitions.
-
-For example, suppose you want to find the closest documentation for a specific product version:
-
-```sql
--- For the following query, the `WHERE` filter is performed before KNN, so the vector index cannot be used:
-SELECT * FROM docs
-WHERE ver = "v2.0"
-ORDER BY VEC_COSINE_DISTANCE(embedding, '[1, 2, 3]')
-LIMIT 5;
-```
-
-Instead of writing a query using the `WHERE` clause, you can partition the table and then query within the partition using the [`PARTITION` keyword](/partitioned-table.md#partition-selection):
-
-```sql
-CREATE TABLE docs (
-    id INT,
-    ver VARCHAR(10),
-    doc TEXT,
-    embedding VECTOR(3),
-    VECTOR INDEX idx_embedding USING HNSW ((VEC_COSINE_DISTANCE(embedding)))
-) PARTITION BY LIST COLUMNS (ver) (
-    PARTITION p_v1_0 VALUES IN ('v1.0'),
-    PARTITION p_v1_1 VALUES IN ('v1.1'),
-    PARTITION p_v1_2 VALUES IN ('v1.2'),
-    PARTITION p_v2_0 VALUES IN ('v2.0')
-);
-
-SELECT * FROM docs
-PARTITION (p_v2_0)
-ORDER BY VEC_COSINE_DISTANCE(embedding, '[1, 2, 3]')
-LIMIT 5;
-```
-
-For more information, see [Table Partitioning](/partitioned-table.md).
 
 ## View index build progress
 
@@ -288,11 +248,11 @@ LIMIT 10;
 
 Explanation of some important fields:
 
-- `vector_index.load.total`: The total duration of loading index. This field could be larger than actual query time because multiple vector indexes may be loaded in parallel.
+- `vector_index.load.total`: The total duration of loading index. This field might be larger than the actual query time because multiple vector indexes might be loaded in parallel.
 - `vector_index.load.from_s3`: Number of indexes loaded from S3.
 - `vector_index.load.from_disk`: Number of indexes loaded from disk. The index was already downloaded from S3 previously.
 - `vector_index.load.from_cache`: Number of indexes loaded from cache. The index was already downloaded from S3 previously.
-- `vector_index.search.total`: The total duration of searching in the index. Large latency usually means the index is cold (never accessed before, or accessed long ago) so that there are heavy I/O operations when searching through the index. This field could be larger than actual query time because multiple vector indexes might be searched in parallel.
+- `vector_index.search.total`: The total duration of searching in the index. Large latency usually means the index is cold (never accessed before, or accessed long ago) so that there are heavy I/O operations when searching through the index. This field might be larger than the actual query time because multiple vector indexes might be searched in parallel.
 - `vector_index.search.discarded_nodes`: Number of vector rows visited but discarded during the search. These discarded vectors are not considered in the search result. Large values usually indicate that there are many stale rows caused by `UPDATE` or `DELETE` statements.
 
 See [`EXPLAIN`](/sql-statements/sql-statement-explain.md), [`EXPLAIN ANALYZE`](/sql-statements/sql-statement-explain-analyze.md), and [EXPLAIN Walkthrough](/explain-walkthrough.md) for interpreting the output.
