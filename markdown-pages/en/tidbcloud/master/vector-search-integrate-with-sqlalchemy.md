@@ -201,6 +201,16 @@ class Document(Base):
     embedding = Column(VectorType(3))
 ```
 
+### Store documents with embeddings
+
+```python
+with Session(engine) as session:
+   session.add(Document(content="dog", embedding=[1, 2, 1]))
+   session.add(Document(content="fish", embedding=[1, 2, 4]))
+   session.add(Document(content="tree", embedding=[1, 0, 0]))
+   session.commit()
+```
+
 ### Search the nearest neighbor documents
 
 Search for the top-3 documents that are semantically closest to the query vector `[1, 2, 3]` based on the cosine distance function.
