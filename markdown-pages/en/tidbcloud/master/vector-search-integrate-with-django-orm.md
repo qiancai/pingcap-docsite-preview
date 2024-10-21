@@ -40,7 +40,7 @@ To complete this tutorial, you need:
 **If you don't have a TiDB cluster, you can create one as follows:**
 
 - (Recommended) Follow [Creating a TiDB Cloud Serverless cluster](/develop/dev-guide-build-cluster-in-cloud.md) to create your own TiDB Cloud cluster.
-- Follow [Deploy a local test TiDB cluster](https://docs.pingcap.com/tidb/stable/quick-start-with-tidb#deploy-a-local-test-cluster) or [Deploy a production TiDB cluster](https://docs.pingcap.com/tidb/stable/production-deployment-using-tiup) to create a local cluster.
+- Follow [Deploy a local test TiDB cluster](https://docs.pingcap.com/tidb/stable/quick-start-with-tidb#deploy-a-local-test-cluster) or [Deploy a production TiDB cluster](https://docs.pingcap.com/tidb/stable/production-deployment-using-tiup) to create a local cluster of v8.4.0 or a later version.
 
 </CustomContent>
 
@@ -237,34 +237,6 @@ Create a table with a column named `embedding` that stores a 3-dimensional vecto
 class Document(models.Model):
    content = models.TextField()
    embedding = VectorField(dimensions=3)
-```
-
-#### Define a vector column optimized with index
-
-> **Note**
->
-> This section is only applicable to [TiDB Serverless](https://docs.pingcap.com/tidbcloud/select-cluster-tier#tidb-serverless) clusters.
-
-Define a 3-dimensional vector column and optimize it with a [vector search index](/vector-search-index.md) (HNSW index).
-
-```python
-class DocumentWithIndex(models.Model):
-   content = models.TextField()
-   # Note:
-   #   - Using comment to add hnsw index is a temporary solution. In the future it will use `CREATE INDEX` syntax.
-   #   - Currently the HNSW index cannot be changed after the table has been created.
-   #   - Only Django >= 4.2 supports `db_comment`.
-   embedding = VectorField(dimensions=3, db_comment="hnsw(distance=cosine)")
-```
-
-TiDB will use this index to speed up vector search queries based on the cosine distance function.
-
-### Store documents with embeddings
-
-```python
-Document.objects.create(content="dog", embedding=[1, 2, 1])
-Document.objects.create(content="fish", embedding=[1, 2, 4])
-Document.objects.create(content="tree", embedding=[1, 0, 0])
 ```
 
 ### Search the nearest neighbor documents
