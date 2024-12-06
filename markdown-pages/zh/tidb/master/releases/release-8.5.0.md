@@ -15,7 +15,7 @@ TiDB 版本：8.5.0
 
 TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
-相比于前一个 LTS（即 8.1.0 版本），8.5.0 版本包含 [8.2.0-DMR](/releases/release-8.2.0.md)、[8.3.0-DMR](/releases/release-8.3.0.md), 和 [8.4.0-DMR] 中已发布的新功能、提升改进和错误修复。当你从 8.1.x 升级到 8.5.0 时，可以下载 [TiDB Release Notes PDF](https://download.pingcap.org/tidb-v8.1-to-v8.5-zh-release-notes.pdf) 查看两个 LTS 版本之间的所有 Release Notes。下表列出了从 8.1.0 到 8.5.0 的一些关键特性：
+相比于前一个 LTS（即 8.1.0 版本），8.5.0 版本包含 [8.2.0-DMR](/releases/release-8.2.0.md)、[8.3.0-DMR](/releases/release-8.3.0.md), 和 [8.4.0-DMR](/releases/release-8.4.0.md) 中已发布的新功能、提升改进和错误修复。当你从 8.1.x 升级到 8.5.0 时，可以下载 [TiDB Release Notes PDF](https://download.pingcap.org/tidb-v8.1-to-v8.5-zh-release-notes.pdf) 查看两个 LTS 版本之间的所有 Release Notes。下表列出了从 8.1.0 到 8.5.0 的一些关键特性：
 
 <table>
 <thead>
@@ -48,7 +48,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
   </tr>
   <tr>
     <td><a href="https://docs.pingcap.com/zh/tidb/v8.5/partitioned-table#全局索引">分区表全局索引</a>（从 v8.4.0 开始成为正式功能）</td>
-    <td>全局索引可以有效提高检索非分区列的效率，并且消除了唯一键必须包含分区键的限制。该功能扩展了 TiDB 分区表的使用场景，避免了数据迁移过程中的一些应用修改工作。</td>
+    <td>全局索引可以有效提高检索非分区列的效率，并且消除了唯一键必须包含分区键的限制。该功能扩展了 TiDB 分区表的使用场景，提升了分区表的性能，降低了分区表在一些查询场景的资源消耗。</td>
   </tr>
   <tr>
     <td><a href="https://docs.pingcap.com/zh/tidb/v8.5/system-variables#tidb_opt_projection_push_down-从-v610-版本开始引入">默认允许将 <code>Projection</code> 算子下推到存储引擎</a>（从 v8.3.0 开始引入）</td>
@@ -266,6 +266,8 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
     - 支持 `tso` 服务在微服务模式和非微服务模式之间动态切换 [#8477](https://github.com/tikv/pd/issues/8477) @[rleungx](https://github.com/rleungx)
     - 优化 `pd-ctl config` 输出中部分字段的大小写 [#8694](https://github.com/tikv/pd/issues/8694) @[lhy1024](https://github.com/lhy1024)
+    - [Store limit v2](/configure-store-limit.md#store-limit-v2-原理) 成为正式功能 (GA) [#8865](https://github.com/tikv/pd/issues/8865) @[lhy1024](https://github.com/lhy1024)
+    - 支持配置 Region 巡检的并行度（实验特性）[#8866](https://github.com/tikv/pd/issues/8866) @[lhy1024](https://github.com/lhy1024)
 
 + TiFlash <!--tw@Oreoxmt: 3 notes-->
 
@@ -328,7 +330,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
     - 修复查询 `information_schema.cluster_slow_query` 表时，如果不加时间过滤条件，则只会查询最新的慢日志文件的问题 [#56100](https://github.com/pingcap/tidb/issues/56100) @[crazycs520](https://github.com/crazycs520)
     - 修复 TTL 表的内存泄漏问题 [#56934](https://github.com/pingcap/tidb/issues/56934) @[lcwangchao](https://github.com/lcwangchao)
     - 修复 `write_only` 状态的表外键约束未生效的问题，以避免使用 `non-public` 状态的表 [#55813](https://github.com/pingcap/tidb/issues/55813) @[YangKeao](https://github.com/YangKeao)
-    - 修复使用 `NATURAL JOIN` 或者 `USING CLAUSE` 之后再使用子查询可能会报错的问题 [#53766](https://github.com/pingcap/tidb/issues/53766) @[dash12653](https://github.com/dash12653)
+    - 修复使用 `NATURAL JOIN` 或者 `USING` 子句之后，再使用子查询可能会报错的问题 [#53766](https://github.com/pingcap/tidb/issues/53766) @[dash12653](https://github.com/dash12653)
     - 修复如果 CTE 包含 `ORDER BY`、`LIMIT`、`SELECT DISTINCT` 子句，并且被另外一个 CTE 的递归部分所引用时，可能被错误地 inline 导致执行报错的问题 [#56603](https://github.com/pingcap/tidb/issues/56603) @[elsa0520](https://github.com/elsa0520)
     - 修复 `VIEW` 中定义的 CTE 被错误 inline 的问题 [#56582](https://github.com/pingcap/tidb/issues/56582) @[elsa0520](https://github.com/elsa0520)
     - 修复使用 `PLAN REPLAYER` 导入含有外键的表结构时可能报错的问题 [#56456](https://github.com/pingcap/tidb/issues/56456) @[hawkingrei](https://github.com/hawkingrei)
@@ -360,6 +362,8 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
     - 修复资源组 (Resource Group) 选择器对所有面板都未生效的问题 [#56572](https://github.com/pingcap/tidb/issues/56572) @[glorv](https://github.com/glorv)
     - 修复已删除的资源组仍然出现在监控面板中的问题 [#8716](https://github.com/tikv/pd/issues/8716) @[AndreMouche](https://github.com/AndreMouche)
     - 修复 Region syncer 加载过程中日志描述不清晰的问题 [#8717](https://github.com/tikv/pd/issues/8717) @[lhy1024](https://github.com/lhy1024)
+    - (dup): release-7.1.6.md > 错误修复> PD - 修复 label 统计中的内存泄露问题 [#8700](https://github.com/tikv/pd/issues/8700) @[lhy1024](https://github.com/lhy1024)
+    - 修复配置 `tidb_enable_tso_follower_proxy` 为 `0` 或 `OFF` 时无法关闭 TSO Follower Proxy 特性的问题 [#8709](https://github.com/tikv/pd/issues/8709) @[JmPotato](https://github.com/JmPotato)
 
 + TiFlash <!--tw@Oreoxmt: 4 notes-->
 
@@ -377,6 +381,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
         - 修复备份时无法备份全局索引的问题 [#57469](https://github.com/pingcap/tidb/issues/57469) @[Defined2014](https://github.com/Defined2014)
         - 修复日志可能打印加密信息的问题 [#57585](https://github.com/pingcap/tidb/issues/57585) @[kennytm](https://github.com/kennytm)
         - 修复 advancer 无法处理锁冲突的问题 [#57134](https://github.com/pingcap/tidb/issues/57134) @[3pointer](https://github.com/3pointer)
+        - 修复针对百万行级别表的 PITR 数据恢复任务可能失败的问题 [#57743](https://github.com/pingcap/tidb/issues/57743) @[Tristan1900](https://github.com/Tristan1900)
 
     + TiCDC <!--tw@Oreoxmt: 3 notes-->
 
