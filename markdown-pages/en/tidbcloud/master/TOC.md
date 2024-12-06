@@ -10,7 +10,7 @@
   - [Roadmap](/tidb-cloud/tidb-cloud-roadmap.md)
 - Get Started
   - [Try Out TiDB Cloud](/tidb-cloud/tidb-cloud-quickstart.md)
-  - [Try Out TiDB + AI](/vector-search-get-started-using-python.md)
+  - [Try Out TiDB + AI](/tidb-cloud/vector-search-get-started-using-python.md)
   - [Try Out HTAP](/tidb-cloud/tidb-cloud-htap-quickstart.md)
   - [Try Out TiDB Cloud CLI](/tidb-cloud/get-started-with-cli.md)
   - [Perform a PoC](/tidb-cloud/tidb-cloud-poc.md)
@@ -133,7 +133,7 @@
     - [Create a TiDB Cloud Dedicated Cluster](/tidb-cloud/create-tidb-cluster.md)
     - Connect to Your TiDB Cloud Dedicated Cluster
       - [Connection Method Overview](/tidb-cloud/connect-to-tidb-cluster.md)
-      - [Connect via Standard Connection](/tidb-cloud/connect-via-standard-connection.md)
+      - [Connect via Public Connection](/tidb-cloud/connect-via-standard-connection.md)
       - [Connect via Private Endpoint with AWS](/tidb-cloud/set-up-private-endpoint-connections.md)
       - [Connect via Private Endpoint (Private Service Connect) with Google Cloud](/tidb-cloud/set-up-private-endpoint-connections-on-google-cloud.md)
       - [Connect via VPC Peering](/tidb-cloud/set-up-vpc-peering-connections.md)
@@ -232,7 +232,8 @@
       - [Import Apache Parquet Files from Amazon S3 or GCS](/tidb-cloud/import-parquet-files.md)
       - [Import with MySQL CLI](/tidb-cloud/import-with-mysql-cli.md)
   - Reference
-      - [Configure Amazon S3 Access and GCS Access](/tidb-cloud/config-s3-and-gcs-access.md)
+      - [Configure External Storage Access for TiDB Dedicated](/tidb-cloud/config-s3-and-gcs-access.md)
+      - [Configure External Storage Access for TiDB Serverless](/tidb-cloud/serverless-external-storage.md)
       - [Naming Conventions for Data Import](/tidb-cloud/naming-conventions-for-data-import.md)
       - [CSV Configurations for Importing Data](/tidb-cloud/csv-config-for-import-data.md)
       - [Troubleshoot Access Denied Errors during Data Import from Amazon S3](/tidb-cloud/troubleshoot-import-access-denied-error.md)
@@ -241,27 +242,27 @@
 - Explore Data
   - [Chat2Query (Beta) in SQL Editor](/tidb-cloud/explore-data-with-chat2query.md)
 - Vector Search (Beta)
-  - [Overview](/vector-search-overview.md)
+  - [Overview](/tidb-cloud/vector-search-overview.md)
   - Get Started
-    - [Get Started with SQL](/vector-search-get-started-using-sql.md)
-    - [Get Started with Python](/vector-search-get-started-using-python.md)
+    - [Get Started with SQL](/tidb-cloud/vector-search-get-started-using-sql.md)
+    - [Get Started with Python](/tidb-cloud/vector-search-get-started-using-python.md)
   - Integrations
-    - [Overview](/vector-search-integration-overview.md)
+    - [Overview](/tidb-cloud/vector-search-integration-overview.md)
     - AI Frameworks
-      - [LlamaIndex](/vector-search-integrate-with-llamaindex.md)
-      - [Langchain](/vector-search-integrate-with-langchain.md)
+      - [LlamaIndex](/tidb-cloud/vector-search-integrate-with-llamaindex.md)
+      - [Langchain](/tidb-cloud/vector-search-integrate-with-langchain.md)
     - Embedding Models/Services
-      - [Jina AI](/vector-search-integrate-with-jinaai-embedding.md)
+      - [Jina AI](/tidb-cloud/vector-search-integrate-with-jinaai-embedding.md)
     - ORM Libraries
-      - [SQLAlchemy](/vector-search-integrate-with-sqlalchemy.md)
-      - [peewee](/vector-search-integrate-with-peewee.md)
-      - [Django ORM](/vector-search-integrate-with-django-orm.md)
+      - [SQLAlchemy](/tidb-cloud/vector-search-integrate-with-sqlalchemy.md)
+      - [peewee](/tidb-cloud/vector-search-integrate-with-peewee.md)
+      - [Django ORM](/tidb-cloud/vector-search-integrate-with-django-orm.md)
   - Reference
-    - [Vector Data Types](/vector-search-data-types.md)
-    - [Vector Functions and Operators](/vector-search-functions-and-operators.md)
-    - [Vector Index](/vector-search-index.md)
-  - [Improve Performance](/vector-search-improve-performance.md)
-  - [Limitations](/vector-search-limitations.md)
+    - [Vector Data Types](/tidb-cloud/vector-search-data-types.md)
+    - [Vector Functions and Operators](/tidb-cloud/vector-search-functions-and-operators.md)
+    - [Vector Index](/tidb-cloud/vector-search-index.md)
+  - [Improve Performance](/tidb-cloud/vector-search-improve-performance.md)
+  - [Limitations](/tidb-cloud/vector-search-limitations.md)
   - [Changelogs](/tidb-cloud/vector-search-changelogs.md)
 - Data Service (Beta)
   - [Overview](/tidb-cloud/data-service-overview.md)
@@ -294,7 +295,7 @@
 - Security
   - Identity Access Control
     - [Password Authentication](/tidb-cloud/tidb-cloud-password-authentication.md)
-    - [Basic SSO Authentication](/tidb-cloud/tidb-cloud-sso-authentication.md)
+    - [Standard SSO Authentication](/tidb-cloud/tidb-cloud-sso-authentication.md)
     - [Organization SSO Authentication](/tidb-cloud/tidb-cloud-org-sso-authentication.md)
     - [Identity Access Management](/tidb-cloud/manage-user-access.md)
     - [OAuth 2.0](/tidb-cloud/oauth2.md)
@@ -311,7 +312,7 @@
   - Data Access Control
       - [Encryption at Rest Using Customer-Managed Encryption Keys](/tidb-cloud/tidb-cloud-encrypt-cmek.md)
   - Database Access Control
-    - [Configure Cluster Security Settings](/tidb-cloud/configure-security-settings.md)
+    - [Configure Cluster Password Settings](/tidb-cloud/configure-security-settings.md)
   - Audit Management
     - [Database Audit Logging](/tidb-cloud/tidb-cloud-auditing.md)
     - [Console Audit Logging](/tidb-cloud/tidb-cloud-console-auditing.md)
@@ -338,7 +339,7 @@
       - [Billing](https://docs.pingcap.com/tidbcloud/api/v1beta1/billing)
       - [Data Service](https://docs.pingcap.com/tidbcloud/api/v1beta1/dataservice)
       - [IAM](https://docs.pingcap.com/tidbcloud/api/v1beta1/iam)
-      - [MSP](https://docs.pingcap.com/tidbcloud/api/v1beta1/msp)
+      - [MSP (Deprecated)](https://docs.pingcap.com/tidbcloud/api/v1beta1/msp)
     - [v1beta](https://docs.pingcap.com/tidbcloud/api/v1beta)
 - Integrations
   - [Airbyte](/tidb-cloud/integrate-tidbcloud-with-airbyte.md)
@@ -376,6 +377,9 @@
     - [Introduction](/tidb-distributed-execution-framework.md)
     - [TiDB Global Sort](/tidb-global-sort.md)
   - Benchmarks
+    - TiDB v8.5
+      - [TPC-C Performance Test Report](/tidb-cloud/v8.5-performance-benchmarking-with-tpcc.md)
+      - [Sysbench Performance Test Report](/tidb-cloud/v8.5-performance-benchmarking-with-sysbench.md)
     - TiDB v8.1
       - [TPC-C Performance Test Report](/tidb-cloud/v8.1-performance-benchmarking-with-tpcc.md)
       - [Sysbench Performance Test Report](/tidb-cloud/v8.1-performance-benchmarking-with-sysbench.md)
@@ -454,7 +458,6 @@
       - [`DO`](/sql-statements/sql-statement-do.md)
       - [`DROP [GLOBAL|SESSION] BINDING`](/sql-statements/sql-statement-drop-binding.md)
       - [`DROP DATABASE`](/sql-statements/sql-statement-drop-database.md)
-      - [`DROP INDEX`](/sql-statements/sql-statement-drop-index.md)
       - [`DROP PLACEMENT POLICY`](/sql-statements/sql-statement-drop-placement-policy.md)
       - [`DROP RESOURCE GROUP`](/sql-statements/sql-statement-drop-resource-group.md)
       - [`DROP ROLE`](/sql-statements/sql-statement-drop-role.md)
@@ -580,7 +583,6 @@
         - [Functions That Return JSON](/functions-and-operators/json-functions/json-functions-return.md)
         - [JSON Utility Functions](/functions-and-operators/json-functions/json-functions-utility.md)
         - [Functions That Aggregate JSON](/functions-and-operators/json-functions/json-functions-aggregate.md)
-        - [Functions That Validate JSON](/functions-and-operators/json-functions/json-functions-validate.md)
       - [Aggregate (GROUP BY) Functions](/functions-and-operators/aggregate-group-by-functions.md)
       - [GROUP BY Modifiers](/functions-and-operators/group-by-modifier.md)
       - [Window Functions](/functions-and-operators/window-functions.md)
@@ -655,6 +657,7 @@
         - [`TABLES`](/information-schema/information-schema-tables.md)
         - [`TABLE_CONSTRAINTS`](/information-schema/information-schema-table-constraints.md)
         - [`TABLE_STORAGE_STATS`](/information-schema/information-schema-table-storage-stats.md)
+        - [`TIDB_CHECK_CONSTRAINTS`](/information-schema/information-schema-tidb-check-constraints.md)
         - [`TIDB_HOT_REGIONS_HISTORY`](/information-schema/information-schema-tidb-hot-regions-history.md)
         - [`TIDB_INDEXES`](/information-schema/information-schema-tidb-indexes.md)
         - [`TIDB_INDEX_USAGE`](/information-schema/information-schema-tidb-index-usage.md)
@@ -693,6 +696,7 @@
     - auth
       - [login](/tidb-cloud/ticloud-auth-login.md)
       - [logout](/tidb-cloud/ticloud-auth-logout.md)
+      - [whoami](/tidb-cloud/ticloud-auth-whoami.md)
     - serverless
       - [create](/tidb-cloud/ticloud-cluster-create.md)
       - [delete](/tidb-cloud/ticloud-cluster-delete.md)
@@ -719,6 +723,11 @@
         - [list](/tidb-cloud/ticloud-serverless-export-list.md)
         - [cancel](/tidb-cloud/ticloud-serverless-export-cancel.md)
         - [download](/tidb-cloud/ticloud-serverless-export-download.md)
+      - sql-user
+        - [create](/tidb-cloud/ticloud-serverless-sql-user-create.md)
+        - [delete](/tidb-cloud/ticloud-serverless-sql-user-delete.md)
+        - [list](/tidb-cloud/ticloud-serverless-sql-user-list.md)
+        - [update](/tidb-cloud/ticloud-serverless-sql-user-update.md)
     - [ai](/tidb-cloud/ticloud-ai.md)
     - [completion](/tidb-cloud/ticloud-completion.md)
     - config
@@ -731,7 +740,7 @@
       - [use](/tidb-cloud/ticloud-config-use.md)
     - project
       - [list](/tidb-cloud/ticloud-project-list.md)
-    - [update](/tidb-cloud/ticloud-update.md)
+    - [upgrade](/tidb-cloud/ticloud-upgrade.md)
     - [help](/tidb-cloud/ticloud-help.md)
   - [Table Filter](/table-filter.md)
   - [Resource Control](/tidb-resource-control.md)
