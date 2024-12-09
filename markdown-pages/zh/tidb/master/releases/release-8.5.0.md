@@ -102,8 +102,8 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
     <td>当热点问题不是由个别 SQL 语句引起时，利用 Top SQL 中按表或者数据库聚合的 CPU 时间，能够协助用户快速发现造成热点的表或者应用程序，从而大大提升热点问题和 CPU 消耗问题的诊断效率。</td>
   </tr>
   <tr>
-    <td><a href="https://docs.pingcap.com/zh/tidb/v8.5/backup-and-restore-storages#鉴权">支持对开启了 IMDSv2 服务的 TiKV 实例做备份</a>（从 v8.4.0 开始引入）</td>
-    <td><a href="https://aws.amazon.com/cn/blogs/security/get-the-full-benefits-of-imdsv2-and-disable-imdsv1-across-your-aws-infrastructure/">目前 AWS EC2 的默认元数据服务是 IMDSv2</a>。TiDB 支持从开启了 IMDSv2 的 TiKV 实例中备份数据，协助你更好地在公有云服务中运行 TiDB 集群。</td>
+    <td><a href="https://docs.pingcap.com/zh/tidb/v8.5/backup-and-restore-overview">Backup & Restore (BR)</a> 启用 <a href="https://aws.amazon.com/sdk-for-rust/">AWS SDK for Rust</a> 访问外部存储（从 v8.5.0 开始引入）</td>
+    <td>BR 使用 <a href="https://aws.amazon.com/cn/sdk-for-rust/">AWS Rust SDK</a> 替换掉原有的 Rusoto 库，从 TiKV 访问 Amazon S3 等外部存储，以更好地兼容 AWS 的 <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a> 以及 <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html">EKS Pod Identity</a> 等新特性。</td>
   </tr>
   <tr>
     <td rowspan="1">安全</td>
@@ -117,9 +117,9 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
 ### 可扩展性
 
-* Schema 缓存可用的内存上限成为正式功能 (GA)，减少了大规模数据场景的内存占用 [#50959](https://github.com/pingcap/tidb/issues/50959) @[tiancaiamao](https://github.com/tiancaiamao) @[wjhuang2016](https://github.com/wjhuang2016) @[gmhdbjd](https://github.com/gmhdbjd) @[tangenta](https://github.com/tangenta) tw@hfxsd <!--1976-->
+* Schema 缓存可用的内存上限成为正式功能 (GA)，当表的数量达到几十万甚至上百万时，可以显示减少 Schema 元数据的内存占用 [#50959](https://github.com/pingcap/tidb/issues/50959) @[tiancaiamao](https://github.com/tiancaiamao) @[wjhuang2016](https://github.com/wjhuang2016) @[gmhdbjd](https://github.com/gmhdbjd) @[tangenta](https://github.com/tangenta) tw@hfxsd <!--1976-->
 
-    在一些 SaaS 场景下，当表的数量达到几十万甚至上百万时，schema meta 会占用较多的内存。开启该功能后，系统将使用 Least Recently Used (LRU) 算法缓存和淘汰相应的 schema meta 信息，有效减少内存占用。
+    在一些 SaaS 场景下，当表的数量达到几十万甚至上百万时，Schema 元数据会占用较多的内存。开启该功能后，系统将使用 Least Recently Used (LRU) 算法缓存和淘汰相应的 Schema 元数据信息，有效减少内存占用。
 
     从 v8.4.0 开始，该功能默认开启，默认值为 `536870912`（即 512 MiB），你可以通过系统变量 [`tidb_schema_cache_size`](/system-variables.md#tidb_schema_cache_size-new-in-v800) 按需调整。
 
@@ -381,7 +381,8 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
         - 修复备份时无法备份全局索引的问题 [#57469](https://github.com/pingcap/tidb/issues/57469) @[Defined2014](https://github.com/Defined2014)
         - 修复日志可能打印加密信息的问题 [#57585](https://github.com/pingcap/tidb/issues/57585) @[kennytm](https://github.com/kennytm)
         - 修复 advancer 无法处理锁冲突的问题 [#57134](https://github.com/pingcap/tidb/issues/57134) @[3pointer](https://github.com/3pointer)
-        - 修复针对百万行级别表的 PITR 数据恢复任务可能失败的问题 [#57743](https://github.com/pingcap/tidb/issues/57743) @[Tristan1900](https://github.com/Tristan1900)
+         - 升级 `k8s.io/api` 库的版本以修复潜在的安全漏洞 [#57790](https://github.com/pingcap/tidb/issues/57790) @[BornChanger](https://github.com/BornChanger)
+         - 修复当集群存在大量表但实际数据量较小时，PITR 数据恢复任务可能出现 `Information schema is out of date` 报错的问题 [#57743](https://github.com/pingcap/tidb/issues/57743) @[Tristan1900](https://github.com/Tristan1900)
 
     + TiCDC <!--tw@Oreoxmt: 3 notes-->
 
