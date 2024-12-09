@@ -102,8 +102,8 @@ Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements,
     <td>When hotspot issues are not caused by individual SQL statements, using the aggregated CPU time by table or database level in Top SQL can help you quickly identify the tables or applications responsible for the hotspots, significantly improving the efficiency of diagnosing hotspot and CPU consumption issues. </td>
   </tr>
   <tr>
-    <td><a href="https://docs.pingcap.com/tidb/v8.5/backup-and-restore-storages#authentication">Support backing up TiKV instances with IMDSv2 service enabled</a> (introduced in v8.4.0) </td>
-    <td><a href="https://aws.amazon.com/cn/blogs/security/get-the-full-benefits-of-imdsv2-and-disable-imdsv1-across-your-aws-infrastructure/">AWS EC2 now uses IMDSv2 as the default metadata service</a>. TiDB supports backing up data from TiKV instances that have IMDSv2 enabled, helping you run TiDB clusters more effectively in public cloud services.</td>
+    <td><a href="https://docs.pingcap.com/tidb/v8.5/backup-and-restore-overview">Backup & Restore (BR)</a> uses <a href="https://aws.amazon.com/sdk-for-rust/">AWS SDK for Rust</a> to access external storage (introduced in v8.5.0)</td>
+    <td>BR replaces the original Rusoto library with <a href="https://aws.amazon.com/sdk-for-rust/">AWS SDK for Rust</a> to access external storage such as Amazon S3 from TiKV. This change enhances compatibility with AWS features such as <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html">IMDSv2</a> and <a href="https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html">EKS Pod Identity</a>.</td>
   </tr>
   <tr>
     <td rowspan="1">Security</td>
@@ -117,7 +117,7 @@ Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements,
 
 ### Scalability
 
-* Setting the memory limit for schema cache is now generally available (GA), reducing memory usage in large-scale data scenarios [#50959](https://github.com/pingcap/tidb/issues/50959) @[tiancaiamao](https://github.com/tiancaiamao) @[wjhuang2016](https://github.com/wjhuang2016) @[gmhdbjd](https://github.com/gmhdbjd) @[tangenta](https://github.com/tangenta) tw@hfxsd <!--1976-->
+* Setting the memory limit for schema cache is now generally available (GA). When the number of tables reaches hundreds of thousands or even millions, this feature significantly reduces the memory usage of schema metadata [#50959](https://github.com/pingcap/tidb/issues/50959) @[tiancaiamao](https://github.com/tiancaiamao) @[wjhuang2016](https://github.com/wjhuang2016) @[gmhdbjd](https://github.com/gmhdbjd) @[tangenta](https://github.com/tangenta) tw@hfxsd <!--1976-->
 
     In some SaaS scenarios, where the number of tables reaches hundreds of thousands or even millions, schema metadata can consume a significant amount of memory. With this feature enabled, TiDB uses the Least Recently Used (LRU) algorithm to cache and evict the corresponding schema metadata, effectively reducing memory usage.
 
@@ -381,7 +381,8 @@ The following features are planned for deprecation in future versions:
         - Fix the issue that global indexes cannot be backed up [#57469](https://github.com/pingcap/tidb/issues/57469) @[Defined2014](https://github.com/Defined2014)
         - Fix the issue that logs might print out encrypted information [#57585](https://github.com/pingcap/tidb/issues/57585) @[kennytm](https://github.com/kennytm)
         - Fix the issue that the advancer cannot handle lock conflicts [#57134](https://github.com/pingcap/tidb/issues/57134) @[3pointer](https://github.com/3pointer)
-        - Fix the issue that PITR tasks might fail for tables with millions of rows [#57743](https://github.com/pingcap/tidb/issues/57743) @[Tristan1900](https://github.com/Tristan1900)
+        - Fix potential security vulnerabilities by upgrading the `k8s.io/api` library version [#57790](https://github.com/pingcap/tidb/issues/57790) @[BornChanger](https://github.com/BornChanger)
+        - Fix the issue that PITR tasks might return the `Information schema is out of date` error when there are a large number of tables in the cluster but the actual data size is small [#57743](https://github.com/pingcap/tidb/issues/57743) @[Tristan1900](https://github.com/Tristan1900)
 
     + TiCDC <!--tw@Oreoxmt: 3 notes-->
 
