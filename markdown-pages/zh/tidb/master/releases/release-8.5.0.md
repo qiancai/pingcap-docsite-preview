@@ -61,7 +61,12 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
   <tr>
     <td rowspan="5">稳定性与高可用</td>
     <td>提升超大规模集群的稳定性</td>
-    <td>对于使用 TiDB 运行多租户应用或者 SaaS 应用的公司，经常需要存储大量的表，TiDB 在 v8.5.0 着力增强了大规模集群的稳定性。<a href="https://docs.pingcap.com/zh/tidb/v8.5/schema-cache">Schema 缓存控制</a>以及<a href="https://docs.pingcap.com/zh/tidb/v8.5/system-variables#tidb_stats_cache_mem_quota-从-v610-版本开始引入">设置统计信息缓存使用内存的上限</a>成为正式功能，减少了内存过度消耗带来的稳定性问题。PD 通过 <a href="https://docs.pingcap.com/zh/tidb/v8.5/tune-region-performance#通过-active-pd-follower-提升-pd-region-信息查询服务的扩展能力">Active Follower</a> 可应对大量 Region 带来的压力，并<a href="https://docs.pingcap.com/zh/tidb/v8.5/pd-microservices">将 PD 所承担的服务逐步解耦</a>，独立部署。通过<a href="https://docs.pingcap.com/zh/tidb/v8.5/system-variables#tidb_auto_analyze_concurrency-从-v840-版本开始引入">增加并发度</a>，以及<a href="https://docs.pingcap.com/zh/tidb/v8.5/statistics#收集部分列的统计信息">减少收集对象的数量</a>，统计信息收集和加载效率得到提升，保证了大集群执行计划的稳定性。</td>
+    <td>对于使用 TiDB 运行多租户应用或者 SaaS 应用的公司，经常需要存储大量的表，TiDB 在 v8.5.0 着力增强了大规模集群的稳定性。
+   <li><a href="https://docs.pingcap.com/zh/tidb/v8.5/schema-cache">Schema 缓存控制</a>以及<a href="https://docs.pingcap.com/zh/tidb/v8.5/system-variables#tidb_stats_cache_mem_quota-从-v610-版本开始引入">设置统计信息缓存使用内存的上限</a>成为正式功能，减少了内存过度消耗带来的稳定性问题。</li>
+    <li>PD 通过 <a href="https://docs.pingcap.com/zh/tidb/v8.5/tune-region-performance#通过-active-pd-follower-提升-pd-region-信息查询服务的扩展能力">Active Follower</a> 可应对大量 Region 带来的压力，并<a href="https://docs.pingcap.com/zh/tidb/v8.5/pd-microservices">将 PD 所承担的服务逐步解耦</a>，独立部署。</li>
+    <li>PD 优化提升 Region 心跳处理的性能，并支持集群中千万级 Regions 的规模。</li>
+    <li>通过<a href="https://docs.pingcap.com/zh/tidb/v8.5/system-variables#tidb_auto_analyze_concurrency-从-v840-版本开始引入">增加并发度</a>，以及<a href="https://docs.pingcap.com/zh/tidb/v8.5/statistics#收集部分列的统计信息">减少收集对象的数量</a>，统计信息收集和加载效率得到提升，保证了大集群执行计划的稳定性。</li>
+    </td>
   </tr>
   <tr>
     <td><a href="https://docs.pingcap.com/zh/tidb/v8.5/tidb-resource-control#query_limit-参数说明">Runaway Queries 支持更多触发条件，并能够切换资源组</a>（从 v8.4.0 开始引入）</td>
@@ -227,7 +232,8 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 | -------- | -------- | -------- | -------- |
 | TiDB | [`deprecate-integer-display-length`](/tidb-configuration-file.md#deprecate-integer-display-length) | 修改 | 从 v8.5.0 开始，整数显示宽度功能已废弃，该配置项的默认值从 `false` 修改为 `true`。 |
 | TiKV | [`raft-client-queue-size`](/tikv-configuration-file.md#raft-client-queue-size) | 修改 | 默认值从 `8192` 修改为 `16384`。|
-| BR | [`--checksum`](/br/use-br-command-line-tool.md) | 修改 | 默认值从 `true` 修改为 `false`，即 BR 进行全量备份时，默认不计算表级别的校验和，以提升备份性能。 |
+| PD | [`patrol-region-worker-count`](/pd-configuration-file.md#patrol-region-worker-count-从-v850-版本开始引入) | 新增 | 控制 checker 检查 Region 健康状态时，创建 [operator](/glossary.md#operator) 的并发数。|
+| BR | [`--checksum`](/br/br-snapshot-manual.md) | 修改 | 默认值从 `true` 修改为 `false`，即 BR 进行全量备份时，默认不计算表级别的校验和，以提升备份性能。 |
 
 ## 废弃功能
 
