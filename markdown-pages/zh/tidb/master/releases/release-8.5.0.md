@@ -7,7 +7,7 @@ summary: 了解 TiDB 8.5.0 版本的新功能、兼容性变更、改进提升�
 
 <EmailSubscriptionWrapper />
 
-发版日期：2024 年 x 月 x 日
+发版日期：2024 年 12 月 xx 日
 
 TiDB 版本：8.5.0
 
@@ -15,7 +15,7 @@ TiDB 版本：8.5.0
 
 TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
-相比于前一个 LTS（即 8.1.0 版本），8.5.0 版本包含 [8.2.0-DMR](/releases/release-8.2.0.md)、[8.3.0-DMR](/releases/release-8.3.0.md), 和 [8.4.0-DMR](/releases/release-8.4.0.md) 中已发布的新功能、提升改进和错误修复。当你从 8.1.x 升级到 8.5.0 时，可以下载 [TiDB Release Notes PDF](https://download.pingcap.org/tidb-v8.1-to-v8.5-zh-release-notes.pdf) 查看两个 LTS 版本之间的所有 Release Notes。下表列出了从 8.1.0 到 8.5.0 的一些关键特性：
+相比于前一个 LTS（即 8.1.0 版本），8.5.0 版本包含 [8.2.0-DMR](/releases/release-8.2.0.md)、[8.3.0-DMR](/releases/release-8.3.0.md), 和 [8.4.0-DMR](/releases/release-8.4.0.md) 中已发布的新功能、提升改进和错误修复。当你从 8.1.x 升级到 8.5.0 时，可以下载 [TiDB Release Notes PDF](https://download.pingcap.org/tidb-v8.2-to-v8.5-zh-release-notes.pdf) 查看两个 LTS 版本之间的所有 Release Notes。下表列出了从 8.1.0 到 8.5.0 的一些关键特性：
 
 <table>
 <thead>
@@ -234,6 +234,16 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 | TiKV | [`raft-client-queue-size`](/tikv-configuration-file.md#raft-client-queue-size) | 修改 | 默认值从 `8192` 修改为 `16384`。|
 | PD | [`patrol-region-worker-count`](/pd-configuration-file.md#patrol-region-worker-count-从-v850-版本开始引入) | 新增 | 控制 checker 检查 Region 健康状态时，创建 [operator](/glossary.md#operator) 的并发数。|
 | BR | [`--checksum`](/br/br-snapshot-manual.md) | 修改 | 默认值从 `true` 修改为 `false`，即 BR 进行全量备份时，默认不计算表级别的校验和，以提升备份性能。 |
+
+## 移除功能
+
+* 以下为已移除的功能：
+
+    * [TiDB Binlog](https://docs.pingcap.com/zh/tidb/v8.3/tidb-binlog-overview) 在 v8.4.0 中被移除。从 v8.3.0 开始，TiDB Binlog 被完全废弃。如需进行增量数据同步，请使用 [TiCDC](/ticdc/ticdc-overview.md)。如需按时间点恢复 (point-in-time recovery, PITR)，请使用 [PITR](/br/br-pitr-guide.md)。在将 TiDB 集群升级到 v8.4.0 或之后版本前，务必先切换至 TiCDC 和 PITR。
+
+* 以下为计划在未来版本中移除的功能：
+
+    * 从 v8.0.0 开始，TiDB Lightning 废弃了物理导入模式下的[旧版冲突检测](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md#旧版冲突检测从-v800-开始已被废弃)策略，支持通过 [`conflict.strategy`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-任务配置) 参数统一控制逻辑导入和物理导入模式的冲突检测策略。旧版冲突检测的参数 [`duplicate-resolution`](/tidb-lightning/tidb-lightning-configuration.md) 将在未来版本中被移除。
 
 ## 废弃功能
 
