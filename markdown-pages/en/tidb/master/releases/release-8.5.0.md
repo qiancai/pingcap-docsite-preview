@@ -7,7 +7,7 @@ summary: Learn about the new features, compatibility changes, improvements, and 
 
 <EmailSubscriptionWrapper />
 
-Release date: xx xx, 2024
+Release date: December xx, 2024
 
 TiDB version: 8.5.0
 
@@ -15,7 +15,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v8.5/quick-start-with-
 
 TiDB 8.5.0 is a Long-Term Support Release (LTS).
 
-Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements, and bug fixes released in [8.2.0-DMR](/releases/release-8.2.0.md), [8.3.0-DMR](/releases/release-8.3.0.md), and [8.4.0-DMR](/releases/release-8.4.0.md). When you upgrade from 8.1.x to 8.5.0, you can download the [TiDB Release Notes PDF](https://download.pingcap.org/tidb-v8.1-to-v8.5-en-release-notes.pdf) to view all release notes between the two LTS versions. The following table lists some highlights from 8.1.0 to 8.5.0:
+Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements, and bug fixes released in [8.2.0-DMR](/releases/release-8.2.0.md), [8.3.0-DMR](/releases/release-8.3.0.md), and [8.4.0-DMR](/releases/release-8.4.0.md). When you upgrade from 8.1.x to 8.5.0, you can download the [TiDB Release Notes PDF](https://download.pingcap.org/tidb-v8.2-to-v8.5-en-release-notes.pdf) to view all release notes between the two LTS versions. The following table lists some highlights from 8.1.0 to 8.5.0:
 
 <table>
 <thead>
@@ -234,6 +234,16 @@ Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements,
 | TiKV | [`raft-client-queue-size`](/tikv-configuration-file.md#raft-client-queue-size) | Modified | Changes the default value from `8192` to `16384`. |
 | PD | [`patrol-region-worker-count`](/pd-configuration-file.md#patrol-region-worker-count-new-in-v850) | Newly added | Controls the number of concurrent [operators](/glossary.md#operator) created by the checker when inspecting the health state of a Region. |
 | BR | [`--checksum`](/br/br-snapshot-manual.md) | Modified | Changes the default value from `true` to `false`, meaning that BR does not calculate the table-level checksum during full backups by default, to improve backup performance. |
+
+## Removed features
+
+* The following feature has been removed:
+
+    * In v8.4.0, [TiDB Binlog](https://docs.pingcap.com/tidb/v8.3/tidb-binlog-overview) is removed. Starting from v8.3.0, TiDB Binlog is fully deprecated. For incremental data replication, use [TiCDC](/ticdc/ticdc-overview.md) instead. For point-in-time recovery (PITR), use [PITR](/br/br-pitr-guide.md). Before you upgrade your TiDB cluster to v8.4.0 or later versions, be sure to switch to TiCDC and PITR.
+
+* The following features are planned for removal in future versions:
+
+    * Starting from v8.0.0, TiDB Lightning deprecates the [old version of conflict detection](/tidb-lightning/tidb-lightning-physical-import-mode-usage.md#the-old-version-of-conflict-detection-deprecated-in-v800) strategy for the physical import mode, and enables you to control the conflict detection strategy for both logical and physical import modes via the [`conflict.strategy`](/tidb-lightning/tidb-lightning-configuration.md#tidb-lightning-task) parameter. The [`duplicate-resolution`](/tidb-lightning/tidb-lightning-configuration.md) parameter for the old version of conflict detection will be removed in a future release.
 
 ## Deprecated features
 
