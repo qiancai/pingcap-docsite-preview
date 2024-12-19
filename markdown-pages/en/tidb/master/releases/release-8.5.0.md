@@ -7,7 +7,7 @@ summary: Learn about the new features, compatibility changes, improvements, and 
 
 <EmailSubscriptionWrapper />
 
-Release date: December xx, 2024
+Release date: December 19, 2024
 
 TiDB version: 8.5.0
 
@@ -27,7 +27,7 @@ Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements,
 </thead>
 <tbody>
   <tr>
-    <td rowspan="6">Scalability and Performance</td>
+    <td rowspan="7">Scalability and Performance</td>
     <td>Reduce data processing latency in multiple dimensions</td>
     <td>TiDB continuously refines data processing to improve performance, effectively meeting the low-latency SQL processing requirements in financial scenarios. Key updates include:
     <li>Support <a href="https://docs.pingcap.com/tidb/v8.5/system-variables#tidb_executor_concurrency-new-in-v50">parallel sorting</a> (introduced in v8.2.0) </li>
@@ -37,6 +37,10 @@ Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements,
     <li>Improve query performance for <a href="https://docs.pingcap.com/tidb/v8.5/cached-tables">cached tables</a> (introduced in v8.4.0) </li>
     <li>Introduce <a href="https://docs.pingcap.com/tidb/v8.5/system-variables#tidb_hash_join_version-new-in-v840">an optimized version of Hash Join</a> (experimental, introduced in v8.4.0) </li>
     </td>
+  </tr>
+  <tr>
+    <td><a href="https://docs.pingcap.com/tidb/v8.5/tikv-in-memory-engine">TiKV MVCC In-Memory Engine (IME)</a> (introduced in v8.5.0)</td>
+    <td>The TiKV MVCC in-memory engine caches the most recent MVCC versions of data in memory, helping TiKV quickly skip older versions and retrieve the latest data. This feature can significantly improve data scan performance in scenarios where data records are frequently updated or historical versions are retained for a longer period.</td>
   </tr>
   <tr>
     <td><a href="https://docs.pingcap.com/tidb/v8.5/tune-region-performance#use-the-active-pd-follower-feature-to-enhance-the-scalability-of-pds-region-information-query-service">Use Active PD Followers to enhance PD's Region information query service</a> (GA in v8.5.0)</td>
@@ -148,7 +152,7 @@ Compared with the previous LTS 8.1.0, 8.5.0 includes new features, improvements,
 
     For more information, see [documentation](/accelerated-table-creation.md).
 
-* TiKV supports the MVCC in-memory engine (IME), which accelerates queries involving scans of extensive MVCC historical versions [#16141](https://github.com/tikv/tikv/issues/16141) [@SpadeA-Tang](https://github.com/SpadeA-Tang) [@glorv](https://github.com/glorv) [@overvenus](https://github.com/overvenus)
+* TiKV supports the MVCC in-memory engine (IME), which accelerates queries involving scans of extensive MVCC historical versions [#16141](https://github.com/tikv/tikv/issues/16141) @[SpadeA-Tang](https://github.com/SpadeA-Tang) @[glorv](https://github.com/glorv) @[overvenus](https://github.com/overvenus)
 
     When records are frequently updated, or TiDB is required to retain historical versions for extended periods (for example, 24 hours), the accumulation of MVCC versions can degrade scan performance. The TiKV MVCC in-memory engine improves scan performance by caching the latest MVCC versions in memory, and using a rapid GC mechanism to remove historical versions from memory.
 
@@ -389,6 +393,7 @@ The following features are planned for deprecation in future versions:
     - Fix the issue that the `SUBSTRING()` function returns incorrect results when the second parameter is negative [#9604](https://github.com/pingcap/tiflash/issues/9604) @[guo-shaoge](https://github.com/guo-shaoge)
     - Fix the issue that the `REPLACE()` function returns an error when the first parameter is a constant [#9522](https://github.com/pingcap/tiflash/issues/9522) @[guo-shaoge](https://github.com/guo-shaoge)
     - Fix the issue that `LPAD()` and `RPAD()` functions return incorrect results in some cases [#9465](https://github.com/pingcap/tiflash/issues/9465) @[guo-shaoge](https://github.com/guo-shaoge)
+    - Fix the issue that after creating a vector index, if the internal task for building the vector index is unexpectedly interrupted, it could result in TiFlash writing corrupted data and being unable to restart [#9714](https://github.com/pingcap/tiflash/issues/9714) @[JaySon-Huang](https://github.com/JaySon-Huang)
 
 + Tools
 
@@ -400,6 +405,8 @@ The following features are planned for deprecation in future versions:
         - Fix the issue that the advancer cannot handle lock conflicts [#57134](https://github.com/pingcap/tidb/issues/57134) @[3pointer](https://github.com/3pointer)
         - Fix potential security vulnerabilities by upgrading the `k8s.io/api` library version [#57790](https://github.com/pingcap/tidb/issues/57790) @[BornChanger](https://github.com/BornChanger)
         - Fix the issue that PITR tasks might return the `Information schema is out of date` error when there are a large number of tables in the cluster but the actual data size is small [#57743](https://github.com/pingcap/tidb/issues/57743) @[Tristan1900](https://github.com/Tristan1900)
+        - Fix the issue that log backup might unexpectedly enter a paused state when the advancer owner switches [#58031](https://github.com/pingcap/tidb/issues/58031) @[3pointer](https://github.com/3pointer)
+        - Fix the issue that the `tiup br restore` command omits checking whether the target cluster table already exists during database or table restoration, which might overwrite existing tables [#58168](https://github.com/pingcap/tidb/issues/58168) @[RidRisR](https://github.com/RidRisR)
 
     + TiCDC
 
@@ -411,10 +418,6 @@ The following features are planned for deprecation in future versions:
 
         - Fix the issue that TiDB Lightning fails to receive oversized messages sent from TiKV [#56114](https://github.com/pingcap/tidb/issues/56114) @[fishiu](https://github.com/fishiu)
         - Fix the issue that the `AUTO_INCREMENT` value is set too high after importing data using the physical import mode [#56814](https://github.com/pingcap/tidb/issues/56814) @[D3Hunter](https://github.com/D3Hunter)
-
-## Performance test
-
-To learn about the performance of TiDB v8.5.0, you can refer to the [TPC-C performance test report](https://docs.pingcap.com/tidbcloud/v8.5-performance-benchmarking-with-tpcc) and [Sysbench performance test report](https://docs.pingcap.com/tidbcloud/v8.5-performance-benchmarking-with-sysbench) of the TiDB Cloud Dedicated cluster.
 
 ## Contributors
 
