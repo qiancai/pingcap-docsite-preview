@@ -7,7 +7,7 @@ summary: 了解 TiDB 8.5.0 版本的新功能、兼容性变更、改进提升�
 
 <EmailSubscriptionWrapper />
 
-发版日期：2024 年 12 月 xx 日
+发版日期：2024 年 12 月 19 日
 
 TiDB 版本：8.5.0
 
@@ -27,7 +27,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 </thead>
 <tbody>
   <tr>
-    <td rowspan="6">可扩展性与性能</td>
+    <td rowspan="7">可扩展性与性能</td>
     <td>多维度降低数据处理延迟</td>
     <td>TiDB 不断优化数据处理细节，持续提升性能，以更好地满足金融领域对 SQL 处理低延迟的高要求。关键更新包括：
     <li><a href="https://docs.pingcap.com/zh/tidb/v8.5/system-variables#tidb_executor_concurrency-从-v50-版本开始引入">并行排序</a>（从 v8.2.0 开始引入）</li>
@@ -37,6 +37,10 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
     <li>优化<a href="https://docs.pingcap.com/zh/tidb/v8.5/cached-tables#缓存表">缓存表</a>场景性能（从 v8.4.0 开始引入）</li>
     <li><a href="https://docs.pingcap.com/zh/tidb/v8.5/system-variables#tidb_hash_join_version-从-v840-版本开始引入">Hash Join 算法优化</a>（实验特性，从 v8.4.0 开始引入）</li>
     </td>
+  </tr>
+  <tr>
+    <td><a href="https://docs.pingcap.com/zh/tidb/v8.5/tikv-in-memory-engine">TiKV MVCC 内存引擎</a>（从 v8.5.0 开始引入）</td>
+    <td>TiKV MVCC 内存引擎 (In-Memory Engine, IME) 将最新写入的 MVCC 版本的数据缓存到内存中，帮助 TiKV 快速跳过旧版本，直接检索最新数据。在数据记录频繁更新或历史版本保留时间较长的场景下，该特性可以显著提升数据扫描性能。</td>
   </tr>
   <tr>
     <td><a href="https://docs.pingcap.com/zh/tidb/v8.5/tune-region-performance#通过-active-pd-follower-提升-pd-region-信息查询服务的扩展能力">通过 Active PD Follower 提升 PD Region 信息查询服务的扩展能力</a>（从 v8.5.0 开始成为正式功能）</td>
@@ -148,7 +152,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
     更多信息，请参考[用户文档](/accelerated-table-creation.md)。
 
-* TiKV 支持 MVCC 内存引擎 (In-memory Engine, IME)，可加速需要扫描大量 MVCC 历史版本的查询 [#16141](https://github.com/tikv/tikv/issues/16141) [@SpadeA-Tang](https://github.com/SpadeA-Tang) [@glorv](https://github.com/glorv) [@overvenus](https://github.com/overvenus)
+* TiKV 支持 MVCC 内存引擎 (In-memory Engine, IME)，可加速需要扫描大量 MVCC 历史版本的查询 [#16141](https://github.com/tikv/tikv/issues/16141) @[SpadeA-Tang](https://github.com/SpadeA-Tang) @[glorv](https://github.com/glorv) @[overvenus](https://github.com/overvenus)
 
     当频繁更新记录或者需要 TiDB 保留较长时间的历史版本（例如 24 小时）数据时，堆积的 MVCC 版本会导致扫描性能下降。TiKV 的 MVCC 内存引擎可以将最新的 MVCC 版本缓存在内存中，并通过快速的 GC 机制删除内存中的历史版本，从而提升扫描性能。
 
@@ -389,6 +393,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
     - 修复当 `SUBSTRING()` 函数的第二个参数为负数时，可能返回错误结果的问题 [#9604](https://github.com/pingcap/tiflash/issues/9604) @[guo-shaoge](https://github.com/guo-shaoge)
     - 修复当 `REPLACE()` 函数的第一个参数为常数时，可能报错的问题 [#9522](https://github.com/pingcap/tiflash/issues/9522) @[guo-shaoge](https://github.com/guo-shaoge)
     - 修复当 `LPAD()` 和 `RPAD()` 函数在某些情况下返回错误结果的问题 [#9465](https://github.com/pingcap/tiflash/issues/9465) @[guo-shaoge](https://github.com/guo-shaoge)
+    - 修复在创建向量索引后，如果 TiFlash 内部用于构建向量索引的任务被意外中断，可能造成 TiFlash 写入损坏数据并无法重启的问题 [#9714](https://github.com/pingcap/tiflash/issues/9714) @[JaySon-Huang](https://github.com/JaySon-Huang)
 
 + Tools
 
@@ -400,6 +405,8 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
         - 修复 advancer 无法处理锁冲突的问题 [#57134](https://github.com/pingcap/tidb/issues/57134) @[3pointer](https://github.com/3pointer)
         - 升级 `k8s.io/api` 库的版本以修复潜在的安全漏洞 [#57790](https://github.com/pingcap/tidb/issues/57790) @[BornChanger](https://github.com/BornChanger)
         - 修复当集群存在大量表但实际数据量较小时，PITR 数据恢复任务可能出现 `Information schema is out of date` 报错的问题 [#57743](https://github.com/pingcap/tidb/issues/57743) @[Tristan1900](https://github.com/Tristan1900)
+        - 修复日志备份在 advancer owner 切换时可能会异常进入暂停状态的问题 [#58031](https://github.com/pingcap/tidb/issues/58031) @[3pointer](https://github.com/3pointer)
+        - 修复通过 `tiup br restore` 命令进行库表级别恢复时，遗漏检查目标集群中表是否已存在，可能会覆盖已有表的问题 [#58168](https://github.com/pingcap/tidb/issues/58168) @[RidRisR](https://github.com/RidRisR) 
 
     + TiCDC
 
@@ -411,10 +418,6 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
         - 修复 TiDB Lightning 因 TiKV 发送的消息过大而接收失败的问题 [#56114](https://github.com/pingcap/tidb/issues/56114) @[fishiu](https://github.com/fishiu)
         - 修复使用物理导入模式导入数据后，`AUTO_INCREMENT` 值设置过大的问题 [#56814](https://github.com/pingcap/tidb/issues/56814) @[D3Hunter](https://github.com/D3Hunter)
-
-## 性能测试
-
-如需了解 TiDB v8.5.0 的性能表现，你可以参考 TiDB Cloud Dedicated 集群的 [TPC-C 性能测试报告](https://docs.pingcap.com/tidbcloud/v8.5-performance-benchmarking-with-tpcc)和 [Sysbench 性能测试报告](https://docs.pingcap.com/tidbcloud/v8.5-performance-benchmarking-with-sysbench)（英文版）。
 
 ## 贡献者
 
