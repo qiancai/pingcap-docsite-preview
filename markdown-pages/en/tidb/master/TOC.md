@@ -13,8 +13,8 @@
 - Get Started
   - [Quick Start with TiDB](/quick-start-with-tidb.md)
   - [Quick Start with HTAP](/quick-start-with-htap.md)
-  - [Learn TiDB SQL](/basic-sql-operations.md)
-  - [Learn HTAP](/explore-htap.md)
+  - [Explore SQL with TiDB](/basic-sql-operations.md)
+  - [Explore HTAP](/explore-htap.md)
   - [Import Example Database](/import-example-data.md)
 - Develop
   - [Overview](/develop/dev-guide-overview.md)
@@ -397,6 +397,7 @@
   - [Use Load Base Split](/configure-load-base-split.md)
   - [Use Store Limit](/configure-store-limit.md)
   - [DDL Execution Principles and Best Practices](/ddl-introduction.md)
+  - [Batch Data Processing](/batch-processing.md)
   - Use PD Microservices
     - [PD Microservices Overview](/pd-microservices.md)
     - [Scale PD Microservice Nodes Using TiUP](/scale-microservices-using-tiup.md)
@@ -937,6 +938,7 @@
       - [Optimistic Transactions](/optimistic-transaction.md)
       - [Pessimistic Transactions](/pessimistic-transaction.md)
       - [Non-Transactional DML Statements](/non-transactional-dml.md)
+      - [Pipelined DML](/pipelined-dml.md)
     - [Views](/views.md)
     - [Partitioning](/partitioned-table.md)
     - [Temporary Tables](/temporary-tables.md)
@@ -1084,6 +1086,7 @@
   - v8.2
     - [8.2.0-DMR](/releases/release-8.2.0.md)
   - v8.1
+    - [8.1.2](/releases/release-8.1.2.md)
     - [8.1.1](/releases/release-8.1.1.md)
     - [8.1.0](/releases/release-8.1.0.md)
   - v8.0
