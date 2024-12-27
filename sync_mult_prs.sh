@@ -14,8 +14,8 @@ cd "$SCRIPT_DIR"
 # Define the PRs to sync. 
 # The PRs will be synced in the order of the following statements. 
 # ./sync_pr.sh preview/pingcap/docs/"$DOCS_PR" 
-./sync_pr.sh preview/pingcap/docs-cn/19360
-./sync_pr.sh preview/pingcap/docs/19775
+./sync_pr.sh preview/pingcap/docs-cn/19021
+./sync_pr.sh preview/pingcap/docs/19818
 # ./sync_pr.sh preview/pingcap/docs-cn/19140
 # ./sync_pr.sh preview/pingcap/docs/19471
 # ./sync_pr.sh preview-cloud/pingcap/docs/19494
