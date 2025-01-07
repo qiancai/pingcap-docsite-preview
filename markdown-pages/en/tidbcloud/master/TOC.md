@@ -18,7 +18,7 @@
 - Key Concepts
   - [Architecture](/tidb-cloud/architecture-concepts.md)
   - [Database Schema](/tidb-cloud/database-schema-concepts.md)
-  - [Transactions](/tidb-cloud/transaction_concepts.md)
+  - [Transactions](/tidb-cloud/transaction-concepts.md)
   - [SQL](/tidb-cloud/sql-concepts.md)
   - [AI Features](/tidb-cloud/ai-feature-concepts.md)
   - [Data Service](/tidb-cloud/data-service-concepts.md) ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
@@ -673,16 +673,15 @@
   - [Metadata Lock](/metadata-lock.md)
   - [Use UUIDs](/best-practices/uuid.md)
   - [TiDB Accelerated Table Creation](/accelerated-table-creation.md)
-- API Reference
-  - [API Overview](/tidb-cloud/api-overview.md)
-  - API Reference
-    - v1beta1
-      - [Billing](https://docs.pingcap.com/tidbcloud/api/v1beta1/billing)
-      - [Data Service](https://docs.pingcap.com/tidbcloud/api/v1beta1/dataservice)
-      - [IAM](https://docs.pingcap.com/tidbcloud/api/v1beta1/iam)
-      - [MSP (Deprecated)](https://docs.pingcap.com/tidbcloud/api/v1beta1/msp)
-    - [v1beta](https://docs.pingcap.com/tidbcloud/api/v1beta)
-- CLI Reference
+- API Reference ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)   
+  - [Overview](/tidb-cloud/api-overview.md) 
+  - v1beta1
+    - [Billing](https://docs.pingcap.com/tidbcloud/api/v1beta1/billing)
+    - [Data Service](https://docs.pingcap.com/tidbcloud/api/v1beta1/dataservice)
+    - [IAM](https://docs.pingcap.com/tidbcloud/api/v1beta1/iam)
+    - [MSP (Deprecated)](https://docs.pingcap.com/tidbcloud/api/v1beta1/msp)
+  - [v1beta](https://docs.pingcap.com/tidbcloud/api/v1beta)
+- CLI Reference ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
   - [Overview](/tidb-cloud/cli-reference.md)
   - auth
     - [login](/tidb-cloud/ticloud-auth-login.md)
@@ -810,4 +809,4 @@
   - [[2024-04-09] TiDB Cloud Monitoring Features Maintenance Notification](/tidb-cloud/notification-2024-04-09-monitoring-features-maintenance.md)
   - [[2023-11-14] TiDB Cloud Dedicated Scale Feature Maintenance Notification](/tidb-cloud/notification-2023-11-14-scale-feature-maintenance.md)
   - [[2023-09-26] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2023-09-26-console-maintenance.md)
-  - [[2023-08-31] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2023-08-31-console-maintenance.md) 
+  - [[2023-08-31] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2023-08-31-console-maintenance.md)
