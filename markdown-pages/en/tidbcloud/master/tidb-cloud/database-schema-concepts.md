@@ -37,7 +37,7 @@ Each table consists of rows and columns. Each value in a row belongs to a specif
 
 ### System table
 
-- The `mysql` schema contains TiDB system tables. The design is similar to the `mysql` schema in MySQL, where tables such as `mysql.user` can be edited directly. It also contains a number of tables which are extensions to MySQL.
+- The `mysql` schema contains TiDB system tables. The design is similar to the `mysql` schema in MySQL, where tables such as `mysql.user` can be edited directly. It also contains a number of tables that are extensions to MySQL.
 
 - Information Schema provides an ANSI-standard way of viewing system metadata. TiDB also provides a number of custom `INFORMATION_SCHEMA` tables, in addition to the tables included for MySQL compatibility. Many `INFORMATION_SCHEMA` tables have a corresponding `SHOW` command. The benefit of querying `INFORMATION_SCHEMA` is that it is possible to join between tables.
 
@@ -76,6 +76,7 @@ TiDB supports all the data types in MySQL except the `SPATIAL` type. This includ
 ## Indexes
 
 An index is a copy of selected columns in a table. You can create an index using one or more columns of a [table](/develop/dev-guide-schema-design-overview.md#table). With indexes, TiDB can quickly locate data without having to search every row in a table every time, which greatly improves your query performance.
+
 There are two common types of indexes:
 
 - Primary Key: indexes on the primary key column.
@@ -98,7 +99,7 @@ A composite index is an index built on two or more columns of a table, which is 
 
 Invisible indexes are indexes that exist in the database but are hidden from the query optimizer, meaning they are ignored in query plans. In TiDB, invisible indexes are useful for testing and debugging, allowing you to assess the impact of an index on performance without fully dropping it.
 
-Starting from TiDB v8.0.0, you can make the optimizer select invisible indexes by modifying the system variable[`tidb_opt_use_invisible_indexes`](/system-variables.md#tidb_opt_use_invisible_indexes-new-in-v800).
+Starting from TiDB v8.0.0, you can make the optimizer select invisible indexes by modifying the [`tidb_opt_use_invisible_indexes`](/system-variables.md#tidb_opt_use_invisible_indexes-new-in-v800) system variable.
 
 ### Clustered indexes
 
@@ -124,7 +125,8 @@ For the following TiDB deployment options, TiDB supports vector data types and v
 
 - TiDB Self-Managed v8.4.0 or later versions
 
-In TiDB, a *vector index* is a specialized index designed for efficient approximate nearest neighbor (ANN) searches over columns containing vector data. Vector indexes, particularly the HNSW (Hierarchical Navigable Small World) algorithm, allow K-nearest neighbors (KNN) searches to identify the closest data points in a vector space quickly. This significantly speeds up query performance, enabling results in milliseconds compared to brute-force methods.
+In TiDB, a vector index is a specialized index designed for efficient approximate nearest neighbor (ANN) searches over columns containing vector data. Vector indexes, particularly the HNSW (Hierarchical Navigable Small World) algorithm, allow K-nearest neighbors (KNN) searches to identify the closest data points in a vector space quickly. This significantly speeds up query performance, enabling results in milliseconds compared to brute-force methods.
+
 Vector indexes rely on TiFlash replicas for data storage and search functionality. Before creating and using vector indexes, make sure that TiFlash nodes are available in your cluster.
 
 ## Constraints
@@ -134,6 +136,7 @@ TiDB supports almost the same constraints as MySQL.
 ### NOT NULL constraints
 
 A `NOT NULL` constraint ensures that a column cannot contain `NULL` values.
+
 When a column is defined with the `NOT NULL` constraint, TiDB ensures that any attempt to insert or update a row with a `NULL` value in that column will result in an error. This behavior is consistent with MySQL's implementation of `NOT NULL` constraints.
 
 ### CHECK constraints
@@ -153,13 +156,14 @@ Unique constraints mean that all non-null values in a unique index and a primary
 A FOREIGN KEY is a database constraint that enforces referential integrity between two tables by linking a column in one table (the child table) to a column in another table (the parent table). This ensures that the values in the foreign key column of the child table match values in the primary or unique key column of the parent table. For example, a record in an `orders` table might have a foreign key linking to a customer in a `customers` table, which ensures that each order is associated with a valid customer.
 
 Starting from v6.6.0, TiDB supports foreign key constraints as an experimental feature. This feature allows cross-table referencing of related data and helps maintain data consistency by enforcing referential integrity. However, it is important to note that this feature is experimental and not recommended for production environments due to potential performance issues, especially with large data volumes.
+
 For more information, see [FOREIGN KEY constraints](/foreign-key.md).
 
 ## Views
 
 A view acts as a virtual table, whose schema is defined by the `SELECT` statement that creates the view. Using views has the following benefits:
 
-- Exposing only safe fields and data to users to ensure security of sensitive fields and data stored in the underlying table.
+- Exposing only safe fields and data to users to ensure the security of sensitive fields and data stored in the underlying table.
 
 - Defining complex queries that frequently appear as views to make complex queries easier and more convenient.
 
