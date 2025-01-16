@@ -19,7 +19,7 @@ cd "$SCRIPT_DIR"
 # ./sync_pr.sh preview/pingcap/docs-cn/19140
 # ./sync_pr.sh preview/pingcap/docs/19471
 # ./sync_pr.sh preview-cloud/pingcap/docs/19953
-./sync_pr.sh preview-cloud/pingcap/docs/19958
+./sync_pr.sh preview-cloud/pingcap/docs/20017
 # ./sync_pr.sh preview-cloud/pingcap/docs/19727
 # ./sync_pr.sh preview-operator/pingcap/docs-tidb-operator/"$OPERATOR_DOCS_PR"
 
