@@ -126,7 +126,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
 ### 可扩展性
 
-* Schema 缓存可用的内存上限成为正式功能 (GA)，当表的数量达到几十万甚至上百万时，可以显示减少 Schema 元数据的内存占用 [#50959](https://github.com/pingcap/tidb/issues/50959) @[tiancaiamao](https://github.com/tiancaiamao) @[wjhuang2016](https://github.com/wjhuang2016) @[gmhdbjd](https://github.com/gmhdbjd) @[tangenta](https://github.com/tangenta)
+* Schema 缓存可用的内存上限成为正式功能 (GA)，当表的数量达到几十万甚至上百万时，可以显著减少 Schema 元数据的内存占用 [#50959](https://github.com/pingcap/tidb/issues/50959) @[tiancaiamao](https://github.com/tiancaiamao) @[wjhuang2016](https://github.com/wjhuang2016) @[gmhdbjd](https://github.com/gmhdbjd) @[tangenta](https://github.com/tangenta)
 
     在一些 SaaS 场景下，当表的数量达到几十万甚至上百万时，Schema 元数据会占用较多的内存。开启该功能后，系统将使用 Least Recently Used (LRU) 算法缓存和淘汰相应的 Schema 元数据信息，有效减少内存占用。
 
@@ -228,7 +228,7 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 | 变量名  | 修改类型    | 描述 |
 |--------|------------------------------|------|
 | [`tidb_enable_fast_create_table`](/system-variables.md#tidb_enable_fast_create_table-从-v800-版本开始引入) | 修改 | 经进一步的测试后，默认值从 `OFF` 修改为 `ON`，即默认开启 [TiDB 加速建表](/accelerated-table-creation.md)。|
-| [`tidb_ddl_reorg_max_write_speed`](/system-variables.md#tidb_ddl_reorg_max_write_speed-从-v850-版本开始引入) | 新增 | 限制每个 TiKV 节点写入的带宽，仅在开启添加索引加速功能时生效（由变量 [`tidb_ddl_enable_fast_reorg`](/system-variables.md#tidb_ddl_enable_fast_reorg-从-v630-版本开始引入) 控制）。例如，当该值设置为 `200MiB` 时，最大写入速度限制为 200 MiB/s。 |
+| [`tidb_ddl_reorg_max_write_speed`](/system-variables.md#tidb_ddl_reorg_max_write_speed-从-v755-和-v850-版本开始引入) | 新增 | 限制每个 TiKV 节点写入的带宽，仅在开启添加索引加速功能时生效（由变量 [`tidb_ddl_enable_fast_reorg`](/system-variables.md#tidb_ddl_enable_fast_reorg-从-v630-版本开始引入) 控制）。例如，当该值设置为 `200MiB` 时，最大写入速度限制为 200 MiB/s。 |
 
 ### 配置参数
 
@@ -238,6 +238,13 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 | TiKV | [`raft-client-queue-size`](/tikv-configuration-file.md#raft-client-queue-size) | 修改 | 默认值从 `8192` 修改为 `16384`。|
 | PD | [`patrol-region-worker-count`](/pd-configuration-file.md#patrol-region-worker-count-从-v850-版本开始引入) | 新增 | 控制 checker 检查 Region 健康状态时，创建 [operator](/glossary.md#operator) 的并发数。|
 | BR | [`--checksum`](/br/br-snapshot-manual.md) | 修改 | 默认值从 `true` 修改为 `false`，即 BR 进行全量备份时，默认不计算表级别的校验和，以提升备份性能。 |
+
+### 操作系统支持变更
+
+升级 TiDB 前，请务必确保你的操作系统版本符合[操作系统及平台要求](/hardware-and-software-requirements.md#操作系统及平台要求)。
+
+- 根据 [CentOS Linux EOL](https://www.centos.org/centos-linux-eol/)，CentOS Linux 7 的上游支持已于 2024 年 6 月 30 日终止。因此，在 v8.4.0 和 v8.5.0 版本中，TiDB 移除了对 CentOS 7 的支持，建议使用 Rocky Linux 9.1 及以上的版本。如果将运行在 CentOS 7 上的 TiDB 集群升级到 v8.4.0 或 v8.5.0 版本，将导致集群不可用。为了更好地服务仍在使用 CentOS Linux 7 的用户，TiDB 在 v8.5.1 版本中恢复了对 CentOS Linux 7 的兼容性测试和支持，详情参考 [TiDB 8.5.1 Release Notes](/releases/release-8.5.1.md)。
+- 根据 [Red Hat Enterprise Linux Life Cycle](https://access.redhat.com/support/policy/updates/errata/#Life_Cycle_Dates)，Red Hat Enterprise Linux 7 的 Maintenance Support 已于 2024 年 6 月 30 日终止。从 v8.4.0 版本开始，TiDB 已结束对 Red Hat Enterprise Linux 7 的支持，建议使用 Rocky Linux 9.1 及以上的版本。如果将运行在 Red Hat Enterprise Linux 7 上的 TiDB 集群升级到 v8.4.0 或之后版本，将导致集群不可用。
 
 ## 移除功能
 
@@ -418,6 +425,10 @@ TiDB 8.5.0 为长期支持版本 (Long-Term Support Release, LTS)。
 
         - 修复 TiDB Lightning 因 TiKV 发送的消息过大而接收失败的问题 [#56114](https://github.com/pingcap/tidb/issues/56114) @[fishiu](https://github.com/fishiu)
         - 修复使用物理导入模式导入数据后，`AUTO_INCREMENT` 值设置过大的问题 [#56814](https://github.com/pingcap/tidb/issues/56814) @[D3Hunter](https://github.com/D3Hunter)
+
+## 性能测试
+
+如需了解 TiDB v8.5.0 的性能表现，你可以参考 TiDB Cloud Dedicated 集群的[性能测试报告](https://docs.pingcap.com/tidbcloud/v8.5-performance-highlights)（英文版）。
 
 ## 贡献者
 
