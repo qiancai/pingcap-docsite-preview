@@ -69,13 +69,13 @@ During the execution of the `ADD INDEX` or `CREATE INDEX` DDL operation in the d
 > - If the execution of certain downstream DMLs relies on indexes that have not completed replication, these DMLs might be executed slowly, thereby affecting TiCDC replication latency.
 > - Before replicating DDLs to the downstream, if a TiCDC node crashes or if the downstream is performing other write operations, the DDL replication has an extremely low probability of failure. You can check the downstream to see whether that occurs.
 
-### DDL replication considerations for renaming tables
+### DDL replication considerations for renaming tables (test1)
 
 Due to the lack of some context during the replication process, TiCDC has some constraints on the replication of `RENAME TABLE` DDLs.
 
 #### Rename a single table in a DDL statement
 
-If a DDL statement renames a single table, TiCDC only replicates the DDL statement when the old table name matches the filter rule. The following is an example.
+If a DDL statement renames a single table, TiCDC only replicates the DDL statement when the old table name matches the filter rule. The following is an example. 
 
 Assume that the configuration file of your changefeed is as follows:
 
