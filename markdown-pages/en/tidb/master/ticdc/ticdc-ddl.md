@@ -52,8 +52,8 @@ The following is the allow list of DDL statements supported by TiCDC. The abbrev
 | `ALTER TABLE TTL` | Y | N | Y |
 | `ALTER TABLE REMOVE TTL` | Y | N | Y |
 
-- <a id="note1"></a>Y<sup>[1]</sup>: 当上游表不存在有效索引，且未配置 `force-replicate=true`时，该表不会被同步，但是之后在该表上创建**有效索引**的 DDL 会被同步，下游表和上游表结构可能产生不一致从而导致后续数据同步失败。
-- <a id="note2"></a>Y<sup>[2]</sup>: 删除最后一个**有效索引**的 DDL 不会被同步，并且导致后续数据同步失败。
+- <a id="note1"></a>Y<sup>[1]</sup>: When the upstream table has no valid index and `force-replicate=true` is not configured, the table will not be replicated. However, subsequent DDL statements that create a **valid index** on this table will be replicated, which might cause inconsistency between downstream and upstream table schemas and lead to subsequent data replication failure.
+- <a id="note2"></a>Y<sup>[2]</sup>: DDL statements that drop the last **valid index** will not be replicated, causing subsequent data replication to fail.
 
 ## DDL replication considerations
 
