@@ -11,23 +11,28 @@ This document describes the rules and special cases of DDL replication in TiCDC.
 
 Currently, TiCDC uses an allow list to determine whether to replicate a DDL statement. Only the DDL statements in the allow list are replicated to the downstream. The DDL statements not in the allow list are not replicated.
 
-In addition, TiCDC determines whether to replicate a DDL statement to the downstream based on whether the table has a [valid index](/ticdc/ticdc-overview.md#valid-index) and whether the configuration item [`force-replicate`](/ticdc/ticdc-manage-changefeed.md#synchronize-tables-without-valid-indexes) is set to `true`. When `force-replicate=true`, the replication task attempts to forcibly [replicate tables without a valid index](/ticdc/ticdc-manage-changefeed.md#replicate-tables-without-a-valid-index).
+In addition, TiCDC determines whether to replicate a DDL statement to the downstream based on whether the table has a [valid index](/ticdc/ticdc-overview.md#valid-index) and whether the configuration item [`force-replicate`](/ticdc/ticdc-changefeed-config.md#force-replicate) is set to `true`. When `force-replicate=true`, the replication task attempts to forcibly [replicate tables without a valid index](/ticdc/ticdc-manage-changefeed.md#replicate-tables-without-a-valid-index).
 
 The following is the allow list of DDL statements supported by TiCDC. The abbreviations in the table:
 
 - Y: Replication to the downstream is supported in this condition.
 - N: Replication to the downstream is not supported in this condition.
 
-| DDL | A valid index exists | A valid index does not exist and `force-replicate` is default `false` | A valid index does not exist and `force-replicate` is set to `false` |
+> **Note**
+>
+> - When the upstream table has no valid index and `force-replicate=true` is not configured, the table will not be replicated. However, subsequent DDL statements (including `CREATE INDEX`, `ADD INDEX`, and `ADD PRIMARY KEY`) that create a valid index on this table will be replicated, which might cause inconsistency between downstream and upstream table schemas and lead to subsequent data replication failure.
+> - DDL statements (including `DROP INDEX` and `DROP PRIMARY KEY`) that drop the last valid index will not be replicated, causing subsequent data replication to fail.
+
+| DDL | A valid index exists | A valid index does not exist and `force-replicate` is `false` (default) | A valid index does not exist and `force-replicate` is set to `true` |
 |---|:---:|:---:| :---: |
 | `CREATE DATABASE` | Y | Y | Y |
 | `DROP DATABASE` | Y | Y | Y |
 | `ALTER DATABASE CHARACTER SET` | Y | Y | Y |
-| `CREATE INDEX` | Y | Y[<sup>[1]</sup>](#note1) | Y | 
-| `ADD INDEX` | Y | Y[<sup>[1]</sup>](#note1) | Y | 
-| `DROP INDEX` | Y[<sup>[2]</sup>](#note2) | N | Y |
-| `ADD PRIMARY KEY` | Y | Y[<sup>[1]</sup>](#note1) | Y |
-| `DROP PRIMARY KEY` | Y[<sup>[2]</sup>](#note2) | N | Y |
+| `CREATE INDEX` | Y | Y | Y |
+| `ADD INDEX` | Y | Y | Y |
+| `DROP INDEX` | Y | N | Y |
+| `ADD PRIMARY KEY` | Y | Y | Y |
+| `DROP PRIMARY KEY` | Y | N | Y |
 | `CREATE TABLE` | Y | N | Y |
 | `DROP TABLE` | Y | N | Y |
 | `ADD COLUMN` | Y | N | Y |
@@ -52,9 +57,6 @@ The following is the allow list of DDL statements supported by TiCDC. The abbrev
 | `ALTER TABLE TTL` | Y | N | Y |
 | `ALTER TABLE REMOVE TTL` | Y | N | Y |
 
-- <a id="note1"></a>Y<sup>[1]</sup>: When the upstream table has no valid index and `force-replicate=true` is not configured, the table will not be replicated. However, subsequent DDL statements that create a **valid index** on this table will be replicated, which might cause inconsistency between downstream and upstream table schemas and lead to subsequent data replication failure.
-- <a id="note2"></a>Y<sup>[2]</sup>: DDL statements that drop the last **valid index** will not be replicated, causing subsequent data replication to fail.
-
 ## DDL replication considerations
 
 ### Asynchronous execution of `ADD INDEX` and `CREATE INDEX` DDLs
@@ -68,13 +70,13 @@ During the execution of the `ADD INDEX` or `CREATE INDEX` DDL operation in the d
 > - If the execution of certain downstream DMLs relies on indexes that have not completed replication, these DMLs might be executed slowly, thereby affecting TiCDC replication latency.
 > - Before replicating DDLs to the downstream, if a TiCDC node crashes or if the downstream is performing other write operations, the DDL replication has an extremely low probability of failure. You can check the downstream to see whether that occurs.
 
-### DDL replication considerations for renaming tables (test4)
+### DDL replication considerations for renaming tables
 
 Due to the lack of some context during the replication process, TiCDC has some constraints on the replication of `RENAME TABLE` DDLs.
 
 #### Rename a single table in a DDL statement
 
-If a DDL statement renames a single table, TiCDC only replicates the DDL statement when the old table name matches the filter rule. The following is an example. 
+If a DDL statement renames a single table, TiCDC only replicates the DDL statement when the old table name matches the filter rule. The following is an example.
 
 Assume that the configuration file of your changefeed is as follows:
 
