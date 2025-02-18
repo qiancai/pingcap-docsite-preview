@@ -1,11 +1,11 @@
 ---
 title: TiDB Cloud Clinic
-summary: Learn how to use advanced monitoring and diagnostics of TiDB Cloud using TiDB Cloud Clinic.
+summary: Learn how to use TiDB Cloud Clinic for advanced monitoring and diagnostics.
 ---
 
 # TiDB Cloud Clinic
 
-TiDB Cloud Clinic offers advanced monitoring and diagnostic capabilities for TiDB Cloud.
+TiDB Cloud Clinic offers advanced monitoring and diagnostic capabilities on the TiDB Cloud, designed to help you quickly identify performance issues, optimize your database, and enhance overall performance with detailed analysis and actionable insights.
 
 > **Note:**
 >
@@ -13,9 +13,9 @@ TiDB Cloud Clinic offers advanced monitoring and diagnostic capabilities for TiD
 
 ## Prerequisites
 
-To use TiDB Cloud Clinic, you need to have an **Enterprise** support plan or higher for TiDB Cloud.
+TiDB Cloud Clinic is only available for organizations that subscribe to the **Enterprise** or **Premium** support plan.
 
-## View the **Cluster** page
+## View the Cluster page
 
 To view the **Cluster** page, take the following steps:
 
@@ -48,7 +48,7 @@ The retention policy for advanced metrics is 90 days.
 
 By default, SQL queries that take longer than 300 milliseconds are considered slow queries.
 
-On the default **Slow Queries** page, it can be difficult to quickly identify performance-impacting SQL queries when a cluster has a large volume of slow queries. The **Top Slow Queries** feature provides aggregated analysis based on slow query logs. With this feature, you can easily pinpoint queries with performance issues, reducing overall performance tuning time by at least half.
+On the default [**Slow Queries**](/tidb-cloud/tune-performance.md#slow-query) page in the TiDB Cloud console, identifying performance-impacting queries can be difficult, especially in clusters with a large number of slow queries. The **Top Slow Queries** feature in TiDB Cloud Clinic provides aggregated analysis based on slow query logs. With this feature, you can easily pinpoint queries with performance issues, reducing overall performance tuning time by at least half.
 
 Top Slow Queries displays the top 10 queries aggregated by SQL digest, sorted by the following dimensions:
 
