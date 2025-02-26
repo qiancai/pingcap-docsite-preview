@@ -257,7 +257,10 @@
     - [基于主备集群的容灾](/dr-secondary-cluster.md)
     - [基于多副本的单集群容灾](/dr-multi-replica.md)
     - [基于备份与恢复的容灾](/dr-backup-restore.md)
-  - [使用资源管控 (Resource Control) 实现资源隔离](/tidb-resource-control.md)
+  - 资源管控
+    - [使用资源管控 (Resource Control) 实现资源组限制和流控](/tidb-resource-control-ru-groups.md)
+    - [管理资源消耗超出预期的查询 (Runaway Queries)](/tidb-resource-control-runaway-queries.md)
+    - [限制后台任务资源使用](/tidb-resource-control-background-tasks.md)
   - [修改时区](/configure-time-zone.md)
   - [日常巡检](/daily-check.md)
   - [TiFlash 常用运维操作](/tiflash/maintain-tiflash.md)
@@ -391,6 +394,7 @@
   - [Load Base Split 使用文档](/configure-load-base-split.md)
   - [Store Limit 使用文档](/configure-store-limit.md)
   - [DDL 执行原理及最佳实践](/ddl-introduction.md)
+  - [数据批量处理](/batch-processing.md)
   - PD 微服务使用文档
     - [PD 微服务概览](/pd-microservices.md)
     - [使用 TiUP 扩容缩容 PD 微服务节点](/scale-microservices-using-tiup.md)
@@ -498,7 +502,7 @@
   - TiDB Data Migration
     - [关于 Data Migration](/dm/dm-overview.md)
     - [架构简介](/dm/dm-arch.md)
-    - [快速开始](/dm/quick-start-with-dm.md)
+    - [快速上手](/dm/quick-start-with-dm.md)
     - [最佳实践](/dm/dm-best-practices.md)
     - 部署 DM 集群
       - [软硬件要求](/dm/dm-hardware-and-software-requirements.md)
@@ -689,6 +693,7 @@
     - [TiDB 分布式执行框架介绍](/tidb-distributed-execution-framework.md)
     - [TiDB 全局排序](/tidb-global-sort.md)
   - [系统变量](/system-variables.md)
+  - [系统变量索引](/system-variable-reference.md)
   - [服务器状态变量](/status-variables.md)
   - 配置文件参数
     - [tidb-server](/tidb-configuration-file.md)
@@ -941,6 +946,7 @@
       - [乐观事务](/optimistic-transaction.md)
       - [悲观事务](/pessimistic-transaction.md)
       - [非事务 DML 语句](/non-transactional-dml.md)
+      - [Pipelined DML](/pipelined-dml.md)
     - [视图](/views.md)
     - [分区表](/partitioned-table.md)
     - [临时表](/temporary-tables.md)

@@ -137,7 +137,7 @@
     -   [インポートのベストプラクティス](/tidb-lightning/data-import-best-practices.md)
     -   移行シナリオ
         -   [Auroraからの移行](/migrate-aurora-to-tidb.md)
-        -   [MySQL から小規模データセットを移行する](/migrate-small-mysql-to-tidb.md)
+        -   [MySQL から小さなデータセットを移行する](/migrate-small-mysql-to-tidb.md)
         -   [MySQL から大規模なデータセットを移行する](/migrate-large-mysql-to-tidb.md)
         -   [小さなデータセットの MySQL シャードの移行とマージ](/migrate-small-mysql-shards-to-tidb.md)
         -   [大規模データセットの MySQL シャードの移行とマージ](/migrate-large-mysql-shards-to-tidb.md)
@@ -489,7 +489,7 @@
             -   データソースの管理
                 -   [移行するMySQLインスタンスを切り替える](/dm/usage-scenario-master-slave-switch.md)
             -   タスクの管理
-                -   [失敗したDDL文の処理](/dm/handle-failed-ddl-statements.md)
+                -   [失敗したDDLステートメントの処理](/dm/handle-failed-ddl-statements.md)
                 -   [移行するテーブルのスキーマを管理する](/dm/dm-manage-schema.md)
             -   [クラスターのデータソースとタスク構成のエクスポートとインポート](/dm/dm-export-import-config.md)
             -   [アラートを処理する](/dm/dm-handle-alerts.md)

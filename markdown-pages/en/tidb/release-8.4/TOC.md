@@ -4,17 +4,17 @@
 - [Docs Home](https://docs.pingcap.com/)
 - About TiDB Self-Managed
   - [What is TiDB Self-Managed](/overview.md)
-  - [TiDB 8.5 Release Notes](/releases/release-8.5.0.md)
+  - [TiDB 8.4 Release Notes](/releases/release-8.4.0.md)
   - [Features](/basic-features.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - [Credits](/credits.md)
-  - [Roadmap](/tidb-roadmap.md)
-- Get Started
-  - [Quick Start with TiDB](/quick-start-with-tidb.md)
-  - [Quick Start with HTAP](/quick-start-with-htap.md)
-  - [Explore SQL with TiDB](/basic-sql-operations.md)
-  - [Explore HTAP](/explore-htap.md)
+  - [Roadmap](https://docs.pingcap.com/tidb/dev/tidb-roadmap)
+- Quick Start
+  - [Try Out TiDB](/quick-start-with-tidb.md)
+  - [Try Out HTAP](/quick-start-with-htap.md)
+  - [Learn TiDB SQL](/basic-sql-operations.md)
+  - [Learn HTAP](/explore-htap.md)
   - [Import Example Database](/import-example-data.md)
 - Develop
   - [Overview](/develop/dev-guide-overview.md)
@@ -140,8 +140,9 @@
     - [TiSpark Topology](/tispark-deployment-topology.md)
     - [Cross-DC Topology](/geo-distributed-deployment-topology.md)
     - [Hybrid Topology](/hybrid-deployment-topology.md)
-  - [Deploy Using TiUP](/production-deployment-using-tiup.md)
-  - [Deploy on Kubernetes](/tidb-in-kubernetes.md)
+  - Install and Start
+    - [Use TiUP](/production-deployment-using-tiup.md)
+    - [Deploy on Kubernetes](/tidb-in-kubernetes.md)
   - [Verify Cluster Status](/post-installation-check.md)
   - Test Cluster Performance
     - [Test TiDB Using Sysbench](/benchmark/benchmark-tidb-using-sysbench.md)
@@ -157,7 +158,6 @@
     - [Migrate Large Datasets from MySQL](/migrate-large-mysql-to-tidb.md)
     - [Migrate and Merge MySQL Shards of Small Datasets](/migrate-small-mysql-shards-to-tidb.md)
     - [Migrate and Merge MySQL Shards of Large Datasets](/migrate-large-mysql-shards-to-tidb.md)
-    - [Migrate from Vitess](/migrate-from-vitess.md)
     - [Migrate from MariaDB](/migrate-from-mariadb.md)
     - [Migrate from CSV Files](/migrate-from-csv-files-to-tidb.md)
     - [Migrate from SQL Files](/migrate-from-sql-files-to-tidb.md)
@@ -169,52 +169,11 @@
     - [Migrate to a Downstream Table with More Columns](/migrate-with-more-columns-downstream.md)
     - [Filter Binlog Events](/filter-binlog-event.md)
     - [Filter DML Events Using SQL Expressions](/filter-dml-event.md)
-- Stream Data
-  - [TiCDC Overview](/ticdc/ticdc-overview.md)
-  - [Deploy and Maintain](/ticdc/deploy-ticdc.md)
-  - Changefeed
-    - [Overview](/ticdc/ticdc-changefeed-overview.md)
-    - Create Changefeeds
-      - [Replicate Data to MySQL-compatible Databases](/ticdc/ticdc-sink-to-mysql.md)
-      - [Replicate Data to Kafka](/ticdc/ticdc-sink-to-kafka.md)
-      - [Replicate Data to Pulsar](/ticdc/ticdc-sink-to-pulsar.md)
-      - [Replicate Data to Storage Services](/ticdc/ticdc-sink-to-cloud-storage.md)
-    - [Manage Changefeeds](/ticdc/ticdc-manage-changefeed.md)
-    - [Log Filter](/ticdc/ticdc-filter.md)
-    - [DDL Replication](/ticdc/ticdc-ddl.md)
-    - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
-  - Monitor and Alert
-    - [Monitoring Metrics Summary](/ticdc/ticdc-summary-monitor.md)
-    - [Monitoring Metrics Details](/ticdc/monitor-ticdc.md)
-    - [Alert Rules](/ticdc/ticdc-alert-rules.md)
+- Integrate
+  - [Overview](/integration-overview.md)
   - Integration Scenarios
-    - [Overview](/integration-overview.md)
     - [Integrate with Confluent and Snowflake](/ticdc/integrate-confluent-using-ticdc.md)
     - [Integrate with Apache Kafka and Apache Flink](/replicate-data-to-kafka.md)
-  - Reference
-    - [TiCDC Architecture](/ticdc/ticdc-architecture.md)
-    - [TiCDC Server Configurations](/ticdc/ticdc-server-config.md)
-    - [TiCDC Changefeed Configurations](/ticdc/ticdc-changefeed-config.md)
-    - [TiCDC Client Authentication](/ticdc/ticdc-client-authentication.md)
-    - [Data Integrity Validation for Single-Row Data](/ticdc/ticdc-integrity-check.md)
-    - [Data Consistency Validation for Upstream and Downstream TiDB Clusters](/ticdc/ticdc-upstream-downstream-check.md)
-    - [TiCDC Behavior in Splitting UPDATE Events](/ticdc/ticdc-split-update-behavior.md)
-    - Output Protocols
-      - [TiCDC Avro Protocol](/ticdc/ticdc-avro-protocol.md)
-      - [TiCDC Canal-JSON Protocol](/ticdc/ticdc-canal-json.md)
-      - [TiCDC CSV Protocol](/ticdc/ticdc-csv.md)
-      - [TiCDC Debezium Protocol](/ticdc/ticdc-debezium.md)
-      - [TiCDC Open Protocol](/ticdc/ticdc-open-protocol.md)
-      - [TiCDC Simple Protocol](/ticdc/ticdc-simple-protocol.md)
-    - [TiCDC Open API v2](/ticdc/ticdc-open-api-v2.md)
-    - [TiCDC Open API v1](/ticdc/ticdc-open-api.md)
-    - TiCDC Data Consumption
-      - [TiCDC Row Data Checksum Verification Based on Avro](/ticdc/ticdc-avro-checksum-verification.md)
-      - [Guide for Developing a Storage Sink Consumer](/ticdc/ticdc-storage-consumer-dev-guide.md)
-    - [TiCDC Compatibility](/ticdc/ticdc-compatibility.md)
-  - [Troubleshoot](/ticdc/troubleshoot-ticdc.md)
-  - [FAQs](/ticdc/ticdc-faq.md)
-  - [Glossary](/ticdc/ticdc-glossary.md)
 - Maintain
   - Security
     - [Best Practices for TiDB Security Configuration](/best-practices-for-security-configuration.md)
@@ -262,10 +221,7 @@
     - [Primary-Secondary DR](/dr-secondary-cluster.md)
     - [Multi-Replica Cluster DR](/dr-multi-replica.md)
     - [BR-based DR](/dr-backup-restore.md)
-  - Resource Manager
-    - [Use Resource Control to Achieve Resource Group Limitation and Flow Control](/tidb-resource-control-ru-groups.md)
-    - [Manage Runaway Queries](/tidb-resource-control-runaway-queries.md)
-    - [Manage Background Tasks](/tidb-resource-control-background-tasks.md)
+  - [Resource Control](/tidb-resource-control.md)
   - [Configure Time Zone](/configure-time-zone.md)
   - [Daily Checklist](/daily-check.md)
   - [Maintain TiFlash](/tiflash/maintain-tiflash.md)
@@ -323,7 +279,6 @@
     - [Tune TiKV Threads](/tune-tikv-thread-performance.md)
     - [Tune TiKV Memory](/tune-tikv-memory-performance.md)
     - [TiKV Follower Read](/follower-read.md)
-    - [TiKV MVCC In-Memory Engine](/tikv-in-memory-engine.md)
     - [Tune Region Performance](/tune-region-performance.md)
     - [Tune TiFlash Performance](/tiflash/tune-tiflash-performance.md)
     - [Coprocessor Cache](/coprocessor-cache.md)
@@ -400,7 +355,6 @@
   - [Use Load Base Split](/configure-load-base-split.md)
   - [Use Store Limit](/configure-store-limit.md)
   - [DDL Execution Principles and Best Practices](/ddl-introduction.md)
-  - [Batch Processing](/batch-processing.md)
   - Use PD Microservices
     - [PD Microservices Overview](/pd-microservices.md)
     - [Scale PD Microservice Nodes Using TiUP](/scale-microservices-using-tiup.md)
@@ -634,6 +588,48 @@
       - [FAQ](/tidb-lightning/tidb-lightning-faq.md)
       - [Glossary](/tidb-lightning/tidb-lightning-glossary.md)
   - [Dumpling](/dumpling-overview.md)
+  - TiCDC
+    - [Overview](/ticdc/ticdc-overview.md)
+    - [Deploy and Maintain](/ticdc/deploy-ticdc.md)
+    - Changefeed
+      - [Overview](/ticdc/ticdc-changefeed-overview.md)
+      - Create Changefeeds
+        - [Replicate Data to MySQL-compatible Databases](/ticdc/ticdc-sink-to-mysql.md)
+        - [Replicate Data to Kafka](/ticdc/ticdc-sink-to-kafka.md)
+        - [Replicate Data to Pulsar](/ticdc/ticdc-sink-to-pulsar.md)
+        - [Replicate Data to Storage Services](/ticdc/ticdc-sink-to-cloud-storage.md)
+      - [Manage Changefeeds](/ticdc/ticdc-manage-changefeed.md)
+      - [TiCDC Client Authentication](/ticdc/ticdc-client-authentication.md)
+      - [Log Filter](/ticdc/ticdc-filter.md)
+      - [DDL Replication](/ticdc/ticdc-ddl.md)
+      - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
+      - [Data Integrity Validation for Single-Row Data](/ticdc/ticdc-integrity-check.md)
+      - [Data Consistency Validation for TiDB Upstream/Downstream Clusters](/ticdc/ticdc-upstream-downstream-check.md)
+      - [TiCDC Behavior in Splitting UPDATE Events](/ticdc/ticdc-split-update-behavior.md)
+    - Monitor and Alert
+      - [Monitoring Metrics Summary](/ticdc/ticdc-summary-monitor.md)
+      - [Monitoring Metrics Details](/ticdc/monitor-ticdc.md)
+      - [Alert Rules](/ticdc/ticdc-alert-rules.md)
+    - Reference
+      - [Architecture](/ticdc/ticdc-architecture.md)
+      - [TiCDC Server Configurations](/ticdc/ticdc-server-config.md)
+      - [TiCDC Changefeed Configurations](/ticdc/ticdc-changefeed-config.md)
+      - Output Protocols
+        - [TiCDC Avro Protocol](/ticdc/ticdc-avro-protocol.md)
+        - [TiCDC Canal-JSON Protocol](/ticdc/ticdc-canal-json.md)
+        - [TiCDC CSV Protocol](/ticdc/ticdc-csv.md)
+        - [TiCDC Debezium Protocol](/ticdc/ticdc-debezium.md)
+        - [TiCDC Open Protocol](/ticdc/ticdc-open-protocol.md)
+        - [TiCDC Simple Protocol](/ticdc/ticdc-simple-protocol.md)
+      - [TiCDC Open API v2](/ticdc/ticdc-open-api-v2.md)
+      - [TiCDC Open API v1](/ticdc/ticdc-open-api.md)
+      - TiCDC Data Consumption
+        - [TiCDC Row Data Checksum Verification Based on Avro](/ticdc/ticdc-avro-checksum-verification.md)
+        - [Guide for Developing a Storage Sink Consumer](/ticdc/ticdc-storage-consumer-dev-guide.md)
+      - [Compatibility](/ticdc/ticdc-compatibility.md)
+    - [Troubleshoot](/ticdc/troubleshoot-ticdc.md)
+    - [FAQs](/ticdc/ticdc-faq.md)
+    - [Glossary](/ticdc/ticdc-glossary.md)
   - PingCAP Clinic Diagnostic Service
     - [Overview](/clinic/clinic-introduction.md)
     - [Quick Start](/clinic/quick-start-with-clinic.md)
@@ -689,7 +685,6 @@
     - [Introduction](/tidb-distributed-execution-framework.md)
     - [TiDB Global Sort](/tidb-global-sort.md)
   - [System Variables](/system-variables.md)
-  - [System Variable Reference](/system-variable-reference.md)
   - [Server Status Variables](/status-variables.md)
   - Configuration File Parameters
     - [tidb-server](/tidb-configuration-file.md)
@@ -737,7 +732,6 @@
     - SQL Statements
       - [Overview](/sql-statements/sql-statement-overview.md)
       - [`ADMIN`](/sql-statements/sql-statement-admin.md)
-      - [`ADMIN ALTER DDL JOBS`](/sql-statements/sql-statement-admin-alter-ddl.md)
       - [`ADMIN CANCEL DDL`](/sql-statements/sql-statement-admin-cancel-ddl.md)
       - [`ADMIN CHECKSUM TABLE`](/sql-statements/sql-statement-admin-checksum-table.md)
       - [`ADMIN CHECK [TABLE|INDEX]`](/sql-statements/sql-statement-admin-check-table-index.md)
@@ -942,7 +936,6 @@
       - [Optimistic Transactions](/optimistic-transaction.md)
       - [Pessimistic Transactions](/pessimistic-transaction.md)
       - [Non-Transactional DML Statements](/non-transactional-dml.md)
-      - [Pipelined DML](/pipelined-dml.md)
     - [Views](/views.md)
     - [Partitioning](/partitioned-table.md)
     - [Temporary Tables](/temporary-tables.md)
@@ -1081,9 +1074,6 @@
   - [Release Timeline](/releases/release-timeline.md)
   - [TiDB Versioning](/releases/versioning.md)
   - [TiDB Installation Packages](/binary-package.md)
-  - v8.5
-    - [8.5.1](/releases/release-8.5.1.md)
-    - [8.5.0](/releases/release-8.5.0.md)
   - v8.4
     - [8.4.0-DMR](/releases/release-8.4.0.md)
   - v8.3

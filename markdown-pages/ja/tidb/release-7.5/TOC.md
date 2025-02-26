@@ -136,7 +136,7 @@
     -   [インポートのベストプラクティス](/tidb-lightning/data-import-best-practices.md)
     -   移行シナリオ
         -   [Auroraからの移行](/migrate-aurora-to-tidb.md)
-        -   [MySQL から小規模データセットを移行する](/migrate-small-mysql-to-tidb.md)
+        -   [MySQL から小さなデータセットを移行する](/migrate-small-mysql-to-tidb.md)
         -   [MySQL から大規模なデータセットを移行する](/migrate-large-mysql-to-tidb.md)
         -   [小さなデータセットの MySQL シャードの移行とマージ](/migrate-small-mysql-shards-to-tidb.md)
         -   [大規模データセットの MySQL シャードの移行とマージ](/migrate-large-mysql-shards-to-tidb.md)
@@ -157,6 +157,14 @@
         -   [ConfluentとSnowflakeとの統合](/ticdc/integrate-confluent-using-ticdc.md)
         -   [Apache Kafka および Apache Flink との統合](/replicate-data-to-kafka.md)
 -   管理
+    -   Security
+        -   [TiDBSecurityコンフィグレーションのベスト プラクティス](/best-practices-for-security-configuration.md)
+        -   [TiDBクライアントとサーバー間のTLSを有効にする](/enable-tls-between-clients-and-servers.md)
+        -   [TiDB コンポーネント間の TLS を有効にする](/enable-tls-between-components.md)
+        -   [自己署名証明書を生成する](/generate-self-signed-certificates.md)
+        -   [保存時の暗号化](/encryption-at-rest.md)
+        -   [ディスク流出時の暗号化機能を有効にする](/enable-disk-spill-encrypt.md)
+        -   [ログ編集](/log-redaction.md)
     -   アップグレード
         -   [TiUPを使用する](/upgrade-tidb-using-tiup.md)
         -   [TiDB Operatorを使用する](https://docs.pingcap.com/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
@@ -179,7 +187,7 @@
             -   [バックアップストレージ](/br/backup-and-restore-storages.md)
         -   BR CLI マニュアル
             -   [概要](/br/use-br-command-line-tool.md)
-            -   [スナップショットのバックアップと復元のコマンドマニュアル](/br/br-snapshot-manual.md)
+            -   [スナップショットのバックアップと復元コマンドマニュアル](/br/br-snapshot-manual.md)
             -   [ログバックアップとPITRコマンドマニュアル](/br/br-pitr-manual.md)
         -   参考文献
             -   BR機能
@@ -191,7 +199,7 @@
             -   [RawKV のバックアップと復元](/br/rawkv-backup-and-restore.md)
             -   [増分バックアップと復元](/br/br-incremental-guide.md)
     -   クラスタ災害復旧 (DR)
-        -   [DR ソリューションの概要](/dr-solution-introduction.md)
+        -   [DRソリューションの概要](/dr-solution-introduction.md)
         -   [プライマリ-セカンダリ DR](/dr-secondary-cluster.md)
         -   [マルチレプリカクラスタDR](/dr-multi-replica.md)
         -   [BRベースのDR](/dr-backup-restore.md)
@@ -477,7 +485,7 @@
             -   データソースの管理
                 -   [移行するMySQLインスタンスを切り替える](/dm/usage-scenario-master-slave-switch.md)
             -   タスクの管理
-                -   [失敗したDDLステートメントの処理](/dm/handle-failed-ddl-statements.md)
+                -   [失敗したDDL文の処理](/dm/handle-failed-ddl-statements.md)
                 -   [移行するテーブルのスキーマを管理する](/dm/dm-manage-schema.md)
             -   [クラスターのデータソースとタスク構成のエクスポートとインポート](/dm/dm-export-import-config.md)
             -   [アラートを処理する](/dm/dm-handle-alerts.md)
@@ -648,6 +656,7 @@
         -   [TiFlash後期実体化](/tiflash/tiflash-late-materialization.md)
         -   [ディスクへのスピル](/tiflash/tiflash-spill-disk.md)
         -   [データ検証](/tiflash/tiflash-data-validation.md)
+        -   [MinTSO スケジューラ](/tiflash/tiflash-mintso-scheduler.md)
         -   [互換性](/tiflash/tiflash-compatibility.md)
         -   [パイプライン実行モデル](/tiflash/tiflash-pipeline-model.md)
     -   TiDB 分散実行フレームワーク (DXF)
@@ -679,13 +688,6 @@
         -   [TiFlash](/tiflash/monitor-tiflash.md)
         -   [ティCDC](/ticdc/monitor-ticdc.md)
         -   [リソース管理](/grafana-resource-control-dashboard.md)
-    -   Security
-        -   [TiDBクライアントとサーバー間のTLSを有効にする](/enable-tls-between-clients-and-servers.md)
-        -   [TiDB コンポーネント間の TLS を有効にする](/enable-tls-between-components.md)
-        -   [自己署名証明書を生成する](/generate-self-signed-certificates.md)
-        -   [保存時の暗号化](/encryption-at-rest.md)
-        -   [ディスク流出時の暗号化機能を有効にする](/enable-disk-spill-encrypt.md)
-        -   [ログ編集](/log-redaction.md)
     -   権限
         -   [MySQL とのSecurity互換性](/security-compatibility-with-mysql.md)
         -   [権限管理](/privilege-management.md)
@@ -1031,6 +1033,7 @@
     -   [TiDB バージョン管理](/releases/versioning.md)
     -   [TiDB インストール パッケージ](/binary-package.md)
     -   バージョン7.5
+        -   [7.5.4](/releases/release-7.5.4.md)
         -   [7.5.3](/releases/release-7.5.3.md)
         -   [7.5.2](/releases/release-7.5.2.md)
         -   [7.5.1](/releases/release-7.5.1.md)
