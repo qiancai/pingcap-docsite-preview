@@ -13,6 +13,7 @@ TiDB 版本：6.5.12
 
 ## 兼容性变更
 
+- 支持 openEuler 22.03 LTS SP3/SP4 操作系统。详情请参考[操作系统及平台要求](https://docs.pingcap.com/zh/tidb/v6.5/hardware-and-software-requirements#操作系统及平台要求)。
 - 通过 [TiDB HTTP API](https://github.com/pingcap/tidb/blob/release-6.5/docs/tidb_http_api.md) 获取 DDL 历史任务时，默认获取任务数量的上限为 2048，以避免历史任务数量过多导致 OOM 的问题 [#55711](https://github.com/pingcap/tidb/issues/55711) @[joccau](https://github.com/joccau)
 - 新增系统变量 [`tidb_ddl_reorg_max_write_speed`](https://docs.pingcap.com/zh/tidb/v6.5/system-variables#tidb_ddl_reorg_max_write_speed-从-v6512-版本开始引入)，用于限制加索引时 ingest 阶段速度的上限 [#57156](https://github.com/pingcap/tidb/issues/57156) @[CbcWestwolf](https://github.com/CbcWestwolf)
 
@@ -72,8 +73,6 @@ TiDB 版本：6.5.12
     - 修复添加唯一索引时可能遇到 `duplicate entry` 的问题 [#56161](https://github.com/pingcap/tidb/issues/56161) @[tangenta](https://github.com/tangenta)
     - 修复在某些类型转换出错的情况下报错信息不对的问题 [#41730](https://github.com/pingcap/tidb/issues/41730) @[hawkingrei](https://github.com/hawkingrei)
     - 修复 `VIEW` 中定义的 CTE 被错误 inline 的问题 [#56582](https://github.com/pingcap/tidb/issues/56582) @[elsa0520](https://github.com/elsa0520)
-    - 修复如果 CTE 包含 `ORDER BY`、`LIMIT`、`SELECT DISTINCT` 子句，并且被另外一个 CTE 的递归部分所引用时，可能被错误地 inline 导致执行报错的问题 [#56603](https://github.com/pingcap/tidb/issues/56603) @[elsa0520](https://github.com/elsa0520)
-    - 修复在 CTE 中解析数据库名时，返回错误的数据库名的问题 [#54582](https://github.com/pingcap/tidb/issues/54582) @[hawkingrei](https://github.com/hawkingrei)
     - 修复 `UPDATE` 语句更新 `ENUM` 类型的值时更新错误的问题 [#56832](https://github.com/pingcap/tidb/issues/56832) @[xhebox](https://github.com/xhebox)
     - 修复某些情况下在新增 `DATE` 类型的列后执行 `UPDATE` 语句报错 `Incorrect date value: '0000-00-00'` 的问题 [#59047](https://github.com/pingcap/tidb/issues/59047) @[mjonss](https://github.com/mjonss)
     - 修复在 Prepare 协议中，客户端使用非 UTF8 相关字符集报错的问题 [#58870](https://github.com/pingcap/tidb/issues/58870) @[xhebox](https://github.com/xhebox)
@@ -83,7 +82,6 @@ TiDB 版本：6.5.12
     - 修复当某些项的值为空时，查询慢日志可能失败的问题 [#58147](https://github.com/pingcap/tidb/issues/58147) @[yibin87](https://github.com/yibin87)
     - 修复 `RADIANS()` 函数计算顺序错误的问题 [#57671](https://github.com/pingcap/tidb/issues/57671) @[gengliqi](https://github.com/gengliqi)
     - 修复 `BIT` 列默认值错误的问题 [#57301](https://github.com/pingcap/tidb/issues/57301) @[YangKeao](https://github.com/YangKeao)
-    - 修复无法为带别名的多表删除进行绑定的问题 [#56726](https://github.com/pingcap/tidb/issues/56726) @[hawkingrei](https://github.com/hawkingrei)
     - 修复如果 CTE 包含 `ORDER BY`、`LIMIT` 或 `SELECT DISTINCT` 子句并且被另外一个 CTE 的递归部分引用，可能出现内联 (Inline) 错误 [#56603](https://github.com/pingcap/tidb/issues/56603) @[elsa0520](https://github.com/elsa0520)
     - 修复统计信息同步加载超时可能处理不正确的问题 [#57710](https://github.com/pingcap/tidb/issues/57710) @[hawkingrei](https://github.com/hawkingrei)
     - 修复在 CTE 中解析数据库名时，可能得到错误的数据库名的问题 [#54582](https://github.com/pingcap/tidb/issues/54582) @[hawkingrei](https://github.com/hawkingrei)
@@ -104,7 +102,7 @@ TiDB 版本：6.5.12
     - 修复 GC Worker 负载过高时可能出现的死锁问题 [#18214](https://github.com/tikv/tikv/issues/18214) @[zyguan](https://github.com/zyguan)
     - 修复 Grafana 上 TiKV 面板的 **Storage async write duration** 监控指标不准确的问题 [#17579](https://github.com/tikv/tikv/issues/17579) @[overvenus](https://github.com/overvenus)
     - 修复使用 `RADIANS()` 或 `DEGREES()` 函数时可能导致 TiKV panic 的问题 [#17852](https://github.com/tikv/tikv/issues/17852) @[gengliqi](https://github.com/gengliqi)
-    - 修复 TiKV 处理 destroyed peer 时可能遇到的 panic 的问题 [#17840](https://github.com/tikv/tikv/issues/17840) @[glorv](https://github.com/glorv))
+    - 修复 TiKV 处理 destroyed peer 时可能遇到的 panic 的问题 [#17840](https://github.com/tikv/tikv/issues/17840) @[glorv](https://github.com/glorv)
     - 修复 Region Split 后可能无法快速选出 Leader 的问题 [#17602](https://github.com/tikv/tikv/issues/17602) @[LykxSassinator](https://github.com/LykxSassinator)
     - 修复处理 GBK/GB18030 编码的数据时可能出现编码失败的问题 [#17618](https://github.com/tikv/tikv/issues/17618) @[CbcWestwolf](https://github.com/CbcWestwolf)
 
