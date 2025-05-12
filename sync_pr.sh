@@ -112,25 +112,26 @@ process_cloud_toc() {
 
 perform_sync_task() {
   generate_sync_tasks
-  # Perform sync tasks.
   for TASK in "${SYNC_TASKS[@]}"; do
-
     SRC_DIR="$REPO_DIR/$(echo "$TASK" | cut -d',' -f1)"
     DEST_DIR="markdown-pages/$(echo "$TASK" | cut -d',' -f2)/$DIR_SUFFIX"
     mkdir -p "$DEST_DIR"
-    # Only sync modified or added files.
+
     git -C "$SRC_DIR" diff --merge-base --name-only --diff-filter=AMR origin/"$BASE_BRANCH" --relative | tee /dev/fd/2 |
       rsync -av --files-from=- "$SRC_DIR" "$DEST_DIR"
 
     # Remove copyable strings.
     (cd "$DEST_DIR" && remove_copyable)
 
+    # Replace variables if variables.json exists
+    if [ -f "$REPO_DIR/variables.json" ]; then
+      node scripts/replace-variables.js "$DEST_DIR" "$REPO_DIR/variables.json"
+    fi
+
     if [[ "$IS_CLOUD" && -f "$DEST_DIR/TOC-tidb-cloud.md" ]]; then
       process_cloud_toc "$DEST_DIR"
     fi
-
   done
-
 }
 
 commit_changes() {
