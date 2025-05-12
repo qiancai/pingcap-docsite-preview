@@ -13,7 +13,7 @@ The full-text search feature in TiDB provides the following capabilities:
 
 - **Support for multiple languages**: no need to specify the language for high-quality search. The text analyzer in TiDB supports documents in multiple languages mixed in the same table and automatically chooses the best analyzer for each document.
 
-- **Order by relevance**: The search result can be ordered by relevance using the widely adopted [BM25 ranking](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm.
+- **Order by relevance**: the search result can be ordered by relevance using the widely adopted [BM25 ranking](https://en.wikipedia.org/wiki/Okapi_BM25) algorithm.
 
 - **Fully compatible with SQL**: all SQL features, such as pre-filtering, post-filtering, grouping, and joining, can be used with full-text search.
 
@@ -33,7 +33,7 @@ To complete this tutorial, make sure you have a TiDB Cloud Serverless cluster in
 
 ## Get started
 
-### Step 1. Install [pytidb](https://github.com/pingcap/pytidb) Python SDK
+### Step 1. Install the [pytidb](https://github.com/pingcap/pytidb) Python SDK
 
 [pytidb](https://github.com/pingcap/pytidb) is the official Python SDK for TiDB, designed to help developers build AI applications efficiently. It includes built-in support for vector search and full-text search.
 
@@ -42,10 +42,10 @@ To install the SDK, run the following command:
 ```shell
 pip install pytidb
 
-# To use the built-in embedding functions and rerankers:
+# (Alternative) To use the built-in embedding functions and rerankers:
 # pip install "pytidb[models]"
 
-# To convert query results into pandas DataFrames:
+# (Optional) To convert query results into pandas DataFrames:
 # pip install pandas
 ```
 
@@ -146,7 +146,7 @@ df = (
 # 1   2  the quick brown        2
 ```
 
-For a complete example, see [PyTiDB full-text search demo](https://github.com/pingcap/pytidb/blob/main/examples/fulltext_search).
+For a complete example, see [pytidb full-text search demo](https://github.com/pingcap/pytidb/blob/main/examples/fulltext_search).
 
 ## See also
 
