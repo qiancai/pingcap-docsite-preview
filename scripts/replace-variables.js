@@ -7,13 +7,16 @@ function getValueByPath(obj, pathStr) {
   return pathStr.split(".").reduce((acc, key) => (acc ? acc[key] : ""), obj) ?? "";
 }
 
-const variablePattern = /{{\s*\.(.+?)\s*}}/g;
+const variablePattern = /{{{\s*\.(.+?)\s*}}}/g;
 
 function replaceVariablesInFile(filePath, variables) {
   let content = fs.readFileSync(filePath, "utf-8");
   content = content.replace(variablePattern, (_, path) => {
     const value = getValueByPath(variables, path.trim());
-    return String(value);
+    if (value) {
+      return String(value);
+      }
+    return match;
   });
   fs.writeFileSync(filePath, content, "utf-8");
 }
