@@ -1,6 +1,7 @@
 ---
 title: Set Up Self-Hosted Kafka Private Service Connect in Google Cloud
 summary: This document explains how to set up Private Service Connect for self-hosted Kafka in Google Cloud and how to make it work with TiDB Cloud.
+aliases: ['/tidbcloud/setup-self-hosted-kafka-private-service-connect']
 ---
 
 # Set Up Self-Hosted Kafka Private Service Connect in Google Cloud
@@ -40,7 +41,7 @@ The document provides an example of connecting to a Kafka Private Service Connec
     1. In the [TiDB Cloud console](https://tidbcloud.com), navigate to the cluster overview page of the TiDB cluster, and then click **Changefeed** in the left navigation pane.
     2. On the overview page, find the region of the TiDB cluster. Ensure that your Kafka cluster will be deployed to the same region.
     3. Click **Create Changefeed**.
-        1. In **Target Type**, select **Kafka**.
+        1. In **Destination**, select **Kafka**.
         2. In **Connectivity Method**, select **Private Service Connect**.
     4. Note down the Google Cloud project in **Reminders before proceeding**. You will use it to authorize the auto-accept endpoint creation request from TiDB Cloud.
     5. Note down the **Zones of TiDB Cluster**. You will deploy your TiDB cluster in these zones. It is recommended that you deploy Kafka in these zones to reduce cross-zone traffic.
