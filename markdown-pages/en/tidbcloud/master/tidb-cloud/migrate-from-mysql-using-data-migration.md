@@ -18,7 +18,7 @@ If you only want to replicate ongoing binlog changes from your MySQL-compatible 
 
 - The Data Migration feature is available only for **TiDB Cloud Dedicated** clusters.
 
-- The Data Migration feature is only available to clusters that are created in [certain regions](https://www.pingcap.com/tidb-cloud-pricing-details/#dm-cost) after November 9, 2022. If your **project** was created before the date or if your cluster is in another region, this feature is not available to your cluster, and the **Data Migration** tab will not be displayed on the cluster overview page in the TiDB Cloud console.
+- If you don't see the [Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md#step-1-go-to-the-data-migration-page) entry for your TiDB Cloud Dedicated cluster in the [TiDB Cloud console](https://tidbcloud.com/), the feature might not be available in your region. To request support for your region, contact [TiDB Cloud Support](/tidb-cloud/tidb-cloud-support.md).
 
 - Amazon Aurora MySQL writer instances support both existing data and incremental data migration. Amazon Aurora MySQL reader instances only support existing data migration and do not support incremental data migration.
 
@@ -28,7 +28,7 @@ You can create up to 200 migration jobs for each organization. To create more mi
 
 ### Filtered out and deleted databases
 
-- The system databases will be filtered out and not migrated to TiDB Cloud even if you select all of the databases to migrate. That is, `mysql`, `information_schema`, `information_schema`, and `sys` will not be migrated using this feature.
+- The system databases will be filtered out and not migrated to TiDB Cloud even if you select all of the databases to migrate. That is, `mysql`, `information_schema`, `performance_schema`, and `sys` will not be migrated using this feature.
 
 - When you delete a cluster in TiDB Cloud, all migration jobs in that cluster are automatically deleted and not recoverable.
 
@@ -40,9 +40,9 @@ You can create up to 200 migration jobs for each organization. To create more mi
 
 ### Limitations of incremental data migration
 
-- During incremental data migration, if the table to be migrated already exists in the target database with duplicated keys, an error is reported and the migration is interrupted. In this situation, you need to make sure whether the MySQL source data is accurate. If yes, click the "Restart" button of the migration job, and the migration job will replace the target TiDB Cloud cluster's conflicting records with the MySQL source records.
+- During incremental data migration, if the table to be migrated already exists in the target database with duplicate keys, an error is reported and the migration is interrupted. In this situation, you need to make sure whether the MySQL source data is accurate. If yes, click the "Restart" button of the migration job, and the migration job will replace the target TiDB Cloud cluster's conflicting records with the MySQL source records.
 
-- During incremental replication (migrating ongoing changes to your cluster), if the migration job recovers from an abrupt error, it might open the safe mode for 60 seconds. During the safe mode, `INSERT` statements are migrated as `REPLACE`, `UPDATE` statements as `DELETE` and `REPLACE`, and then these transactions are migrated to the target TiDB Cloud cluster to make sure that all the data during the abrupt error has been migrated smoothly to the target TiDB Cloud cluster. In this scenario, for MySQL source tables without primary keys or not-null unique indexes, some data might be duplicated in the target TiDB Cloud cluster because the data might be inserted repeatedly into the target TiDB Cloud cluster.
+- During incremental replication (migrating ongoing changes to your cluster), if the migration job recovers from an abrupt error, it might open the safe mode for 60 seconds. During the safe mode, `INSERT` statements are migrated as `REPLACE`, `UPDATE` statements as `DELETE` and `REPLACE`, and then these transactions are migrated to the target TiDB Cloud cluster to make sure that all the data during the abrupt error has been migrated smoothly to the target TiDB Cloud cluster. In this scenario, for MySQL source tables without primary keys or non-null unique indexes, some data might be duplicated in the target TiDB Cloud cluster because the data might be inserted repeatedly into the target TiDB Cloud cluster.
 
 - In the following scenarios, if the migration job takes longer than 24 hours, do not purge binary logs in the source database to ensure that Data Migration can get consecutive binary logs for incremental replication:
 
@@ -81,7 +81,7 @@ To continuously replicate incremental changes from the source MySQL-compatible d
 To check the current configurations, connect to the source MySQL instance and execute the following statement:
 
 ```sql
-SHOW VARIABLES WHERE Variable_name IN 
+SHOW VARIABLES WHERE Variable_name IN
 ('log_bin','server_id','binlog_format','binlog_row_image',
 'binlog_expire_logs_seconds','expire_logs_days');
 ```
@@ -104,7 +104,7 @@ If necessary, change the source MySQL instance configurations to match the requi
 2. Restart the MySQL service to apply the changes:
 
     ```
-    sudo systemctl restart mysqld`
+    sudo systemctl restart mysqld
     ```
 
 3. Run the `SHOW VARIABLES` statement again to verify that the settings take effect.
@@ -129,6 +129,7 @@ For detailed instructions, see [Working with DB Parameter Groups](https://docs.a
 <summary> Configure Azure Database for MySQL - Flexible Server </summary>
 
 1. In the [Azure portal](https://portal.azure.com/), search for and select **Azure Database for MySQL servers**, click your instance name, and then click **Setting** > **Server parameters** in the left navigation pane.
+
 2. Search for each parameter and update its value.
 
     Most changes take effect without a restart. If a restart is required, you will get a prompt from the portal.
@@ -183,7 +184,7 @@ Regardless of the connection method, it is strongly recommended to use TLS/SSL f
 When using public endpoints, you can verify network connectivity and access both now and later during the DM job creation process. TiDB Cloud will provide specific egress IP addresses and prompt instructions at that time.
 
 1. Identify and record the source MySQL instance's endpoint hostname (FQDN) or public IP address.
-2. Ensure you have the required permissions to modify the firewall or security group rules for your database. Refer to your cloud provider’s documentation for guidance as follows:
+2. Ensure you have the required permissions to modify the firewall or security group rules for your database. Refer to your cloud provider's documentation for guidance as follows:
 
     - Amazon Aurora MySQL or Amazon RDS MySQL: [Controlling access with security groups](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/Overview.RDSSecurityGroups.html).
     - Azure Database for MySQL - Flexible Server: [Public Network Access](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/concepts-networking-public)
@@ -326,6 +327,7 @@ For production workloads, it is recommended to have a dedicated user for replica
 | `ALTER`  | Tables | Modifies table definitions when schema changes |
 | `DROP`   | Databases, Tables | Removes objects during schema sync |
 | `INDEX`  | Tables | Creates and modifies indexes |
+| `CREATE VIEW`  | View | Create views used by migration |
 
 For example, you can execute the following `GRANT` statement in your target TiDB Cloud cluster to grant corresponding privileges:
 
@@ -353,47 +355,52 @@ On the **Create Migration Job** page, configure the source and target connection
 
 2. Fill in the source connection profile.
 
-   - **Data source**: the data source type.
-   - **Connectivity method**: select a connection method for your data source based on your security requirements and cloud provider:
-      - **Public IP**: available for all cloud providers (recommended for testing and proof-of-concept migrations).
-      - **Private Link**: available for AWS and Azure only (recommended for production workloads requiring private connectivity).
-      - **VPC Peering**: available for AWS and Google Cloud only (recommended for production workloads needing low-latency, intra-region connections with non-overlapping VPC/VNet CIDRs).
-   - Based on the selected **Connectivity method**, do the following:
-      - If **Public IP** or **VPC Peering** is selected, fill in the **Hostname or IP address** field with the hostname or IP address of the data source.
-      - If **Private Link** is selected, fill in the following information:
-         - **Endpoint Service Name** (available if **Data source** is from AWS): enter the VPC endpoint service name (format: `com.amazonaws.vpce-svc-xxxxxxxxxxxxxxxxx`) that you created for your RDS or Aurora instance.
-         - **Private Endpoint Resource ID** (available if **Data source** is from Azure): enter the resource ID of your MySQL Flexible Server instance (format: `/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.DBforMySQL/flexibleServers/<server>`).
-   - **Port**: the port of the data source.
-   - **User Name**: the username of the data source.
-   - **Password**: the password of the username.
-   - **SSL/TLS**: enable SSL/TLS for end-to-end data encryption (highly recommended for all migration jobs). Upload the appropriate certificates based on your MySQL server's SSL configuration.
+    - **Data source**: the data source type.
+    - **Connectivity method**: select a connection method for your data source based on your security requirements and cloud provider:
+        - **Public IP**: available for all cloud providers (recommended for testing and proof-of-concept migrations).
+        - **Private Link**: available for AWS and Azure only (recommended for production workloads requiring private connectivity).
+        - **VPC Peering**: available for AWS and Google Cloud only (recommended for production workloads needing low-latency, intra-region connections with non-overlapping VPC/VNet CIDRs).
+    - Based on the selected **Connectivity method**, do the following:
+        - If **Public IP** or **VPC Peering** is selected, fill in the **Hostname or IP address** field with the hostname or IP address of the data source.
+        - If **Private Link** is selected, fill in the following information:
+            - **Endpoint Service Name** (available if **Data source** is from AWS): enter the VPC endpoint service name (format: `com.amazonaws.vpce-svc-xxxxxxxxxxxxxxxxx`) that you created for your RDS or Aurora instance.
+            - **Private Endpoint Resource ID** (available if **Data source** is from Azure): enter the resource ID of your MySQL Flexible Server instance (format: `/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.DBforMySQL/flexibleServers/<server>`).
+    - **Port**: the port of the data source.
+    - **User Name**: the username of the data source.
+    - **Password**: the password of the username.
+    - **SSL/TLS**: enable SSL/TLS for end-to-end data encryption (highly recommended for all migration jobs). Upload the appropriate certificates based on your MySQL server's SSL configuration.
+
         <details>
         <summary> SSL/TLS configuration options </summary>
 
-        - **Option 1: Server authentication only**
-            - if your MySQL server is configured for server authentication only, upload only the **CA Certificate**.
-            - In this option, the MySQL server presents its certificate to prove its identity, and TiDB Cloud verifies the server certificate against the CA.
-            - The CA certificate protects against man-in-the-middle attacks and is required if the MySQL server is started with `require_secure_transport = ON`.
-        - **Option 2: Client certificate authentication**
-            - if your MySQL server is configured for client certificate authentication, upload **Client Certificate** and  **Client private key**.
-            - In this option, TiDB Cloud presents its certificate to the MySQL server for authentication, but TiDB Cloud does not verify the MySQL server's certificate.
-            - This option is typically used when the MySQL server is configured with options such as `REQUIRE SUBJECT '...'` or `REQUIRE ISSUER '...'` without `REQUIRE X509`, allowing it to check specific attributes of the client certificate without full CA validation of that client cert.
-            - This option is often used when the MySQL server accepts client certificates in self-signed or custom PKI environments. Note that this configuration is vulnerable to man-in-the-middle attacks and is not recommended for production environments unless other network-level controls guarantee server authenticity.
-        - **Option 3: Mutual TLS (mTLS) - highest security**
-            - if your MySQL server is configured for mutual TLS (mTLS) authentication, upload **CA Certificate**, **Client Certificate**, and **Client private key**.
-            - In this option, the MySQL server verifies TiDB Cloud's identity using the client certificate, and TiDB Cloud verifies MySQL server's identity using the CA certificate.
-            - This option is required when the MySQL server has `REQUIRE X509` or `REQUIRE SSL` configured for the migration user.
-            - This option is used when the MySQL server requires client certificates for authentication.
-            - You can get the certificates from the following sources:
-                - Download from your cloud provider (see [TLS certificate links](#end-to-end-encryption-over-tlsssl)).
-                - Use your organization's internal CA certificates.
-                - Self-signed certificates (for development/testing only).
+        **Option 1: Server authentication only**
+
+        - If your MySQL server is configured for server authentication only, upload only the **CA Certificate**.
+        - In this option, the MySQL server presents its certificate to prove its identity, and TiDB Cloud verifies the server certificate against the CA.
+        - The CA certificate protects against man-in-the-middle attacks and is required if the MySQL server is started with `require_secure_transport = ON`.
+
+        **Option 2: Client certificate authentication**
+
+        - If your MySQL server is configured for client certificate authentication, upload **Client Certificate** and  **Client private key**.
+        - In this option, TiDB Cloud presents its certificate to the MySQL server for authentication, but TiDB Cloud does not verify the MySQL server's certificate.
+        - This option is typically used when the MySQL server is configured with options such as `REQUIRE SUBJECT '...'` or `REQUIRE ISSUER '...'` without `REQUIRE X509`, allowing it to check specific attributes of the client certificate without full CA validation of that client certificate.
+        - This option is often used when the MySQL server accepts client certificates in self-signed or custom PKI environments. Note that this configuration is vulnerable to man-in-the-middle attacks and is not recommended for production environments unless other network-level controls guarantee server authenticity.
+
+        **Option 3: Mutual TLS (mTLS) - highest security**
+
+        - If your MySQL server is configured for mutual TLS (mTLS) authentication, upload **CA Certificate**, **Client Certificate**, and **Client private key**.
+        - In this option, the MySQL server verifies TiDB Cloud's identity using the client certificate, and TiDB Cloud verifies MySQL server's identity using the CA certificate.
+        - This option is required when the MySQL server has `REQUIRE X509` or `REQUIRE SSL` configured for the migration user.
+        - This option is used when the MySQL server requires client certificates for authentication.
+
+        You can get the certificates from the following sources: download from your cloud provider (see [TLS certificate links](#end-to-end-encryption-over-tlsssl)), use your organization's internal CA certificates, or self-signed certificates (for development/testing only).
+
         </details>
 
 3. Fill in the target connection profile.
 
-   - **User Name**: enter the username of the target cluster in TiDB Cloud.
-   - **Password**: enter the password of the TiDB Cloud username.
+    - **User Name**: enter the username of the target cluster in TiDB Cloud.
+    - **Password**: enter the password of the TiDB Cloud username.
 
 4. Click **Validate Connection and Next** to validate the information you have entered.
 
