@@ -11,7 +11,7 @@ TiDB Cloud changefeed helps you stream data from TiDB Cloud to other data servic
 >
 > - Currently, TiDB Cloud only allows up to 100 changefeeds per cluster.
 > - Currently, TiDB Cloud only allows up to 100 table filter rules per changefeed.
-> - For [TiDB Cloud Serverless clusters](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless), the changefeed feature is unavailable.
+> - For [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) and [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) clusters, the changefeed feature is unavailable.
 
 ## View the Changefeed page
 
@@ -93,7 +93,7 @@ To learn the billing for changefeeds in TiDB Cloud, see [Changefeed billing](/ti
 
 ## Changefeed states
 
-The state of a replication task represents the running state of the replication task. During the running process, replication tasks might fail with errors, be manually paused, resumed, or reach the specified `TargetTs`. These behaviors can lead to changes of the replication task state.
+The state of a replication task represents the running state of the replication task. During the running process, replication tasks might fail with errors, or be manually paused or resumed. These behaviors can lead to changes of the replication task state.
 
 The states are described as follows:
 

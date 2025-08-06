@@ -1,9 +1,9 @@
 ---
-title: Database Audit Logging
+title: TiDB Cloud Dedicated Database Audit Logging
 summary: Learn about how to audit a cluster in TiDB Cloud.
 ---
 
-# Database Audit Logging
+# TiDB Cloud Dedicated Database Audit Logging
 
 TiDB Cloud provides you with a database audit logging feature to record a history of user access details (such as any SQL statements executed) in logs.
 
@@ -21,7 +21,7 @@ The audit logging feature is disabled by default. To audit a cluster, you need t
 
 ## Prerequisites
 
-- You are using a TiDB Cloud Dedicated cluster. Audit logging is not available for TiDB Cloud Serverless clusters.
+- You are using a TiDB Cloud Dedicated cluster. Audit logging is not available for TiDB Cloud Starter or TiDB Cloud Essential clusters.
 - You are in the `Organization Owner` or `Project Owner` role of your organization. Otherwise, you cannot see the database audit-related options in the TiDB Cloud console. For more information, see [User roles](/tidb-cloud/manage-user-access.md#user-roles).
 
 ## Enable audit logging

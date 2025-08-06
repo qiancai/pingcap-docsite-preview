@@ -24,7 +24,7 @@ TiDB Cloud has supported New Relic integration (Beta) since April 11, 2023. Star
 
 ## Limitation
 
-- You cannot use the New Relic integration in [TiDB Cloud Serverless clusters](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless).
+- You cannot use the New Relic integration in [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) or [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) clusters.
 
 - New Relic integrations are not available when the cluster status is **CREATING**, **RESTORING**, **PAUSED**, or **RESUMING**.
 
@@ -83,7 +83,7 @@ A new TiDB Cloud dashboard will be available in New Relic after the pending [PR]
 
         ```json
         {
-          "name": "TiDB Cloud Monitoring (new metric development)",
+          "name": "TiDB Cloud Dynamic Tracker",
           "description": null,
           "permissions": "PUBLIC_READ_WRITE",
           ...

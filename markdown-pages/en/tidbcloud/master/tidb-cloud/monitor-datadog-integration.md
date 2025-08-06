@@ -24,9 +24,9 @@ TiDB Cloud has supported Datadog integration (Beta) since March 04, 2022. Starti
 
 ## Limitation
 
-- You cannot use the Datadog integration in [TiDB Cloud Serverless](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) clusters.
+- You cannot use the Datadog integration in [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) or [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) clusters.
 
-- Datadog integrations are not available when the cluster status is **CREATING**, **RESTORING**, **PAUSED**, or **RESUMING**. For clusters that were previously configured with metrics integrations, the associated integration services will be discontinued once the cluster is deleted.
+- Datadog integrations are not available when the cluster status is **CREATING**, **RESTORING**, **PAUSED**, or **RESUMING**.
 
 - When a cluster with Datadog integration is deleted, its associated integration services are also removed.
 
@@ -98,7 +98,7 @@ A new TiDB Cloud dashboard will be available in Datadog after the pending [PR](h
 2. Depending on your [Datadog integration version](#datadog-integration-version), do one of the following:
 
     - For Datadog integration (Beta), click the **Dashboard** link in the **Datadog** section.
-    - For Datadog integration (Preview), click the **Dashboard** link in the **Datadog** section, and then click **TiDB Cloud Dynamic Tracker** to view the new dashboard with complete metrics.
+    - For Datadog integration (Preview), click the **Dashboard** link in the **Datadog** section, click **Dashboard** in the left navigation pane of the opened page, and then click **TiDB Cloud Dynamic Tracker** to view the new dashboard with complete metrics.
 
    >**Note:**
    >
@@ -145,6 +145,6 @@ For Datadog integration (Preview), the following additional metrics are also ava
 | tidbcloud.resource_manager_resource_unit_read_request_unit | gauge | cluster_name: `<cluster name>`<br/>resource_group: `<group-name>` | The read request units (RUs) consumed by Resource Manager. |
 | tidbcloud.resource_manager_resource_unit_write_request_unit | gauge | cluster_name: `<cluster name>`<br/>resource_group: `<group-name>` | The write request units (RUs) consumed by Resource Manager. |
 | tidb_cloud.dm_task_state | gauge | instance: `instance`<br/>task: `task`<br/>cluster_name: `<cluster name>` | Task State of Data Migration:<br/>0: Invalid<br/>1: New<br/>2: Running<br/>3: Paused<br/>4: Stopped<br/>5: Finished<br/>15: Error |
-| tidb_cloud.dm_syncer_replication_lag_bucket | gauge | instance: `instance`<br/>cluster_name: `<cluster name>` | Replicate lag(bucket) of Data Migration |
+| tidb_cloud.dm_syncer_replication_lag_bucket | gauge | instance: `instance`<br/>cluster_name: `<cluster name>` | Replicate lag (bucket) of Data Migration. |
 | tidb_cloud.dm_syncer_replication_lag_gauge | gauge | instance: `instance`<br/>task: `task`<br/>cluster_name: `<cluster name>` | Replicate lag (gauge) of Data Migration. |
 | tidb_cloud.dm_relay_read_error_count | gauge | instance: `instance`<br/>cluster_name: `<cluster name>` | Fail to read binlog from master. |

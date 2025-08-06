@@ -8,7 +8,7 @@ aliases: ['/tidb-cloud/config-s3-and-gcs-access']
 
 If your source data is stored in Amazon S3 buckets, Azure Blob Storage containers, or Google Cloud Storage (GCS) buckets, before importing or migrating the data to TiDB Cloud, you need to configure cross-account access to the buckets. This document describes how to do this for TiDB Cloud Dedicated clusters.
 
-If you need to configure these external storages for TiDB Cloud Serverless clusters, see [Configure External Storage Access for TiDB Cloud Serverless](/tidb-cloud/serverless-external-storage.md).
+If you need to configure these external storages for TiDB Cloud Starter or TiDB Cloud Essential clusters, see [Configure External Storage Access for TiDB Cloud Starter or Essential](/tidb-cloud/serverless-external-storage.md).
 
 ## Configure Amazon S3 access
 
@@ -68,8 +68,7 @@ Configure the bucket access for TiDB Cloud and get the Role ARN as follows:
                     "Sid": "VisualEditor1",
                     "Effect": "Allow",
                     "Action": [
-                        "s3:ListBucket",
-                        "s3:GetBucketLocation"
+                        "s3:ListBucket"
                     ],
                     "Resource": "<Your S3 bucket ARN>"
                 }
