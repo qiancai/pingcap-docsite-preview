@@ -23,7 +23,6 @@
   - [Scalability](/tidb-cloud/scalability-concepts.md)
   - [High Availability](/tidb-cloud/serverless-high-availability.md)
   - [Monitoring](/tidb-cloud/monitoring-concepts.md)
-  - [Data Streaming](/tidb-cloud/data-streaming-concepts.md)
   - [Backup & Restore](/tidb-cloud/backup-and-restore-concepts.md)
   - [Security](/tidb-cloud/security-concepts.md)
 
@@ -130,7 +129,7 @@
 ## GUIDES
 
 - Manage Cluster
-  - [Select Your Cluster Tier](/tidb-cloud/select-cluster-tier.md)
+  - [Select Your Cluster Plan](/tidb-cloud/select-cluster-tier.md)
   - Manage TiDB Cloud Clusters
     - [Create a TiDB Cloud Cluster](/tidb-cloud/create-tidb-cluster-serverless.md)
     - Connect to Your TiDB Cloud Cluster
