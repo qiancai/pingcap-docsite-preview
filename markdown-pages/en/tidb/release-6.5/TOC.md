@@ -165,6 +165,7 @@
   - Upgrade
     - [Use TiUP](/upgrade-tidb-using-tiup.md)
     - [Use TiDB Operator](https://docs.pingcap.com/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
+    - [Migrate and Upgrade a TiDB Cluster](/tidb-upgrade-migration-guide.md)
     - [TiFlash v6.2.0 Upgrade Guide](/tiflash-620-upgrade-guide.md)
   - Scale
     - [Use TiUP (Recommended)](/scale-tidb-using-tiup.md)
@@ -566,6 +567,7 @@
       - [Alert Rules](/ticdc/ticdc-alert-rules.md)
     - Reference
       - [Architecture](/ticdc/ticdc-architecture.md)
+      - [TiCDC Data Replication Capabilities](/ticdc/ticdc-data-replication-capabilities.md)
       - [TiCDC Server Configurations](/ticdc/ticdc-server-config.md)
       - [TiCDC Changefeed Configurations](/ticdc/ticdc-changefeed-config.md)
       - Output Protocols
@@ -980,6 +982,7 @@
   - [TiDB Versioning](/releases/versioning.md)
   - [TiDB Installation Packages](/binary-package.md)
   - v6.5
+    - [6.5.12](/releases/release-6.5.12.md)
     - [6.5.11](/releases/release-6.5.11.md)
     - [6.5.10](/releases/release-6.5.10.md)
     - [6.5.9](/releases/release-6.5.9.md)

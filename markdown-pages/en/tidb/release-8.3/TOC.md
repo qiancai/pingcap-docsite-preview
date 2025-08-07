@@ -170,6 +170,7 @@
     - [Use TiUP](/upgrade-tidb-using-tiup.md)
     - [Use TiDB Operator](https://docs.pingcap.com/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
     - [TiDB Smooth Upgrade](/smooth-upgrade-tidb.md)
+    - [Migrate and Upgrade a TiDB Cluster](/tidb-upgrade-migration-guide.md)
     - [TiFlash Upgrade Guide](/tiflash-upgrade-guide.md)
   - Scale
     - [Use TiUP (Recommended)](/scale-tidb-using-tiup.md)
@@ -217,6 +218,37 @@
   - [Monitoring API](/tidb-monitoring-api.md)
   - [Deploy Monitoring Services](/deploy-monitoring-services.md)
   - [Upgrade Monitoring Services](/upgrade-monitoring-services.md)
+  - TiDB Dashboard
+    - [Overview](/dashboard/dashboard-intro.md)
+    - Maintain
+      - [Deploy](/dashboard/dashboard-ops-deploy.md)
+      - [Reverse Proxy](/dashboard/dashboard-ops-reverse-proxy.md)
+      - [User Management](/dashboard/dashboard-user.md)
+      - [Secure](/dashboard/dashboard-ops-security.md)
+    - [Access](/dashboard/dashboard-access.md)
+    - [Overview Page](/dashboard/dashboard-overview.md)
+    - [Cluster Info Page](/dashboard/dashboard-cluster-info.md)
+    - [Top SQL Page](/dashboard/top-sql.md)
+    - [Key Visualizer Page](/dashboard/dashboard-key-visualizer.md)
+    - [Metrics Relation Graph](/dashboard/dashboard-metrics-relation.md)
+    - SQL Statements Analysis
+      - [SQL Statements Page](/dashboard/dashboard-statement-list.md)
+      - [SQL Details Page](/dashboard/dashboard-statement-details.md)
+    - [Slow Queries Page](/dashboard/dashboard-slow-query.md)
+    - Cluster Diagnostics
+      - [Access Cluster Diagnostics Page](/dashboard/dashboard-diagnostics-access.md)
+      - [View Diagnostics Report](/dashboard/dashboard-diagnostics-report.md)
+      - [Use Diagnostics](/dashboard/dashboard-diagnostics-usage.md)
+    - [Monitoring Page](/dashboard/dashboard-monitoring.md)
+    - [Search Logs Page](/dashboard/dashboard-log-search.md)
+    - [Resource Manager Page](/dashboard/dashboard-resource-manager.md)
+    - Instance Profiling
+      - [Manual Profiling](/dashboard/dashboard-profiling.md)
+      - [Continuous Profiling](/dashboard/continuous-profiling.md)
+    - Session Management and Configuration
+      - [Share Session](/dashboard/dashboard-session-share.md)
+      - [Configure SSO](/dashboard/dashboard-session-sso.md)
+    - [FAQ](/dashboard/dashboard-faq.md)
   - [Export Grafana Snapshots](/exporting-grafana-snapshots.md)
   - [TiDB Cluster Alert Rules](/alert-rules.md)
   - [TiFlash Alert Rules](/tiflash/tiflash-alert-rules.md)
@@ -249,11 +281,13 @@
 - Performance Tuning
   - Tuning Guide
     - [Performance Tuning Overview](/performance-tuning-overview.md)
-    - [Performance Analysis and Tuning](/performance-tuning-methods.md)
-    - [Performance Tuning Practices for OLTP Scenarios](/performance-tuning-practices.md)
-    - [TiFlash Performance Analysis Methods](/tiflash-performance-tuning-methods.md)
-    - [TiCDC Performance Analysis Methods](/ticdc-performance-tuning-methods.md)
-    - [Latency Breakdown](/latency-breakdown.md)
+    - [A Practical Guide for SQL Tuning](/sql-tuning-best-practice.md)
+    - Tuning by Metrics
+      - [Performance Analysis and Tuning](/performance-tuning-methods.md)
+      - [Performance Tuning Practices for OLTP Scenarios](/performance-tuning-practices.md)
+      - [TiFlash Performance Analysis Methods](/tiflash-performance-tuning-methods.md)
+      - [TiCDC Performance Analysis Methods](/ticdc-performance-tuning-methods.md)
+      - [Latency Breakdown](/latency-breakdown.md)
     - [TiDB Best Practices on Public Cloud](/best-practices-on-public-cloud.md)
   - Configuration Tuning
     - [Tune Operating System Performance](/tune-operating-system.md)
@@ -1020,38 +1054,6 @@
         - [`schema_unused_indexes`](/sys-schema/sys-schema-unused-indexes.md)
     - [Metadata Lock](/metadata-lock.md)
     - [TiDB Accelerated Table Creation](/accelerated-table-creation.md)
-  - UI
-    - TiDB Dashboard
-      - [Overview](/dashboard/dashboard-intro.md)
-      - Maintain
-        - [Deploy](/dashboard/dashboard-ops-deploy.md)
-        - [Reverse Proxy](/dashboard/dashboard-ops-reverse-proxy.md)
-        - [User Management](/dashboard/dashboard-user.md)
-        - [Secure](/dashboard/dashboard-ops-security.md)
-      - [Access](/dashboard/dashboard-access.md)
-      - [Overview Page](/dashboard/dashboard-overview.md)
-      - [Cluster Info Page](/dashboard/dashboard-cluster-info.md)
-      - [Top SQL Page](/dashboard/top-sql.md)
-      - [Key Visualizer Page](/dashboard/dashboard-key-visualizer.md)
-      - [Metrics Relation Graph](/dashboard/dashboard-metrics-relation.md)
-      - SQL Statements Analysis
-        - [SQL Statements Page](/dashboard/dashboard-statement-list.md)
-        - [SQL Details Page](/dashboard/dashboard-statement-details.md)
-      - [Slow Queries Page](/dashboard/dashboard-slow-query.md)
-      - Cluster Diagnostics
-        - [Access Cluster Diagnostics Page](/dashboard/dashboard-diagnostics-access.md)
-        - [View Diagnostics Report](/dashboard/dashboard-diagnostics-report.md)
-        - [Use Diagnostics](/dashboard/dashboard-diagnostics-usage.md)
-      - [Monitoring Page](/dashboard/dashboard-monitoring.md)
-      - [Search Logs Page](/dashboard/dashboard-log-search.md)
-      - [Resource Manager Page](/dashboard/dashboard-resource-manager.md)
-      - Instance Profiling
-        - [Manual Profiling](/dashboard/dashboard-profiling.md)
-        - [Continuous Profiling](/dashboard/continuous-profiling.md)
-      - Session Management and Configuration
-        - [Share Session](/dashboard/dashboard-session-share.md)
-        - [Configure SSO](/dashboard/dashboard-session-sso.md)
-      - [FAQ](/dashboard/dashboard-faq.md)
   - [Telemetry](/telemetry.md)
   - [Error Codes](/error-codes.md)
   - [Table Filter](/table-filter.md)
@@ -1087,6 +1089,7 @@
   - v7.6
     - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
+    - [7.5.6](/releases/release-7.5.6.md)
     - [7.5.5](/releases/release-7.5.5.md)
     - [7.5.4](/releases/release-7.5.4.md)
     - [7.5.3](/releases/release-7.5.3.md)
@@ -1112,6 +1115,7 @@
   - v6.6
     - [6.6.0-DMR](/releases/release-6.6.0.md)
   - v6.5
+    - [6.5.12](/releases/release-6.5.12.md)
     - [6.5.11](/releases/release-6.5.11.md)
     - [6.5.10](/releases/release-6.5.10.md)
     - [6.5.9](/releases/release-6.5.9.md)

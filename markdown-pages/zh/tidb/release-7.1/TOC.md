@@ -162,6 +162,7 @@
     - [使用 TiUP 升级](/upgrade-tidb-using-tiup.md)
     - [使用 TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
     - [平滑升级 TiDB](/smooth-upgrade-tidb.md)
+    - [迁移升级 TiDB](/tidb-upgrade-migration-guide.md)
     - [TiFlash v6.2 升级帮助](/tiflash-620-upgrade-guide.md)
   - 扩缩容
     - [使用 TiUP（推荐）](/scale-tidb-using-tiup.md)
@@ -209,6 +210,37 @@
   - [监控 API](/tidb-monitoring-api.md)
   - [手动部署监控](/deploy-monitoring-services.md)
   - [升级监控组件](/upgrade-monitoring-services.md)
+  - TiDB Dashboard
+    - [简介](/dashboard/dashboard-intro.md)
+    - 运维
+      - [部署](/dashboard/dashboard-ops-deploy.md)
+      - [反向代理](/dashboard/dashboard-ops-reverse-proxy.md)
+      - [用户管理](/dashboard/dashboard-user.md)
+      - [安全](/dashboard/dashboard-ops-security.md)
+    - [访问](/dashboard/dashboard-access.md)
+    - [概况页面](/dashboard/dashboard-overview.md)
+    - [集群信息页面](/dashboard/dashboard-cluster-info.md)
+    - [Top SQL 页面](/dashboard/top-sql.md)
+    - [流量可视化页面](/dashboard/dashboard-key-visualizer.md)
+    - [监控关系图](/dashboard/dashboard-metrics-relation.md)
+    - SQL 语句分析
+      - [列表页面](/dashboard/dashboard-statement-list.md)
+      - [执行详情页面](/dashboard/dashboard-statement-details.md)
+    - [慢查询页面](/dashboard/dashboard-slow-query.md)
+    - 集群诊断页面
+      - [访问](/dashboard/dashboard-diagnostics-access.md)
+      - [查看报告](/dashboard/dashboard-diagnostics-report.md)
+      - [使用示例](/dashboard/dashboard-diagnostics-usage.md)
+    - [监控指标页面](/dashboard/dashboard-monitoring.md)
+    - [日志搜索页面](/dashboard/dashboard-log-search.md)
+    - [资源管控页面](/dashboard/dashboard-resource-manager.md)
+    - 实例性能分析
+      - [手动分析页面](/dashboard/dashboard-profiling.md)
+      - [持续分析页面](/dashboard/continuous-profiling.md)
+    - 会话管理与配置
+      - [分享会话](/dashboard/dashboard-session-share.md)
+      - [配置 SSO 登录](/dashboard/dashboard-session-sso.md)
+    - [常见问题](/dashboard/dashboard-faq.md)
   - [将 Grafana 监控数据导出成快照](/exporting-grafana-snapshots.md)
   - [TiDB 集群报警规则与处理方法](/alert-rules.md)
   - [TiFlash 报警规则与处理方法](/tiflash/tiflash-alert-rules.md)
@@ -577,6 +609,7 @@
       - [报警规则](/ticdc/ticdc-alert-rules.md)
     - 参考指南
       - [架构设计与原理](/ticdc/ticdc-architecture.md)
+      - [TiCDC 数据同步能力详解](/ticdc/ticdc-data-replication-capabilities.md)
       - [TiCDC Server 配置参数](/ticdc/ticdc-server-config.md)
       - [TiCDC Changefeed 配置参数](/ticdc/ticdc-changefeed-config.md)
       - 输出数据协议
@@ -954,38 +987,6 @@
         - [`VIEWS`](/information-schema/information-schema-views.md)
       - [`METRICS_SCHEMA`](/metrics-schema.md)
     - [元数据锁](/metadata-lock.md)
-  - UI
-    - TiDB Dashboard
-      - [简介](/dashboard/dashboard-intro.md)
-      - 运维
-        - [部署](/dashboard/dashboard-ops-deploy.md)
-        - [反向代理](/dashboard/dashboard-ops-reverse-proxy.md)
-        - [用户管理](/dashboard/dashboard-user.md)
-        - [安全](/dashboard/dashboard-ops-security.md)
-      - [访问](/dashboard/dashboard-access.md)
-      - [概况页面](/dashboard/dashboard-overview.md)
-      - [集群信息页面](/dashboard/dashboard-cluster-info.md)
-      - [Top SQL 页面](/dashboard/top-sql.md)
-      - [流量可视化页面](/dashboard/dashboard-key-visualizer.md)
-      - [监控关系图](/dashboard/dashboard-metrics-relation.md)
-      - SQL 语句分析
-        - [列表页面](/dashboard/dashboard-statement-list.md)
-        - [执行详情页面](/dashboard/dashboard-statement-details.md)
-      - [慢查询页面](/dashboard/dashboard-slow-query.md)
-      - 集群诊断页面
-        - [访问](/dashboard/dashboard-diagnostics-access.md)
-        - [查看报告](/dashboard/dashboard-diagnostics-report.md)
-        - [使用示例](/dashboard/dashboard-diagnostics-usage.md)
-      - [监控指标页面](/dashboard/dashboard-monitoring.md)
-      - [日志搜索页面](/dashboard/dashboard-log-search.md)
-      - [资源管控页面](/dashboard/dashboard-resource-manager.md)
-      - 实例性能分析
-        - [手动分析页面](/dashboard/dashboard-profiling.md)
-        - [持续分析页面](/dashboard/continuous-profiling.md)
-      - 会话管理与配置
-        - [分享会话](/dashboard/dashboard-session-share.md)
-        - [配置 SSO 登录](/dashboard/dashboard-session-sso.md)
-      - [常见问题](/dashboard/dashboard-faq.md)
   - [遥测](/telemetry.md)
   - [错误码](/error-codes.md)
   - [通过拓扑 label 进行副本调度](/schedule-replicas-by-topology-labels.md)
@@ -1022,6 +1023,7 @@
   - v6.6
     - [6.6.0-DMR](/releases/release-6.6.0.md)
   - v6.5
+    - [6.5.12](/releases/release-6.5.12.md)
     - [6.5.11](/releases/release-6.5.11.md)
     - [6.5.10](/releases/release-6.5.10.md)
     - [6.5.9](/releases/release-6.5.9.md)

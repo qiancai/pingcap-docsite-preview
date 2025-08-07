@@ -160,6 +160,7 @@
   - 升级 TiDB 版本
     - [使用 TiUP 升级](/upgrade-tidb-using-tiup.md)
     - [使用 TiDB Operator](https://docs.pingcap.com/zh/tidb-in-kubernetes/stable/upgrade-a-tidb-cluster)
+    - [迁移升级 TiDB](/tidb-upgrade-migration-guide.md)
     - [TiFlash v6.2 升级帮助](/tiflash-620-upgrade-guide.md)
   - 扩缩容
     - [使用 TiUP（推荐）](/scale-tidb-using-tiup.md)
@@ -568,6 +569,7 @@
       - [报警规则](/ticdc/ticdc-alert-rules.md)
     - 参考指南
       - [架构设计与原理](/ticdc/ticdc-architecture.md)
+      - [TiCDC 数据同步能力详解](/ticdc/ticdc-data-replication-capabilities.md)
       - [TiCDC Server 配置参数](/ticdc/ticdc-server-config.md)
       - [TiCDC Changefeed 配置参数](/ticdc/ticdc-changefeed-config.md)
       - 输出数据协议
@@ -984,6 +986,7 @@
   - [TiDB 版本规则](/releases/versioning.md)
   - [TiDB 离线包](/binary-package.md)
   - v6.5
+    - [6.5.12](/releases/release-6.5.12.md)
     - [6.5.11](/releases/release-6.5.11.md)
     - [6.5.10](/releases/release-6.5.10.md)
     - [6.5.9](/releases/release-6.5.9.md)
