@@ -27,7 +27,7 @@ When you create a cluster with the default zonal high availability, all componen
 
 - The following diagram shows the architecture of zonal high availability on AWS:
 
-    ![zonal high availability on AWS](/media/tidb-cloud/serverless-zonal-high-avaliability-aws.png)
+    ![zonal high availability on AWS](/media/tidb-cloud/zonal-high-avaliability-aws.png)
 
 - The following diagram shows the architecture of zonal high availability on Alibaba Cloud:
 
