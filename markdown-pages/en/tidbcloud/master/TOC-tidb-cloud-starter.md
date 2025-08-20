@@ -131,7 +131,7 @@
 ## GUIDES
 
 - Manage Cluster
-  - [Select Your Cluster Tier](/tidb-cloud/select-cluster-tier.md)
+  - [Select Your Cluster Plan](/tidb-cloud/select-cluster-tier.md)
   - Manage TiDB Cloud Clusters
     - [Create a TiDB Cloud Cluster](/tidb-cloud/create-tidb-cluster-serverless.md)
     - Connect to Your TiDB Cloud Cluster
@@ -221,8 +221,8 @@
     - [Migrate and Merge MySQL Shards of Large Datasets](/tidb-cloud/migrate-sql-shards.md)
     - [Migrate from Amazon RDS for Oracle Using AWS DMS](/tidb-cloud/migrate-from-oracle-using-aws-dms.md)
   - Import Data into TiDB Cloud
-    - [Import Sample Data](/tidb-cloud/import-sample-data-serverless.md)
     - [Import Local Files](/tidb-cloud/tidb-cloud-import-local-files.md)
+    - [Import Sample Data (SQL Files) from Cloud Storage](/tidb-cloud/import-sample-data-serverless.md)
     - [Import CSV Files from Cloud Storage](/tidb-cloud/import-csv-files-serverless.md)
     - [Import Parquet Files from Cloud Storage](/tidb-cloud/import-parquet-files-serverless.md)
     - [Import with MySQL CLI](/tidb-cloud/import-with-mysql-cli-serverless.md)
@@ -253,6 +253,10 @@
       - [SQLAlchemy](/vector-search/vector-search-integrate-with-sqlalchemy.md)
       - [peewee](/vector-search/vector-search-integrate-with-peewee.md)
       - [Django ORM](/vector-search/vector-search-integrate-with-django-orm.md)
+  - Text Search
+    - [Full-Text Search with SQL](/tidb-cloud/vector-search-full-text-search-sql.md)
+    - [Full-Text Search with Python](/tidb-cloud/vector-search-full-text-search-python.md)
+    - [Hybrid Search](/tidb-cloud/vector-search-hybrid-search.md)
   - Reference
     - [Vector Data Types](/vector-search/vector-search-data-types.md)
     - [Vector Functions and Operators](/vector-search/vector-search-functions-and-operators.md)
@@ -663,7 +667,7 @@
     - [TiDB Cloud Partners](/tidb-cloud/tidb-cloud-partners.md)
     - [MSP Customer](/tidb-cloud/managed-service-provider-customer.md)
     - [Reseller's Customer](/tidb-cloud/cppo-customer.md)
-  - [TiDB Cloud Starter and Essential Limitations](/tidb-cloud/serverless-limitations.md)
+  - [{{{ .starter }}} and Essential Limitations](/tidb-cloud/serverless-limitations.md)
   - [Limited SQL Features on TiDB Cloud](/tidb-cloud/limited-sql-features.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - [System Variables](/system-variables.md)
@@ -688,7 +692,7 @@
   - [Get Support](/tidb-cloud/tidb-cloud-support.md)
 - FAQs
   - [TiDB Cloud FAQs](/tidb-cloud/tidb-cloud-faq.md)
-  - [TiDB Cloud Starter FAQs](/tidb-cloud/serverless-faqs.md)
+  - [{{{ .starter }}} FAQs](/tidb-cloud/serverless-faqs.md)
 
 ## RELEASES
 
