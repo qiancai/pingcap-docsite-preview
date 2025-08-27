@@ -52,8 +52,8 @@ if [ ! -e website-docs/.git ]; then
     rm -rf website-docs
   fi
   # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch tweak-custom-content https://github.com/pingcap/website-docs
-  # git clone https://github.com/pingcap/website-docs
+  # git clone --single-branch --branch tweak-custom-content https://github.com/pingcap/website-docs
+  git clone https://github.com/pingcap/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
