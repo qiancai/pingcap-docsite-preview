@@ -216,8 +216,8 @@
     - [TiKV Follower Read](/follower-read.md)
     - [Coprocessor Cache](/coprocessor-cache.md)
     - Garbage Collection (GC)
-       - [Overview](/garbage-collection-overview.md)
-       - [Configuration](/garbage-collection-configuration.md)
+      - [Overview](/garbage-collection-overview.md)
+      - [Configuration](/garbage-collection-configuration.md)
     - [Tune TiFlash Performance](/tiflash/tune-tiflash-performance.md)
   - Optimize Resource Allocation
     - Resource Manager
@@ -239,7 +239,7 @@
     - [Migrate from MySQL-Compatible Databases Using AWS DMS](/tidb-cloud/migrate-from-mysql-using-aws-dms.md)
     - [Migrate from Amazon RDS for Oracle Using AWS DMS](/tidb-cloud/migrate-from-oracle-using-aws-dms.md)
   - Import Data into TiDB Cloud Dedicated
-    - [Import Sample Data](/tidb-cloud/import-sample-data.md)
+    - [Import Sample Data (SQL Files) from Cloud Storage](/tidb-cloud/import-sample-data.md)
     - [Import CSV Files from Cloud Storage](/tidb-cloud/import-csv-files.md)
     - [Import Parquet Files from Cloud Storage](/tidb-cloud/import-parquet-files.md)
     - [Import with MySQL CLI](/tidb-cloud/import-with-mysql-cli.md)
@@ -271,10 +271,6 @@
       - [SQLAlchemy](/vector-search/vector-search-integrate-with-sqlalchemy.md)
       - [peewee](/vector-search/vector-search-integrate-with-peewee.md)
       - [Django ORM](/vector-search/vector-search-integrate-with-django-orm.md)
-  - Text Search
-    - [Full-Text Search with SQL](/tidb-cloud/vector-search-full-text-search-sql.md)
-    - [Full-Text Search with Python](/tidb-cloud/vector-search-full-text-search-python.md)
-    - [Hybrid Search](/tidb-cloud/vector-search-hybrid-search.md)
   - Reference
     - [Vector Data Types](/vector-search/vector-search-data-types.md)
     - [Vector Functions and Operators](/vector-search/vector-search-functions-and-operators.md)
@@ -330,8 +326,8 @@
     - [Connect via VPC Peering](/tidb-cloud/set-up-vpc-peering-connections.md)
     - [TLS Connections to TiDB Cloud Dedicated](/tidb-cloud/tidb-cloud-tls-connect-to-dedicated.md)
   - Data Access Control
-      - [Encryption at Rest Using Customer-Managed Encryption Keys](/tidb-cloud/tidb-cloud-encrypt-cmek.md)
-      - [User-Controlled Log Redaction](/tidb-cloud/tidb-cloud-log-redaction.md)
+    - [Encryption at Rest Using Customer-Managed Encryption Keys](/tidb-cloud/tidb-cloud-encrypt-cmek.md)
+    - [User-Controlled Log Redaction](/tidb-cloud/tidb-cloud-log-redaction.md)
   - Database Access Control
     - [Configure Cluster Password Settings](/tidb-cloud/configure-security-settings.md)
   - Audit Management
@@ -677,9 +673,11 @@
   - [Use UUIDs](/best-practices/uuid.md)
   - [TiDB Accelerated Table Creation](/accelerated-table-creation.md)
   - [Schema Cache](/schema-cache.md)
-- API Reference ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)   
-  - [Overview](/tidb-cloud/api-overview.md) 
+- API Reference ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
+  - [Overview](/tidb-cloud/api-overview.md)
   - v1beta1
+    - [TiDB Cloud Starter and Essential](https://docs.pingcap.com/tidbcloud/api/v1beta1/serverless)
+    - [TiDB Cloud Dedicated](https://docs.pingcap.com/tidbcloud/api/v1beta1/dedicated)
     - [Billing](https://docs.pingcap.com/tidbcloud/api/v1beta1/billing)
     - [Data Service](https://docs.pingcap.com/tidbcloud/api/v1beta1/dataservice)
     - [IAM](https://docs.pingcap.com/tidbcloud/api/v1beta1/iam)
@@ -694,8 +692,8 @@
     - [TSO](/tso.md)
   - Storage Engines
     - TiKV
-        - [TiKV Overview](/tikv-overview.md)
-        - [RocksDB Overview](/storage-engine/rocksdb-overview.md)
+      - [TiKV Overview](/tikv-overview.md)
+      - [RocksDB Overview](/storage-engine/rocksdb-overview.md)
     - TiFlash
       - [TiFlash Overview](/tiflash/tiflash-overview.md)
       - [Spill to Disk](/tiflash/tiflash-spill-disk.md)
