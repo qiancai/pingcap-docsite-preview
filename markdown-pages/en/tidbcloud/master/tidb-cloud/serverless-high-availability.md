@@ -11,17 +11,18 @@ TiDB Cloud is designed with robust mechanisms to maintain high availability and 
 
 TiDB ensures high availability and data durability using the Raft consensus algorithm. This algorithm consistently replicates data changes across multiple nodes, allowing TiDB to handle read and write requests even in the event of node failures or network partitions. This approach provides both high data durability and fault tolerance.
 
-TiDB Cloud extends these capabilities with two types of high availability to meet different operational requirements:
-
-- **Zonal high availability (default)**: This option places all nodes within a single availability zone, reducing network latency. It ensures high availability without requiring application-level redundancy across zones, making it suitable for applications that prioritize low latency within a single zone. Zonal high availability is available by default in all cloud regions that support TiDB Cloud Starter or TiDB Cloud Essential. For more information, see [Zonal high availability architecture](#zonal-high-availability-architecture).
-
-- **Regional high availability (beta)**: This option distributes nodes across multiple availability zones, offering maximum infrastructure isolation and redundancy. It provides the highest level of availability but requires application-level redundancy across zones. It is recommended to choose this option if you need maximum availability protection against infrastructure failures within a zone. Note that it increases latency and might incur cross-zone data transfer fees. This feature is available in selected regions with multi-availability zone support and can only be enabled during cluster creation. For more information, see [Regional high availability architecture](#regional-high-availability-architecture).
-
-## Zonal high availability architecture
+TiDB Cloud extends these capabilities with zonal high availability and regional high availability to meet different operational requirements.
 
 > **Note:**
 >
-> Zonal high availability is the default option and is available in all cloud regions that support TiDB Cloud Starter or TiDB Cloud Essential.
+> - For TiDB Cloud Starter clusters, only zonal high availability is enabled, and it is not configurable.
+> - For TiDB Cloud Essential clusters hosted in the AWS Tokyo (ap-northeast-1) region or any Alibaba Cloud region, regional high availability is enabled by default. You can change it to zonal high availability as needed during cluster creation. For TiDB Cloud Essential clusters hosted in other regions, only zonal high availability is enabled, and it is not configurable.
+
+- **Zonal high availability**: This option places all nodes within a single availability zone, reducing network latency. It ensures high availability without requiring application-level redundancy across zones, making it suitable for applications that prioritize low latency within a single zone. For more information, see [Zonal high availability architecture](#zonal-high-availability-architecture).
+
+- **Regional high availability (beta)**: This option distributes nodes across multiple availability zones, offering maximum infrastructure isolation and redundancy. It provides the highest level of availability but requires application-level redundancy across zones. It is recommended to choose this option if you need maximum availability protection against infrastructure failures within a zone. Note that it increases latency and might incur cross-zone data transfer fees. This feature is available in regions with more than three availability zones and can only be enabled during cluster creation. For more information, see [Regional high availability architecture](#regional-high-availability-architecture).
+
+## Zonal high availability architecture
 
 When you create a cluster with the default zonal high availability, all components, including Gateway, TiDB, TiKV, and TiFlash compute/write nodes, run in the same availability zone. The placement of these components in the data plane offer infrastructure redundancy with virtual machine pools, which minimizes failover time and network latency due to colocation.
 
@@ -83,22 +84,33 @@ When you create a cluster with regional high availability, critical OLTP (Online
 
 > **Note:**
 >
-> - Regional high availability is currently in beta.
-> - You can enable regional high availability when you create a TiDB Cloud Essential cluster.
+> Regional high availability is currently in beta.
 
 <CustomContent language="en,zh">
 
-The following diagram shows the architecture of regional high availability on Alibaba Cloud:
+- The following diagram shows the architecture of regional high availability on AWS:
 
-![regional high availability](/media/tidb-cloud/regional-high-avaliability-alibaba-cloud.png)
+    ![regional high availability on AWS](/media/tidb-cloud/regional-high-avaliability-aws.png)
+
+- The following diagram shows the architecture of regional high availability on Alibaba Cloud:
+
+    ![regional high availability on Alibaba Cloud](/media/tidb-cloud/regional-high-avaliability-alibaba-cloud.png)
+
+</CustomContent>
+
+<CustomContent language="ja">
+
+The following diagram shows the architecture of regional high availability on AWS:
+
+![regional high availability](/media/tidb-cloud/regional-high-avaliability-aws.png)
+
+</CustomContent>
 
 In regional high availability architecture:
 
 - The Placement Driver (PD) and TiKV are deployed across multiple availability zones, and data is always replicated redundantly across zones to ensure the highest level of availability.
 - Data is replicated across TiFlash write nodes within the primary availability zone.
 - TiDB servers and TiFlash compute nodes read from and write to these TiKV and TiFlash write nodes, which are safeguarded by storage-level replication.
-
-</CustomContent>
 
 ### Failover process
 
