@@ -8,6 +8,190 @@ aliases: ['/tidbcloud/supported-tidb-versions','/tidbcloud/release-notes']
 
 This page lists the release notes of [TiDB Cloud](https://www.pingcap.com/tidb-cloud/) in 2025.
 
+## October 14, 2025
+
+**General changes**
+
+- **TiDB Cloud Starter**
+
+    - [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) no longer supports database audit logging.
+
+        Currently, only [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) and [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) support database audit logging. Existing TiDB Cloud Starter clusters currently using database audit logging are not affected.
+
+    - [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) removes the in-place restore feature, which means you can no longer restore a backup directly to the same cluster. This change helps prevent accidental overwrites of active production data and potential data loss.
+
+        To restore your data, you can [restore the backup to a new cluster](/tidb-cloud/backup-and-restore-serverless.md#perform-the-restore). After validating the restored data, switch your application to the new cluster. Previously restored data in existing clusters remains intact, and no action is required unless you perform a new restore.
+
+        For safer restore and migration workflows with more control and flexibility, consider using [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential).
+
+    - The [**Metrics**](/tidb-cloud/built-in-monitoring.md#view-the-metrics-page) page for [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) adds the following metrics for faster diagnosis and capacity planning:
+
+        - `Lock-wait (P95/P99)`: monitors lock wait time percentiles to surface contention hotspots.
+        - `Idle Connection Duration (P99 incl. not/in txn)`: identifies long-lived idle connections, both in-transaction and not-in-transaction, to adjust pooler limits and timeouts.
+
+- **TiDB Cloud Essential**
+
+    <CustomContent language="en,zh">
+
+    - [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) is in public preview on AWS and Alibaba Cloud.
+
+        For applications experiencing growing workloads and needing scalability in real time, TiDB Cloud Essential provides the flexibility and performance to keep pace with your business growth.
+
+        For more information, see [TiDB Cloud Essential: Now Available on AWS and Alibaba Cloud](https://www.pingcap.com/blog/tidb-cloud-essential-now-available-public-preview-aws-alibaba-cloud/).
+
+    </CustomContent>
+
+    <CustomContent language="ja">
+
+    - [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) is in public preview on AWS.
+
+        For applications experiencing growing workloads and needing scalability in real time, TiDB Cloud Essential provides the flexibility and performance to keep pace with your business growth.
+
+    </CustomContent>
+
+    - Database audit logging is now available in the [TiDB Cloud console](https://tidbcloud.com) for TiDB Cloud Essential and supports customizing rotation settings.
+
+        You can configure database audit logs to be stored in TiDB Cloud, Amazon S3, Google Cloud Storage, Azure Blob Storage, or Alibaba Cloud OSS.
+
+        Currently, this feature is in beta. For more information, see [Database Audit Logging for TiDB Cloud Essential](/tidb-cloud/essential-database-audit-logging.md).
+
+    - TiDB Cloud Essential adds a new event `ResourceLimitation` that notifies you when Request Capacity Units (RCUs) consumption of your cluster reaches the configured maximum multiple times within one hour.
+
+        Usage exceeding the limit might be throttled. To avoid service impact, consider increasing the maximum RCU.
+
+        For more information about events, see [TiDB Cloud Cluster Events](/tidb-cloud/tidb-cloud-events.md).
+
+    - The [**Metrics**](/tidb-cloud/built-in-monitoring.md#view-the-metrics-page) page for [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) adds the following metrics for faster diagnosis and capacity planning:
+
+        - `Capacity vs Usage (RU/s)`: visualizes provisioned Request Unit (RU) capacity versus actual RU consumption to spot headroom and tune autoscaling.
+        - `Lock-wait (P95/P99)`: monitors lock wait time percentiles to surface contention hotspots.
+        - `Idle Connection Duration (P99 incl. not/in txn)`: identifies long-lived idle connections, both in-transaction and not-in-transaction, to adjust pooler limits and timeouts.
+
+      For more information, see [TiDB Cloud Built-in Metrics](/tidb-cloud/built-in-monitoring.md).
+
+## September 30, 2025
+
+**General changes**
+
+- **TiDB Cloud Dedicated**
+
+    - Datadog and New Relic integrations are now generally available (GA) for [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) clusters.
+  
+        TiDB Cloud now manages Datadog and New Relic integrations at the cluster level, offering more granular control and configuration. This feature enables you to seamlessly ship the metrics of your [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) cluster to Datadog or New Relic, allowing for advanced alerting in a unified platform.
+  
+        For integration steps, see [Integrate TiDB Cloud with Datadog](/tidb-cloud/monitor-datadog-integration.md) and [Integrate TiDB Cloud with New Relic](/tidb-cloud/monitor-new-relic-integration.md).
+  
+        To migrate existing Datadog and New Relic integrations to the cluster level, see [Migrate Datadog and New Relic Integrations](/tidb-cloud/migrate-metrics-integrations.md).
+
+## September 23, 2025
+
+**General changes**
+
+- **TiDB Cloud Dedicated**
+
+    - Support user-controlled splitting of `UPDATE` events in [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) changefeeds.
+  
+        In TiDB Cloud Dedicated clusters, you can configure whether to keep `UPDATE` events as raw events or split them into separate `DELETE` and `INSERT` events. This feature provides greater flexibility for advanced replication scenarios. 
+  
+        This feature is supported only for non-SQL destinations such as Apache Kafka and Amazon S3. For more information, see [Sink to Apache Kafka](/tidb-cloud/changefeed-sink-to-apache-kafka.md), [Sink to Apache Pulsar](/tidb-cloud/changefeed-sink-to-apache-pulsar.md), and [Sink to Cloud Storage](/tidb-cloud/changefeed-sink-to-cloud-storage.md).
+
+        For more information about the splitting behavior, see [Split primary or unique key `UPDATE` events for non-MySQL sinks](https://docs.pingcap.com/tidb/stable/ticdc-split-update-behavior/#split-primary-or-unique-key-update-events-for-non-mysql-sinks).
+
+    - Provide a new node size for [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) clusters hosted on Google Cloud: `32 vCPU, 64 GiB`.
+  
+        This new node size is available for TiDB nodes.
+
+## September 16, 2025
+
+**General changes**
+
+- **TiDB Cloud Dedicated**
+
+    - Encryption at Rest with Customer-Managed Encryption Keys (CMEK) is available for [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) clusters hosted on Azure.
+  
+        This feature enables you to secure your data at rest by using an encryption key that you control. CMEK provides the following benefits:
+  
+        - Data security: you own and manage the encryption key, which ensures that your data is protected and under your control.
+        - Compliance: using CMEK helps you meet regulatory and compliance requirements for data encryption.
+        - Flexibility: you can enable CMEK when you create a project and complete CMEK configurations before you create a cluster.
+  
+      To enable this feature, perform the following steps:
+  
+        1. In the [TiDB Cloud console](https://tidbcloud.com), create a CMEK-enabled project.
+        2. Complete the CMEK configuration for the project.
+        3. Create a TiDB Cloud Dedicated cluster hosted on Azure in the same region as your CMEK configuration.
+  
+      For more information, see [Encryption at Rest Using Customer-Managed Encryption Keys on Azure](/tidb-cloud/tidb-cloud-encrypt-cmek-azure.md).
+
+## September 9, 2025
+
+**High availability changes**
+
+- **TiDB Cloud Starter**
+
+    - For newly created [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless) clusters, only zonal high availability is enabled, and it is not configurable.
+    - For existing TiDB Cloud Starter clusters with regional high availability enabled before **September 9, 2025**, regional high availability remains supported and is not affected.
+
+<CustomContent language="en,zh">
+
+- **TiDB Cloud Essential**
+
+    - For newly created [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) clusters, regional high availability is enabled by default, and you can change it to zonal high availability as needed during cluster creation.
+
+  For more information, see [High Availability in TiDB Cloud Starter and Essential](/tidb-cloud/serverless-high-availability.md).
+
+</CustomContent>
+
+## September 2, 2025
+
+**General changes**
+
+<CustomContent language="en,zh">
+
+- **TiDB Cloud Essential**
+
+    - Support three new Alibaba Cloud regions for [TiDB Cloud Essential](/tidb-cloud/select-cluster-tier.md#essential) clusters: `Jakarta (ap-southeast-5)`, `Mexico (na-south-1)`, and `Tokyo (ap-northeast-1)`.
+
+- **TiDB Cloud Dedicated**
+
+    - Upgrade the default TiDB version of new [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) clusters from [v8.5.2](https://docs.pingcap.com/tidb/v8.5/release-8.5.2/) to [v8.5.3](https://docs.pingcap.com/tidb/v8.5/release-8.5.3/).
+
+</CustomContent>
+
+<CustomContent language="ja">
+
+- **TiDB Cloud Dedicated**
+
+    - Upgrade the default TiDB version of new [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) clusters from [v8.5.2](https://docs.pingcap.com/tidb/v8.5/release-8.5.2/) to [v8.5.3](https://docs.pingcap.com/tidb/v8.5/release-8.5.3/).
+
+</CustomContent>
+
+## August 26, 2025
+
+**General changes**
+
+- **TiDB Cloud Starter**
+
+    - Introduce Auto Embedding (Beta) in [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#tidb-cloud-serverless), making it simple to convert your text into vectors without additional setup. This feature enables faster development of semantic search, RAG, reranking, and classification in TiDB Cloud with less integration overhead.
+
+        - **Auto Embedding with popular LLM providers**: Amazon Titan, OpenAI, Cohere, Gemini, Jina AI, Hugging Face, and NVIDIA NIM.
+        - **Native integration with AWS Bedrock**: managed embedding models with a free quota, including Amazon Titan and Cohere text embedding models from AWS Bedrock.
+        - **SQL and Python support**, with code examples for creating, storing, and querying embeddings.
+
+      For more information, see [Auto Embedding](https://docs.pingcap.com/tidbcloud/vector-search-auto-embedding-overview/?plan=starter).
+
+- **TiDB Cloud Dedicated**
+
+    - [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) no longer supports the Index Insight (beta) feature.
+
+        It is recommended that you use [Index Advisor](/index-advisor.md) instead, which is available for TiDB v8.5.0 and later versions. Index Advisor introduces the `RECOMMEND INDEX` SQL statement, which helps optimize your workload by recommending indexes that improve query performance.
+
+    - You can now manually disable the Point-in-time Restore feature on [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) clusters with weekly backups enabled.
+
+        This enhancement helps reduce costs for clusters that do not require Point-in-time Restore for high RPO protection.
+
+        For more information, see [Back Up and Restore TiDB Cloud Dedicated Data](/tidb-cloud/backup-and-restore.md).
+
 ## August 12, 2025
 
 **General changes**
@@ -192,7 +376,7 @@ This page lists the release notes of [TiDB Cloud](https://www.pingcap.com/tidb-c
 
     This feature enables you to secure your data at rest by leveraging a symmetric encryption key that you manage through Key Management Service (KMS).
 
-    For more information, see [Encryption at Rest Using Customer-Managed Encryption Keys](/tidb-cloud/tidb-cloud-encrypt-cmek.md).
+    For more information, see [Encryption at Rest Using Customer-Managed Encryption Keys on AWS](/tidb-cloud/tidb-cloud-encrypt-cmek-aws.md).
 
 ## June 17, 2025
 
