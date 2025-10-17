@@ -8,7 +8,6 @@
   - [MySQL Compatibility](/mysql-compatibility.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - [Credits](/credits.md)
-  - [Roadmap](/tidb-roadmap.md)
 - Get Started
   - [Quick Start with TiDB](/quick-start-with-tidb.md)
   - [Quick Start with HTAP](/quick-start-with-htap.md)
@@ -18,7 +17,7 @@
 - Develop
   - [Overview](/develop/dev-guide-overview.md)
   - Quick Start
-    - [Build a TiDB Cloud Serverless Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
+    - [Build a TiDB Cloud Starter Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
     - [CRUD SQL in TiDB](/develop/dev-guide-tidb-crud-sql.md)
   - Example Applications
     - Java
@@ -193,7 +192,9 @@
     - [Integrate with Confluent and Snowflake](/ticdc/integrate-confluent-using-ticdc.md)
     - [Integrate with Apache Kafka and Apache Flink](/replicate-data-to-kafka.md)
   - Reference
-    - [TiCDC Architecture](/ticdc/ticdc-architecture.md)
+    - TiCDC Architecture
+      - [TiCDC New Architecture](/ticdc/ticdc-architecture.md)
+      - [TiCDC Classic Architecture](/ticdc/ticdc-classic-architecture.md)
     - [TiCDC Data Replication Capabilities](/ticdc/ticdc-data-replication-capabilities.md)
     - [TiCDC Server Configurations](/ticdc/ticdc-server-config.md)
     - [TiCDC Changefeed Configurations](/ticdc/ticdc-changefeed-config.md)
@@ -437,6 +438,7 @@
   - [Use TiDB](/best-practices/tidb-best-practices.md)
   - [Manage DDL](/ddl-introduction.md)
   - [Optimize Multi-Column Indexes](/best-practices/multi-column-index-best-practices.md)
+  - [Manage Indexes and Identify Unused Indexes](/best-practices/index-management-best-practices.md)
   - [Handle Millions of Tables in SaaS Multi-Tenant Scenarios](/best-practices/saas-best-practices.md)
   - [Use UUIDs as Primary Keys](/best-practices/uuid.md)
   - [Develop Java Applications](/best-practices/java-app-best-practices.md)
@@ -512,6 +514,7 @@
         - [tiup cluster start](/tiup/tiup-component-cluster-start.md)
         - [tiup cluster stop](/tiup/tiup-component-cluster-stop.md)
         - [tiup cluster template](/tiup/tiup-component-cluster-template.md)
+        - [tiup cluster tls](/tiup/tiup-component-cluster-tls.md)
         - [tiup cluster upgrade](/tiup/tiup-component-cluster-upgrade.md)
       - TiUP DM Commands
         - [Overview](/tiup/tiup-component-dm.md)
@@ -1084,6 +1087,7 @@
   - [Schedule Replicas by Topology Labels](/schedule-replicas-by-topology-labels.md)
   - [URI Formats of External Storage Services](/external-storage-uri.md)
   - [TiDB Workload Repository](/workload-repository.md)
+  - [Interaction Test on Online Workloads and `ADD INDEX` Operations](/benchmark/online-workloads-and-add-index-operations.md)
 - FAQs
   - [FAQ Summary](/faq/faq-overview.md)
   - [TiDB FAQs](/faq/tidb-faq.md)
@@ -1103,6 +1107,7 @@
   - [Release Support Policy](https://www.pingcap.com/tidb-release-support-policy/)
   - [TiDB Installation Packages](/binary-package.md)
   - v8.5
+    - [8.5.3](/releases/release-8.5.3.md)
     - [8.5.2](/releases/release-8.5.2.md)
     - [8.5.1](/releases/release-8.5.1.md)
     - [8.5.0](/releases/release-8.5.0.md)
@@ -1121,6 +1126,7 @@
   - v7.6
     - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
+    - [7.5.7](/releases/release-7.5.7.md)
     - [7.5.6](/releases/release-7.5.6.md)
     - [7.5.5](/releases/release-7.5.5.md)
     - [7.5.4](/releases/release-7.5.4.md)
