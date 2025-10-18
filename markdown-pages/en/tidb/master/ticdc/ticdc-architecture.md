@@ -5,12 +5,12 @@ summary: Introduces the features, architectural design, deployment guide, and no
 
 # TiCDC New Architecture
 
-Starting from TiCDC v8.5.4-release.1, TiCDC introduces a new architecture that improves the performance, scalability, and stability of real-time data replication while reducing resource costs. This new architecture redesigns TiCDC core components and optimizes its data processing workflows, offering the following advantages:
+Starting from [TiCDC v8.5.4-release.1](https://github.com/pingcap/ticdc/releases/tag/v8.5.4-release.1), TiCDC introduces a new architecture that improves the performance, scalability, and stability of real-time data replication while reducing resource costs. This new architecture redesigns TiCDC core components and optimizes its data processing workflows, offering the following advantages:
 
 - **Higher single-node performance**: a single node can replicate up to 500,000 tables, achieving replication throughput of up to 190 MiB/s on a single node in wide table scenarios.
 - **Enhanced scalability**: cluster replication capability scales almost linearly. A single cluster can expand to over 100 nodes, support more than 10,000 changefeeds, and replicate millions of tables within a single changefeed.
 - **Improved stability**: changefeed latency is reduced and performance is more stable in scenarios with high traffic, frequent DDL operations, and cluster scaling events. Resource isolation and priority scheduling reduce interference between multiple changefeed tasks.
-- **Lower resource costs**: with improved resource utilization and reduced redundancy, CPU and memory resource usage is reduced by up to 50% in typical scenarios.
+- **Lower resource costs**: with improved resource utilization and reduced redundancy, CPU and memory resource usage can decrease by up to 50% in typical scenarios.
 
 ## Architectural design
 
@@ -18,14 +18,14 @@ Starting from TiCDC v8.5.4-release.1, TiCDC introduces a new architecture that i
 
 The TiCDC new architecture consists of two core components: Log Service and Downstream Adapter.
 
-- Log Service: as the core data service layer, Log Service fetches information such as row changes and DDL events from the upstream TiDB cluster, and then temporarily stores the change data on local disk. It also responds to data requests from the Downstream Adapter, periodically merging and sorting DML and DDL data and pushing the sorted data to the Downstream Adapter.
+- Log Service: as the core data service layer, Log Service fetches information such as row changes and DDL events from the upstream TiDB cluster, and then temporarily stores the change data on local disks. It also responds to data requests from the Downstream Adapter, periodically merging and sorting DML and DDL data and pushing the sorted data to the Downstream Adapter.
 - Downstream Adapter: as the downstream data replication adaptation layer, Downstream Adapter handles user-initiated changefeed operations. It schedules and generates related replication tasks, fetches data from the Log Service, and replicates the fetched data to downstream systems.
 
 By separating the architecture into stateful and stateless components, the TiCDC new architecture significantly improves system scalability, reliability, and flexibility. Log Service, as the stateful component, focuses on data acquisition, sorting, and storage. Decoupling it from changefeed processing logic enables data sharing across multiple changefeeds, effectively improving resource utilization and reducing system overhead. Downstream Adapter, as the stateless component, uses a lightweight scheduling mechanism that allows quick migration of replication tasks between instances. It can dynamically adjust the splitting and merging of replication tasks based on workload changes, ensuring low-latency replication in various scenarios.
 
 ## Comparison between the classic and new architectures
 
-The new architecture is designed to address common issues during continuous system scaling, such as performance bottlenecks, insufficient stability, and limited scalability. Compared with the classic architecture, the new architecture achieves significant optimizations in the following key dimensions:
+The new architecture is designed to address common issues during continuous system scaling, such as performance bottlenecks, insufficient stability, and limited scalability. Compared with the [classic architecture](/ticdc/ticdc-classic-architecture.md), the new architecture achieves significant optimizations in the following key dimensions:
 
 | Feature | TiCDC classic architecture | TiCDC new architecture |
 | ------------------------ | ---------------------------------------- | ---------------------------------------- |
@@ -46,8 +46,9 @@ The new architecture is designed to address common issues during continuous syst
 If your workload meets any of the following conditions, it is recommended to switch from the [classic TiCDC architecture](/ticdc/ticdc-classic-architecture.md) to the new architecture for better performance and stability:
 
 - Bottlenecks in incremental scan performance: incremental scan tasks take an excessively long time to complete, leading to continuously increasing replication latency.
+- Ultra-high traffic scenarios: the total changefeed traffic exceeds 700 MiB/s.
 - Single tables with high-throughput writes in MySQL sink: the target table has **only one primary key or non-null unique key**.
-- Large-scale table replication: the number of tables to be replicated exceeds 100,000.  
+- Large-scale table replication: the number of tables to be replicated exceeds 100,000.
 - Frequent DDL operations causing latency: frequent execution of DDL statements significantly increases replication latency.
 
 ## New features
@@ -60,12 +61,6 @@ When this feature is enabled, TiCDC automatically splits and distributes tables 
 - The table write traffic exceeds the configured threshold (disabled by default, configurable via `scheduler.write-key-threshold`).
 
 ## Compatibility
-
-### Handling of server-level errors
-
-In the classic TiCDC architecture, when a server-level error (such as `ErrEtcdSessionDone`) occurs, TiCDC automatically restarts the main thread without exiting the process.
-
-In the new architecture, when a server-level error occurs, the TiCDC process exits directly and relies on orchestration tools such as TiUP or TiDB Operator to automatically restart the TiCDC instance.
 
 ### DDL progress tracking table
 
@@ -114,6 +109,8 @@ You can deploy the TiCDC new architecture using TiUP or TiDB Operator.
 <SimpleTab>
 <div label="TiUP">
 
+To deploy the TiCDC new architecture using TiUP, take the following steps:
+
 1. If your TiDB cluster does not have TiCDC nodes yet, refer to [Scale out a TiCDC cluster](/scale-tidb-using-tiup.md#scale-out-a-ticdc-cluster) to add new TiCDC nodes in the cluster. Otherwise, skip this step.
 
 2. Download the TiCDC binary package for the new architecture.
@@ -160,6 +157,8 @@ You can deploy the TiCDC new architecture using TiUP or TiDB Operator.
 
 </div>
 <div label="TiDB Operator">
+
+To deploy the TiCDC new architecture using TiDB Operator, take the following steps:
 
 - If your TiDB cluster does not include a TiCDC component, refer to [Add TiCDC to an existing TiDB cluster](https://docs.pingcap.com/tidb-in-kubernetes/stable/deploy-ticdc/#add-ticdc-to-an-existing-tidb-cluster) to add new TiCDC nodes. When doing so, specify the TiCDC image version as the new architecture version in the cluster configuration file.
 
@@ -240,6 +239,6 @@ For more command usage methods and details, see [Manage Changefeeds](/ticdc/ticd
 
 ## Monitoring
 
-Currently, the monitoring dashboard **TiCDC-New-Arch** for the TiCDC new architecture is not managed by TiUP yet. To view this dashboard in Grafana, you need to manually import the [TiCDC monitoring metrics file](https://github.com/pingcap/ticdc/blob/master/metrics/grafana/ticdc_new_arch.json).
+Currently, the monitoring dashboard **TiCDC-New-Arch** for the TiCDC new architecture is not managed by TiUP yet. To view this dashboard on Grafana, you need to manually import the [TiCDC monitoring metrics file](https://github.com/pingcap/ticdc/blob/master/metrics/grafana/ticdc_new_arch.json).
 
 For detailed descriptions of each monitoring metric, see [Metrics for TiCDC in the new architecture](/ticdc/monitor-ticdc.md#metrics-for-ticdc-in-the-new-architecture).
