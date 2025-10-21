@@ -17,7 +17,7 @@ TiDB Cloud has supported the project-level Prometheus integration (Beta) since M
 
     > **Note**
     >
-    > Currently, cluster-level Prometheus integration (Preview) is available only for TiDB Cloud Dedicated clusters hosted on AWS and Google Cloud.
+    > Currently, cluster-level Prometheus integrations (Preview) are available only for TiDB Cloud Dedicated clusters hosted on AWS and Google Cloud.
 
 - **Legacy project-level Prometheus integration (Beta)**: if at least one legacy project-level Prometheus integration remains undeleted within your organization by October 21, 2025, TiDB Cloud retains both existing and new integrations at the project level for your organization to avoid affecting current dashboards.
 
