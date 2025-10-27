@@ -25,12 +25,11 @@ TiDB Cloud has supported the project-level Prometheus integration (Beta) since M
 
 - To integrate TiDB Cloud with Prometheus, you must have a self-hosted or managed Prometheus service.
 
-- To set up third-party metrics integration for TiDB Cloud, you must have the `Organization Owner` or `Project Owner` access in TiDB Cloud. To view the integration page, you need at least the `Project Viewer` role to access the target clusters under the project in TiDB Cloud.
+- To set up third-party metrics integration for TiDB Cloud, you must have the `Organization Owner` or `Project Owner` access in TiDB Cloud. To view the integration page, you need at least the `Project Viewer` role to access the target clusters under your project in TiDB Cloud.
 
 ## Limitation
 
 - Prometheus and Grafana integrations now are only available for [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) clusters.
-
 - Prometheus and Grafana integrations are not available when the cluster status is **CREATING**, **RESTORING**, **PAUSED**, or **RESUMING**.
 
 ## Steps
@@ -46,7 +45,7 @@ Depending on your [Prometheus integration version](#prometheus-integration-versi
 
 1. In the [TiDB Cloud console](https://tidbcloud.com/), navigate to the [**Clusters**](https://tidbcloud.com/project/clusters) page of your project, and then click the name of your target cluster to go to its overview page.
 2. In the left navigation pane, click **Settings** > **Integrations**.
-3. On the **Integrations** page, click **Integration to Prometheus(Preview)**.
+3. On the **Integrations** page, click **Integration to Prometheus (Preview)**.
 4. Click **Add File** to generate and show the `scrape_config` file for the current cluster.
 5. Make a copy of the `scrape_config` file content for later use.
 
@@ -140,7 +139,7 @@ For cluster-level Prometheus integration, the following additional metrics are a
 | tidbcloud_dm_task_status | gauge | instance: `instance`<br/>task: `task`<br/>cluster_name: `<cluster name>` | Task state of Data Migration:<br/>0: Invalid<br/>1: New<br/>2: Running<br/>3: Paused<br/>4: Stopped<br/>5: Finished<br/>15: Error |
 | tidbcloud_dm_syncer_replication_lag_bucket | gauge | instance: `instance`<br/>cluster_name: `<cluster name>` | Replicate lag (bucket) of Data Migration. |
 | tidbcloud_dm_syncer_replication_lag_gauge | gauge | instance: `instance`<br/>task: `task`<br/>cluster_name: `<cluster name>` | Replicate lag (gauge) of Data Migration. |
-| tidbcloud_dm_relay_read_error_count | gauge | instance: `instance`<br/>cluster_name: `<cluster name>` | Fail to read binlog from master. |
+| tidbcloud_dm_relay_read_error_count | count | instance: `instance`<br/>cluster_name: `<cluster name>` | The number of failed attempts to read binlog from the master. |
 
 ## FAQ
 
