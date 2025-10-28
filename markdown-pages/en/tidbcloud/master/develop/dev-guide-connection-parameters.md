@@ -36,30 +36,32 @@ The application needs to return the connection after finishing using it. It is r
 
 ### Configure the lifetime of connections
 
-When a TiDB server shuts down or restarts for maintenance or due to a hardware failure, your client connections might be reset, which can lead to application disruptions. To avoid this, you should close and reconnect long-running database connections at least once a day.
+When a TiDB server shuts down, restarts for maintenance, or encounters unexpected issues such as hardware or network failures, your existing client connections might be reset, which can lead to application disruptions. To avoid such issues, it is recommended to close and recreate long-running database connections at least once a day.
+
+Most connection pool libraries provide a parameter to control the maximum lifetime of a connection:
 
 <SimpleTab>
 <div label="HikariCP">
 
-- **maxLifetime**: The maximum lifetime of a connection in the pool.
+- **`maxLifetime`**: The maximum lifetime of a connection in the pool.
 
 </div>
 
 <div label="tomcat-jdbc">
 
-- **maxAge**: The maximum lifetime of a connection in the pool.
+- **`maxAge`**: The maximum lifetime of a connection in the pool.
 
 </div>
 
 <div label="c3p0">
 
-- **maxConnectionAge**: The maximum lifetime of a connection in the pool.
+- **`maxConnectionAge`**: The maximum lifetime of a connection in the pool.
 
 </div>
 
 <div label="dbcp">
 
-- **maxConnLifetimeMillis**: The maximum lifetime of a connection in the pool.
+- **`maxConnLifetimeMillis`**: The maximum lifetime of a connection in the pool.
 
 </div>
 </SimpleTab>
