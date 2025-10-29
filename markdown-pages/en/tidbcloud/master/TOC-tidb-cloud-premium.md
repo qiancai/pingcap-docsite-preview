@@ -128,10 +128,10 @@
 
 ## GUIDES
 
-- Manage Cluster
+- Manage Instances
   - [Select Your Cluster Plan](/tidb-cloud/select-cluster-tier.md)
-  - Manage TiDB Cloud Clusters
-    - [Create a TiDB Cloud Cluster](/tidb-cloud/create-tidb-cluster-serverless.md)
+  - Manage TiDB Cloud Instances
+    - [Create a TiDB Cloud Premium Instance](/tidb-cloud/premium/create-tidb-instance-premium.md)
     - Connect to Your TiDB Cloud Cluster
       - [Connection Overview](/tidb-cloud/connect-to-tidb-cluster-serverless.md)
       - [Connect via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md)
@@ -219,13 +219,6 @@
     - [CSV Configurations for Importing Data](/tidb-cloud/csv-config-for-import-data.md)
     - [Troubleshoot Access Denied Errors during Data Import from Amazon S3](/tidb-cloud/troubleshoot-import-access-denied-error.md)
     - [Connect AWS DMS to TiDB Cloud clusters](/tidb-cloud/tidb-cloud-connect-aws-dms.md)
-- Stream Data
-  - [Changefeed Overview](/tidb-cloud/changefeed-overview.md)
-  - [To MySQL Sink](/tidb-cloud/changefeed-sink-to-mysql.md)
-  - [To Kafka Sink](/tidb-cloud/changefeed-sink-to-apache-kafka.md)
-  - Reference
-    - [Set Up Self-Hosted Kafka Private Link Service in AWS](/tidb-cloud/setup-aws-self-hosted-kafka-private-link-service.md)
-    - [Set Up Private Endpoint for Changefeeds](/tidb-cloud/premium/set-up-sink-private-endpoint-premium.md)
 - Security
   - [Security Overview](/tidb-cloud/security-overview.md)
   - Identity Access Control
@@ -248,7 +241,6 @@
   - [Credits](/tidb-cloud/tidb-cloud-billing.md#credits)
   - [Payment Method Setting](/tidb-cloud/tidb-cloud-billing.md#payment-method)
   - [Billing from Cloud Provider Marketplace](/tidb-cloud/tidb-cloud-billing.md#billing-from-cloud-provider-marketplace)
-  - [Billing for Changefeed](/tidb-cloud/premium/tidb-cloud-billing-ticdc-ccu.md)
   - [Manage Budgets](/tidb-cloud/tidb-cloud-budget.md)
 - Integrations
   - [Airbyte](/tidb-cloud/integrate-tidbcloud-with-airbyte.md)

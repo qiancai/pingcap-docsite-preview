@@ -49,7 +49,7 @@ If you have the `Organization Owner` role, you can create a TiDB Cloud Premium i
 2. On the **TiDB Instances** page, click **Create Instance**.
 3. Enter a name for your TiDB Cloud Premium instance.
 4. Choose a cloud provider and a region where you want to host your instance.
-5. Specify both a minimum and maximum number of Request Capacity Units (RCUs) for your instance
+5. Specify the minimum and maximum number of Request Capacity Units (RCUs) for your instance
 
     RCUs represent the compute resources provisioned for your workload. TiDB Cloud automatically scales your instance within this range based on demand.
 
@@ -57,10 +57,11 @@ If you have the `Organization Owner` role, you can create a TiDB Cloud Premium i
 
     The instance creation process begins. If this is your first instance in the selected region, provisioning typically takes about 30 minutes. If the selected region already has existing instances, the process is faster and usually completes within about 1 minute.
 
-## What's next
+<!--## What's next
 
 After your instance is created, follow the instructions in [Connect to TiDB Cloud via Public Endpoint](/tidb-cloud/connect-via-standard-connection-premium.md) to create a password for your instance.
 
 > **Note:**
 >
 > If you do not set a password, you cannot connect to the instance.
+-->
