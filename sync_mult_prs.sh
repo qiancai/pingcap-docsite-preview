@@ -19,8 +19,8 @@ cd "$SCRIPT_DIR"
 # ./sync_pr.sh preview/pingcap/docs-cn/20209
 #./sync_pr.sh preview/pingcap/docs/21277
 #./sync_pr.sh preview/pingcap/docs-cn/19765
-#./sync_pr.sh preview/pingcap/docs/20597
-./sync_pr.sh preview-cloud/pingcap/docs/21905
+./sync_pr.sh preview/pingcap/docs/22008
+./sync_pr.sh preview-cloud/pingcap/docs/22008
 ./sync_pr.sh preview-cloud/pingcap/docs/21964
 #./sync_pr.sh preview-cloud/pingcap/docs/21523
 # ./sync_pr.sh preview-cloud/pingcap/docs/19461
