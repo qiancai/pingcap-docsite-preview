@@ -17,10 +17,9 @@ This document describes how to create a private endpoint for changefeeds in your
 Only users with any of the following roles in your organization can create private endpoints for changefeeds:
 
 - `Organization Owner`
-- `Instance Admin` for the corresponding instance
+- `Instance Administrator` for the corresponding instance
 
-
-For more information about roles in TiDB Cloud, see [User roles](/tidb-cloud/manage-user-access.md#user-roles).
+For more information about roles in TiDB Cloud, see [User roles](/tidb-cloud/premium/manage-user-access-premium.md#user-roles).
 
 ### Network
 
@@ -34,7 +33,7 @@ If your changefeed downstream service is hosted on AWS, collect the following in
 - The name of the Private Endpoint Service for your downstream service
 - The availability zones (AZs) where your downstream service is deployed
 
-If the Private Endpoint Service is not available for your downstream service, follow [Step 2. Expose the Kafka instance as Private Link Service](/tidb-cloud/setup-aws-self-hosted-kafka-private-link-service.md#step-2-expose-the-kafka-instance-as-private-link-service) to set up the load balancer and the Private Link Service.
+If the Private Endpoint Service is not available for your downstream service, follow [Step 2. Expose the Kafka cluster as Private Link Service](/tidb-cloud/setup-aws-self-hosted-kafka-private-link-service.md#step-2-expose-the-kafka-cluster-as-private-link-service) to set up the load balancer and the Private Link Service.
 
 </div>
 

@@ -63,7 +63,7 @@ The document provides an example of connecting to a Kafka Private Link service d
     - Manage endpoint services
     - Connect to EC2 nodes to configure Kafka nodes
 
-2. [Create a TiDB Cloud Premium instance](/tidb-cloud/create-tidb-cluster-premium.md) if you do not have one.
+2. [Create a TiDB Cloud Premium instance](/tidb-cloud/premium/create-tidb-instance-premium.md) if you do not have one.
 
 3. Get the Kafka deployment information from your TiDB Cloud Premium instance.
 
