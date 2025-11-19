@@ -51,7 +51,7 @@ Quick access: [Quick start](https://docs.pingcap.com/tidb/v8.5/quick-start-with-
 
 * Introduce a new TiCDC architecture option for improved performance, scalability, and stability [#442](https://github.com/pingcap/ticdc/issues/442) @[CharlesCheung96](https://github.com/CharlesCheung96)
 
-    This new architecture redesigns TiCDC core components and optimizes its data processing workflows, while maintaining compatibility with the configuration, usage, and APIs of the [classic TiCDC architecture](/ticdc/ticdc-classic-architecture).
+    This new architecture redesigns TiCDC core components and optimizes its data processing workflows, while maintaining compatibility with the configuration, usage, and APIs of the [classic TiCDC architecture](/ticdc/ticdc-classic-architecture.md).
 
     When configured to use this new architecture, TiCDC achieves near-linear scalability and can replicate millions of tables with lower resource consumption. It also reduces changefeed latency and delivers more stable performance in scenarios with high write workloads, frequent DDL operations, and cluster scaling. Note that the new architecture currently has some [initial limitations](https://docs.pingcap.com/tidb/v8.5/ticdc-architecture#limitations).
 
@@ -90,7 +90,18 @@ Starting from v8.5.4, TiDB aligns its behavior with MySQL when inserting data in
 
 + TiDB
 
-    - Optimize the performance of `MODIFY COLUMN` and `CHANGE COLUMN`, reducing the execution time of certain lossy DDL operations (such as changing `BIGINT` to `INT` or changing `CHAR(128)` to `VARCHAR(64)`) from hours to minutes or even milliseconds, achieving overall performance improvements ranging from several times to tens of thousands of times [#63366](https://github.com/pingcap/tidb/issues/63366) @[wjhuang2016](https://github.com/wjhuang2016) @[tangenta](https://github.com/tangenta) @[fzzf678](https://github.com/fzzf678)
+    - Introduce significant performance improvements for certain lossy DDL operations (such as, `BIGINT` → `INT` or `CHAR(120)` → `VARCHAR(60)`), reducing execution time from hours to minutes, seconds, or even milliseconds, delivering performance gains ranging from tens to hundreds of thousands of times [#63366](https://github.com/pingcap/tidb/issues/63366) @[wjhuang2016](https://github.com/wjhuang2016) @[tangenta](https://github.com/tangenta) @[fzzf678](https://github.com/fzzf678)
+
+       Optimization strategies: TiDB pre-checks for potential data truncation risks during type conversion in strict SQL mode; if no risk is detected, TiDB updates only the metadata and avoids index rebuilding whenever possible; if index rebuilding is required, TiDB uses a more efficient ingest process to significantly improve index rebuild performance.
+
+        Performance improvement examples (based on a 100 GiB table benchmark):
+
+        - Non-indexed column: `BIGINT` → `INT` execution time reduced from 2 hours 34 minutes to 1 minute 5 seconds, achieving a 142× speedup
+        - Indexed column: `BIGINT` → `INT` execution time reduced from 6 hours 25 minutes to 0.05 seconds, achieving a 460,000× speedup
+        - Indexed column: `CHAR(120)` → `VARCHAR(60)` execution time reduced from 7 hours 16 minutes to 12 minutes 56 seconds, achieving a 34× speedup
+
+      Note that the preceding results are based on the precondition that no data truncation occurs during the DDL execution.
+
     - Support applying the `semi_join_rewrite` hint to Semi Joins in `IN` subqueries [#58829](https://github.com/pingcap/tidb/issues/58829) @[qw4990](https://github.com/qw4990)
     - Optimize the estimation strategy when the `tidb_opt_ordering_index_selectivity_ratio` system variable takes effect [#62817](https://github.com/pingcap/tidb/issues/62817) @[terry1purcell](https://github.com/terry1purcell)
     - Adjust the optimizer selection logic to make newly created indexes more likely to be chosen in certain scenarios [#57948](https://github.com/pingcap/tidb/issues/57948) @[terry1purcell](https://github.com/terry1purcell)
@@ -180,7 +191,7 @@ Starting from v8.5.4, TiDB aligns its behavior with MySQL when inserting data in
     - Fix the issue that queries might fail when queried columns contain a large number of `NULL` values [#10340](https://github.com/pingcap/tiflash/issues/10340) @[Lloyd-Pottiger](https://github.com/Lloyd-Pottiger)
     - Fix the issue that TiFlash generates inflated statistics for RU consumption [#10380](https://github.com/pingcap/tiflash/issues/10380) @[JinheLin](https://github.com/JinheLin)
     - Fix the issue that TiFlash might encounter OOM when slow queries exist under the disaggregated storage and compute architecture [#10278](https://github.com/pingcap/tiflash/issues/10278) @[JaySon-Huang](https://github.com/JaySon-Huang)
-    - Fix the issue that TiFlash might retry indefinitely when a network partition occurrs between TiFlash and S3 under the disaggregated storage and compute architecture [#10424](https://github.com/pingcap/tiflash/issues/10424) @[JaySon-Huang](https://github.com/JaySon-Huang)
+    - Fix the issue that TiFlash might retry indefinitely when a network partition occurs between TiFlash and S3 under the disaggregated storage and compute architecture [#10424](https://github.com/pingcap/tiflash/issues/10424) @[JaySon-Huang](https://github.com/JaySon-Huang)
     - Fix the issue that the `FLOOR()` and `CEIL()` functions might return incorrect results when their parameters are of the `DECIMAL` type [#10365](https://github.com/pingcap/tiflash/issues/10365) @[ChangRui-Ryan](https://github.com/ChangRui-Ryan)
 
 + Tools
