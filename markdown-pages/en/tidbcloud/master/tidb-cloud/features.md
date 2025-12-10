@@ -32,7 +32,7 @@ This document lists the feature support status for different TiDB Cloud plans, i
   </tr>
   <tr>
     <td rowspan="2">Data import</td>
-    <td>Import (using <code>IMPORT INTO</code> or TiDB Cloud console)</td>
+    <td>Import (using <code>IMPORT INTO</code> or the TiDB Cloud console)</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
@@ -109,7 +109,7 @@ This document lists the feature support status for different TiDB Cloud plans, i
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Recovery Group (cross region)</td>
+    <td>Recovery group (cross-region)</td>
     <td style="text-align:center;">❌</td>
     <td style="text-align:center;">❌</td>
     <td style="text-align:center;">✅</td>
