@@ -6,9 +6,10 @@
 ## GET STARTED
 
 - Why TiDB Cloud
-  - [TiDB Cloud Introduction](/tidb-cloud/tidb-cloud-intro.md)
+  - [Introduction](/tidb-cloud/tidb-cloud-intro.md)
+  - [Features](/tidb-cloud/features.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
-- Get Started with TiDB Cloud
+- Get Started
   - [Try Out TiDB Cloud](/tidb-cloud/tidb-cloud-quickstart.md)
   - [Try Out TiDB + AI](/vector-search/vector-search-get-started-using-python.md)
   - [Try Out HTAP](/tidb-cloud/tidb-cloud-htap-quickstart.md)
@@ -164,6 +165,7 @@
     - Third-Party Metrics Integrations
       - [Overview](/tidb-cloud/third-party-monitoring-integrations.md)
       - [Migrate Datadog and New Relic Integrations](/tidb-cloud/migrate-metrics-integrations.md)
+      - [Migrate Prometheus Integrations](/tidb-cloud/migrate-prometheus-metrics-integrations.md)
     - [TiDB Cloud Clinic](/tidb-cloud/tidb-cloud-clinic.md)
   - Tune Performance
     - [Overview](/tidb-cloud/tidb-cloud-tune-performance-overview.md)
@@ -265,7 +267,7 @@
     - [Overview](/vector-search/vector-search-integration-overview.md)
     - AI Frameworks
       - [LlamaIndex](/vector-search/vector-search-integrate-with-llamaindex.md)
-      - [Langchain](/vector-search/vector-search-integrate-with-langchain.md)
+      - [LangChain](/vector-search/vector-search-integrate-with-langchain.md)
     - AI Services
       - [Amazon Bedrock](/tidb-cloud/vector-search-integrate-with-amazon-bedrock.md)
     - Embedding Models/Services
@@ -429,6 +431,7 @@
     - [`BACKUP`](/sql-statements/sql-statement-backup.md)
     - [`BATCH`](/sql-statements/sql-statement-batch.md)
     - [`BEGIN`](/sql-statements/sql-statement-begin.md)
+    - [`CANCEL DISTRIBUTION JOB`](/sql-statements/sql-statement-cancel-distribution-job.md)
     - [`CANCEL IMPORT JOB`](/sql-statements/sql-statement-cancel-import-job.md)
     - [`COMMIT`](/sql-statements/sql-statement-commit.md)
     - [`CREATE [GLOBAL|SESSION] BINDING`](/sql-statements/sql-statement-create-binding.md)
@@ -446,6 +449,7 @@
     - [`DELETE`](/sql-statements/sql-statement-delete.md)
     - [`DESC`](/sql-statements/sql-statement-desc.md)
     - [`DESCRIBE`](/sql-statements/sql-statement-describe.md)
+    - [`DISTRIBUTE TABLE`](/sql-statements/sql-statement-distribute-table.md)
     - [`DO`](/sql-statements/sql-statement-do.md)
     - [`DROP [GLOBAL|SESSION] BINDING`](/sql-statements/sql-statement-drop-binding.md)
     - [`DROP DATABASE`](/sql-statements/sql-statement-drop-database.md)
@@ -509,6 +513,7 @@
     - [`SHOW CREATE TABLE`](/sql-statements/sql-statement-show-create-table.md)
     - [`SHOW CREATE USER`](/sql-statements/sql-statement-show-create-user.md)
     - [`SHOW DATABASES`](/sql-statements/sql-statement-show-databases.md)
+    - [`SHOW DISTRIBUTION JOBS`](/sql-statements/sql-statement-show-distribution-jobs.md)
     - [`SHOW ENGINES`](/sql-statements/sql-statement-show-engines.md)
     - [`SHOW ERRORS`](/sql-statements/sql-statement-show-errors.md)
     - [`SHOW FIELDS FROM`](/sql-statements/sql-statement-show-fields-from.md)
@@ -531,6 +536,7 @@
     - [`SHOW STATS_META`](/sql-statements/sql-statement-show-stats-meta.md)
     - [`SHOW STATS_TOPN`](/sql-statements/sql-statement-show-stats-topn.md)
     - [`SHOW STATUS`](/sql-statements/sql-statement-show-status.md)
+    - [`SHOW TABLE DISTRIBUTION`](/sql-statements/sql-statement-show-table-distribution.md)
     - [`SHOW TABLE NEXT_ROW_ID`](/sql-statements/sql-statement-show-table-next-rowid.md)
     - [`SHOW TABLE REGIONS`](/sql-statements/sql-statement-show-table-regions.md)
     - [`SHOW TABLE STATUS`](/sql-statements/sql-statement-show-table-status.md)
@@ -587,6 +593,7 @@
     - [Set Operations](/functions-and-operators/set-operators.md)
     - [List of Expressions for Pushdown](/functions-and-operators/expressions-pushed-down.md)
   - [Clustered Indexes](/clustered-indexes.md)
+  - [Global Indexes](/global-indexes.md)
   - [Constraints](/constraints.md)
   - [Generated Columns](/generated-columns.md)
   - [SQL Mode](/sql-mode.md)
@@ -659,6 +666,7 @@
       - [`TIDB_INDEX_USAGE`](/information-schema/information-schema-tidb-index-usage.md)
       - [`TIDB_SERVERS_INFO`](/information-schema/information-schema-tidb-servers-info.md)
       - [`TIDB_TRX`](/information-schema/information-schema-tidb-trx.md)
+      - [`TIFLASH_INDEXES`](/information-schema/information-schema-tiflash-indexes.md)
       - [`TIFLASH_REPLICA`](/information-schema/information-schema-tiflash-replica.md)
       - [`TIFLASH_SEGMENTS`](/information-schema/information-schema-tiflash-segments.md)
       - [`TIFLASH_TABLES`](/information-schema/information-schema-tiflash-tables.md)
@@ -735,10 +743,10 @@
   - [Table Filter](/table-filter.md)
   - [URI Formats of External Storage Services](/external-storage-uri.md)
   - [DDL Execution Principles and Best Practices](/ddl-introduction.md)
+  - [`ANALYZE` Embedded in DDL Statements](/ddl_embedded_analyze.md)
   - [Batch Processing](/batch-processing.md)
   - [Troubleshoot Inconsistency Between Data and Indexes](/troubleshoot-data-inconsistency-errors.md)
   - [Notifications](/tidb-cloud/notifications.md)
-  - [Glossary](/tidb-cloud/tidb-cloud-glossary.md)
 - Support Plan
   - [Connected Care Overview](/tidb-cloud/connected-care-overview.md)
   - [Connected Care Details](/tidb-cloud/connected-care-detail.md)
@@ -757,6 +765,7 @@
   - [Get Support](/tidb-cloud/tidb-cloud-support.md)
 - FAQs
   - [TiDB Cloud FAQs](/tidb-cloud/tidb-cloud-faq.md)
+- [Glossary](/tidb-cloud/tidb-cloud-glossary.md)
 
 ## RELEASES
 

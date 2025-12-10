@@ -6,9 +6,10 @@
 ## GET STARTED
 
 - Why TiDB Cloud
-  - [TiDB Cloud Introduction](/tidb-cloud/tidb-cloud-intro.md)
+  - [Introduction](/tidb-cloud/tidb-cloud-intro.md)
+  - [Features](/tidb-cloud/features.md)
   - [MySQL Compatibility](/mysql-compatibility.md)
-- Get Started with TiDB Cloud
+- Get Started
   - [Try Out TiDB Cloud](/tidb-cloud/tidb-cloud-quickstart.md)
   - [Try Out TiDB + AI](/vector-search/vector-search-get-started-using-python.md)
   - [Try Out HTAP](/tidb-cloud/tidb-cloud-htap-quickstart.md)
@@ -226,7 +227,7 @@
     - [Import Snapshot Files from Cloud Storage](/tidb-cloud/import-snapshot-files-serverless.md)
     - [Import with MySQL CLI](/tidb-cloud/import-with-mysql-cli-serverless.md)
   - Reference
-    - [Configure External Storage Access for TiDB Cloud](/tidb-cloud/serverless-external-storage.md)
+    - [Configure External Storage Access for TiDB Cloud](/tidb-cloud/configure-external-storage-access.md)
     - [Naming Conventions for Data Import](/tidb-cloud/naming-conventions-for-data-import.md)
     - [CSV Configurations for Importing Data](/tidb-cloud/csv-config-for-import-data.md)
     - [Troubleshoot Access Denied Errors during Data Import from Amazon S3](/tidb-cloud/troubleshoot-import-access-denied-error.md)
@@ -240,7 +241,7 @@
     - [Overview](/vector-search/vector-search-integration-overview.md)
     - AI Frameworks
       - [LlamaIndex](/vector-search/vector-search-integrate-with-llamaindex.md)
-      - [Langchain](/vector-search/vector-search-integrate-with-langchain.md)
+      - [LangChain](/vector-search/vector-search-integrate-with-langchain.md)
     - AI Services
       - [Amazon Bedrock](/tidb-cloud/vector-search-integrate-with-amazon-bedrock.md)
     - Embedding Models/Services
@@ -274,6 +275,7 @@
     - [TLS Connections to TiDB Cloud](/tidb-cloud/secure-connections-to-serverless-clusters.md)
   - Audit Management
     - [Console Audit Logging](/tidb-cloud/tidb-cloud-console-auditing.md)
+    - [Database Audit Logging](/tidb-cloud/essential-database-audit-logging.md)
 - Billing
   - [Invoices](/tidb-cloud/tidb-cloud-billing.md#invoices)
   - [Billing Details](/tidb-cloud/tidb-cloud-billing.md#billing-details)
@@ -485,6 +487,7 @@
     - [List of Expressions for Pushdown](/functions-and-operators/expressions-pushed-down.md)
     - [TiDB Specific Functions](/functions-and-operators/tidb-functions.md)
   - [Clustered Indexes](/clustered-indexes.md)
+  - [Global Indexes](/global-indexes.md)
   - [Constraints](/constraints.md)
   - [Generated Columns](/generated-columns.md)
   - [SQL Mode](/sql-mode.md)
@@ -613,7 +616,18 @@
       - [delete](/tidb-cloud/ticloud-serverless-authorized-network-delete.md)
       - [list](/tidb-cloud/ticloud-serverless-authorized-network-list.md)
       - [update](/tidb-cloud/ticloud-serverless-authorized-network-update.md)
-  - [ai](/tidb-cloud/ticloud-ai.md)
+    - audit-log
+      - config
+        - [update](/tidb-cloud/ticloud-serverless-audit-log-config-update.md)
+        - [describe](/tidb-cloud/ticloud-serverless-audit-log-config-describe.md)
+      - filter-rule
+        - [create](/tidb-cloud/ticloud-serverless-audit-log-filter-rule-create.md)
+        - [delete](/tidb-cloud/ticloud-serverless-audit-log-filter-rule-delete.md)
+        - [describe](/tidb-cloud/ticloud-serverless-audit-log-filter-rule-describe.md)
+        - [list](/tidb-cloud/ticloud-serverless-audit-log-filter-rule-list.md)
+        - [update](/tidb-cloud/ticloud-serverless-audit-log-filter-rule-update.md)
+        - [template](/tidb-cloud/ticloud-serverless-audit-log-filter-rule-template.md)
+      - [download](/tidb-cloud/ticloud-serverless-audit-log-download.md)
   - [completion](/tidb-cloud/ticloud-completion.md)
   - config
     - [create](/tidb-cloud/ticloud-config-create.md)
@@ -655,7 +669,6 @@
   - [DDL Execution Principles and Best Practices](/ddl-introduction.md)
   - [Troubleshoot Inconsistency Between Data and Indexes](/troubleshoot-data-inconsistency-errors.md)
   - [Notifications](/tidb-cloud/notifications.md)
-  - [Glossary](/tidb-cloud/tidb-cloud-glossary.md)
 - Support Plan
   - [Connected Care Overview](/tidb-cloud/connected-care-overview.md)
   - [Connected Care Details](/tidb-cloud/connected-care-detail.md)
@@ -670,6 +683,7 @@
   - [Get Support](/tidb-cloud/tidb-cloud-support.md)
 - FAQs
   - [TiDB Cloud FAQs](/tidb-cloud/tidb-cloud-faq.md)
+- [Glossary](/tidb-cloud/tidb-cloud-glossary.md)
 
 ## RELEASES
 
