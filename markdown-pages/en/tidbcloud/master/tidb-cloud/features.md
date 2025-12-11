@@ -14,6 +14,13 @@ This document lists the feature support status for different TiDB Cloud plans, i
 - ✅: The feature is generally available unless otherwise noted as preview.
 - ❌: The feature is currently not available.
 
+<style>
+  table td:first-child,
+  table th:first-child {
+    background-color: transparent !important;
+  }
+</style>
+
 <table><thead>
   <tr>
     <th>Category</th>
