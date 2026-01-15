@@ -8,6 +8,7 @@
 
 -   TiDB Cloudを選ぶ理由
     -   [TiDB Cloudの紹介](/tidb-cloud/tidb-cloud-intro.md)
+    -   [特徴](/tidb-cloud/features.md)
     -   [MySQLの互換性](/mysql-compatibility.md)
 -   TiDB Cloudを使い始める
     -   [TiDB Cloudを試してみる](/tidb-cloud/tidb-cloud-quickstart.md)
