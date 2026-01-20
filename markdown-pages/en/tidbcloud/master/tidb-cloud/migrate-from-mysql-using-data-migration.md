@@ -488,9 +488,10 @@ On the **Create Migration Job** page, configure the source and target connection
 2. Fill in the source connection profile.
 
     - **Data source**: the data source type.
-    - **Connectivity method**: select a connection method for your data source based on your security requirements and cloud provider:
 
     <CustomContent plan="dedicated">
+
+    - **Connectivity method**: select a connection method for your data source based on your security requirements and cloud provider:
 
         - **Public IP**: available for all cloud providers (recommended for testing and proof-of-concept migrations).
         - **Private Link**: available for AWS and Azure only (recommended for production workloads requiring private connectivity).
@@ -499,14 +500,16 @@ On the **Create Migration Job** page, configure the source and target connection
     </CustomContent>
     <CustomContent plan="essential">
 
+    - **Connectivity method**: select a connection method for your data source based on your security requirements and cloud provider:
+
         - **Public**: available for all cloud providers (recommended for testing and proof-of-concept migrations).
         - **Private Link**: available for AWS and Alibaba Cloud only (recommended for production workloads requiring private connectivity).
 
     </CustomContent>
 
-    - Based on the selected **Connectivity method**, do the following:
-
     <CustomContent plan="dedicated">
+
+    - Based on the selected **Connectivity method**, do the following:
 
         - If **Public IP** or **VPC Peering** is selected, fill in the **Hostname or IP address** field with the hostname or IP address of the data source.
         - If **Private Link** is selected, fill in the following information:
@@ -515,6 +518,8 @@ On the **Create Migration Job** page, configure the source and target connection
 
     </CustomContent>
     <CustomContent plan="essential">
+
+    - Based on the selected **Connectivity method**, do the following:
 
         - If **Public IP** is selected, fill in the **Hostname or IP address** field with the hostname or IP address of the data source.
         - If **Private Link** is selected, select the private link connection that you created in the [Private link or private endpoint](#private-link-or-private-endpoint) section.
