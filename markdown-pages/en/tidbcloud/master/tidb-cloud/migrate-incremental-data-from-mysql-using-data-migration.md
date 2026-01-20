@@ -1,18 +1,13 @@
 ---
 title: Migrate Only Incremental Data from MySQL-Compatible Databases to TiDB Cloud Using Data Migration
-summary: Learn how to migrate incremental data from MySQL-compatible databases hosted on a cloud provider, or a local MySQL instance to TiDB Cloud using Data Migration.
+summary: Learn how to migrate incremental data from MySQL-compatible databases hosted in Amazon Aurora MySQL, Amazon Relational Database Service (RDS), Google Cloud SQL for MySQL, Azure Database for MySQL, or Alibaba Cloud RDS, or a local MySQL instance to TiDB Cloud using Data Migration.
 ---
 
 # Migrate Only Incremental Data from MySQL-Compatible Databases to TiDB Cloud Using Data Migration
 
-<CustomContent plan="dedicated">
+This document describes how to migrate incremental data from a MySQL-compatible database on a cloud provider (Amazon Aurora MySQL, Amazon Relational Database Service (RDS), Google Cloud SQL for MySQL, Azure Database for MySQL, or Alibaba Cloud RDS) or self-hosted source database to <CustomContent plan="dedicated">TiDB Cloud Dedicated</CustomContent><CustomContent plan="essential">TiDB Cloud Essential</CustomContent> using the Data Migration feature of the TiDB Cloud console.
 
-This document describes how to migrate incremental data from a MySQL-compatible database on a cloud provider (Amazon Aurora MySQL, Amazon Relational Database Service (RDS), Google Cloud SQL for MySQL, Azure Database for MySQL, or Alibaba Cloud RDS) or self-hosted source database to TiDB Cloud Dedicated using the Data Migration feature of the TiDB Cloud console.
-
-</CustomContent>
 <CustomContent plan="essential">
-
-This document describes how to migrate incremental data from a MySQL-compatible database on a cloud provider (Amazon Aurora MySQL, Amazon Relational Database Service (RDS), or Alibaba Cloud RDS) or self-hosted source database to TiDB Cloud Essential using the Data Migration feature of the TiDB Cloud console.
 
 > **Note:**
 >
@@ -72,8 +67,6 @@ If the result is `ON` or `ON_PERMISSIVE`, the GTID mode is successfully enabled.
 
 For more information, see [Parameters for GTID-based replication](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/mysql-replication-gtid.html#mysql-replication-gtid.parameters).
 
-<CustomContent plan="dedicated">
-
 ### For Google Cloud SQL for MySQL
 
 The GTID mode is enabled for Google Cloud SQL for MySQL by default. You can check if the GTID mode has been successfully enabled by executing the following SQL statement:
@@ -95,8 +88,6 @@ SHOW VARIABLES LIKE 'binlog_row_image';
 ```
 
 If the result is not `FULL`, you need to configure this parameter for your Azure Database for MySQL instance using the [Azure portal](https://portal.azure.com/) or [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/).
-
-</CustomContent>
 
 ### For Alibaba Cloud RDS MySQL
 
@@ -157,7 +148,7 @@ To enable the GTID mode for a self-hosted MySQL instance, follow these steps:
     >
     > You can use the combo box in the upper-left corner to switch between organizations, projects, and clusters.
 
-2. Click the name of your target cluster to go to its overview page, and then click **Data** > **Migration** in the left navigation pane.
+2. Click the name of your target cluster to go to its overview page, and then click **Data** > **Data Migration** in the left navigation pane.
 
 3. On the **Data Migration** page, click **Create Migration Job** in the upper-right corner. The **Create Migration Job** page is displayed.
 
@@ -273,6 +264,24 @@ For more information about precheck items, see [Migration Task Precheck](https:/
 
 If all check items show **Pass**, click **Next**.
 
+<CustomContent plan="essential">
+
+## Step 6: View the migration progress
+
+After the migration job is created, you can view the migration progress on the **Migration Job Details** page. The migration progress is displayed in the **Stage and Status** area.
+
+You can pause or delete a migration job when it is running.
+
+If a migration job has failed, you can resume it after solving the problem.
+
+You can delete a migration job in any status.
+
+If you encounter any problems during the migration, see [Migration errors and solutions](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md#migration-errors-and-solutions).
+
+</CustomContent>
+
+<CustomContent plan="dedicated">
+
 ## Step 6: Choose a spec and start migration
 
 On the **Choose a Spec and Start Migration** page, select an appropriate migration specification according to your performance requirements. For more information about the specifications, see [Specifications for Data Migration](/tidb-cloud/tidb-cloud-billing-dm.md#specifications-for-data-migration).
@@ -290,3 +299,5 @@ If a migration job has failed, you can resume it after solving the problem.
 You can delete a migration job in any status.
 
 If you encounter any problems during the migration, see [Migration errors and solutions](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md#migration-errors-and-solutions).
+
+</CustomContent>

@@ -6,7 +6,7 @@ aliases: ['/tidbcloud/migrate-data-into-tidb','/tidbcloud/migrate-incremental-da
 
 # Migrate MySQL-Compatible Databases to TiDB Cloud Using Data Migration
 
-This document guides you through migrating your MySQL databases from Amazon Aurora MySQL, Amazon RDS, Azure Database for MySQL - Flexible Server, Google Cloud SQL for MySQL, or self-managed MySQL instances to <CustomContent plan="dedicated">TiDB Cloud Dedicated</CustomContent><CustomContent plan="essential">TiDB Cloud Essential</CustomContent>using the Data Migration feature in the [TiDB Cloud console](https://tidbcloud.com/).
+This document guides you through migrating your MySQL databases from Amazon Aurora MySQL, Amazon RDS, Azure Database for MySQL - Flexible Server, Google Cloud SQL for MySQL, or self-managed MySQL instances to <CustomContent plan="dedicated">TiDB Cloud Dedicated</CustomContent><CustomContent plan="essential">TiDB Cloud Essential</CustomContent> using the Data Migration feature in the [TiDB Cloud console](https://tidbcloud.com/).
 
 <CustomContent plan="essential">
 
@@ -24,8 +24,12 @@ If you only want to replicate ongoing binlog changes from your MySQL-compatible 
 
 ### Availability
 
-- Currently, the Data Migration features is not available for TiDB Cloud Starter.
-- If you don't see the [Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md#step-1-go-to-the-data-migration-page) entry for your <CustomContent plan="dedicated">TiDB Cloud Dedicated</CustomContent><CustomContent plan="essential">TiDB Cloud Essential</CustomContent> cluster in the [TiDB Cloud console](https://tidbcloud.com/), the feature might not be available in your region. To request support for your region, contact [TiDB Cloud Support](/tidb-cloud/tidb-cloud-support.md).
+- Currently, the Data Migration feature is not available for TiDB Cloud Starter.
+
+<CustomContent plan="dedicated">
+- If you don't see the [Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md#step-1-go-to-the-data-migration-page) entry for your TiDB Cloud Dedicated cluster in the [TiDB Cloud console](https://tidbcloud.com/), the feature might not be available in your region. To request support for your region, contact [TiDB Cloud Support](/tidb-cloud/tidb-cloud-support.md).
+</CustomContent> 
+
 - Amazon Aurora MySQL writer instances support both existing data and incremental data migration. Amazon Aurora MySQL reader instances only support existing data migration and do not support incremental data migration.
 
 ### Maximum number of migration jobs
@@ -45,7 +49,11 @@ You can create up to 100 migration jobs on TiDB Cloud Essential clusters for eac
 
 - The system databases will be filtered out and not migrated to TiDB Cloud even if you select all of the databases to migrate. That is, `mysql`, `information_schema`, `performance_schema`, and `sys` will not be migrated using this feature.
 
+<CustomContent plan="dedicated">
+
 - When you delete a cluster in TiDB Cloud, all migration jobs in that cluster are automatically deleted and not recoverable.
+
+</CustomContent>
 
 <CustomContent plan="essential">
 
@@ -72,7 +80,7 @@ To prevent this, create the target tables in the downstream database before star
 </CustomContent>
 <CustomContent plan="essential">
 
-- For TiDB Cloud Essential, only logical mode is supported currently.
+- For TiDB Cloud Essential, only logical mode is supported for data migration currently. This mode exports data from MySQL source databases as SQL statements and then executes them on TiDB. In this mode, the target tables before migration can be either empty or non-empty.
 
 </CustomContent>
 
@@ -80,12 +88,16 @@ To prevent this, create the target tables in the downstream database before star
 
 - During incremental data migration, if the table to be migrated already exists in the target database with duplicate keys, an error is reported and the migration is interrupted. In this situation, you need to verify that the MySQL source data is accurate. If it is accurate, click the **Restart** button of the migration job, and the migration job will replace the conflicting records in the target cluster with the MySQL source records.
 
-- During incremental replication (migrating ongoing changes to your cluster), if the migration job recovers from an abrupt error, it might open the safe mode for 60 seconds. During the safe mode, `INSERT` statements are migrated as `REPLACE`, `UPDATE` statements as `DELETE` and `REPLACE`, and then these transactions are migrated to the target TiDB Cloud cluster to ensure that all the data during the abrupt error has been migrated smoothly to the target TiDB Cloud cluster. In this scenario, for MySQL source tables without primary keys or non-null unique indexes, some data might be duplicated in the target TiDB Cloud cluster because the data might be inserted repeatedly into the target TiDB Cloud cluster.
+- During incremental data migration (migrating ongoing changes to your cluster), if the migration job recovers from an abrupt error, it might open the safe mode for 60 seconds. During the safe mode, `INSERT` statements are migrated as `REPLACE`, `UPDATE` statements as `DELETE` and `REPLACE`, and then these transactions are migrated to the target TiDB Cloud cluster to ensure that all the data during the abrupt error has been migrated smoothly to the target TiDB Cloud cluster. In this scenario, for MySQL source tables without primary keys or non-null unique indexes, some data might be duplicated in the target TiDB Cloud cluster because the data might be inserted repeatedly into the target TiDB Cloud cluster.
 
-- In the following scenarios, if the migration job takes longer than 24 hours, do not purge binary logs in the source database. This allows Data Migration to get consecutive binary logs for incremental replication:
+<CustomContent plan="dedicated">
+
+- In the following scenarios, if the migration job takes longer than 24 hours, do not purge binary logs in the source database. This allows Data Migration to get consecutive binary logs for incremental data migration:
 
     - During the existing data migration.
     - After the existing data migration is completed and when incremental data migration is started for the first time, the latency is not 0 ms.
+
+</CustomContent>
 
 ## Prerequisites
 
@@ -209,8 +221,6 @@ For detailed instructions, see [Configure database flags](https://cloud.google.c
 
 </details>
 
-<CustomContent plan="essential">
-
 <details>
 <summary> Configure Alibaba Cloud RDS MySQL</summary>
 
@@ -220,7 +230,7 @@ For detailed instructions, see [Configure database flags](https://cloud.google.c
 
     - `binlog_row_image`: `FULL`
 
-3. In the left navigation pane, click **Backup and Restoration**, and then select **Backup Strategy**. To ensure DM can access consecutive binlog files during migration, please configure the backup strategy with the following constraints:
+3. In the left navigation pane, click **Backup and Restoration**, and then select **Backup Strategy**. To ensure DM can access consecutive binlog files during migration, configure the backup strategy with the following constraints:
 
     - Retention Period: Set to at least 3 days (7 days recommended).
 
@@ -230,11 +240,9 @@ For detailed instructions, see [Configure database flags](https://cloud.google.c
 
 4. After applying the changes (and restarting if needed), connect to the instance and run the `SHOW VARIABLES` statement in this section to verify the configuration.
 
-For detailed instructions, see [Set instance parameters](https://www.alibabacloud.com/help/en/rds/apsaradb-rds-for-mysql/modify-the-parameters-of-an-apsaradb-rds-for-mysql-instance)
+For more information, see [Set instance parameters](https://www.alibabacloud.com/help/en/rds/apsaradb-rds-for-mysql/modify-the-parameters-of-an-apsaradb-rds-for-mysql-instance).
 
 </details>
-
-</CustomContent>
 
 ### Ensure network connectivity
 
@@ -274,10 +282,7 @@ Regardless of the connection method, it is strongly recommended to use TLS/SSL f
 - Amazon Aurora MySQL or Amazon RDS MySQL: [Using SSL/TLS to encrypt a connection to a DB instance or cluster](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/UsingWithRDS.SSL.html)
 - Azure Database for MySQL - Flexible Server: [Connect with encrypted connections](https://learn.microsoft.com/en-us/azure/mysql/flexible-server/how-to-connect-tls-ssl)
 - Google Cloud SQL for MySQL: [Manage SSL/TLS certificates](https://cloud.google.com/sql/docs/mysql/manage-ssl-instance)
-
-<CustomContent plan="essential">
 - Alibaba Cloud RDS MySQL: [Configure the SSL encryption feature](https://www.alibabacloud.com/help/en/rds/apsaradb-rds-for-mysql/configure-a-cloud-certificate-to-enable-ssl-encryption)
-</CustomContent>
 
 </details>
 
@@ -292,7 +297,7 @@ When using public endpoints, you can verify network connectivity and access both
 > The egress IP range for your firewall is available only during Data Migration task creation. You cannot obtain this IP range in advance. Before you begin, ensure that you:
 >
 > - Have permissions to modify firewall rules.
-> - Can access to your cloud provider's console during the setup process.
+> - Can access your cloud provider's console during the setup process.
 > - Can pause the task creation workflow to configure your firewall.
 
 </CustomContent>
@@ -429,7 +434,7 @@ For production workloads, it is recommended to have a dedicated user for data du
 |:----------|:------|:--------|
 | `SELECT` | Tables | Allows reading data from all tables |
 | `RELOAD` | Global | Ensures consistent snapshots during full dump |
-| `REPLICATION SLAVE` | Global | Enables binlog streaming for incremental replication |
+| `REPLICATION SLAVE` | Global | Enables binlog streaming for incremental data migration |
 | `REPLICATION CLIENT` | Global | Provides access to binlog position and server status |
 
 For example, you can use the following `GRANT` statement in your source MySQL instance to grant corresponding privileges:
@@ -449,7 +454,7 @@ For production workloads, it is recommended to have a dedicated user for replica
 | `CREATE` | Databases, Tables | Creates schema objects in the target |
 | `SELECT` | Tables | Verifies data during migration |
 | `INSERT` | Tables | Writes migrated data |
-| `UPDATE` | Tables | Modifies existing rows during incremental replication |
+| `UPDATE` | Tables | Modifies existing rows during incremental data migration |
 | `DELETE` | Tables | Removes rows during replication or updates |
 | `ALTER`  | Tables | Modifies table definitions when schema changes |
 | `DROP`   | Databases, Tables | Removes objects during schema sync |
@@ -470,7 +475,7 @@ GRANT CREATE, SELECT, INSERT, UPDATE, DELETE, ALTER, DROP, INDEX ON *.* TO 'dm_t
     >
     > You can use the combo box in the upper-left corner to switch between organizations, projects, and clusters.
 
-2. Click the name of your target cluster to go to its overview page, and then click **Data** > **Migration** in the left navigation pane.
+2. Click the name of your target cluster to go to its overview page, and then click **Data** > **Data Migration** in the left navigation pane.
 
 3. On the **Data Migration** page, click **Create Migration Job** in the upper-right corner. The **Create Migration Job** page is displayed.
 
@@ -494,7 +499,7 @@ On the **Create Migration Job** page, configure the source and target connection
         </CustomContent>
         <CustomContent plan="essential">
 
-        - **Public IP**: available for all cloud providers (recommended for testing and proof-of-concept migrations).
+        - **Public**: available for all cloud providers (recommended for testing and proof-of-concept migrations).
         - **Private Link**: available for AWS and Alibaba Cloud only (recommended for production workloads requiring private connectivity).
 
         </CustomContent>
@@ -512,7 +517,7 @@ On the **Create Migration Job** page, configure the source and target connection
         <CustomContent plan="essential">
 
         - If **Public IP** is selected, fill in the **Hostname or IP address** field with the hostname or IP address of the data source.
-        - If **Private Link** is selected, select the private link connection that you created in the [Private Link Connections](/tidb-cloud/serverless-private-link-connection.md) section.
+        - If **Private Link** is selected, select the private link connection that you created in the [Private link or private endpoint](#private-link-or-private-endpoint) section.
 
         </CustomContent>
 
@@ -586,9 +591,9 @@ In the **Choose migration job type** step, you can choose to migrate both existi
 
 ### Migrate existing data and incremental data
 
-To migrate data to TiDB Cloud once and for all, choose both **Existing data migration** and **Incremental data migration**, which ensures data consistency between the source and target databases.
-
 <CustomContent plan="dedicated">
+
+To migrate data to TiDB Cloud once and for all, choose both **Existing data migration** and **Incremental data migration**, which ensures data consistency between the source and target databases.
 
 You can use **physical mode** or **logical mode** to migrate **existing data** and **incremental data**.
 
@@ -613,7 +618,9 @@ Physical mode exports the MySQL source data as fast as possible, so [different s
 </CustomContent>
 <CustomContent plan="essential">
 
-Currently you can only use **logical mode** to migrate **existing data** and **incremental data**. This mode exports data from MySQL source databases as SQL statements and then executes them on TiDB. In this mode, the target tables before migration can be either empty or non-empty.
+To migrate data to TiDB Cloud once and for all, choose both **Full + Incremental** and **Incremental data migration**, which ensures data consistency between the source and target databases.
+
+Currently you can only use **logical mode** to migrate **existing data**. This mode exports data from MySQL source databases as SQL statements and then executes them on TiDB. In this mode, the target tables before migration can be either empty or non-empty.
 
 </CustomContent>
 
@@ -639,13 +646,13 @@ For detailed instructions about incremental data migration, see [Migrate Only In
 
     - If you click **All**, the migration job will migrate the existing data from the whole source database instance to TiDB Cloud and migrate ongoing changes after the full migration. Note that it happens only if you have selected the **Existing data migration** and **Incremental data migration** checkboxes in the previous step.
     - If you click **Customize** and select some databases, the migration job will migrate the existing data and migrate ongoing changes of the selected databases to TiDB Cloud. Note that it happens only if you have selected the **Existing data migration** and **Incremental data migration** checkboxes in the previous step.
-    - If you click **Customize** and select some tables under a dataset name, the migration job will only migrate the existing data and migrate ongoing changes of the selected tables. Tables created afterwards in the same database will not be migrated.
+    - If you click **Customize** and select some tables under a database name, the migration job will only migrate the existing data and migrate ongoing changes of the selected tables. Tables created afterwards in the same database will not be migrated.
 
 2. Click **Next**.
 
 ## Step 5: Precheck
 
-On the **Precheck** page, you can view the precheck results. If the precheck fails, you need to operate according to **Failed** or **Warning** details, and then click **Check again** to recheck.
+On the **Precheck** page, you can view the precheck results. If the precheck fails, you need to resolve the issues according to the **Failed** or **Warning** details, and then click **Check again** to recheck.
 
 If there are only warnings on some check items, you can evaluate the risk and consider whether to ignore the warnings. If all warnings are ignored, the migration job will automatically proceed to the next step.
 
@@ -654,6 +661,24 @@ For more information about errors and solutions, see [Precheck errors and soluti
 For more information about precheck items, see [Migration Task Precheck](https://docs.pingcap.com/tidb/stable/dm-precheck).
 
 If all check items show **Pass**, click **Next**.
+
+<CustomContent plan="essential">
+
+## Step 6: View the migration progress
+
+After the migration job is created, you can view the migration progress on the **Migration Job Details** page. The migration progress is displayed in the **Stage and Status** area.
+
+You can pause or delete a migration job when it is running.
+
+If a migration job has failed, you can resume it after solving the problem.
+
+You can delete a migration job in any status.
+
+If you encounter any problems during the migration, see [Migration errors and solutions](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md#migration-errors-and-solutions).
+
+</CustomContent>
+
+<CustomContent plan="dedicated">
 
 ## Step 6: Choose a spec and start migration
 
@@ -672,8 +697,6 @@ If a migration job has failed, you can resume it after solving the problem.
 You can delete a migration job in any status.
 
 If you encounter any problems during the migration, see [Migration errors and solutions](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md#migration-errors-and-solutions).
-
-<CustomContent plan="dedicated">
 
 ## Scale a migration job specification
 
@@ -697,7 +720,7 @@ When scaling a migration job specification, note the following:
 
 1. Log in to the [TiDB Cloud console](https://tidbcloud.com/) and navigate to the [**Clusters**](https://tidbcloud.com/project/clusters) page of your project.
 
-2. Click the name of your target cluster to go to its overview page, and then click **Data** > **Migration** in the left navigation pane.
+2. Click the name of your target cluster to go to its overview page, and then click **Data** > **Data Migration** in the left navigation pane.
 
 3. On the **Data Migration** page, locate the migration job you want to scale. In the **Action** column, click **...** > **Scale Up/Down**.
 
