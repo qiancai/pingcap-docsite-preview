@@ -216,6 +216,8 @@
 - Migrate or Import Data
   - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
   - Migrate Data into TiDB Cloud
+    - [Migrate Existing and Incremental Data Using Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md)
+    - [Migrate Incremental Data Using Data Migration](/tidb-cloud/migrate-incremental-data-from-mysql-using-data-migration.md)
     - [Migrate from TiDB Self-Managed to TiDB Cloud](/tidb-cloud/migrate-from-op-tidb.md)
     - [Migrate and Merge MySQL Shards of Large Datasets](/tidb-cloud/migrate-sql-shards.md)
     - [Migrate from Amazon RDS for Oracle Using AWS DMS](/tidb-cloud/migrate-from-oracle-using-aws-dms.md)
@@ -260,6 +262,10 @@
     - [Vector Index](/vector-search/vector-search-index.md)
   - [Improve Performance](/vector-search/vector-search-improve-performance.md)
   - [Limitations](/vector-search/vector-search-limitations.md)
+- Stream Data ![BETA](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+  - [Changefeed Overview](/tidb-cloud/essential-changefeed-overview.md)
+  - [Sink to MySQL](/tidb-cloud/essential-changefeed-sink-to-mysql.md)
+  - [Sink to Apache Kafka](/tidb-cloud/essential-changefeed-sink-to-kafka.md)
 - Security
   - [Security Overview](/tidb-cloud/security-overview.md)
   - Identity Access Control
@@ -275,7 +281,11 @@
     - [TLS Connections to TiDB Cloud](/tidb-cloud/secure-connections-to-serverless-clusters.md)
   - Private Link Connection
     - [Private Link Connection Overview](/tidb-cloud/serverless-private-link-connection.md)
+    - [Connect to Amazon RDS](/tidb-cloud/serverless-private-link-connection-to-aws-rds.md)
+    - [Connect to Alibaba Cloud RDS](/tidb-cloud/serverless-private-link-connection-to-alicloud-rds.md)
     - [Connect to Confluent Cloud on AWS](/tidb-cloud/serverless-private-link-connection-to-aws-confluent.md)
+    - [Connect to Self-Hosted Kafka on Alibaba Cloud](/tidb-cloud/serverless-private-link-connection-to-self-hosted-kafka-in-alicloud.md)
+    - [Connect to Self-Hosted Kafka on AWS](/tidb-cloud/serverless-private-link-connection-to-self-hosted-kafka-in-aws.md)
   - Audit Management
     - [Console Audit Logging](/tidb-cloud/tidb-cloud-console-auditing.md)
     - [Database Audit Logging](/tidb-cloud/essential-database-audit-logging.md)
@@ -645,12 +655,13 @@
   - [upgrade](/tidb-cloud/ticloud-upgrade.md)
   - [help](/tidb-cloud/ticloud-help.md)
 - General Reference
-  - TiDB Cluster Architecture
+  - TiDB Classic Architecture
     - [Overview](/tidb-architecture.md)
     - [Storage](/tidb-storage.md)
     - [Computing](/tidb-computing.md)
     - [Scheduling](/tidb-scheduling.md)
     - [TSO](/tso.md)
+  - [TiDB X Architecture](/tidb-cloud/tidb-x-architecture.md)
   - Storage Engines
     - TiKV
         - [TiKV Overview](/tikv-overview.md)
