@@ -1,6 +1,6 @@
 ---
 title: 功能特性
-summary: 了解不同 TiDB Cloud 套餐的功能支持状态。
+summary: 了解不同 TiDB Cloud 套餐的功能支持状态。 
 ---
 
 # 功能特性
