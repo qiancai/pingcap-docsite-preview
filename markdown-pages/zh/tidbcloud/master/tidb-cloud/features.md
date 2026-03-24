@@ -1,189 +1,188 @@
 ---
-title: Features
-summary: Learn about feature support status for different TiDB Cloud plans.
+title: 功能特性
+summary: 了解不同 TiDB Cloud 套餐的功能支持状态。
 ---
 
-# Features
+# 功能特性
 
-This document lists the feature support status for different TiDB Cloud plans, including TiDB Cloud Starter, Essential, and Dedicated.
+本文档列出了不同 TiDB Cloud 套餐（包括 TiDB Cloud Starter、Essential 和 Dedicated）的功能支持状态。
 
-> **Tip:**
+> **提示：**
 >
-> [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter) is the best way to get started with TiDB Cloud. Additionally, you can try out TiDB Cloud features on [TiDB Playground](https://play.tidbcloud.com/?utm_source=docs&utm_medium=tidb_cloud_quick_start).
+> [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter) 是开始体验 TiDB Cloud 的最佳方式。此外，你还可以在 [TiDB Playground](https://play.tidbcloud.com/?utm_source=docs&utm_medium=tidb_cloud_quick_start) 上试用 TiDB Cloud 的功能。
 
-- ✅: The feature is **generally available** or in **public preview**.
-- 🔒: The feature is in **private preview**.
-- 🚧: The feature is **under development**.
-- ❌: The feature is **currently not available**.
+- ✅：该功能已**全面可用**或处于**公测**阶段。
+- 🔒：该功能处于**私测**阶段。
+- 🚧：该功能**开发中**。
+- ❌：该功能**当前不可用**。
 
 <table><thead>
   <tr>
-    <th>Category</th>
-    <th>Feature</th>
+    <th>类别</th>
+    <th>功能</th>
     <th style="text-align:center;">Starter</th>
     <th style="text-align:center;">Essential</th>
     <th style="text-align:center;">Dedicated</th>
   </tr></thead>
 <tbody>
   <tr>
-    <td rowspan="4" style="background-color: white;">Basics</td>
-    <td>Scalable transactional processing</td>
+    <td rowspan="4" style="background-color: white;">基础</td>
+    <td>可扩展的事务处理</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Analytical processing</td>
+    <td>分析型处理</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Vector storage &amp; vector search</td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td>向量存储 &amp; 向量检索</td>
+    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
+    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
+    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
   </tr>
   <tr>
     <td>API</td>
-    <td style="text-align:center;">✅<br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
-    <td style="text-align:center;">✅<br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
-    <td style="text-align:center;">✅<br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td style="text-align:center;">✅<br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
+    <td style="text-align:center;">✅<br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
+    <td style="text-align:center;">✅<br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
   </tr>
   <tr>
-    <td rowspan="2" style="background-color: white;">Developer experience</td>
-    <td><Tooltip id="data-branch">Data Branch</Tooltip>
-</td>
+    <td rowspan="2" style="background-color: white;">开发者体验</td>
+    <td><Tooltip id="data-branch">数据分支</Tooltip></td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
   </tr>
   <tr>
-    <td><Tooltip id="sql-editor">SQL editor</Tooltip></td>
+    <td><Tooltip id="sql-editor">SQL 编辑器</Tooltip</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
   </tr>
   <tr>
-    <td rowspan="7" style="background-color: white;">Cluster management</td>
-    <td>Pay as you use</td>
+    <td rowspan="7" style="background-color: white;">集群管理</td>
+    <td>按需付费</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
   </tr>
   <tr>
-    <td>Automatic scaling based on workload</td>
+    <td>基于负载的自动扩缩容</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
   </tr>
   <tr>
-    <td>Manual cluster modification</td>
+    <td>手动集群修改</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Password setting</td>
+    <td>密码设置</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Pause &amp; resume</td>
+    <td>暂停 &amp; 恢复</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>System maintenance window</td>
+    <td>系统维护窗口</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Backup file recycle bin</td>
+    <td>备份文件回收站</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td rowspan="4" style="background-color: white;">Data processing</td>
-    <td>Data import from CSV, Parquet, and SQL files to TiDB Cloud</td>
+    <td rowspan="4" style="background-color: white;">数据处理</td>
+    <td>从 CSV、Parquet 和 SQL 文件导入数据到 TiDB Cloud</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Data migration from MySQL-compatible databases into TiDB Cloud</td>
+    <td>从 MySQL 兼容数据库迁移数据到 TiDB Cloud</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Data export via CSV, Parquet, and SQL files to local or object storages</td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td>通过 CSV、Parquet 和 SQL 文件导出数据到本地或对象存储</td>
+    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
+    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
     <td style="text-align:center; font-size: 14px;">❌</td>
   </tr>
   <tr>
-    <td>Change data replication to Kafka or other MySQL-compatible databases using changefeeds</td>
+    <td>通过变更数据流（changefeed）将变更数据同步到 Kafka 或其他 MySQL 兼容数据库</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">（公测）</span></td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td rowspan="5" style="background-color: white;">Backup &amp; restore</td>
-    <td>Automatic backup</td>
+    <td rowspan="5" style="background-color: white;">备份 &amp; 恢复</td>
+    <td>自动备份</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Manual backup</td>
-    <td style="text-align:center; font-size: 14px;">❌</td>
-    <td style="text-align:center; font-size: 14px;">❌</td>
-    <td style="text-align:center;">✅</td>
-  </tr>
-  <tr>
-    <td>Dual region backup</td>
+    <td>手动备份</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Point-in-time recovery (PITR)</td>
+    <td>双区域备份</td>
+    <td style="text-align:center; font-size: 14px;">❌</td>
+    <td style="text-align:center; font-size: 14px;">❌</td>
+    <td style="text-align:center;">✅</td>
+  </tr>
+  <tr>
+    <td>时间点恢复（PITR）</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Restore</td>
+    <td>恢复</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td rowspan="7" style="background-color: white;">Observability</td>
-    <td>Built-in metrics</td>
+    <td rowspan="7" style="background-color: white;">可观测性</td>
+    <td>内置指标</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Alerting</td>
+    <td>告警</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>SQL statement analysis</td>
+    <td>SQL 语句分析</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Slow query log</td>
+    <td>慢查询日志</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
@@ -195,71 +194,71 @@ This document lists the feature support status for different TiDB Cloud plans, i
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Events</td>
+    <td>事件</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Third-party integrations, such as Datadog, Prometheus, and New Relic</td>
+    <td>第三方集成，如 Datadog、Prometheus 和 New Relic</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td rowspan="1" style="background-color: white;">High availability</td>
-    <td>Cross-AZ failover</td>
+    <td rowspan="1" style="background-color: white;">高可用性</td>
+    <td>跨可用区故障切换</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td rowspan="2" style="background-color: white;">Resource allocation</td>
-    <td>Node groups</td>
+    <td rowspan="2" style="background-color: white;">资源分配</td>
+    <td>节点组</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Resource control</td>
+    <td>资源控制</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td rowspan="3" style="background-color: white;">Network connection</td>
-    <td>Private endpoint</td>
+    <td rowspan="3" style="background-color: white;">网络连接</td>
+    <td>私有端点</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Public endpoint</td>
+    <td>公网端点</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>VPC peering</td>
+    <td>VPC 对等连接</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td rowspan="6" style="background-color: white;">Security</td>
-    <td>Database audit logging</td>
+    <td rowspan="6" style="background-color: white;">安全</td>
+    <td>数据库审计日志</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center;">🔒</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Console audit logging</td>
+    <td>控制台审计日志</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Log redaction</td>
+    <td>日志脱敏</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
@@ -271,27 +270,27 @@ This document lists the feature support status for different TiDB Cloud plans, i
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Dual-layer encryption</td>
+    <td>双层加密</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>IAM (including email and password login, standard SSO, and organization SSO)</td>
+    <td>IAM（包括邮箱和密码登录、标准 SSO 及组织 SSO）</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <CustomContent language="en,zh">
   <tr>
-    <td rowspan="4" style="background-color: white;">Cloud and regions</td>
+    <td rowspan="4" style="background-color: white;">云平台与区域</td>
     <td>AWS</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
   <tr>
-    <td>Alibaba Cloud</td>
+    <td>阿里云</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
@@ -332,6 +331,6 @@ This document lists the feature support status for different TiDB Cloud plans, i
   </CustomContent>
 </tbody></table>
 
-> **Tip:**
+> **提示：**
 >
-> To request a feature in private preview, click **?** in the lower-right corner of the [TiDB Cloud console](https://tidbcloud.com), and then click **Support Tickets** to go to the [Help Center](https://tidb.support.pingcap.com/servicedesk/customer/portals). Create a ticket, fill in "Apply for `<feature_name>`" in the **Description** field, and then click **Submit**.
+> 如需申请私测功能，请点击 [TiDB Cloud 控制台](https://tidbcloud.com) 右下角的 **?**，然后点击 **Support Tickets** 跳转到 [帮助中心](https://tidb.support.pingcap.com/servicedesk/customer/portals)。创建工单，在 **Description** 字段填写 “Apply for `<feature_name>`”，然后点击 **Submit**。
