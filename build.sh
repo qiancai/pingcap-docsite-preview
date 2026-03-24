@@ -12,7 +12,8 @@ SED=$(which gsed || which sed)
 
 replace_image_path() {
   # Update image paths in Markdown files.
-  ( cd markdown-pages
+  (
+    cd markdown-pages
     $FIND . -maxdepth 3 -mindepth 3 | while IFS= read -r DIR; do
       DIR="${DIR#./}"
       PREFIX="$(dirname "$DIR")"
@@ -25,7 +26,8 @@ replace_image_path() {
 
 move_images() {
   # Move all image files to the target directory.
-  ( cd markdown-pages
+  (
+    cd markdown-pages
     $FIND . -maxdepth 3 -mindepth 3 | while IFS= read -r DIR; do
       PREFIX="$(dirname "$DIR")"
       # Check if the media directory exists.
@@ -36,6 +38,15 @@ move_images() {
         cp -r "$PREFIX/master/media/." "../website-docs/public/media/$PREFIX"
       fi
     done
+  )
+}
+
+install_website_docs_dependencies() {
+  (
+    cd website-docs
+    corepack enable
+    corepack prepare pnpm@10.32.1 --activate
+    pnpm install --no-frozen-lockfile
   )
 }
 
@@ -51,8 +62,8 @@ if [ ! -e website-docs/.git ]; then
   if [ -d "website-docs" ]; then
     rm -rf website-docs
   fi
-  # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch feat-support-term-tooltips https://github.com/pingcap/website-docs
+  # Clone the website-docs repository.
+  git clone --single-branch --branch feat-support-term-tooltips https://github.com/qiancai/website-docs
   # git clone https://github.com/pingcap/website-docs
 fi
 
@@ -64,14 +75,16 @@ fi
 # Copy docs.json to website-docs/docs.
 cp docs.json website-docs/docs/docs.json
 
-# Run the start command for development environment. <https://www.gatsbyjs.com/docs/reference/gatsby-cli/#develop>
+install_website_docs_dependencies
+
+# Run the start command for development environment.
 if [ "$CMD" == "start" ]; then
-  (cd website-docs && yarn && yarn start)
+  (cd website-docs && pnpm start)
 fi
 
-# Run the build command for production environment. <https://www.gatsbyjs.com/docs/reference/gatsby-cli/#build>
+# Run the build command for production environment.
 if [ "$CMD" == "build" ]; then
   replace_image_path
-  (cd website-docs && yarn && yarn build)
+  (cd website-docs && pnpm build)
   move_images
 fi
