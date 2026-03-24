@@ -58,7 +58,7 @@ summary: 了解不同 TiDB Cloud 套餐的功能支持状态。
     <td style="text-align:center; font-size: 14px;">❌</td>
   </tr>
   <tr>
-    <td><Tooltip id="sql-editor">SQL 编辑器</Tooltip</td>
+    <td><Tooltip id="sql-editor">SQL 编辑器</Tooltip></td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
