@@ -39,6 +39,15 @@ move_images() {
   )
 }
 
+install_website_docs_dependencies() {
+  (
+    cd website-docs
+    corepack enable
+    corepack prepare pnpm@10.32.1 --activate
+    pnpm install --no-frozen-lockfile
+  )
+}
+
 # The default command is build, which builds the website for production.
 CMD=build
 
@@ -63,14 +72,16 @@ fi
 # Copy docs.json to website-docs/docs.
 cp docs.json website-docs/docs/docs.json
 
+install_website_docs_dependencies
+
 # Run the start command for development environment. <https://www.gatsbyjs.com/docs/reference/gatsby-cli/#develop>
 if [ "$CMD" == "start" ]; then
-  (cd website-docs && yarn && yarn start)
+  (cd website-docs && pnpm start)
 fi
 
-# Run the build command for production environment. <https://www.gatsbyjs.com/docs/reference/gatsby-cli/#build>
+# Run the build command for production environment.
 if [ "$CMD" == "build" ]; then
   replace_image_path
-  (cd website-docs && yarn && yarn build)
+  (cd website-docs && pnpm build)
   move_images
 fi
