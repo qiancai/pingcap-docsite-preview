@@ -30,7 +30,7 @@
 
 ## Steps to preview document changes
 
-![usage-steps-diagram](http://www.plantuml.com/plantuml/proxy?cache=no&src=https://gist.githubusercontent.com/Oreoxmt/e8f90307e9098baf07fdada5e07b380c/raw/f3a844315e9fd5c698232115aa42d542e6bc8bd9/pdp-usage-steps-diagram.txt)
+![usage-steps-diagram](https://www.plantuml.com/plantuml/svg/TPDBR-em48Nt_XKZbbSATv_55OWhmQf2qCS2K6Ni2R7m8_AZA4ByzoQEGvkKRcpDvyFncS6PEK-j3qgIKd04L9MlWQDZLbHU64rsVmwGPV-WCFPCsYLMBnMd7hUC5eMHd3ZVL309aO9BU0BKZPHmxRNFQ9NGL3uGRUFbv17CmTMQlVStJ5svrtlTUow5NuKZp5cRt3rmNgxcv0SPUzPAHbDo6saXi-9K-dlx2wCzQZ_gddKqtZxGVVLUMAE0mdhJYffjm5MGNZJGfKENJXNLWKgotgIybOtT3q2jMe5Be7LggEjrOnxbdMtUsDipDnUTLVI4hXz02bQX5OOB1bsFNRB4kXwlP5ZdCFWpec4QSuayIEp2taO_Wsp7gMiKXz-cpB6IfeOB7fr8IVv7zDQH-vIbOLIIkEOm_NiC8huNuFZnxSqmQG8dSStX2RqKHTsNhsWPohvQj5iXgKLOjoDgiWy2nkzY48NCKFEWv2S0.svg)
 
 <details>
 
