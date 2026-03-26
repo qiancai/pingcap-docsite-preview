@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash 
 
 # Synchronize the content of multiple PRs to the markdown-pages folder to deploy a preview website.
 
