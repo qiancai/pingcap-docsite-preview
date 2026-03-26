@@ -52,7 +52,7 @@ if [ ! -e website-docs/.git ]; then
     rm -rf website-docs
   fi
   # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch feat-support-term-tooltips https://github.com/qiancai/website-docs
+  git clone --single-branch --branch fix-tooltip-oom https://github.com/qiancai/website-docs
   # git clone https://github.com/pingcap/website-docs
 fi
 
