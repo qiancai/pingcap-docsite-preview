@@ -11,7 +11,6 @@
   - [MySQL Compatibility](/mysql-compatibility.md)
 - Get Started
   - [Try Out TiDB Cloud](/tidb-cloud/tidb-cloud-quickstart.md)
-  - [Try Out TiDB + AI](/vector-search/vector-search-get-started-using-python.md)
   - [Try Out HTAP](/tidb-cloud/tidb-cloud-htap-quickstart.md)
   - [Perform a PoC](/tidb-cloud/tidb-cloud-poc.md)
 - Key Concepts
@@ -29,109 +28,17 @@
   - [Backup & Restore](/tidb-cloud/backup-and-restore-concepts.md)
   - [Security](/tidb-cloud/security-concepts.md)
 
-## DEVELOP
-
-- Development Quick Start
-  - [Developer Guide Overview](/develop/dev-guide-overview.md)
-  - [Build a TiDB Cloud Cluster](/develop/dev-guide-build-cluster-in-cloud.md)
-  - [CRUD SQL in TiDB](/develop/dev-guide-tidb-crud-sql.md)
-- Connect to TiDB Cloud
-  - GUI Database Tools
-    - [JetBrains DataGrip](/develop/dev-guide-gui-datagrip.md)
-    - [DBeaver](/develop/dev-guide-gui-dbeaver.md)
-    - [VS Code](/develop/dev-guide-gui-vscode-sqltools.md)
-    - [MySQL Workbench](/develop/dev-guide-gui-mysql-workbench.md)
-    - [Navicat](/develop/dev-guide-gui-navicat.md)
-  - [Choose Driver or ORM](/develop/dev-guide-choose-driver-or-orm.md)
-  - BI
-    - [Looker Studio](/tidb-cloud/dev-guide-bi-looker-studio.md)
-  - Java
-    - [JDBC](/develop/dev-guide-sample-application-java-jdbc.md)
-    - [MyBatis](/develop/dev-guide-sample-application-java-mybatis.md)
-    - [Hibernate](/develop/dev-guide-sample-application-java-hibernate.md)
-    - [Spring Boot](/develop/dev-guide-sample-application-java-spring-boot.md)
-    - [Connection Pools and Connection Parameters](/develop/dev-guide-connection-parameters.md)
-  - Go
-    - [Go-MySQL-Driver](/develop/dev-guide-sample-application-golang-sql-driver.md)
-    - [GORM](/develop/dev-guide-sample-application-golang-gorm.md)
-  - Python
-    - [mysqlclient](/develop/dev-guide-sample-application-python-mysqlclient.md)
-    - [MySQL Connector/Python](/develop/dev-guide-sample-application-python-mysql-connector.md)
-    - [PyMySQL](/develop/dev-guide-sample-application-python-pymysql.md)
-    - [SQLAlchemy](/develop/dev-guide-sample-application-python-sqlalchemy.md)
-    - [peewee](/develop/dev-guide-sample-application-python-peewee.md)
-    - [Django](/develop/dev-guide-sample-application-python-django.md)
-  - Node.js
-    - [node-mysql2](/develop/dev-guide-sample-application-nodejs-mysql2.md)
-    - [mysql.js](/develop/dev-guide-sample-application-nodejs-mysqljs.md)
-    - [Prisma](/develop/dev-guide-sample-application-nodejs-prisma.md)
-    - [Sequelize](/develop/dev-guide-sample-application-nodejs-sequelize.md)
-    - [TypeORM](/develop/dev-guide-sample-application-nodejs-typeorm.md)
-  - Ruby
-    - [mysql2](/develop/dev-guide-sample-application-ruby-mysql2.md)
-    - [Rails](/develop/dev-guide-sample-application-ruby-rails.md)
-  - C#
-    - [C#](/develop/dev-guide-sample-application-cs.md)
-  - [WordPress](/tidb-cloud/dev-guide-wordpress.md)
-- Development Reference
-  - Design Database Schema
-    - [Overview](/develop/dev-guide-schema-design-overview.md)
-    - [Create a Database](/develop/dev-guide-create-database.md)
-    - [Create a Table](/develop/dev-guide-create-table.md)
-    - [Create a Secondary Index](/develop/dev-guide-create-secondary-indexes.md)
-  - Write Data
-    - [Insert Data](/develop/dev-guide-insert-data.md)
-    - [Update Data](/develop/dev-guide-update-data.md)
-    - [Delete Data](/develop/dev-guide-delete-data.md)
-    - [Periodically Delete Expired Data Using TTL (Time to Live)](/time-to-live.md)
-    - [Prepared Statements](/develop/dev-guide-prepared-statement.md)
-  - Read Data
-    - [Query Data from a Single Table](/develop/dev-guide-get-data-from-single-table.md)
-    - [Multi-table Join Queries](/develop/dev-guide-join-tables.md)
-    - [Subquery](/develop/dev-guide-use-subqueries.md)
-    - [Paginate Results](/develop/dev-guide-paginate-results.md)
-    - [Views](/develop/dev-guide-use-views.md)
-    - [Temporary Tables](/develop/dev-guide-use-temporary-tables.md)
-    - [Common Table Expression](/develop/dev-guide-use-common-table-expression.md)
-    - Read Replica Data
-      - [Follower Read](/develop/dev-guide-use-follower-read.md)
-      - [Stale Read](/develop/dev-guide-use-stale-read.md)
-    - [HTAP Queries](/develop/dev-guide-hybrid-oltp-and-olap-queries.md)
-  - Transaction
-    - [Overview](/develop/dev-guide-transaction-overview.md)
-    - [Optimistic and Pessimistic Transactions](/develop/dev-guide-optimistic-and-pessimistic-transaction.md)
-    - [Transaction Restraints](/develop/dev-guide-transaction-restraints.md)
-    - [Handle Transaction Errors](/develop/dev-guide-transaction-troubleshoot.md)
-  - Optimize
-    - [Overview](/develop/dev-guide-optimize-sql-overview.md)
-    - [SQL Performance Tuning](/develop/dev-guide-optimize-sql.md)
-    - [Best Practices for Performance Tuning](/develop/dev-guide-optimize-sql-best-practices.md)
-    - [Best Practices for Indexing](/develop/dev-guide-index-best-practice.md)
-    - Other Optimization Methods
-      - [Avoid Implicit Type Conversions](/develop/dev-guide-implicit-type-conversion.md)
-      - [Unique Serial Number Generation](/develop/dev-guide-unique-serial-number-generation.md)
-  - Troubleshoot
-    - [SQL or Transaction Issues](/develop/dev-guide-troubleshoot-overview.md)
-    - [Unstable Result Set](/develop/dev-guide-unstable-result-set.md)
-    - [Timeouts](/develop/dev-guide-timeouts-in-tidb.md)
-  - Development Guidelines
-    - [Object Naming Convention](/develop/dev-guide-object-naming-guidelines.md)
-    - [SQL Development Specifications](/develop/dev-guide-sql-development-specification.md)
-  - [Bookshop Example Application](/develop/dev-guide-bookshop-schema-design.md)
-  - Third-Party Support
-    - [Third-Party Tools Supported by TiDB](/develop/dev-guide-third-party-support.md)
-    - [Known Incompatibility Issues with Third-Party Tools](/develop/dev-guide-third-party-tools-compatibility.md)
-
 ## GUIDES
 
-- Manage Cluster
-  - Plan Your Cluster
-    - [Select Your Cluster Plan](/tidb-cloud/select-cluster-tier.md)
-    - [Determine Your TiDB Size](/tidb-cloud/size-your-cluster.md)
-    - [TiDB Cloud Performance Reference](/tidb-cloud/tidb-cloud-performance-reference.md)
+- Plan Your Cluster
+  - [Select Your Plan](/tidb-cloud/select-cluster-tier.md)
+  - [Determine Your TiDB Size](/tidb-cloud/size-your-cluster.md)
+  - [TiDB Cloud Performance Reference](/tidb-cloud/tidb-cloud-performance-reference.md)
+- [Manage TiDB Cloud Resources and Projects](/tidb-cloud/manage-projects-and-resources.md)
+- Manage {{{ .dedicated }}} Clusters
   - [Create a TiDB Cloud Dedicated Cluster](/tidb-cloud/create-tidb-cluster.md)
   - Connect to Your TiDB Cloud Dedicated Cluster
-    - [Connection Method Overview](/tidb-cloud/connect-to-tidb-cluster.md)
+    - [Network Connection Overview](/tidb-cloud/connect-to-tidb-cluster.md)
     - [Connect via Public Connection](/tidb-cloud/connect-via-standard-connection.md)
     - [Connect via Private Endpoint with AWS](/tidb-cloud/set-up-private-endpoint-connections.md)
     - [Connect via Private Endpoint with Azure](/tidb-cloud/set-up-private-endpoint-connections-on-azure.md)
@@ -142,7 +49,7 @@
   - [Back Up and Restore TiDB Cloud Dedicated Data](/tidb-cloud/backup-and-restore.md)
   - [Pause or Resume a TiDB Cloud Dedicated Cluster](/tidb-cloud/pause-or-resume-tidb-cluster.md)
   - [Configure Maintenance Window](/tidb-cloud/configure-maintenance-window.md)
-  - Use an HTAP Cluster with TiFlash
+  - Use TiFlash for HTAP
     - [TiFlash Overview](/tiflash/tiflash-overview.md)
     - [Create TiFlash Replicas](/tiflash/create-tiflash-replicas.md)
     - [Read Data from TiFlash](/tiflash/use-tidb-to-read-tiflash.md)
@@ -161,7 +68,7 @@
       - [Subscribe via Email](/tidb-cloud/monitor-alert-email.md)
       - [Subscribe via Slack](/tidb-cloud/monitor-alert-slack.md)
       - [Subscribe via Zoom](/tidb-cloud/monitor-alert-zoom.md)
-    - [Cluster Events](/tidb-cloud/tidb-cloud-events.md)
+    - [Events](/tidb-cloud/tidb-cloud-events.md)
     - Third-Party Metrics Integrations
       - [Overview](/tidb-cloud/third-party-monitoring-integrations.md)
       - [Migrate Datadog and New Relic Integrations](/tidb-cloud/migrate-metrics-integrations.md)
@@ -231,8 +138,11 @@
     - TiDB Node Group
       - [Overview of TiDB Node Group](/tidb-cloud/tidb-node-group-overview.md)
       - [Manage TiDB Node Groups](/tidb-cloud/tidb-node-group-management.md)
-  - [Upgrade a TiDB Cluster](/tidb-cloud/upgrade-tidb-cluster.md)
-  - [Delete a TiDB Cluster](/tidb-cloud/delete-tidb-cluster.md)
+  - Manage Connections by TiProxy
+    - [Overview of TiProxy](/tidb-cloud/tiproxy-overview-for-cloud.md)
+    - [Manage TiProxy](/tidb-cloud/tiproxy-management.md)
+  - [Upgrade the TiDB Version](/tidb-cloud/upgrade-tidb-cluster.md)
+  - [Delete a {{{ .dedicated }}} Cluster](/tidb-cloud/delete-tidb-cluster.md)
 - Migrate or Import Data
   - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
   - Migrate Data into TiDB Cloud
@@ -254,35 +164,10 @@
     - [CSV Configurations for Importing Data](/tidb-cloud/csv-config-for-import-data.md)
     - [Troubleshoot Access Denied Errors during Data Import from Amazon S3](/tidb-cloud/troubleshoot-import-access-denied-error.md)
     - [Precheck Errors, Migration Errors, and Alerts for Data Migration](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md)
-    - [Connect AWS DMS to TiDB Cloud clusters](/tidb-cloud/tidb-cloud-connect-aws-dms.md)
+    - [Connect AWS DMS to TiDB Cloud](/tidb-cloud/tidb-cloud-connect-aws-dms.md)
 - Explore Data
   - [Chat2Query in SQL Editor](/tidb-cloud/explore-data-with-chat2query.md) ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
   - [SQL Proxy Account](/tidb-cloud/sql-proxy-account.md)
-- Vector Search ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
-  - [Overview](/vector-search/vector-search-overview.md)
-  - Get Started
-    - [Get Started with SQL](/vector-search/vector-search-get-started-using-sql.md)
-    - [Get Started with Python](/vector-search/vector-search-get-started-using-python.md)
-  - Integrations
-    - [Overview](/vector-search/vector-search-integration-overview.md)
-    - AI Frameworks
-      - [LlamaIndex](/vector-search/vector-search-integrate-with-llamaindex.md)
-      - [LangChain](/vector-search/vector-search-integrate-with-langchain.md)
-    - AI Services
-      - [Amazon Bedrock](/tidb-cloud/vector-search-integrate-with-amazon-bedrock.md)
-    - Embedding Models/Services
-      - [Jina AI](/vector-search/vector-search-integrate-with-jinaai-embedding.md)
-    - ORM Libraries
-      - [SQLAlchemy](/vector-search/vector-search-integrate-with-sqlalchemy.md)
-      - [peewee](/vector-search/vector-search-integrate-with-peewee.md)
-      - [Django ORM](/vector-search/vector-search-integrate-with-django-orm.md)
-  - Reference
-    - [Vector Data Types](/vector-search/vector-search-data-types.md)
-    - [Vector Functions and Operators](/vector-search/vector-search-functions-and-operators.md)
-    - [Vector Index](/vector-search/vector-search-index.md)
-  - [Improve Performance](/vector-search/vector-search-improve-performance.md)
-  - [Limitations](/vector-search/vector-search-limitations.md)
-  - [Changelogs](/tidb-cloud/vector-search-changelogs.md)
 - Data Service ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
   - [Overview](/tidb-cloud/data-service-overview.md)
   - [Get Started](/tidb-cloud/data-service-get-started.md)
@@ -312,11 +197,6 @@
     - [Set Up Self-Hosted Kafka Private Link Service in Azure](/tidb-cloud/setup-azure-self-hosted-kafka-private-link-service.md)
     - [Set Up Self-Hosted Kafka Private Service Connect in Google Cloud](/tidb-cloud/setup-self-hosted-kafka-private-service-connect.md)
     - [Set Up Private Endpoint for Changefeeds](/tidb-cloud/set-up-sink-private-endpoint.md)
-- Disaster Recovery
-  - [Recovery Group Overview](/tidb-cloud/recovery-group-overview.md)
-  - [Get Started](/tidb-cloud/recovery-group-get-started.md)
-  - [Failover and Reprotect Databases](/tidb-cloud/recovery-group-failover.md)
-  - [Delete a Recovery Group](/tidb-cloud/recovery-group-delete.md)
 - Security
   - [Security Overview](/tidb-cloud/security-overview.md)
   - Identity Access Control
@@ -351,7 +231,6 @@
   - [Billing from Cloud Provider Marketplace](/tidb-cloud/tidb-cloud-billing.md#billing-from-cloud-provider-marketplace)
   - [Billing for Changefeed](/tidb-cloud/tidb-cloud-billing-ticdc-rcu.md)
   - [Billing for Data Migration](/tidb-cloud/tidb-cloud-billing-dm.md)
-  - [Billing for Recovery Groups](/tidb-cloud/tidb-cloud-billing-recovery-group.md)
   - [Manage Budgets](/tidb-cloud/tidb-cloud-budget.md)
 - Integrations
   - [Airbyte](/tidb-cloud/integrate-tidbcloud-with-airbyte.md)
@@ -390,6 +269,7 @@
     - Attributes
       - [AUTO_INCREMENT](/auto-increment.md)
       - [AUTO_RANDOM](/auto-random.md)
+      - [_tidb_rowid](/tidb-rowid.md)
       - [SHARD_ROW_ID_BITS](/shard-row-id-bits.md)
     - [Literal Values](/literal-values.md)
     - [Schema Object Names](/schema-object-names.md)
@@ -684,26 +564,16 @@
       - [Overview](/sys-schema/sys-schema.md)
       - [`schema_unused_indexes`](/sys-schema/sys-schema-unused-indexes.md)
   - [Metadata Lock](/metadata-lock.md)
-  - [Use UUIDs](/best-practices/uuid.md)
   - [TiDB Accelerated Table Creation](/accelerated-table-creation.md)
   - [Schema Cache](/schema-cache.md)
-- API Reference ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
-  - [Overview](/tidb-cloud/api-overview.md)
-  - v1beta1
-    - [TiDB Cloud Starter and Essential](https://docs.pingcap.com/tidbcloud/api/v1beta1/serverless)
-    - [TiDB Cloud Dedicated](https://docs.pingcap.com/tidbcloud/api/v1beta1/dedicated)
-    - [Billing](https://docs.pingcap.com/tidbcloud/api/v1beta1/billing)
-    - [Data Service](https://docs.pingcap.com/tidbcloud/api/v1beta1/dataservice)
-    - [IAM](https://docs.pingcap.com/tidbcloud/api/v1beta1/iam)
-    - [MSP (Deprecated)](https://docs.pingcap.com/tidbcloud/api/v1beta1/msp)
-  - [v1beta](https://docs.pingcap.com/tidbcloud/api/v1beta)
 - General Reference
-  - TiDB Cluster Architecture
+  - TiDB Classic Architecture
     - [Overview](/tidb-architecture.md)
     - [Storage](/tidb-storage.md)
     - [Computing](/tidb-computing.md)
     - [Scheduling](/tidb-scheduling.md)
     - [TSO](/tso.md)
+  - [TiDB X Architecture](/tidb-cloud/tidb-x-architecture.md)
   - Storage Engines
     - TiKV
       - [TiKV Overview](/tikv-overview.md)
@@ -742,7 +612,6 @@
   - [Server Status Variables](/status-variables.md)
   - [Table Filter](/table-filter.md)
   - [URI Formats of External Storage Services](/external-storage-uri.md)
-  - [DDL Execution Principles and Best Practices](/ddl-introduction.md)
   - [`ANALYZE` Embedded in DDL Statements](/ddl_embedded_analyze.md)
   - [Batch Processing](/batch-processing.md)
   - [Troubleshoot Inconsistency Between Data and Indexes](/troubleshoot-data-inconsistency-errors.md)
@@ -756,6 +625,8 @@
     - Connected: IM Subscription for TiDB Cloud Alerts
       - [Subscribe via Slack](/tidb-cloud/monitor-alert-slack.md)
       - [Subscribe via Zoom](/tidb-cloud/monitor-alert-zoom.md)
+      - [Subscribe via Flashduty](/tidb-cloud/monitor-alert-flashduty.md)
+      - [Subscribe via PagerDuty](/tidb-cloud/monitor-alert-pagerduty.md)
     - Connected: IM Ticket Creation and Update Subscription
       - [Create Tickets and Subscribe to Ticket Updates via Slack](/tidb-cloud/connected-slack-ticket-creation.md)
       - [Create Tickets and Subscribe to Ticket Updates via Lark](/tidb-cloud/connected-lark-ticket-creation.md)
@@ -766,25 +637,6 @@
 - FAQs
   - [TiDB Cloud FAQs](/tidb-cloud/tidb-cloud-faq.md)
 - [Glossary](/tidb-cloud/tidb-cloud-glossary.md)
-
-## RELEASES
-
-- Release Notes
-  - [2025](/tidb-cloud/tidb-cloud-release-notes.md)
-  - [2024](/tidb-cloud/release-notes-2024.md)
-  - [2023](/tidb-cloud/release-notes-2023.md)
-  - [2022](/tidb-cloud/release-notes-2022.md)
-  - [2021](/tidb-cloud/release-notes-2021.md)
-  - [2020](/tidb-cloud/release-notes-2020.md)
-- Maintenance Notification
-  - [[2024-09-15] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2024-09-15-console-maintenance.md)
-  - [[2024-04-18] TiDB Cloud Data Migration (DM) Feature Maintenance Notification](/tidb-cloud/notification-2024-04-18-dm-feature-maintenance.md)
-  - [[2024-04-16] TiDB Cloud Monitoring Features Maintenance Notification](/tidb-cloud/notification-2024-04-16-monitoring-features-maintenance.md)
-  - [[2024-04-11] TiDB Cloud Data Migration (DM) Feature Maintenance Notification](/tidb-cloud/notification-2024-04-11-dm-feature-maintenance.md)
-  - [[2024-04-09] TiDB Cloud Monitoring Features Maintenance Notification](/tidb-cloud/notification-2024-04-09-monitoring-features-maintenance.md)
-  - [[2023-11-14] TiDB Cloud Dedicated Scale Feature Maintenance Notification](/tidb-cloud/notification-2023-11-14-scale-feature-maintenance.md)
-  - [[2023-09-26] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2023-09-26-console-maintenance.md)
-  - [[2023-08-31] TiDB Cloud Console Maintenance Notification](/tidb-cloud/notification-2023-08-31-console-maintenance.md)
 
 ## _BUILD_ALLOWLIST
 
