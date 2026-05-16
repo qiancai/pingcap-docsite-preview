@@ -111,6 +111,8 @@
 - Migrate or Import Data
   - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
   - Migrate Data into TiDB Cloud
+    - [Migrate Existing and Incremental Data Using Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md)
+    - [Migrate Incremental Data Using Data Migration](/tidb-cloud/migrate-incremental-data-from-mysql-using-data-migration.md)
     - [Migrate from TiDB Self-Managed to TiDB Cloud Premium](/tidb-cloud/premium/migrate-from-op-tidb-premium.md)
     - [Migrate and Merge MySQL Shards of Large Datasets](/tidb-cloud/migrate-sql-shards.md)
     - [Migrate from Amazon RDS for Oracle Using AWS DMS](/tidb-cloud/migrate-from-oracle-using-aws-dms.md)
@@ -146,7 +148,6 @@
     - [Configure an IP Access List](/tidb-cloud/premium/configure-ip-access-list-premium.md)
     - [Connect via Private Endpoint with AWS](/tidb-cloud/premium/connect-to-premium-via-aws-private-endpoint.md)
     - [Connect via Private Endpoint with Alibaba Cloud](/tidb-cloud/premium/connect-to-premium-via-alibaba-cloud-private-endpoint.md)
-    - [Configure Firewall Rules for Public Endpoints](/tidb-cloud/configure-serverless-firewall-rules-for-public-endpoints.md)
     - [TLS Connections to TiDB Cloud](/tidb-cloud/premium/tidb-cloud-tls-connect-to-premium.md)
   - Data Access Control
     - [Dual-Layer Data Encryption](/tidb-cloud/premium/dual-layer-data-encryption-premium.md)
@@ -172,15 +173,6 @@
   - [n8n](/tidb-cloud/integrate-tidbcloud-with-n8n.md)
   - [Netlify](/tidb-cloud/integrate-tidbcloud-with-netlify.md)
   - [ProxySQL](/develop/dev-guide-proxysql-integration.md)
-  - Terraform
-    - [Terraform Integration Overview](/tidb-cloud/terraform-tidbcloud-provider-overview.md)
-    - [Get TiDB Cloud Terraform Provider](/tidb-cloud/terraform-get-tidbcloud-provider.md)
-    - [Use the `tidbcloud_serverless_cluster` Resource](/tidb-cloud/terraform-use-serverless-cluster-resource-manage-essential.md)
-    - [Use the `tidbcloud_serverless_branch` Resource](/tidb-cloud/terraform-use-serverless-branch-resource.md)
-    - [Use the `tidbcloud_serverless_export` Resource](/tidb-cloud/terraform-use-serverless-export-resource.md)
-    - [Use the `tidbcloud_sql_user` Resource](/tidb-cloud/terraform-use-sql-user-resource.md)
-    - [Use the `tidbcloud_import` Resource](/tidb-cloud/terraform-use-import-resource.md)
-    - [Migrate Cluster Resource](/tidb-cloud/terraform-migrate-cluster-resource.md)
   - [Vercel](/tidb-cloud/integrate-tidbcloud-with-vercel.md)
   - [Zapier](/tidb-cloud/integrate-tidbcloud-with-zapier.md)
 
