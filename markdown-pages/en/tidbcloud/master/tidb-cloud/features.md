@@ -5,7 +5,7 @@ summary: Learn about feature support status for different TiDB Cloud plans.
 
 # Features
 
-This document lists the feature support status for different TiDB Cloud plans, including TiDB Cloud Starter, Essential, Premium, and Dedicated.
+This document lists the feature support status for different TiDB Cloud plans, including {{{ .starter }}}, Essential, Premium, and Dedicated.
 
 > **Tip:**
 >
@@ -16,7 +16,7 @@ This document lists the feature support status for different TiDB Cloud plans, i
 - 🚧: **Under development**.
 - ❌: **Currently not available**.
 
-<table><thead>
+<table className="sticky-header"><thead>
   <tr>
     <th>Category</th>
     <th>Feature</th>
@@ -217,8 +217,8 @@ This document lists the feature support status for different TiDB Cloud plans, i
   <tr>
     <td>Top SQL</td>
     <td style="text-align:center; vertical-align: top; font-size: 14px;">❌</td>
-    <td style="text-align:center; vertical-align: top; font-size: 14px;">✅ <br/><span style="font-size: 14px;">(Top RU in Public preview)</span></td>
-    <td style="text-align:center; vertical-align: top; font-size: 14px;">✅ <br/><span style="font-size: 14px;">(Top RU in Public preview)</span></td>
+    <td style="text-align:center; vertical-align: top;">✅ <br/><span style="font-size: 14px;">(Top RU in Public preview)</span></td>
+    <td style="text-align:center; vertical-align: top;">✅ <br/><span style="font-size: 14px;">(Top RU in Public preview)</span></td>
     <td style="text-align:center; vertical-align: top;">✅</td>
   </tr>
   <tr>
@@ -231,8 +231,8 @@ This document lists the feature support status for different TiDB Cloud plans, i
   <tr>
     <td>Prometheus and Grafana integration</td>
     <td style="text-align:center; font-size: 14px; vertical-align: top;">❌</td>
-    <td style="text-align:center; font-size: 14px; vertical-align: top;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
-    <td style="text-align:center; font-size: 14px; vertical-align: top;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td style="text-align:center; vertical-align: top;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td style="text-align:center; vertical-align: top;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
     <td style="text-align:center; vertical-align: top;">✅</td>
   </tr>
   <tr>
