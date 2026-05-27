@@ -35,7 +35,7 @@
   - [Determine Your TiDB Size](/tidb-cloud/size-your-cluster.md)
   - [TiDB Cloud Performance Reference](/tidb-cloud/tidb-cloud-performance-reference.md)
 - [Manage TiDB Cloud Resources and Projects](/tidb-cloud/manage-projects-and-resources.md)
-- Manage {{{ .dedicated }}} Clusters
+- Manage TiDB Cloud Dedicated Clusters
   - [Create a TiDB Cloud Dedicated Cluster](/tidb-cloud/create-tidb-cluster.md)
   - Connect to Your TiDB Cloud Dedicated Cluster
     - [Network Connection Overview](/tidb-cloud/connect-to-tidb-cluster.md)
@@ -142,7 +142,7 @@
     - [Overview of TiProxy](/tidb-cloud/tiproxy-overview-for-cloud.md)
     - [Manage TiProxy](/tidb-cloud/tiproxy-management.md)
   - [Upgrade the TiDB Version](/tidb-cloud/upgrade-tidb-cluster.md)
-  - [Delete a {{{ .dedicated }}} Cluster](/tidb-cloud/delete-tidb-cluster.md)
+  - [Delete a TiDB Cloud Dedicated Cluster](/tidb-cloud/delete-tidb-cluster.md)
 - Migrate or Import Data
   - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
   - Migrate Data into TiDB Cloud

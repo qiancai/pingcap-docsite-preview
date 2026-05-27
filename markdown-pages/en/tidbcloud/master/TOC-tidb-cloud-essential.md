@@ -30,9 +30,9 @@
 
 - [Select Your Plan](/tidb-cloud/select-cluster-tier.md)
 - [Manage TiDB Cloud Resources and Projects](/tidb-cloud/manage-projects-and-resources.md)
-- Manage {{{ .essential }}} Instances
-  - [Create a {{{ .essential }}} Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
-  - Connect to Your {{{ .essential }}} Instance
+- Manage TiDB Cloud Essential Instances
+  - [Create a TiDB Cloud Essential Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
+  - Connect to Your TiDB Cloud Essential Instance
     - [Network Connection Overview](/tidb-cloud/connect-to-tidb-cluster-serverless.md)
     - [Connect via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md)
     - [Connect via Private Endpoint with AWS](/tidb-cloud/set-up-private-endpoint-connections-serverless.md)
@@ -117,7 +117,7 @@
        - [Configuration](/garbage-collection-configuration.md)
     - [Tune TiFlash Performance](/tiflash/tune-tiflash-performance.md)
   - [Upgrade the TiDB Version](/tidb-cloud/upgrade-tidb-cluster.md)
-  - [Delete a {{{ .essential }}} Instance](/tidb-cloud/delete-tidb-cluster.md)
+  - [Delete a TiDB Cloud Essential Instance](/tidb-cloud/delete-tidb-cluster.md)
 - Migrate or Import Data
   - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
   - Migrate Data into TiDB Cloud
@@ -544,7 +544,7 @@
     - [TiDB Cloud Partners](/tidb-cloud/tidb-cloud-partners.md)
     - [MSP Customer](/tidb-cloud/managed-service-provider-customer.md)
     - [Reseller's Customer](/tidb-cloud/cppo-customer.md)
-  - [{{{ .starter }}} and Essential Limitations](/tidb-cloud/serverless-limitations.md)
+  - [TiDB Cloud Starter and Essential Limitations](/tidb-cloud/serverless-limitations.md)
   - [Limited SQL Features on TiDB Cloud](/tidb-cloud/limited-sql-features.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - [System Variables](/system-variables.md)
