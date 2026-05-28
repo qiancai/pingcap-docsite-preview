@@ -9,7 +9,7 @@ This document lists the features supported in different TiDB versions, including
 
 You can try out TiDB features on [TiDB Playground](https://play.tidbcloud.com/?utm_source=docs&utm_medium=tidb_features).
 
-> **Note:**
+> **Note:** 
 >
 > PingCAP does not provide patch releases for DMR versions. Any bugs will be fixed in future releases. For general purposes, it is recommended to use the [latest LTS version](https://docs.pingcap.com/tidb/stable).
 >
