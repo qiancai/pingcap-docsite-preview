@@ -60,17 +60,19 @@ if [ ! -e website-docs/docs/markdown-pages ]; then
   ln -s ../../markdown-pages website-docs/docs/markdown-pages
 fi
 
-# Copy docs.json to website-docs/docs.
+# Copy docs.json and tooltip-terms.json to website-docs/docs.
 cp docs.json website-docs/docs/docs.json
+[ -f tooltip-terms.json ] && cp tooltip-terms.json website-docs/docs/tooltip-terms.json
 
 # Run the start command for development environment. <https://www.gatsbyjs.com/docs/reference/gatsby-cli/#develop>
 if [ "$CMD" == "start" ]; then
-  (cd website-docs && yarn && yarn start)
+  mkdir -p website-docs/.cache
+  (cd website-docs && pnpm install --frozen-lockfile && pnpm start)
 fi
 
 # Run the build command for production environment. <https://www.gatsbyjs.com/docs/reference/gatsby-cli/#build>
 if [ "$CMD" == "build" ]; then
   replace_image_path
-  (cd website-docs && yarn && yarn build)
+  (cd website-docs && pnpm install --frozen-lockfile && pnpm build)
   move_images
 fi
