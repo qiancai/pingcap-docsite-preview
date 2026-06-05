@@ -51,7 +51,7 @@ Find operational best practices for running TiDB in production, such as traffic 
 
 Understand how to tune TiDB components such as TiKV and PD, and how to use features like read-only storage nodes to improve performance under different workloads.
 
-| Best practice topic | Description |
+| Best practice topic | Descriptions |
 | ------------------- | ----------- |
 | [Handle Millions of Tables in SaaS Multi-Tenant Scenarios](/best-practices/saas-best-practices.md) | Best practices for using TiDB in SaaS (Software as a Service) multi-tenant environments, especially in scenarios where the number of tables in a single cluster exceeds one million. |
 | [Handle High-Concurrency Writes](/best-practices/high-concurrency-best-practices.md) | Best practices for handling high-concurrency write-heavy workloads in TiDB to avoid write hotspots and optimize performance. |
