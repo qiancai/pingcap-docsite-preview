@@ -18,7 +18,7 @@ Get up and running quickly with TiDB's AI capabilities.
 
 ## Concepts
 
-Understand the foundational concepts behind AI-powered search in TiDB.
+Understand the foundational concepts behind AI-powered search in TiDB. 
 
 | Document | Description |
 | --- | --- |
