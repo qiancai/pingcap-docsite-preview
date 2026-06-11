@@ -52,7 +52,7 @@ if [ ! -e website-docs/.git ]; then
     rm -rf website-docs
   fi
   # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch add-beta-for-ai https://github.com/qiancai/website-docs
+  git clone --single-branch --branch copilot/fix-card-display-issues https://github.com/pingcap/website-docs
   # git clone https://github.com/pingcap/website-docs
 fi
 
