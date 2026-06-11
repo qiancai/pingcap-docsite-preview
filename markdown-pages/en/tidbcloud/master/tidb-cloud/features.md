@@ -5,7 +5,7 @@ summary: Learn about feature support status for different TiDB Cloud plans.
 
 # Features
 
-This document lists the feature support status for different TiDB Cloud plans, including TiDB Cloud Starter, Essential, Premium, and Dedicated.
+This document lists the feature support status for different TiDB Cloud plans, including {{{ .starter }}}, Essential, Premium, and Dedicated.
 
 > **Tip:**
 >
@@ -116,7 +116,7 @@ This document lists the feature support status for different TiDB Cloud plans, i
   <tr>
     <td>Backup file recycle bin</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
-    <td style="text-align:center; font-size: 14px;">❌</td>
+    <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
@@ -145,7 +145,7 @@ This document lists the feature support status for different TiDB Cloud plans, i
   <tr>
     <td>Change data replication to Kafka or other MySQL-compatible databases using changefeeds</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
-    <td style="text-align:center;">✅ <br/><span style="font-size: 14px; white-space: nowrap;">(Public preview)</span></td>
+    <td style="text-align:center;">🔒</td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
@@ -253,7 +253,7 @@ This document lists the feature support status for different TiDB Cloud plans, i
     <td rowspan="1" style="background-color: white;">High availability</td>
     <td>Cross-AZ failover</td>
     <td style="text-align:center; font-size: 14px;">❌</td>
-    <td style="text-align:center;">✅</td>
+    <td style="text-align:center;"><CustomContent language="en,zh">❌</CustomContent><CustomContent language="ja">✅</CustomContent></td>
     <td style="text-align:center;">✅</td>
     <td style="text-align:center;">✅</td>
   </tr>
