@@ -53,7 +53,7 @@ if [ ! -e website-docs/.git ]; then
   fi
   # Clone the pingcap/website-docs repository.
   # git clone --single-branch --branch master https://github.com/pingcap/website-docs
-  git clone --single-branch --branch qiancai:add-search-filters https://github.com/qiancai/website-docs
+  git clone --single-branch --branch add-search-filters https://github.com/qiancai/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
