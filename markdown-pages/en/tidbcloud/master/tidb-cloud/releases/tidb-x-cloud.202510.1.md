@@ -7,16 +7,18 @@ summary: Learn about the features for the TiDB-X-CLOUD.202510.1 kernel.
 
 Release date: April 28, 2026
 
+Applicable TiDB Cloud plan: TiDB Cloud Premium
+
 TiDB X kernel version: `TiDB-X-CLOUD.202510.1`
 
-TiDB Cloud Premium is in public preview starting from April 28, 2026, using the `TiDB-X-CLOUD.202510.1` kernel.
+TiDB Cloud Premium is available in public preview starting April 28, 2026, using the `TiDB-X-CLOUD.202510.1` kernel.
 
 In `TiDB-X-CLOUD.202510.1`:
 
 - `202510` indicates that the baseline code branch of this kernel version was created in October 2025, which is different from the release date.
 - `1` indicates that it is the first patch release built from the `TiDB-X-CLOUD.202510` baseline branch.
 
-The `TiDB-X-CLOUD.202510.1` kernel is based on the TiDB v8.5.0 kernel, which means it supports most of the features and improvements of the [TiDB v8.5.0](/release-notes/release-8.5.0.md) kernel.
+The `TiDB-X-CLOUD.202510.1` kernel is based on the [TiDB v8.5.0](/releases/release-8.5.0.md) kernel and includes most of the features and improvements introduced in TiDB v8.5.0.
 
 In addition, compared with the [TiDB v8.5.0](/release-notes/release-8.5.0.md) kernel, the `TiDB-X-CLOUD.202510.1` kernel introduces the following features:
 
@@ -40,7 +42,7 @@ In addition, compared with the [TiDB v8.5.0](/release-notes/release-8.5.0.md) ke
 
     PD automatically schedules data to be distributed as evenly as possible across all TiKV nodes in a cluster. However, this automatic scheduling focuses on the cluster as a whole. In some cases, even if the cluster-wide data distribution is balanced, the data of a specific table might still be unevenly distributed across TiKV nodes.
 
-    Starting from v8.5.4, you can use the [`SHOW TABLE DISTRIBUTION`](https://docs.pingcap.com/tidb/v8.5/sql-statement-show-table-distribution/) statement to check how the data of a specific table is distributed across all TiKV nodes. If the data distribution is unbalanced, you can use the [`DISTRIBUTE TABLE`](https://docs.pingcap.com/tidb/v8.5/sql-statement-distribute-table) statement to redistribute the table's data (experimental) to improve load balancing.
+   Now you can use the [`SHOW TABLE DISTRIBUTION`](https://docs.pingcap.com/tidb/v8.5/sql-statement-show-table-distribution/) statement to check how the data of a specific table is distributed across all TiKV nodes. If the data distribution is unbalanced, you can use the [`DISTRIBUTE TABLE`](https://docs.pingcap.com/tidb/v8.5/sql-statement-distribute-table) statement to redistribute the table's data (experimental) to improve load balancing.
 
     Note that redistributing the data of a specific table is a one-time task with a timeout limit. If the distribution task is not completed before the timeout, it will automatically exit.
 
@@ -61,7 +63,7 @@ In addition, compared with the [TiDB v8.5.0](/release-notes/release-8.5.0.md) ke
 
 * Add storage engine identifiers to statement summary tables and slow query logs [#61736](https://github.com/pingcap/tidb/issues/61736) @[henrybw](https://github.com/henrybw)
 
-    When both TiKV and TiFlash are deployed in a cluster, users often need to filter SQL statements by storage engine during database diagnostics and performance optimization. For example, if TiFlash is under high load, users might need to identify SQL statements running on TiFlash to locate potential causes. To meet this need, starting from v8.5.5, TiDB adds storage engine identifier fields to statement summary tables and slow query logs.
+    When both TiKV and TiFlash are deployed in a cluster, users often need to filter SQL statements by storage engine during database diagnostics and performance optimization. For example, if TiFlash is under high load, users might need to identify SQL statements running on TiFlash to locate potential causes. To meet this need, TiDB now adds storage engine identifier fields to statement summary tables and slow query logs.
 
     New fields in [statement summary tables](/statement-summary-tables.md):
 
@@ -79,7 +81,7 @@ In addition, compared with the [TiDB v8.5.0](/release-notes/release-8.5.0.md) ke
 
 ## Limitations
 
-Because of the architectural differences between TiDB X and classic TiDB, the `TiDB-X-CLOUD.202510.1` kernel does not support the following storage features of the TiDB v8.5.0 kernel:
+Because of the architectural differences between TiDB X and classic TiDB, the TiDB X kernel does not support the following storage features of the classic TiDB kernel:
 
 - [TiKV MVCC In-Memory Engine (IME)](/tikv-in-memory-engine.md)
 - [Follower Read](/follower-read.md)
