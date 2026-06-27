@@ -1,6 +1,6 @@
 ---
 title: TiDB Cloud Quick Start
-summary: Sign up quickly to try TiDB Cloud and create a TiDB Cloud Starter instance.
+summary: Sign up quickly to try TiDB Cloud and create a {{{ .starter }}} instance.
 category: quick start
 ---
 
@@ -12,9 +12,9 @@ This tutorial guides you through an easy way to get started with TiDB Cloud.
 
 Additionally, you can try out TiDB features on [TiDB Playground](https://play.tidbcloud.com/?utm_source=docs&utm_medium=tidb_cloud_quick_start).
 
-## Step 1: Create a TiDB Cloud Starter instance {#step-1-create-a-starter-instance}
+## Step 1: Create a {{{ .starter }}} instance {#step-1-create-a-starter-instance}
 
-[TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter) is the best way to get started with TiDB Cloud. To create a TiDB Cloud Starter instance, follow these steps:
+[TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter) is the best way to get started with TiDB Cloud. To create a {{{ .starter }}} instance, follow these steps:
 
 1. If you do not have a TiDB Cloud account, click [here](https://tidbcloud.com/free-trial) to sign up.
 
@@ -24,19 +24,19 @@ Additionally, you can try out TiDB features on [TiDB Playground](https://play.ti
 
     The [**My TiDB**](https://tidbcloud.com/tidbs) page is displayed by default.
 
-3. For new sign-up users, TiDB Cloud automatically creates a default TiDB Cloud Starter instance named `Instance0` for you.
+3. For new sign-up users, TiDB Cloud automatically creates a default {{{ .starter }}} instance named `Instance0` for you.
 
-    - To instantly try out TiDB Cloud features with this default TiDB Cloud Starter instance, proceed to [Step 2: Try AI-assisted SQL Editor](#step-2-try-ai-assisted-sql-editor).
-    - To create a new TiDB Cloud Starter instance on your own, follow these steps:
+    - To instantly try out TiDB Cloud features with this default {{{ .starter }}} instance, proceed to [Step 2: Try AI-assisted SQL Editor](#step-2-try-ai-assisted-sql-editor).
+    - To create a new {{{ .starter }}} instance on your own, follow these steps:
 
         1. Click **Create Resource**.
-        2. On the **Create Resource** page, **Starter** is selected by default. Enter a name for the TiDB Cloud Starter instance, select the cloud provider and target region, and then click **Create**. Your TiDB Cloud Starter instance will be created in approximately 30 seconds.
+        2. On the **Create Resource** page, **Starter** is selected by default. Enter a name for the {{{ .starter }}} instance, select the cloud provider and target region, and then click **Create**. Your {{{ .starter }}} instance will be created in approximately 30 seconds.
 
         <CustomContent language="en,zh">
 
         > **Note**
         >
-        > - TiDB Cloud Starter is generally available on AWS and in public preview on Alibaba Cloud. The subsequent steps in this document use AWS as an example.
+        > - {{{ .starter }}} is generally available on AWS and in public preview on Alibaba Cloud. The subsequent steps in this document use AWS as an example.
         > - TiDB Cloud is a fully managed service. PingCAP operates and manages the underlying cloud infrastructure. You can access the underlying resources only through the TiDB Cloud console.
 
         </CustomContent>
@@ -45,16 +45,16 @@ Additionally, you can try out TiDB features on [TiDB Playground](https://play.ti
 
         > **Note**
         >
-        > - TiDB Cloud Starter is generally available on AWS. The subsequent steps in this document use AWS as an example.
+        > - {{{ .starter }}} is generally available on AWS. The subsequent steps in this document use AWS as an example.
         > - TiDB Cloud is a fully managed service. PingCAP operates and manages the underlying cloud infrastructure. You can access the underlying resources only through the TiDB Cloud console.
 
         </CustomContent>
 
 ## Step 2: Try AI-assisted SQL Editor
 
-For TiDB Cloud Starter instances hosted on AWS, you can use the built-in AI-assisted SQL Editor in the TiDB Cloud console to maximize your data value. This enables you to run SQL queries against databases without a local SQL client. You can intuitively view the query results in tables or charts and easily check the query logs.
+For {{{ .starter }}} instances hosted on AWS, you can use the built-in AI-assisted SQL Editor in the TiDB Cloud console to maximize your data value. This enables you to run SQL queries against databases without a local SQL client. You can intuitively view the query results in tables or charts and easily check the query logs.
 
-1. On the [**My TiDB**](https://tidbcloud.com/tidbs) page, click the name of your TiDB Cloud Starter instance to go to its overview page, and then click **SQL Editor** in the left navigation pane.
+1. On the [**My TiDB**](https://tidbcloud.com/tidbs) page, click the name of your {{{ .starter }}} instance to go to its overview page, and then click **SQL Editor** in the left navigation pane.
 
 2. To try the AI capacity of TiDB Cloud, follow the on-screen instructions to allow PingCAP and AWS Bedrock to use your code snippets for research and service improvement, and then click **Save and Get Started**.
 
@@ -125,28 +125,28 @@ FROM
 
 ## Step 3: Try guided tour on the console
 
-TiDB Cloud offers an interactive tutorial with carefully crafted sample datasets to help you quickly get started with TiDB Cloud. For TiDB Cloud Starter instances hosted on AWS, you can try this tutorial to learn how to use TiDB Cloud for high-performance data analytics.
+TiDB Cloud offers an interactive tutorial with carefully crafted sample datasets to help you quickly get started with TiDB Cloud. For {{{ .starter }}} instances hosted on AWS, you can try this tutorial to learn how to use TiDB Cloud for high-performance data analytics.
 
 1. Click the **?** icon in the lower-right corner of the console and select **Guided tour of SQL Editor**.
-2. Choose a TiDB Cloud Starter instance that you want to use for the tour, and click **Import Dataset**. The import process might take approximately one minute.
+2. Choose a {{{ .starter }}} instance that you want to use for the tour, and click **Import Dataset**. The import process might take approximately one minute.
 3. Once the sample data is imported, follow the on-screen instructions to complete the tour.
 
-## Step 4: Connect to your TiDB Cloud Starter instance
+## Step 4: Connect to your {{{ .starter }}} instance
 
 TiDB is highly compatible with the MySQL protocol, so you can connect to it using most MySQL tools, drivers, and ORMs. The following steps use the MySQL CLI client `mysql` as an example.
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed with connection parameters.
 3. Ensure that the configurations in the connection dialog match your operating environment.
 4. Click **Generate Password** to create a random password.
 5. In the **Connect With** drop-down list, select **MySQL CLI**.
 6. Copy the connection command, paste it into your terminal, and then press **Enter** to run it.
 
-The MySQL CLI client opens and connects to your TiDB Cloud Starter instance.
+The MySQL CLI client opens and connects to your {{{ .starter }}} instance.
 
 ## What's next
 
-- To learn how to connect to your TiDB Cloud Starter instance using different methods, see [Connect to a TiDB Cloud Starter or Essential instance](/tidb-cloud/connect-to-tidb-cluster-serverless.md).
+- To learn how to connect to your {{{ .starter }}} instance using different methods, see [Connect to a {{{ .starter }}} or Essential instance](/tidb-cloud/connect-to-tidb-cluster-serverless.md).
 - For more information about how to use SQL Editor and Chat2Query to explore your data, see [Explore your data with AI-assisted SQL Editor](/tidb-cloud/explore-data-with-chat2query.md).
 - For TiDB SQL usage, see [Explore SQL with TiDB](/basic-sql-operations.md).
 - For production use with the benefits of cross-zone high availability, horizontal scaling, and [HTAP](https://en.wikipedia.org/wiki/Hybrid_transactional/analytical_processing), see [Create a TiDB Cloud Dedicated cluster](/tidb-cloud/create-tidb-cluster.md).
