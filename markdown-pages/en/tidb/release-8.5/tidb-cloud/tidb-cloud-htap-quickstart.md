@@ -12,15 +12,15 @@ This tutorial guides you through an easy way to experience the Hybrid Transactio
 
 ## Before you begin
 
-Before trying the HTAP feature, follow [TiDB Cloud Quick Start](/tidb-cloud/tidb-cloud-quickstart.md) to create a {{{ .starter }}} instance, and then import your data (this document uses the **Steam Games Dataset 2021-2025** as an example) into the instance as follows:
+Before trying the HTAP feature, follow [TiDB Cloud Quick Start](/tidb-cloud/tidb-cloud-quickstart.md) to create a TiDB Cloud Starter instance, and then import your data (this document uses the **Steam Games Dataset 2021-2025** as an example) into the instance as follows:
 
 1. Download the [Steam Games Dataset 2021-2025](https://www.kaggle.com/datasets/jypenpen54534/steam-games-dataset-2021-2025-65k) from Kaggle.
-2. Open the **Import** page for your {{{ .starter }}} instance.
+2. Open the **Import** page for your TiDB Cloud Starter instance.
 
-    1. In the [TiDB Cloud console](https://tidbcloud.com/), navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
+    1. In the [TiDB Cloud console](https://tidbcloud.com/), navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
     2. On the overview page, click **Data** > **Import** in the left navigation pane.
 
-3. Import the downloaded CSV file into your {{{ .starter }}} instance.
+3. Import the downloaded CSV file into your TiDB Cloud Starter instance.
 
     1. On the **Import** page, click **Upload a local file**, and then select and upload the downloaded CSV file.
     2. In the **Destination** section, enter `steam` in the **Database** field and `games` in the **Table** field.
@@ -33,7 +33,7 @@ Before trying the HTAP feature, follow [TiDB Cloud Quick Start](/tidb-cloud/tidb
 
 ### Step 1. Replicate the sample data to the columnar storage engine
 
-After you create a {{{ .starter }}} instance, TiDB does not replicate data from TiKV to TiFlash by default. To replicate a target table to TiFlash, use a MySQL client to connect to your {{{ .starter }}} instance and execute a DDL statement. TiDB then creates the specified table replicas in TiFlash.
+After you create a TiDB Cloud Starter instance, TiDB does not replicate data from TiKV to TiFlash by default. To replicate a target table to TiFlash, use a MySQL client to connect to your TiDB Cloud Starter instance and execute a DDL statement. TiDB then creates the specified table replicas in TiFlash.
 
 For example, to replicate the `games` table (from the **Steam Games Dataset 2021-2025**) to TiFlash, execute the following statements:
 
