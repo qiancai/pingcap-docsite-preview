@@ -52,7 +52,7 @@ if [ ! -e website-docs/.git ]; then
     rm -rf website-docs
   fi
   # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch feat/lake-entry https://github.com/pingcap/website-docs
+  git clone --single-branch --branch codex/byoc-preview-badge https://github.com/lilin90/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
