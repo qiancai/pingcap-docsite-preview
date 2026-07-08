@@ -130,8 +130,8 @@ sync_files_to_dest() {
   fi
 }
 
-# Directories whose files should be redirected to release-8.5 even when PR base is master.
-REDIRECT_DIRS_PATTERN="^(ai|best-practices|api|develop|releases)/"
+# Directories and TOC files that should be redirected to release-8.5 even when PR base is master.
+REDIRECT_DIRS_PATTERN="^(ai|best-practices|api|develop|releases)/|^TOC-(ai|api|best-practices|develop|tidb-releases)\.md$"
 
 # tidb-cloud-lake related files always go to markdown-pages/en/tidb-cloud-lake/master.
 CLOUD_LAKE_PATTERN="^(TOC-tidb-cloud-lake\.md$|tidb-cloud-lake/)"
