@@ -110,26 +110,69 @@ process_cloud_toc() {
   mv "$DIR/TOC-tidb-cloud.md" "$DIR/TOC.md"
 }
 
+sync_files_to_dest() {
+  local src_dir="$1"
+  local dest_dir="$2"
+  local file_list="$3"
+
+  mkdir -p "$dest_dir"
+  echo "$file_list" | tee /dev/fd/2 |
+    rsync -av --files-from=- "$src_dir" "$dest_dir"
+
+  (cd "$dest_dir" && remove_copyable)
+
+  if [ -f "$REPO_DIR/variables.json" ]; then
+    node scripts/replace-variables.js "$dest_dir" "$REPO_DIR/variables.json"
+  fi
+
+  if [[ "$IS_CLOUD" && -f "$dest_dir/TOC-tidb-cloud.md" ]]; then
+    process_cloud_toc "$dest_dir"
+  fi
+}
+
+# Directories whose files should be redirected to release-8.5 even when PR base is master.
+REDIRECT_DIRS_PATTERN="^(ai|best-practices|api|develop|releases)/"
+
+# tidb-cloud-lake related files always go to markdown-pages/en/tidb-cloud-lake/master.
+CLOUD_LAKE_PATTERN="^(TOC-tidb-cloud-lake\.md$|tidb-cloud-lake/)"
+
 perform_sync_task() {
   generate_sync_tasks
   for TASK in "${SYNC_TASKS[@]}"; do
     SRC_DIR="$REPO_DIR/$(echo "$TASK" | cut -d',' -f1)"
-    DEST_DIR="markdown-pages/$(echo "$TASK" | cut -d',' -f2)/$DIR_SUFFIX"
-    mkdir -p "$DEST_DIR"
+    LANG_PREFIX="$(echo "$TASK" | cut -d',' -f2)"
+    DEST_DIR="markdown-pages/${LANG_PREFIX}/$DIR_SUFFIX"
 
-    git -C "$SRC_DIR" diff --merge-base --name-only --diff-filter=AMR origin/"$BASE_BRANCH" --relative | tee /dev/fd/2 |
-      rsync -av --files-from=- "$SRC_DIR" "$DEST_DIR"
+    CHANGED_FILES=$(git -C "$SRC_DIR" diff --merge-base --name-only --diff-filter=AMR origin/"$BASE_BRANCH" --relative)
 
-    # Remove copyable strings.
-    (cd "$DEST_DIR" && remove_copyable)
-
-    # Replace variables if variables.json exists
-    if [ -f "$REPO_DIR/variables.json" ]; then
-      node scripts/replace-variables.js "$DEST_DIR" "$REPO_DIR/variables.json"
+    # Extract tidb-cloud-lake files and sync to dedicated destination.
+    CLOUD_LAKE_FILES=$(echo "$CHANGED_FILES" | grep -E "$CLOUD_LAKE_PATTERN" || true)
+    if [ -n "$CLOUD_LAKE_FILES" ]; then
+      CLOUD_LAKE_DEST="markdown-pages/en/tidb-cloud-lake/master"
+      echo ">>> Syncing tidb-cloud-lake files to $CLOUD_LAKE_DEST"
+      sync_files_to_dest "$SRC_DIR" "$CLOUD_LAKE_DEST" "$CLOUD_LAKE_FILES"
     fi
 
-    if [[ "$IS_CLOUD" && -f "$DEST_DIR/TOC-tidb-cloud.md" ]]; then
-      process_cloud_toc "$DEST_DIR"
+    # Remove cloud-lake files from the list for subsequent processing.
+    CHANGED_FILES=$(echo "$CHANGED_FILES" | grep -vE "$CLOUD_LAKE_PATTERN" || true)
+
+    if [[ "$BASE_BRANCH" == "master" && "$PREVIEW_PRODUCT" == "preview" ]]; then
+      REDIRECTED=$(echo "$CHANGED_FILES" | grep -E "$REDIRECT_DIRS_PATTERN" || true)
+      REMAINING=$(echo "$CHANGED_FILES" | grep -vE "$REDIRECT_DIRS_PATTERN" || true)
+
+      if [ -n "$REDIRECTED" ]; then
+        REDIRECT_DEST="markdown-pages/${LANG_PREFIX}/tidb/release-8.5"
+        echo ">>> Redirecting files in ai|best-practices|api|develop|releases to $REDIRECT_DEST"
+        sync_files_to_dest "$SRC_DIR" "$REDIRECT_DEST" "$REDIRECTED"
+      fi
+
+      if [ -n "$REMAINING" ]; then
+        sync_files_to_dest "$SRC_DIR" "$DEST_DIR" "$REMAINING"
+      fi
+    else
+      if [ -n "$CHANGED_FILES" ]; then
+        sync_files_to_dest "$SRC_DIR" "$DEST_DIR" "$CHANGED_FILES"
+      fi
     fi
   done
 }
