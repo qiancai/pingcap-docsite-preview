@@ -53,8 +53,8 @@ if [ ! -e website-docs/.git ]; then
   fi
   # Clone the pingcap/website-docs repository.
   # git clone --single-branch --branch copilot/fix-card-display-issues https://github.com/pingcap/website-docs
-  # git clone --single-branch --branch qiancai:add-search-filters https://github.com/qiancai/website-docs
-  git clone https://github.com/pingcap/website-docs
+  git clone --single-branch --branch show-preview-in-toc-entries https://github.com/qiancai/website-docs
+  # git clone https://github.com/pingcap/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
