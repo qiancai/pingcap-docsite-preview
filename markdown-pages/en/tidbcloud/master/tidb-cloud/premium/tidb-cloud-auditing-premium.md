@@ -22,7 +22,7 @@ The audit logging feature is **disabled by default**. To audit a TiDB Cloud Prem
     > **Note:**
     >
     > - Database audit logging is not available for TiDB Cloud Starter.
-    > - For TiDB Cloud Essential, see [Database Audit Logging (Preview) for TiDB Cloud Essential](/tidb-cloud/essential-database-audit-logging.md).
+    > - For TiDB Cloud Essential, see [Database Audit Logging (PREVIEW) for TiDB Cloud Essential](/tidb-cloud/essential-database-audit-logging.md).
     > - For TiDB Cloud Dedicated, see [TiDB Cloud Dedicated Database Audit Logging](/tidb-cloud/tidb-cloud-auditing.md).
 
 - You must have the `Organization Owner` role in your organization. Otherwise, you cannot see the database audit-related options in the TiDB Cloud console.
