@@ -125,26 +125,33 @@ process_cloud_toc() {
   mv "$DIR/TOC-tidb-cloud.md" "$DIR/TOC.md"
 }
 
+# TiDB TOC namespace files are served from the stable branch path.
+TOC_NAMESPACE_PATTERN="^(ai|best-practices|api|develop|releases)/|^TOC.*\.md$"
+
+# TiDB Cloud Lake files are served from a dedicated product path.
+CLOUD_LAKE_PATTERN="^(TOC-tidb-cloud-lake\.md$|tidb-cloud-lake/)"
+CLOUD_LAKE_DEST="markdown-pages/en/tidb-cloud-lake/master"
+
 perform_sync_task() {
   generate_sync_tasks
 
-  # Set the target branch and folders of TOC namespace per product.
-  # These folders are served from a fixed target branch; when TARGET_BRANCH differs, they must also be synced there for the preview to reflect changes at their canonical URLs.
+  # Set the target branch and files of the TOC namespace per product.
+  # These files are served from a fixed target branch; when TARGET_BRANCH differs, they must also be synced there for the preview to reflect changes at their canonical URLs.
   #  - tidb:               docs.tidb.stable from docs.json (e.g. release-8.5)
   #  - tidb-in-kubernetes: main
   #  - tidbcloud:          master (already the default target, no extra sync needed)
   case "$PREVIEW_PRODUCT" in
   preview)
     TOC_TARGET_BRANCH=$(jq -r '.docs.tidb.stable' docs.json)
-    TOC_FOLDERS=("ai" "develop" "best-practices" "api" "releases")
+    TOC_SYNC_PATTERN="$TOC_NAMESPACE_PATTERN"
     ;;
   preview-operator)
     TOC_TARGET_BRANCH="main"
-    TOC_FOLDERS=("releases")
+    TOC_SYNC_PATTERN="^releases/|^TOC.*\.md$"
     ;;
   *)
     TOC_TARGET_BRANCH=""
-    TOC_FOLDERS=()
+    TOC_SYNC_PATTERN=""
     ;;
   esac
 
@@ -155,70 +162,86 @@ perform_sync_task() {
     DEST_DIR="markdown-pages/$(echo "$TASK" | cut -d',' -f2)/$DIR_SUFFIX"
     mkdir -p "$DEST_DIR"
 
-    # Ensure variables.json is always available for processing.
-    if [[ -f "$SRC_DIR/variables.json" ]]; then
-      rsync -av "$SRC_DIR/variables.json" "$DEST_DIR"
-    fi
-
     # Only sync modified or added files.
     CHANGED_FILES=$(git -C "$SRC_DIR" diff --merge-base --name-only --diff-filter=AMR origin/"$BASE_BRANCH" --relative)
-    echo "$CHANGED_FILES" | tee /dev/fd/2 |
-      rsync -av --files-from=- "$SRC_DIR" "$DEST_DIR"
 
-    # Get the current commit SHA.
-    CURRENT_COMMIT=$(git -C "$REPO_DIR" rev-parse HEAD)
-    commit_changes "Sync files for PR https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER (commit: https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER/commits/$CURRENT_COMMIT)"
+    # Route TiDB Cloud Lake files to their dedicated product path and exclude them from the default TiDB destination.
+    CLOUD_LAKE_FILES=$(echo "$CHANGED_FILES" | grep -E "$CLOUD_LAKE_PATTERN" || true)
+    if [[ -n "$CLOUD_LAKE_FILES" ]]; then
+      mkdir -p "$CLOUD_LAKE_DEST"
 
-    # Replace variables in Markdown files with values from variables.json.
-    if [[ -f "$DEST_DIR/variables.json" ]]; then
-      ./scripts/replace_variables.py "$DEST_DIR" "$DEST_DIR/variables.json"
+      if [[ -f "$SRC_DIR/variables.json" ]]; then
+        rsync -av "$SRC_DIR/variables.json" "$CLOUD_LAKE_DEST/"
+      fi
+
+      echo "$CLOUD_LAKE_FILES" | tee /dev/fd/2 |
+        rsync -av --files-from=- "$SRC_DIR" "$CLOUD_LAKE_DEST"
+
+      # Get the current commit SHA.
+      CURRENT_COMMIT=$(git -C "$REPO_DIR" rev-parse HEAD)
+      commit_changes "Sync TiDB Cloud Lake files for PR https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER (commit: https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER/commits/$CURRENT_COMMIT)"
+
+      if [[ -f "$CLOUD_LAKE_DEST/variables.json" ]]; then
+        ./scripts/replace_variables.py "$CLOUD_LAKE_DEST" "$CLOUD_LAKE_DEST/variables.json"
+      fi
+      (cd "$CLOUD_LAKE_DEST" && remove_copyable)
+
+      commit_changes "Post-process TiDB Cloud Lake docs (variables replaced, copyable removed)"
     fi
-    # Remove copyable strings.
-    (cd "$DEST_DIR" && remove_copyable)
+    CHANGED_FILES=$(echo "$CHANGED_FILES" | grep -vE "$CLOUD_LAKE_PATTERN" || true)
 
-    if [[ "$IS_CLOUD" && -f "$DEST_DIR/TOC-tidb-cloud.md" ]]; then
-      process_cloud_toc "$DEST_DIR"
+    if [[ -n "$CHANGED_FILES" ]]; then
+      # Ensure variables.json is always available for processing.
+      if [[ -f "$SRC_DIR/variables.json" ]]; then
+        rsync -av "$SRC_DIR/variables.json" "$DEST_DIR"
+      fi
+
+      echo "$CHANGED_FILES" | tee /dev/fd/2 |
+        rsync -av --files-from=- "$SRC_DIR" "$DEST_DIR"
+
+      # Get the current commit SHA.
+      CURRENT_COMMIT=$(git -C "$REPO_DIR" rev-parse HEAD)
+      commit_changes "Sync files for PR https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER (commit: https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER/commits/$CURRENT_COMMIT)"
+
+      # Replace variables in Markdown files with values from variables.json.
+      if [[ -f "$DEST_DIR/variables.json" ]]; then
+        ./scripts/replace_variables.py "$DEST_DIR" "$DEST_DIR/variables.json"
+      fi
+      # Remove copyable strings.
+      (cd "$DEST_DIR" && remove_copyable)
+
+      if [[ "$IS_CLOUD" && -f "$DEST_DIR/TOC-tidb-cloud.md" ]]; then
+        process_cloud_toc "$DEST_DIR"
+      fi
+
+      commit_changes "Post-process docs (variables replaced, copyable removed)"
     fi
 
-    commit_changes "Post-process docs (variables replaced, copyable removed)"
-
-    # Sync TOC namespace folders to the target branch path when TARGET_BRANCH differs.
+    # Sync TOC namespace files to the target branch path when TARGET_BRANCH differs.
     if [[ -n "$TOC_TARGET_BRANCH" && "$TARGET_BRANCH" != "$TOC_TARGET_BRANCH" ]]; then
       TOC_TARGET_DIR="$(dirname "$DEST_DIR")/$TOC_TARGET_BRANCH"
 
       if [[ "$TOC_TARGET_DIR" == "$DEST_DIR" ]]; then
         echo "Warning: TOC_TARGET_DIR equals DEST_DIR ($DEST_DIR), skipping TOC namespace sync for task $TASK."
       else
-        mkdir -p "$TOC_TARGET_DIR"
+        TOC_FILES=$(echo "$CHANGED_FILES" | grep -E "$TOC_SYNC_PATTERN" || true)
+        if [[ -n "$TOC_FILES" ]]; then
+          mkdir -p "$TOC_TARGET_DIR"
 
-        if [[ -f "$SRC_DIR/variables.json" ]]; then
-          rsync -av "$SRC_DIR/variables.json" "$TOC_TARGET_DIR/"
-        fi
-
-        # Sync changed TOC*.md files.
-        CHANGED_TOCS=$(echo "$CHANGED_FILES" | grep "^TOC.*\.md$" || true)
-        if [[ -n "$CHANGED_TOCS" ]]; then
-          echo "$CHANGED_TOCS" | rsync -av --files-from=- "$SRC_DIR" "$TOC_TARGET_DIR/"
-        fi
-
-        # Sync changed files in each TOC namespace folder.
-        TOC_FOLDER_SYNCED=false
-        for FOLDER in "${TOC_FOLDERS[@]}"; do
-          CHANGED=$(echo "$CHANGED_FILES" | grep "^$FOLDER/" || true)
-          if [[ -n "$CHANGED" ]]; then
-            echo "$CHANGED" | sed "s|^$FOLDER/||" |
-              rsync -av --files-from=- "$SRC_DIR/$FOLDER/" "$TOC_TARGET_DIR/$FOLDER/"
-            TOC_FOLDER_SYNCED=true
+          if [[ -f "$SRC_DIR/variables.json" ]]; then
+            rsync -av "$SRC_DIR/variables.json" "$TOC_TARGET_DIR/"
           fi
-        done
 
-        if [[ "$TOC_FOLDER_SYNCED" == true ]]; then
+          echo "$TOC_FILES" | tee /dev/fd/2 |
+            rsync -av --files-from=- "$SRC_DIR" "$TOC_TARGET_DIR/"
+
           # Use the target branch's variables.json, which might differ from BASE_BRANCH.
           if [[ -f "$TOC_TARGET_DIR/variables.json" ]]; then
             ./scripts/replace_variables.py "$TOC_TARGET_DIR" "$TOC_TARGET_DIR/variables.json"
           fi
           (cd "$TOC_TARGET_DIR" && remove_copyable)
-          commit_changes "Sync TOC namespace folders from ${TARGET_BRANCH} to ${TOC_TARGET_BRANCH} for preview (task: ${TASK})"
+
+          commit_changes "Sync TOC namespace files from ${TARGET_BRANCH} to ${TOC_TARGET_BRANCH} for preview (task: ${TASK})"
         fi
       fi
     fi
