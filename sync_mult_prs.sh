@@ -19,10 +19,10 @@ cd "$SCRIPT_DIR"
 #./sync_pr.sh preview-operator/pingcap/docs-tidb-operator/"$OPERATOR_DOCS_PR"
 
 # Synchronize the content from master to release-x.y directories.
-rsync -av markdown-pages/zh/tidb/master/ markdown-pages/zh/tidb/"$RELEASE_DIR"/
-rsync -av markdown-pages/en/tidb/master/ markdown-pages/en/tidb/"$RELEASE_DIR"/
-#rsync -av markdown-pages/en/tidb-in-kubernetes/master/ markdown-pages/en/tidb-in-kubernetes/"$RELEASE_DIR"/
-#rsync -av markdown-pages/zh/tidb-in-kubernetes/master/ markdown-pages/zh/tidb-in-kubernetes/"$RELEASE_DIR"/
+# rsync -av markdown-pages/zh/tidb/master/ markdown-pages/zh/tidb/"$RELEASE_DIR"/
+# rsync -av markdown-pages/en/tidb/master/ markdown-pages/en/tidb/"$RELEASE_DIR"/
+# rsync -av markdown-pages/en/tidb-in-kubernetes/master/ markdown-pages/en/tidb-in-kubernetes/"$RELEASE_DIR"/
+# rsync -av markdown-pages/zh/tidb-in-kubernetes/master/ markdown-pages/zh/tidb-in-kubernetes/"$RELEASE_DIR"/
 
 commit_changes() {
   mess=$1
@@ -34,4 +34,4 @@ commit_changes() {
   git commit -m "$mess" || echo "No changes to commit"
 }
 
-commit_changes "Update the {release-x.y} directory"
+# commit_changes "Update the {release-x.y} directory"
