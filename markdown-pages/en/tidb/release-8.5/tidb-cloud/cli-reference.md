@@ -13,11 +13,11 @@ summary: Provides an overview of the legacy ticloud CLI for TiDB Cloud Starter a
 >
 > `ticloud` is the legacy TiDB Cloud CLI and is being gradually replaced by the new [`tdc` CLI](/ai/tdc/tdc-overview.md). For new TiDB Cloud Starter automation and TiDB Cloud Filesystem workflows, use tdc. During the transition, continue to use `ticloud` for TiDB Cloud Essential and operations that tdc does not yet provide, such as import, export, and audit-log commands.
 
-The legacy `ticloud` CLI is a command-line interface that lets you operate TiDB Cloud from your terminal. It manages {{{ .starter }}} and Essential instances, imports and exports data, and supports other legacy CLI workflows.
+The legacy `ticloud` CLI is a command-line interface that lets you operate TiDB Cloud from your terminal. It manages TiDB Cloud Starter and Essential instances, imports and exports data, and supports other legacy CLI workflows.
 
 ## Before you begin
 
-Make sure to first [set up your TiDB Cloud CLI environment](/tidb-cloud/get-started-with-cli.md). Once you have installed the `ticloud` CLI, you can use it to manage your {{{ .starter }}} and Essential instances from the command lines.
+Make sure to first [set up your TiDB Cloud CLI environment](/tidb-cloud/get-started-with-cli.md). Once you have installed the `ticloud` CLI, you can use it to manage your TiDB Cloud Starter and Essential instances from the command lines.
 
 ## Commands available
 
@@ -28,12 +28,12 @@ To use the `ticloud` CLI in your terminal, run `ticloud [command] [subcommand]`.
 | Command               | Subcommand                                                            | Description                                    |
 |-----------------------|-----------------------------------------------------------------------|------------------------------------------------|
 | auth                  | login, logout, whoami                                                 | Login and logout                               |
-| serverless (alias: s) | create, delete, describe, list, update, spending-limit, region, shell | Manage {{{ .starter }}} or {{{ .essential }}} instance          |
-| serverless branch     | create, delete, describe, list, shell                                 | Manage branches for your {{{ .starter }}} or {{{ .essential }}} instance          |
-| serverless import     | cancel, describe, list, start                                         | Manage import tasks for your {{{ .starter }}} or {{{ .essential }}} instance      |
-| serverless export     | create, describe, list, cancel, download                              | Manage export tasks for your {{{ .starter }}} or {{{ .essential }}} instance      |
-| serverless sql-user   | create, list, delete, update                                          | Manage SQL users for your {{{ .starter }}} or {{{ .essential }}} instance         |
-| serverless audit-log  | config, describe, filter-rule (alias: filter), download                                    | Manage database audit logging for your {{{ .starter }}} or {{{ .essential }}} instance         |
+| serverless (alias: s) | create, delete, describe, list, update, spending-limit, region, shell | Manage TiDB Cloud Starter or TiDB Cloud Essential instance          |
+| serverless branch     | create, delete, describe, list, shell                                 | Manage branches for your TiDB Cloud Starter or TiDB Cloud Essential instance          |
+| serverless import     | cancel, describe, list, start                                         | Manage import tasks for your TiDB Cloud Starter or TiDB Cloud Essential instance      |
+| serverless export     | create, describe, list, cancel, download                              | Manage export tasks for your TiDB Cloud Starter or TiDB Cloud Essential instance      |
+| serverless sql-user   | create, list, delete, update                                          | Manage SQL users for your TiDB Cloud Starter or TiDB Cloud Essential instance         |
+| serverless audit-log  | config, describe, filter-rule (alias: filter), download                                    | Manage database audit logging for your TiDB Cloud Starter or TiDB Cloud Essential instance         |
 | completion            | bash, fish, powershell, zsh                                           | Generate completion script for specified shell |
 | config                | create, delete, describe, edit, list, set, use                        | Configure user profiles                        |
 | project               | list                                                                  | Manage projects                                |
