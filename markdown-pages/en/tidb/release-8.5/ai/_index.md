@@ -20,7 +20,7 @@ Get up and running quickly with TiDB's AI capabilities.
 
 | Document | Description |
 | --- | --- |
-| [tdc Overview](/ai/tdc/tdc-overview.md) | Understand what tdc manages and how it uses its bundled Filesystem companion. |
+| [tdc Overview](/ai/tdc/tdc-overview.md) | Learn when to use tdc, how it differs from the legacy ticloud CLI and TiDB Cloud console, and which Starter and Filesystem workflows it supports. |
 | [Get Started with tdc](/ai/tdc/tdc-quick-start.md) | Install and configure tdc, then complete a first database or Filesystem operation. |
 
 ## Concepts
@@ -30,7 +30,6 @@ Understand the foundational concepts behind AI-powered search in TiDB.
 | Document | Description |
 | --- | --- |
 | [Vector Search](/ai/concepts/vector-search-overview.md) | Comprehensive overview of vector search, including concepts, how it works, and use cases. |
-| [tdc Concepts and Architecture (Preview)](/ai/tdc/concepts/tdc-concepts-and-architecture.md) | Understand profiles, regions, credentials, SQL roles, Filesystems, and the Drive9 companion boundary. |
 
 ## Guides
 
@@ -47,18 +46,6 @@ Step-by-step guides for building AI applications with TiDB using the [`pytidb`](
 | [Auto Embedding](/ai/guides/auto-embedding.md) | Automatically generate embeddings on data insertion. |
 | [Filtering](/ai/guides/filtering.md) | Filter search results with metadata conditions. |
 
-### TiDB Cloud CLI (tdc) (Preview)
-
-| Document | Description |
-| --- | --- |
-| [Install, Configure, and Update tdc](/ai/tdc/guides/tdc-install-configure-update.md) | Install release binaries, configure profiles, update, and uninstall tdc. |
-| [Organization](/ai/tdc/guides/tdc-organization.md) | List projects and understand virtual-project selection. |
-| [Starter Database](/ai/tdc/guides/tdc-starter-database.md) | Manage clusters, branches, SQL users, connection strings, and SQL execution. |
-| [Filesystem](/ai/tdc/guides/tdc-filesystem.md) | Manage resources, data, layers, packs, and FUSE or WebDAV mounts. |
-| [Filesystem Git](/ai/tdc/guides/tdc-filesystem-git.md) | Clone, hydrate, and manage linked Git worktrees. |
-| [Filesystem Journal](/ai/tdc/guides/tdc-filesystem-journal.md) | Record, search, and verify append-only workflow events. |
-| [Filesystem Vault](/ai/tdc/guides/tdc-filesystem-vault.md) | Store secrets, delegate access, audit, inject, and mount a read-only vault. |
-
 ## Examples
 
 Complete code examples and demos showcasing TiDB's AI capabilities.
@@ -71,18 +58,6 @@ Complete code examples and demos showcasing TiDB's AI capabilities.
 | [Image Search](/ai/examples/image-search-with-pytidb.md) | Multimodal image search with Jina AI embeddings. |
 | [Conversational Memory](/ai/examples/memory-with-pytidb.md) | Persistent memory for AI agents and chatbots. |
 | [Text-to-SQL](/ai/examples/text2sql-with-pytidb.md) | Convert natural language to SQL queries. |
-
-### TiDB Cloud CLI (tdc) (Preview)
-
-| Document | Description |
-| --- | --- |
-| [Agent Sandbox](/ai/tdc/examples/tdc-agent-sandbox-example.md) | Give a clean sandbox Filesystem access without TiDB Cloud API keys. |
-| [Daily Workflow](/ai/tdc/examples/tdc-daily-workflow-example.md) | Manage one Starter cluster and Filesystem in a routine operator flow. |
-| [Query SQL with Roles](/ai/tdc/examples/tdc-query-sql-with-roles-example.md) | Use explicit read-only, read-write, and admin SQL roles. |
-| [Share a Filesystem Across Machines](/ai/tdc/examples/tdc-share-filesystem-across-machines-example.md) | Transfer an owner token securely and verify cross-machine visibility. |
-| [Git Workspace for Agents](/ai/tdc/examples/tdc-git-workspace-for-agents-example.md) | Prepare a mounted Git workspace and isolated linked worktree. |
-| [Journal an Agent Workflow](/ai/tdc/examples/tdc-journal-agent-workflow-example.md) | Record structured events and verify their hash chain. |
-| [Delegate Vault Secrets](/ai/tdc/examples/tdc-vault-agent-secrets-example.md) | Grant an agent temporary access to one secret field. |
 
 ## Integrations
 
@@ -110,9 +85,41 @@ Technical reference documentation for TiDB's AI and vector search features.
 
 ### TiDB Cloud CLI (tdc) (Preview)
 
+The command references document every tdc command family and provide examples for each operation. The scenario references combine commands into complete user, automation, and AI agent workflows.
+
+#### Command reference
+
 | Document | Description |
 | --- | --- |
-| [CLI Reference](/ai/tdc/reference/tdc-cli-reference.md) | Global flags, output, queries, dry-run, help, errors, and aliases. |
+| [tdc Overview](/ai/tdc/tdc-overview.md) | Decide when to use tdc and understand its scope relative to ticloud and the TiDB Cloud console. |
+| [CLI Syntax and Global Behavior](/ai/tdc/reference/tdc-cli-reference.md) | Command tree, global flags, output, queries, dry-run, help, errors, and aliases. |
+| [Install, Configure, and Update](/ai/tdc/reference/tdc-install-configure-update.md) | Install releases, configure profiles, update, and uninstall tdc. |
+| [Organization and Projects](/ai/tdc/reference/tdc-organization.md) | List projects and understand virtual-project selection. |
+| [Starter Databases and SQL](/ai/tdc/reference/tdc-starter-database.md) | Manage clusters, branches, SQL users, connection strings, and SQL execution. |
+| [Filesystem](/ai/tdc/reference/tdc-filesystem.md) | Manage resources, data, layers, packs, and FUSE or WebDAV mounts. |
+| [Filesystem Git Workspaces](/ai/tdc/reference/tdc-filesystem-git.md) | Clone, hydrate, and manage linked Git worktrees. |
+| [Filesystem Journals](/ai/tdc/reference/tdc-filesystem-journal.md) | Record, search, and verify append-only workflow events. |
+| [Filesystem Vault](/ai/tdc/reference/tdc-filesystem-vault.md) | Store secrets, delegate access, audit, inject, and mount a read-only vault. |
 | [Configuration and Credentials](/ai/tdc/reference/tdc-configuration-and-credentials.md) | Profiles, precedence, local state, credentials, mount locators, and logs. |
 | [Regions, Security, and Limitations](/ai/tdc/reference/tdc-regions-security-and-limitations.md) | Placement, authentication boundaries, platforms, durability, and Preview constraints. |
 | [Troubleshooting](/ai/tdc/reference/tdc-troubleshooting.md) | Diagnose authentication, quota, SQL, companion, selection, and mount failures. |
+
+#### Scenarios for users and automation
+
+| Document | Description |
+| --- | --- |
+| [Daily Workflow](/ai/tdc/reference/tdc-daily-workflow-example.md) | Manage one Starter cluster and Filesystem in a routine operator flow. |
+| [Query SQL with Roles](/ai/tdc/reference/tdc-query-sql-with-roles-example.md) | Use explicit read-only, read-write, and admin SQL roles. |
+| [Share a Filesystem Across Machines](/ai/tdc/reference/tdc-share-filesystem-across-machines-example.md) | Transfer an owner token securely and verify cross-machine visibility. |
+| [Hand Off CI Artifacts Between Jobs](/ai/tdc/reference/tdc-ci-artifact-handoff-example.md) | Persist build output across isolated jobs without copying a complete tdc profile. |
+
+#### Scenarios for AI agents
+
+| Document | Description |
+| --- | --- |
+| [Agent Sandbox](/ai/tdc/reference/tdc-agent-sandbox-example.md) | Give a clean sandbox Filesystem access without TiDB Cloud API keys. |
+| [Persistent Agent State](/ai/tdc/reference/tdc-persistent-agent-state-example.md) | Preserve plans, checkpoints, and results across disposable sandboxes. |
+| [Parallel Agent Dataset](/ai/tdc/reference/tdc-parallel-agent-dataset-example.md) | Give multiple agents read-only access to one shared unstructured dataset. |
+| [Git Workspace for Agents](/ai/tdc/reference/tdc-git-workspace-for-agents-example.md) | Prepare a mounted Git workspace and isolated linked worktree. |
+| [Journal an Agent Workflow](/ai/tdc/reference/tdc-journal-agent-workflow-example.md) | Record structured events and verify their hash chain. |
+| [Delegate Vault Secrets](/ai/tdc/reference/tdc-vault-agent-secrets-example.md) | Grant an agent temporary access to one secret field. |

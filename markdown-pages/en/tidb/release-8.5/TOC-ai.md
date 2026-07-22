@@ -5,17 +5,13 @@
 
 ## QUICK START
 
-- [Get Started via Python](/ai/quickstart-via-python.md)
-- [Get Started via SQL](/ai/quickstart-via-sql.md)
-- TiDB Cloud CLI (tdc) (Preview)
-  - [Overview](/ai/tdc/tdc-overview.md)
-  - [Quick Start](/ai/tdc/tdc-quick-start.md)
+- [Get Started with Vector Search via Python](/ai/quickstart-via-python.md)
+- [Get Started with Vector Search via SQL](/ai/quickstart-via-sql.md)
+- [Get Started with TiDB Cloud CLI (tdc)](/ai/tdc/tdc-quick-start.md)
 
 ## CONCEPTS
 
 - [Vector Search](/ai/concepts/vector-search-overview.md)
-- TiDB Cloud CLI (tdc) (Preview)
-  - [Concepts and Architecture](/ai/tdc/concepts/tdc-concepts-and-architecture.md)
 
 ## GUIDES
 
@@ -28,21 +24,13 @@
     - [Full-Text Search via SQL](/ai/guides/vector-search-full-text-search-sql.md)
   - [Hybrid Search](/ai/guides/vector-search-hybrid-search.md)
   - [Image Search](/ai/guides/image-search.md)
-- Advanced Features
+- Advanced Search Features
   - [Auto Embedding](/ai/guides/auto-embedding.md)
   - [Filtering](/ai/guides/filtering.md)
   - [Reranking](/ai/guides/reranking.md)
   - [Join Queries](/ai/guides/join-queries.md)
   - [Raw SQL Queries](/ai/guides/raw-queries.md)
   - [Transactions](/ai/guides/transactions.md)
-- TiDB Cloud CLI (tdc) (Preview)
-  - [Install, Configure, and Update tdc](/ai/tdc/guides/tdc-install-configure-update.md)
-  - [Organization](/ai/tdc/guides/tdc-organization.md)
-  - [Starter Database](/ai/tdc/guides/tdc-starter-database.md)
-  - [Filesystem](/ai/tdc/guides/tdc-filesystem.md)
-  - [Filesystem Git](/ai/tdc/guides/tdc-filesystem-git.md)
-  - [Filesystem Journal](/ai/tdc/guides/tdc-filesystem-journal.md)
-  - [Filesystem Vault](/ai/tdc/guides/tdc-filesystem-vault.md)
 
 ## EXAMPLES
 
@@ -57,14 +45,6 @@
   - [RAG Application](/ai/examples/rag-with-pytidb.md)
   - [Conversational Memory](/ai/examples/memory-with-pytidb.md)
   - [Text-to-SQL](/ai/examples/text2sql-with-pytidb.md)
-- TiDB Cloud CLI (tdc) (Preview)
-  - [Agent Sandbox](/ai/tdc/examples/tdc-agent-sandbox-example.md)
-  - [Daily Workflow](/ai/tdc/examples/tdc-daily-workflow-example.md)
-  - [Query SQL with Roles](/ai/tdc/examples/tdc-query-sql-with-roles-example.md)
-  - [Share a Filesystem Across Machines](/ai/tdc/examples/tdc-share-filesystem-across-machines-example.md)
-  - [Git Workspace for Agents](/ai/tdc/examples/tdc-git-workspace-for-agents-example.md)
-  - [Journal an Agent Workflow](/ai/tdc/examples/tdc-journal-agent-workflow-example.md)
-  - [Delegate Vault Secrets](/ai/tdc/examples/tdc-vault-agent-secrets-example.md)
 
 ## INTEGRATIONS
 
@@ -105,8 +85,29 @@
 - [Performance Tuning](/ai/reference/vector-search-improve-performance.md)
 - [Limitations](/ai/reference/vector-search-limitations.md)
 - [Changelogs](/ai/reference/vector-search-changelogs.md)
-- TiDB Cloud CLI (tdc) (Preview)
-  - [CLI Reference](/ai/tdc/reference/tdc-cli-reference.md)
+- TiDB Cloud CLI (tdc)
+  - [Overview](/ai/tdc/tdc-overview.md)
+  - Command Reference
+    - [CLI Syntax and Global Behavior](/ai/tdc/reference/tdc-cli-reference.md)
+    - [Install, Configure, and Update](/ai/tdc/reference/tdc-install-configure-update.md)
+    - [Organization and Projects](/ai/tdc/reference/tdc-organization.md)
+    - [Starter Databases and SQL](/ai/tdc/reference/tdc-starter-database.md)
+    - [Filesystem](/ai/tdc/reference/tdc-filesystem.md)
+    - [Filesystem Git Workspaces](/ai/tdc/reference/tdc-filesystem-git.md)
+    - [Filesystem Journals](/ai/tdc/reference/tdc-filesystem-journal.md)
+    - [Filesystem Vault](/ai/tdc/reference/tdc-filesystem-vault.md)
+  - Scenarios for Users and Automation
+    - [Automate Daily Database Operations](/ai/tdc/reference/tdc-daily-workflow-example.md)
+    - [Run SQL Queries with Role-Based Access](/ai/tdc/reference/tdc-query-sql-with-roles-example.md)
+    - [Share a Filesystem Across Machines](/ai/tdc/reference/tdc-share-filesystem-across-machines-example.md)
+    - [Hand Off CI Artifacts Between Jobs](/ai/tdc/reference/tdc-ci-artifact-handoff-example.md)
+  - Scenarios for AI Agents
+    - [Set Up an Agent Sandbox Environment](/ai/tdc/reference/tdc-agent-sandbox-example.md)
+    - [Persist Agent State Across Sandboxes](/ai/tdc/reference/tdc-persistent-agent-state-example.md)
+    - [Share a Read-Only Dataset Across Parallel Agents](/ai/tdc/reference/tdc-parallel-agent-dataset-example.md)
+    - [Set Up a Git Workspace for AI Agents](/ai/tdc/reference/tdc-git-workspace-for-agents-example.md)
+    - [Record Agent Workflows in a Journal](/ai/tdc/reference/tdc-journal-agent-workflow-example.md)
+    - [Delegate Secrets Securely to Agents](/ai/tdc/reference/tdc-vault-agent-secrets-example.md)
   - [Configuration and Credentials](/ai/tdc/reference/tdc-configuration-and-credentials.md)
   - [Regions, Security, and Limitations](/ai/tdc/reference/tdc-regions-security-and-limitations.md)
   - [Troubleshooting](/ai/tdc/reference/tdc-troubleshooting.md)
