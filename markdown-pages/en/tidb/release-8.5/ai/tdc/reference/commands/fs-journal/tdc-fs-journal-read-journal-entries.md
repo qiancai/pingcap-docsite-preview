@@ -9,31 +9,49 @@ Reads entries from one journal in sequence order.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc fs-journal read-journal-entries
-    --journal-id <string>
-    [--after-seq <int64>]
-    [--file-system-name <string>]
-    [--fs-token <string>]
-    [--help]
-    [--limit <int32>]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc fs-journal read-journal-entries
+  --journal-id <string>
+  [--after-seq <int64>]
+  [--file-system-name <string>]
+  [--fs-token <string>]
+  [--help]
+  [--limit <int32>]
+  [--version]
 ```
 
-Filesystem selection can come from `--file-system-name`, `TDC_FS_FILE_SYSTEM_NAME`, or the selected profile. For shared global flags, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--journal-id <string>`: Journal ID. \[required]
+- `--after-seq <int64>`: Read entries after this sequence.
+- `--file-system-name <string>`: Select the file system. You can also set `TDC_FS_FILE_SYSTEM_NAME`.
+- `--fs-token <string>`: Set the file system user token. If omitted, uses `TDC_FS_TOKEN`.
+- `--help`: Display help information.
+- `--limit <int32>`: Maximum entries to read. \[default: 100]
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc fs-journal read-journal-entries --journal-id jrn-demo
-tdc fs-journal read-journal-entries --journal-id jrn-demo --after-seq 100 --limit 50
-```
+- Read journal entries:
+
+    ```bash
+    # Return the first page of ordered entries for a journal.
+    tdc fs-journal read-journal-entries --file-system-name workspace --journal-id jrn-demo
+    ```
+
+- Continue after a sequence number:
+
+    ```bash
+    # Read the next page after the last sequence processed by a consumer.
+    tdc fs-journal read-journal-entries --file-system-name workspace --journal-id jrn-demo --after-seq 100 --limit 50
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Filesystem Journal CLI Command Reference](/ai/tdc/reference/tdc-filesystem-journal.md)

@@ -9,29 +9,45 @@ Requests asynchronous Filesystem deletion and removes its local registration.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc fs delete-file-system
-    --file-system-name <string>
-    [--dry-run]
-    [--fs-token <string>]
-    [--help]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc fs delete-file-system
+  --file-system-name <string>
+  [--dry-run]
+  [--fs-token <string>]
+  [--help]
+  [--version]
 ```
 
-Filesystem selection can come from `--file-system-name`, `TDC_FS_FILE_SYSTEM_NAME`, or the selected profile. For shared global flags, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--file-system-name <string>`: Set the file system name. \[required]
+- `--dry-run`: Validate the request without applying changes.
+- `--fs-token <string>`: Set the file system user token. If omitted, uses `TDC_FS_TOKEN`.
+- `--help`: Display help information.
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc fs delete-file-system --file-system-name workspace --dry-run
-tdc fs delete-file-system --file-system-name workspace
-```
+- Delete a Filesystem:
+
+    ```bash
+    # Request asynchronous deletion and remove its local registration after acceptance.
+    tdc fs delete-file-system --file-system-name workspace
+    ```
+
+- Preview Filesystem deletion:
+
+    ```bash
+    # Validate the selected Filesystem without sending the deletion request.
+    tdc fs delete-file-system --file-system-name workspace --dry-run
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Filesystem CLI Command Reference](/ai/tdc/reference/tdc-filesystem.md)

@@ -9,32 +9,51 @@ Searches remote file content, optionally in a layer. The command alias is `tdc f
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc fs search-file-content
-    --pattern <string>
-    [--file-system-name <string>]
-    [--fs-token <string>]
-    [--help]
-    [--layer-id <string>]
-    [--limit <int32>]
-    [--path <string>]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc fs search-file-content
+  --pattern <string>
+  [--file-system-name <string>]
+  [--fs-token <string>]
+  [--help]
+  [--layer-id <string>]
+  [--limit <int32>]
+  [--path <string>]
+  [--version]
 ```
 
-Filesystem selection can come from `--file-system-name`, `TDC_FS_FILE_SYSTEM_NAME`, or the selected profile. For shared global flags, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--pattern <string>`: Content search matching pattern. \[required]
+- `--file-system-name <string>`: Select the file system. You can also set `TDC_FS_FILE_SYSTEM_NAME`.
+- `--fs-token <string>`: Set the file system user token. If omitted, uses `TDC_FS_TOKEN`.
+- `--help`: Display help information.
+- `--layer-id <string>`: Search within a file system layer.
+- `--limit <int32>`: Maximum number of search results; 0 uses the service default.
+- `--path <string>`: File path prefix to be searched. \[default: /]
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc fs search-file-content --path /workspace --pattern "TODO" --limit 50
-tdc fs grep --path /workspace --pattern "deprecated" --layer-id "<layer-id>"
-```
+- Search base Filesystem content:
+
+    ```bash
+    # Find matching text under a remote directory and limit the result count.
+    tdc fs search-file-content --file-system-name workspace --path /workspace --pattern "TODO" --limit 50
+    ```
+
+- Search content in a layer:
+
+    ```bash
+    # Inspect uncommitted layer content separately from the base Filesystem.
+    tdc fs search-file-content --file-system-name workspace --path /workspace --pattern "deprecated" --layer-id "<layer-id>"
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Filesystem CLI Command Reference](/ai/tdc/reference/tdc-filesystem.md)

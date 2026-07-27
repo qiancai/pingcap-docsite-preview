@@ -9,29 +9,38 @@ Describes one branch by cluster ID and branch ID.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc db describe-db-cluster-branch
-    --db-cluster-branch-id <string>
-    --db-cluster-id <string>
-    [--help]
-    [--version]
-    [--view <string>]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc db describe-db-cluster-branch
+  --db-cluster-branch-id <string>
+  --db-cluster-id <string>
+  [--help]
+  [--version]
+  [--view <string>]
 ```
 
-For global flags such as `--profile`, `--region`, `--output`, and `--query`, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--db-cluster-branch-id <string>`: Starter DB cluster branch ID. \[required]
+- `--db-cluster-id <string>`: Starter DB cluster ID. \[required]
+- `--help`: Display help information.
+- `--version`: Display version information.
+- `--view <string>`: Detail level: `BASIC` or `FULL`.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc db describe-db-cluster-branch --db-cluster-id "<cluster-id>" --db-cluster-branch-id "<branch-id>"
-tdc db describe-db-cluster-branch --db-cluster-id "<cluster-id>" --db-cluster-branch-id "<branch-id>" --view FULL
-```
+- Describe a branch:
+
+    ```bash
+    # Return full lifecycle and connection details for one branch.
+    tdc db describe-db-cluster-branch --db-cluster-id "<cluster-id>" --db-cluster-branch-id "<branch-id>" --view FULL
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Starter CLI Command Reference](/ai/tdc/reference/tdc-starter-database.md)

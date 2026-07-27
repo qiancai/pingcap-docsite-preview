@@ -9,29 +9,45 @@ Lists secrets visible to the active owner or delegated credential.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc fs-vault list-secrets
-    [--file-system-name <string>]
-    [--fs-token <string>]
-    [--help]
-    [--vault-token <string>]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc fs-vault list-secrets
+  [--file-system-name <string>]
+  [--fs-token <string>]
+  [--help]
+  [--vault-token <string>]
+  [--version]
 ```
 
-Filesystem selection can come from `--file-system-name`, `TDC_FS_FILE_SYSTEM_NAME`, or the selected profile. For shared global flags, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--file-system-name <string>`: Select the file system. You can also set `TDC_FS_FILE_SYSTEM_NAME`.
+- `--fs-token <string>`: Set the file system user token. If omitted, uses `TDC_FS_TOKEN`.
+- `--help`: Display help information.
+- `--vault-token <string>`: Delegated `tdc fs-vault` token; prefer `TDC_VAULT_TOKEN`.
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc fs-vault list-secrets
-tdc fs-vault list-secrets --vault-token "$TDC_VAULT_TOKEN" --output text
-```
+- List owner-visible secrets:
+
+    ```bash
+    # Return secret metadata without exposing field values.
+    tdc fs-vault list-secrets --file-system-name workspace
+    ```
+
+- List secrets visible to a delegated token:
+
+    ```bash
+    # Restrict the result to secrets within the token's granted scope.
+    tdc fs-vault list-secrets --file-system-name workspace --vault-token "$TDC_VAULT_TOKEN"
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Filesystem Vault CLI Command Reference](/ai/tdc/reference/tdc-filesystem-vault.md)

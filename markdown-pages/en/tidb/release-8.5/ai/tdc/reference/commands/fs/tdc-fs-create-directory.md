@@ -9,31 +9,42 @@ Creates a remote directory. The command alias is `tdc fs mkdir`.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc fs create-directory
-    --path <string>
-    [--dry-run]
-    [--file-system-name <string>]
-    [--fs-token <string>]
-    [--help]
-    [--mode <string>]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc fs create-directory
+  --path <string>
+  [--dry-run]
+  [--file-system-name <string>]
+  [--fs-token <string>]
+  [--help]
+  [--mode <string>]
+  [--version]
 ```
 
-Filesystem selection can come from `--file-system-name`, `TDC_FS_FILE_SYSTEM_NAME`, or the selected profile. For shared global flags, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--path <string>`: The file system path of the directory to create. \[required]
+- `--dry-run`: Validate the request without applying changes.
+- `--file-system-name <string>`: Select the file system. You can also set `TDC_FS_FILE_SYSTEM_NAME`.
+- `--fs-token <string>`: Set the file system user token. If omitted, uses `TDC_FS_TOKEN`.
+- `--help`: Display help information.
+- `--mode <string>`: The directory mode as an octal value such as 0755.
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc fs create-directory --path /reports/archive --mode 0755
-tdc fs mkdir --path /reports/review --dry-run
-```
+- Create a remote directory:
+
+    ```bash
+    # Create the directory with explicit POSIX permission metadata.
+    tdc fs create-directory --file-system-name workspace --path /reports/archive --mode 0755
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Filesystem CLI Command Reference](/ai/tdc/reference/tdc-filesystem.md)

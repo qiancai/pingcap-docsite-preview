@@ -9,29 +9,38 @@ Lists branches for one Starter cluster, with optional pagination.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc db list-db-cluster-branches
-    --db-cluster-id <string>
-    [--help]
-    [--page-size <int32>]
-    [--page-token <string>]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc db list-db-cluster-branches
+  --db-cluster-id <string>
+  [--help]
+  [--page-size <int32>]
+  [--page-token <string>]
+  [--version]
 ```
 
-For global flags such as `--profile`, `--region`, `--output`, and `--query`, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--db-cluster-id <string>`: Starter DB cluster ID. \[required]
+- `--help`: Display help information.
+- `--page-size <int32>`: Number of branches to request; 0 uses the API default.
+- `--page-token <string>`: Page token returned by a previous list-db-cluster-branches call.
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc db list-db-cluster-branches --db-cluster-id "<cluster-id>" --output text
-tdc db list-db-cluster-branches --db-cluster-id "<cluster-id>" --query 'branches[].id'
-```
+- List cluster branches:
+
+    ```bash
+    # Return all branches that belong to the selected Starter cluster.
+    tdc db list-db-cluster-branches --db-cluster-id "<cluster-id>"
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Starter CLI Command Reference](/ai/tdc/reference/tdc-starter-database.md)

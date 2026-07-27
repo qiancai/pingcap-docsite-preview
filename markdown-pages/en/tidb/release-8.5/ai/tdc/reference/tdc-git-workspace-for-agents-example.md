@@ -9,19 +9,19 @@ This example removes a large repository clone from the critical path of starting
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## The agent problem
 
 An ephemeral agent normally waits for `git clone` and checkout to download a repository before it can inspect the tree or begin work. For a large monorepo, that startup delay is paid again for every replacement sandbox. The agent appears idle even when its first task needs only a small part of the repository.
 
-## Why a normal clone or partial clone is not enough
+## Limitations of a normal clone or partial clone
 
-A normal clone blocks until the initial object transfer and checkout finish. A native blobless partial clone reduces the first transfer, but later Git commands and file reads can still trigger many on-demand fetches on the agent's critical path. Neither approach by itself provides a shared Filesystem workspace that can be restored across agent runtimes.
+A normal clone blocks until the initial object transfer and checkout finish. A native blobless partial clone reduces the first transfer, but later Git commands and file reads can still trigger repeated on-demand fetches on the agent's critical path. Neither approach by itself provides a shared Filesystem workspace that can be restored across agent runtimes.
 
-## How tdc changes the workflow
+## How TiDB Cloud CLI changes the workflow
 
-`tdc fs-git clone-git-workspace --blobless --hydrate background` registers the Git workspace and exposes its file tree before all clean blobs finish downloading. The command returns so the agent can inspect paths and start working while tdc hydrates the clean tree and local Git object database in the background. Reads that arrive before hydration completes fall back to Git's lazy fetch for correctness. Ordinary Git remains responsible for edits, commits, fetches, and pushes.
+`tdc fs-git clone-git-workspace --blobless --hydrate background` registers the Git workspace and exposes its file tree before all clean blobs finish downloading. The command returns so the agent can inspect paths and start working while `tdc` hydrates the clean tree and local Git object database in the background. Reads that arrive before hydration completes fall back to Git's lazy fetch for correctness. Ordinary Git remains responsible for edits, commits, fetches, and pushes.
 
 ## Prerequisites
 
@@ -93,11 +93,11 @@ Use `--force` for worktree removal only when uncommitted changes can be discarde
 
 ## Security and durability notes
 
-- Repository credentials are managed by Git, not tdc.
+- Repository credentials are managed by Git, not `tdc`.
 - The coding-agent profile keeps `.git` and ignored generated files locally for performance.
 - Preserve or pack local overlay state before deleting an ephemeral machine when it cannot be rebuilt.
 
 ## What's next
 
-- [tdc fs-git Command Reference](/ai/tdc/reference/tdc-filesystem-git.md)
-- [tdc fs Command Reference](/ai/tdc/reference/tdc-filesystem.md)
+- [TiDB Cloud Filesystem Git CLI Command Reference](/ai/tdc/reference/tdc-filesystem-git.md)
+- [TiDB Cloud Filesystem CLI Command Reference](/ai/tdc/reference/tdc-filesystem.md)

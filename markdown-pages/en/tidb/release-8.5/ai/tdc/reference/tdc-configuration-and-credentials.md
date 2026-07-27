@@ -1,15 +1,15 @@
 ---
-title: tdc Configuration and Credentials
-summary: Reference tdc profiles, environment and flag precedence, local state paths, Filesystem registry, SQL credentials, mount locators, and operation logs.
+title: TiDB Cloud CLI Configuration and Credentials
+summary: Reference TiDB Cloud CLI profiles, precedence rules, local state paths, Filesystem registry, SQL credentials, mount locators, and operation logs.
 ---
 
-# tdc Configuration and Credentials
+# TiDB Cloud CLI Configuration and Credentials
 
-tdc stores all product-owned local state under `~/.tdc/` and separates non-sensitive configuration from credentials.
+`tdc` stores all product-owned local state under `~/.tdc/` and separates non-sensitive configuration from credentials.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Main files
 
@@ -18,7 +18,6 @@ tdc stores all product-owned local state under `~/.tdc/` and separates non-sensi
 [default]
 region_code = "aws-us-east-1"
 project_id = "..."
-fs_default_file_system_name = "workspace"
 
 [logging]
 enabled = true
@@ -52,7 +51,7 @@ Credential selection is:
 1. `TDC_PUBLIC_KEY` and `TDC_PRIVATE_KEY`, when either is set;
 2. the selected section of `~/.tdc/credentials`.
 
-Both environment values are required together. tdc never mixes one environment half with one file half.
+Both environment values are required together. `tdc` never mixes one environment half with one file half.
 
 Placement selection is:
 
@@ -74,7 +73,7 @@ Other DB commands identify resources by cluster or branch ID and do not use `pro
 
 ## Filesystem resource registry
 
-One profile can register multiple Filesystems. The main config stores only the optional default name. Resource state is isolated:
+One profile can register multiple Filesystems. Resource state is isolated from the main profile configuration:
 
 ```text
 ~/.tdc/fs_resources/<profile-key>/<resource-key>/config
@@ -87,9 +86,9 @@ Resource selection is:
 
 1. explicit `--file-system-name`;
 2. `TDC_FS_FILE_SYSTEM_NAME`;
-3. profile `fs_default_file_system_name`;
-4. the only registered resource;
-5. fail as missing or ambiguous.
+3. fail with `fs.missing_file_system_name`.
+
+`tdc` never infers a Filesystem from a saved default or from the number of registered resources. Use `--file-system-name` for one command or `TDC_FS_FILE_SYSTEM_NAME` for a shell, sandbox, or automation environment.
 
 FS owner credential selection for remote `fs`, `fs-git`, `fs-journal`, and owner `fs-vault` operations is:
 
@@ -109,7 +108,7 @@ export TDC_REGION_CODE="aws-us-east-1"
 export TDC_FS_FILE_SYSTEM_NAME="workspace"
 ```
 
-These values form an in-memory namespace only. tdc does not write them to `~/.tdc/`. Provisioning and deletion still require TiDB Cloud API credentials; deletion also requires the local resource registration.
+These values form an in-memory namespace only. `tdc` does not write them to `~/.tdc/`. Provisioning and deletion still require TiDB Cloud API credentials; deletion also requires the local resource registration.
 
 ## DB SQL credentials
 
@@ -143,7 +142,7 @@ Each registered Filesystem has an isolated companion home:
 ~/.tdc/drive9-home/<profile-key>/<resource-key>/
 ```
 
-Do not edit this state or a standalone `~/.drive9` configuration for tdc workflows.
+Do not edit this state or a standalone `~/.drive9` configuration for `tdc` workflows.
 
 A successful background FS or vault mount writes a non-secret locator:
 
@@ -151,11 +150,11 @@ A successful background FS or vault mount writes a non-secret locator:
 ~/.tdc/mounts/<mount-hash>.locator.json
 ```
 
-The locator records enough placement and companion-home information for drain and unmount from the same `HOME`. It does not contain the FS token. Successful unmount removes it.
+The locator records the placement and companion-home information required for drain and unmount from the same `HOME`. It does not contain the FS token. Successful unmount removes it.
 
 ## Operation logs
 
-tdc writes redacted local JSON Lines events to:
+`tdc` writes redacted local JSON Lines events to:
 
 ```text
 ~/.tdc/logs/tdc.jsonl
@@ -191,5 +190,5 @@ Do not put them in source control, tickets, logs, command examples, or unprotect
 
 ## Related documentation
 
-- [tdc Regions, Security, and Limitations](/ai/tdc/reference/tdc-regions-security-and-limitations.md)
-- [Troubleshoot tdc](/ai/tdc/reference/tdc-troubleshooting.md)
+- [TiDB Cloud CLI Regions, Security, and Limitations](/ai/tdc/reference/tdc-regions-security-and-limitations.md)
+- [Troubleshoot TiDB Cloud CLI](/ai/tdc/reference/tdc-troubleshooting.md)

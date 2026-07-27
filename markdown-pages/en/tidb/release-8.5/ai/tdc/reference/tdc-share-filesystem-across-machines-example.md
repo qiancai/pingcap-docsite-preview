@@ -9,24 +9,24 @@ This example gives agents or users on two machines one shared workspace without 
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## The agent problem
 
 An agent can prepare source files or artifacts on machine A and continue the task on machine B, but each machine normally sees only its own disk. Copying a snapshot before every handoff adds latency, and changes made after the copy are invisible to the other machine. Concurrent handoffs can also create conflicting copies with no clear source of truth.
 
-## Why native local disks and manual synchronization are not enough
+## Limitations of native local disks and manual synchronization
 
 Local disks do not provide a shared namespace. Commands such as `scp` and archive upload transfer point-in-time copies rather than live state, while object storage does not by itself behave like the mounted directory expected by editors, build tools, and agents.
 
-## How tdc changes the workflow
+## How TiDB Cloud CLI changes the workflow
 
 Both machines select the same TiDB Cloud Filesystem. Data-plane commands and the mounted path address one remote namespace, so a write from either interface becomes visible through the other after it is flushed. Machine B needs only the Filesystem token, region code, and name; it does not need TiDB Cloud API keys or a copied profile.
 
 ## Prerequisites
 
-- Machine A has configured tdc.
-- Both machines have tdc installed.
+- Machine A has configured `tdc`.
+- Both machines have `tdc` installed.
 - You have a secure secret-transfer channel.
 
 ## Step 1. Create the Filesystem on machine A
@@ -102,5 +102,5 @@ tdc fs delete-file-system \
 
 ## What's next
 
-- [tdc fs Command Reference](/ai/tdc/reference/tdc-filesystem.md)
+- [TiDB Cloud Filesystem CLI Command Reference](/ai/tdc/reference/tdc-filesystem.md)
 - [Use a Filesystem in an Agent Sandbox](/ai/tdc/reference/tdc-agent-sandbox-example.md)

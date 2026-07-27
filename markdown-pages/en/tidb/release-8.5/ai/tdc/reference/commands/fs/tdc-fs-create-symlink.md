@@ -9,31 +9,42 @@ Creates a symbolic link. The command alias is `tdc fs symlink`.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc fs create-symlink
-    --link-path <string>
-    --target <string>
-    [--dry-run]
-    [--file-system-name <string>]
-    [--fs-token <string>]
-    [--help]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc fs create-symlink
+  --link-path <string>
+  --target <string>
+  [--dry-run]
+  [--file-system-name <string>]
+  [--fs-token <string>]
+  [--help]
+  [--version]
 ```
 
-Filesystem selection can come from `--file-system-name`, `TDC_FS_FILE_SYSTEM_NAME`, or the selected profile. For shared global flags, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--link-path <string>`: The file path for the created symbolic link. \[required]
+- `--target <string>`: The actual file path being linked to. \[required]
+- `--dry-run`: Validate the request without applying changes.
+- `--file-system-name <string>`: Select the file system. You can also set `TDC_FS_FILE_SYSTEM_NAME`.
+- `--fs-token <string>`: Set the file system user token. If omitted, uses `TDC_FS_TOKEN`.
+- `--help`: Display help information.
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc fs create-symlink --target final.md --link-path /reports/latest.md
-tdc fs symlink --target archive/report.md --link-path /reports/archive-link --dry-run
-```
+- Create a symbolic link:
+
+    ```bash
+    # Create a relative symbolic link inside the remote namespace.
+    tdc fs create-symlink --file-system-name workspace --target final.md --link-path /reports/latest.md
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Filesystem CLI Command Reference](/ai/tdc/reference/tdc-filesystem.md)

@@ -1,15 +1,15 @@
 ---
-title: tdc fs Command Reference
-summary: Reference every tdc fs command for Filesystem resources, files, layers, packs, and mounts.
+title: TiDB Cloud Filesystem CLI Command Reference
+summary: Reference every `tdc fs` command for Filesystem resources, files, layers, packs, and mounts.
 ---
 
-# tdc fs Command Reference
+# TiDB Cloud Filesystem CLI Command Reference
 
 Use `tdc fs` to provision TiDB Cloud Filesystem resources and access their data from commands or local mounts.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Command tree
 
@@ -18,8 +18,6 @@ tdc fs
 ├── create-file-system
 ├── list-file-systems
 ├── describe-file-system
-├── set-default-file-system
-├── unset-default-file-system
 ├── check-file-system
 ├── delete-file-system
 ├── copy-file
@@ -54,11 +52,9 @@ tdc fs
 
 | Command | Purpose and key inputs | Example |
 | --- | --- | --- |
-| `create-file-system` | Provisions a Filesystem. Requires `--file-system-name`; `--set-default` selects it and `--wait` waits until data-plane access is ready. | `tdc fs create-file-system --file-system-name workspace --set-default --wait` |
+| `create-file-system` | Provisions a Filesystem. Requires `--file-system-name`; `--wait` waits until data-plane access is ready. | `tdc fs create-file-system --file-system-name workspace --wait` |
 | `list-file-systems` | Lists resources registered in the selected local profile. | `tdc fs list-file-systems --output text` |
 | `describe-file-system` | Reads one locally registered resource by name. | `tdc fs describe-file-system --file-system-name workspace` |
-| `set-default-file-system` | Sets the default resource used when no name is supplied. | `tdc fs set-default-file-system --file-system-name workspace` |
-| `unset-default-file-system` | Clears the profile's default resource without deleting it. | `tdc fs unset-default-file-system` |
 | `check-file-system` | Verifies resource selection, endpoint resolution, credentials, and companion access. | `tdc fs check-file-system --file-system-name workspace` |
 | `delete-file-system` | Requests asynchronous deletion and removes its local registration. Requires TiDB Cloud credentials and the owner resource credential. | `tdc fs delete-file-system --file-system-name workspace` |
 
@@ -97,30 +93,29 @@ tdc fs
 
 | Command | Purpose and key inputs | Example |
 | --- | --- | --- |
-| `mount-file-system` | Mounts a resource through automatic, FUSE, or WebDAV mode. Requires `--mount-path`; resource selection can come from a flag, environment, or profile. | `tdc fs mount-file-system --file-system-name workspace --mount-path /path/to/workspace` |
+| `mount-file-system` | Mounts a resource through automatic, FUSE, or WebDAV mode. Requires `--mount-path`; select the resource with a flag or environment variable. | `tdc fs mount-file-system --file-system-name workspace --mount-path /path/to/workspace` |
 | `drain-file-system` | Flushes pending FUSE work while leaving the mount online. | `tdc fs drain-file-system --mount-path /path/to/workspace --timeout 30s` |
 | `unmount-file-system` | Gracefully flushes and unmounts a background FUSE or WebDAV mount. | `tdc fs unmount-file-system --mount-path /path/to/workspace` |
 
 ## Prerequisites
 
 - Run `tdc configure` before provisioning or deleting a Filesystem.
-- Install tdc with the release installer so the `tdc-drive9` companion is next to the `tdc` binary.
+- Install `tdc` with the release installer so the `tdc-drive9` companion is next to the `tdc` binary.
 - Treat the returned FS owner token as a secret.
 
 Data-plane commands can instead use an existing Filesystem with `TDC_FS_TOKEN`, `TDC_REGION_CODE`, and `TDC_FS_FILE_SYSTEM_NAME`, without TiDB Cloud API keys.
 
 ## Manage Filesystem resources
 
-Create a resource and make it the profile default:
+Create a resource and wait until data-plane access is ready:
 
 ```bash
 tdc fs create-file-system \
   --file-system-name workspace \
-  --set-default \
   --wait
 ```
 
-Without `--wait`, tdc returns after Drive9 accepts provisioning. With the flag, tdc waits up to 10 minutes until the root is readable through the public Drive9 data-plane CLI. A failed wait leaves the resource and locally stored credential intact.
+Without `--wait`, `tdc` returns after Drive9 accepts provisioning. With the flag, `tdc` waits up to 10 minutes until the root is readable through the public Drive9 data-plane CLI. A failed wait leaves the resource and locally stored credential intact.
 
 The JSON response includes `fs_token`. Capture it without displaying the complete result:
 
@@ -139,11 +134,10 @@ tdc fs list-file-systems
 tdc fs describe-file-system --file-system-name workspace
 ```
 
-Set or clear a profile default:
+Select a resource for subsequent commands in the current shell:
 
 ```bash
-tdc fs set-default-file-system --file-system-name workspace
-tdc fs unset-default-file-system
+export TDC_FS_FILE_SYSTEM_NAME="workspace"
 ```
 
 Check the selected resource and companion:
@@ -159,7 +153,7 @@ tdc fs delete-file-system \
   --file-system-name workspace
 ```
 
-Create and delete support `--dry-run`. Deletion requires TiDB Cloud API keys and a locally registered resource; an FS token alone cannot delete the resource. Drive9 deletion is asynchronous, so a successfully accepted request reports `status: "deleting"` while tdc removes the selected local registry entry and credential.
+Create and delete support `--dry-run`. Deletion requires TiDB Cloud API keys and a locally registered resource; an FS token alone cannot delete the resource. Drive9 deletion is asynchronous, so a successfully accepted request reports `status: "deleting"` while `tdc` removes the selected local registry entry and credential.
 
 ## Select one of multiple Filesystems
 
@@ -167,10 +161,9 @@ One profile can own multiple resources. Selection precedence is:
 
 1. `--file-system-name`;
 2. `TDC_FS_FILE_SYSTEM_NAME`;
-3. the profile default;
-4. the only registered resource.
+3. fail with `fs.missing_file_system_name`.
 
-When selection is ambiguous, tdc fails. It never chooses an arbitrary Filesystem.
+`tdc` does not infer a resource from the profile registry, even when only one resource is registered. This makes scripts deterministic when resources are added or removed.
 
 ## Copy and read data
 
@@ -312,7 +305,7 @@ The default `--driver auto` is platform-specific. `--remote-path` exposes a subt
 
 ### Mount in Docker and Docker Compose
 
-Installing FUSE3 inside an image is not sufficient by itself. The Docker host must provide `/dev/fuse`, and the container must receive permission to perform the mount. The following Dockerfile installs the required Ubuntu package and tdc without storing any cloud or Filesystem credentials in the image:
+Installing FUSE3 inside an image does not enable mounts by itself. The Docker host must provide `/dev/fuse`, and the container must receive permission to perform the mount. The following Dockerfile installs the required Ubuntu package and `tdc` without storing any cloud or Filesystem credentials in the image:
 
 ```dockerfile
 FROM ubuntu:24.04
@@ -389,7 +382,7 @@ docker compose run --rm agent
 
 > **Warning:**
 >
-> `SYS_ADMIN` and an unconfined AppArmor profile weaken container isolation. Use them only for a dedicated, trusted agent container. Rootless Docker and managed container platforms might prohibit these settings; use tdc fs data-plane commands without a mount when FUSE cannot be granted. The mount exists in the container mount namespace and disappears when the container stops, so wait for graceful unmount to succeed before stopping a container that might have pending writes.
+> `SYS_ADMIN` and an unconfined AppArmor profile weaken container isolation. Use them only for a dedicated, trusted agent container. Rootless Docker and managed container platforms might prohibit these settings; use `tdc fs` data-plane commands without a mount when FUSE cannot be granted. The mount exists in the container mount namespace and disappears when the container stops, so wait for graceful unmount to succeed before stopping a container that might have pending writes.
 
 macOS intentionally keeps WebDAV as the automatic choice even when macFUSE is installed. To use FUSE, install a supported release from the [official macFUSE site](https://macfuse.github.io/), complete any approval or restart requested by its installer, and run:
 
@@ -496,4 +489,4 @@ Aliases change only the command name. All flags remain long and identical to the
 
 - [Use a Filesystem in an Agent Sandbox](/ai/tdc/reference/tdc-agent-sandbox-example.md)
 - [Share a Filesystem Across Machines](/ai/tdc/reference/tdc-share-filesystem-across-machines-example.md)
-- [tdc fs-git Command Reference](/ai/tdc/reference/tdc-filesystem-git.md)
+- [TiDB Cloud Filesystem Git CLI Command Reference](/ai/tdc/reference/tdc-filesystem-git.md)

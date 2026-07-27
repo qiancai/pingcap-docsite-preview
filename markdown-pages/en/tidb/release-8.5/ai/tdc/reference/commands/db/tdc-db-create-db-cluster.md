@@ -9,32 +9,72 @@ Creates a Starter cluster. `--db-cluster-type` defaults to `starter`, and `--wai
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc db create-db-cluster
-    --db-cluster-name <string>
-    [--db-cluster-type <string>]
-    [--dry-run]
-    [--help]
-    [--monthly-spending-limit-usd-cents <int32>]
-    [--project-id <string>]
-    [--version]
-    [--wait]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc db create-db-cluster
+  --db-cluster-name <string>
+  [--db-cluster-type <string>]
+  [--dry-run]
+  [--help]
+  [--monthly-spending-limit-usd-cents <int32>]
+  [--project-id <string>]
+  [--version]
+  [--wait]
 ```
 
-For global flags such as `--profile`, `--region`, `--output`, and `--query`, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--db-cluster-name <string>`: Starter DB cluster display name. \[required]
+- `--db-cluster-type <string>`: DB cluster type; must be `starter`. \[default: starter]
+- `--dry-run`: Validate the request without applying changes.
+- `--help`: Display help information.
+- `--monthly-spending-limit-usd-cents <int32>`: Monthly spending limit in USD cents; omit to use the API default.
+- `--project-id <string>`: TiDB Cloud project ID.
+- `--version`: Display version information.
+- `--wait`: Wait until the created cluster becomes `ACTIVE` before returning.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc db create-db-cluster --db-cluster-name app-db --wait
-tdc db create-db-cluster --db-cluster-name app-db --dry-run
-```
+- Create a cluster and wait until it is active:
+
+    ```bash
+    # Wait until the new Starter cluster reaches the ACTIVE state.
+    tdc db create-db-cluster --db-cluster-name app-db --wait
+    ```
+
+- Create a cluster asynchronously:
+
+    ```bash
+    # Return after TiDB Cloud accepts creation so another process can poll the cluster.
+    tdc db create-db-cluster --db-cluster-name background-db
+    ```
+
+- Preview cluster creation:
+
+    ```bash
+    # Validate the request and resolved defaults without creating a cluster.
+    tdc db create-db-cluster --db-cluster-name app-db --dry-run
+    ```
+
+- Create a cluster in an explicit project:
+
+    ```bash
+    # Override the configured virtual project for this cluster.
+    tdc db create-db-cluster --db-cluster-name project-db --project-id "<project-id>" --wait
+    ```
+
+- Set a monthly spending limit:
+
+    ```bash
+    # Create a paid Starter cluster with a monthly limit expressed in US dollar cents.
+    tdc db create-db-cluster --db-cluster-name production-db --monthly-spending-limit-usd-cents 1000 --wait
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Starter CLI Command Reference](/ai/tdc/reference/tdc-starter-database.md)

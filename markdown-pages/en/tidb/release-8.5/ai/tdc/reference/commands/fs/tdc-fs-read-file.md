@@ -9,31 +9,49 @@ Writes a remote file or byte range to stdout. The command alias is `tdc fs cat`.
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc fs read-file
-    --path <string>
-    [--file-system-name <string>]
-    [--fs-token <string>]
-    [--help]
-    [--length <int64>]
-    [--offset <int64>]
-    [--version]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc fs read-file
+  --path <string>
+  [--file-system-name <string>]
+  [--fs-token <string>]
+  [--help]
+  [--length <int64>]
+  [--offset <int64>]
+  [--version]
 ```
 
-Filesystem selection can come from `--file-system-name`, `TDC_FS_FILE_SYSTEM_NAME`, or the selected profile. For shared global flags, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--path <string>`: File path in the selected file system. \[required]
+- `--file-system-name <string>`: Select the file system. You can also set `TDC_FS_FILE_SYSTEM_NAME`.
+- `--fs-token <string>`: Set the file system user token. If omitted, uses `TDC_FS_TOKEN`.
+- `--help`: Display help information.
+- `--length <int64>`: Byte length for a ranged read.
+- `--offset <int64>`: Zero-based byte offset for a ranged read.
+- `--version`: Display version information.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc fs read-file --path /reports/report.md
-tdc fs read-file --path /archives/large.bin --offset 1024 --length 4096
-```
+- Read a complete file:
+
+    ```bash
+    # Write the remote file contents directly to standard output.
+    tdc fs read-file --file-system-name workspace --path /reports/report.md
+    ```
+
+- Read a byte range:
+
+    ```bash
+    # Fetch only the requested range from a large remote object.
+    tdc fs read-file --file-system-name workspace --path /archives/large.bin --offset 1024 --length 4096
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Filesystem CLI Command Reference](/ai/tdc/reference/tdc-filesystem.md)

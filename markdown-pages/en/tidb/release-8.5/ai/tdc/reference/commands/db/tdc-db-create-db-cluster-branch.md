@@ -9,30 +9,47 @@ Creates a branch for one Starter cluster. `--wait` waits for the branch to becom
 
 > **Note:**
 >
-> tdc is currently in Preview. Its features and command-line interface might change without prior notice.
+> The TiDB Cloud Command Line Interface — `tdc` — is currently in preview. Its features and command-line interface might change without prior notice.
 
 ## Syntax
 
 ```text
-  tdc db create-db-cluster-branch
-    --db-cluster-branch-name <string>
-    --db-cluster-id <string>
-    [--dry-run]
-    [--help]
-    [--version]
-    [--wait]
-    [--debug]
-    [--output <string>]
-    [--profile <string>]
-    [--query <string>]
-    [--region <string>]
+tdc db create-db-cluster-branch
+  --db-cluster-branch-name <string>
+  --db-cluster-id <string>
+  [--dry-run]
+  [--help]
+  [--version]
+  [--wait]
 ```
 
-For global flags such as `--profile`, `--region`, `--output`, and `--query`, see [tdc CLI Reference](/ai/tdc/reference/tdc-cli-reference.md).
+## Options
+
+- `--db-cluster-branch-name <string>`: Starter DB cluster branch display name. \[required]
+- `--db-cluster-id <string>`: Starter DB cluster ID. \[required]
+- `--dry-run`: Validate the request without applying changes.
+- `--help`: Display help information.
+- `--version`: Display version information.
+- `--wait`: Wait until the created branch becomes `ACTIVE` before returning.
+
+For options shared by all commands, see [Global options](/ai/tdc/reference/tdc-cli-reference.md#global-options).
 
 ## Examples
 
-```shell
-tdc db create-db-cluster-branch --db-cluster-id "<cluster-id>" --db-cluster-branch-name dev --wait
-tdc db create-db-cluster-branch --db-cluster-id "<cluster-id>" --db-cluster-branch-name preview --dry-run
-```
+- Create a branch and wait until it is active:
+
+    ```bash
+    # Wait until the new database branch can accept connections.
+    tdc db create-db-cluster-branch --db-cluster-id "<cluster-id>" --db-cluster-branch-name dev --wait
+    ```
+
+- Preview branch creation:
+
+    ```bash
+    # Validate the parent cluster and branch request without creating it.
+    tdc db create-db-cluster-branch --db-cluster-id "<cluster-id>" --db-cluster-branch-name preview --dry-run
+    ```
+
+## Related documentation
+
+- [TiDB Cloud Starter CLI Command Reference](/ai/tdc/reference/tdc-starter-database.md)
