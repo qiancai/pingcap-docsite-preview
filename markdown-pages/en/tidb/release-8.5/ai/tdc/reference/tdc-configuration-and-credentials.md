@@ -39,6 +39,9 @@ schema_version = 1
 enabled = true
 max_file_mb = 10
 max_files = 5
+
+[telemetry]
+enabled = false
 ```
 
 The dot-prefixed preferences file is optional, hidden from ordinary directory listings, and applies to every profile. Fresh installs and `tdc configure` do not create it. Reading a user-created file does not rewrite its permissions, comments, or formatting.
@@ -76,7 +79,9 @@ Starter create selects a project in this order:
 
 1. explicit non-empty `--project-id`;
 2. profile `project_id` discovered by `tdc configure`;
-3. fail before sending the create request.
+3. omit the project label and let TiDB Cloud select the account's default project.
+
+An explicitly empty `--project-id` is invalid. When no project ID is available, `tdc` omits the project label entirely rather than sending an empty value.
 
 Other DB commands identify resources by cluster or branch ID and do not use `project_id`. Filesystem commands do not consume the DB project default.
 
@@ -189,6 +194,25 @@ enabled = false
 Environment values `off`, `false`, `0`, and `no` disable logging; `on`, `true`, `1`, and `yes` enable it. Environment takes precedence over settings. Invalid settings disable operation logging without failing the requested command.
 
 Existing installations that stored `[logging]` in `~/.tdc/config` migrate those values to `~/.tdc/.preferences` automatically. The migration preserves profiles and credentials. `tdc update` does not read or write settings, profiles, credentials, operation logs, or other state under `~/.tdc/`.
+
+## Anonymous telemetry
+
+Release builds send one best-effort completion event for eligible commands to the TiDB Cloud CLI telemetry service. The event contains the canonical command and explicitly supplied flag names, stable exit and error codes, duration, region, CLI version, OS, architecture, install source, and a random pseudonymous installation ID. It does not contain flag values, credentials, tokens, SQL text, file paths or contents, command output, API payloads, profile names, or cloud resource IDs.
+
+Development builds and recognized CI environments default to disabled. Help, version, commandless usage, and every `tdc update` mode are always excluded. Disable telemetry persistently by adding the following global preference:
+
+```toml
+[telemetry]
+enabled = false
+```
+
+Disable it for one process without changing the file:
+
+```bash
+TDC_TELEMETRY=off tdc db list-db-clusters
+```
+
+The TiDB Cloud CLI creates `~/.tdc/.telemetry-installation-id` lazily for the first eligible event and restricts it to the current user where POSIX permissions are available. Delete this file to reset the pseudonymous identity. Telemetry delivery is lossy and never changes command output, errors, or exit status.
 
 ## Sensitive values
 
