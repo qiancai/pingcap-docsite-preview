@@ -7,7 +7,7 @@ summary: Learn about the new features, compatibility changes, improvements, and 
 
 Release date: July 11, 2024
 
-TiDB version: 8.2.0
+TiDB version: 8.2.0 
 
 Quick access: [Quick start](https://docs.pingcap.com/tidb/v8.2/quick-start-with-tidb)
 
