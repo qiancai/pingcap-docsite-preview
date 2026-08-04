@@ -30,7 +30,8 @@ Currently, the TiDB Cloud dashboard for <CustomContent plan="essential">TiDB Clo
 
     <CustomContent plan="essential">
 
-    <https://github.com/pingcap/docs/blob/master/tidb-cloud/monitor-datadog-integration-tidb-cloud-dynamic-tracker-essential.json>
+    - For TiDB Cloud Essential instances created starting July 1, 2026, download this JSON file: <https://github.com/pingcap/docs/blob/master/tidb-cloud/monitor-datadog-integration-tidb-cloud-dynamic-tracker-essential-v2.json>.
+    - For TiDB Cloud Essential instances created before July 1, 2026, download this JSON file: <https://github.com/pingcap/docs/blob/master/tidb-cloud/monitor-datadog-integration-tidb-cloud-dynamic-tracker-essential-v2.json>.
 
     </CustomContent>
 
@@ -55,9 +56,9 @@ Currently, the TiDB Cloud dashboard for <CustomContent plan="essential">TiDB Clo
 <CustomContent plan="essential">
 
 1. In the [TiDB Cloud console](https://tidbcloud.com/), navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Essential instance to go to its overview page.
-2. In the left navigation pane, click **Integrations** > **Integration to Datadog (PREVIEW)**.
-3. Enter your Datadog API key and choose your Datadog Region.
-4. Click **Test Integration**.
+2. In the left navigation pane, click **Integrations**.
+3. On the **Integrations** page, locate the **Datadog (PREVIEW)** integration and click **Connect**.
+4. Enter your Datadog API key, choose your Datadog Region, and then click **Test Integration**.
 
     - If the test succeeds, the **Confirm** button is displayed.
     - If the test fails, an error message is displayed. Follow the message for troubleshooting and retry the integration.
@@ -69,9 +70,9 @@ Currently, the TiDB Cloud dashboard for <CustomContent plan="essential">TiDB Clo
 <CustomContent plan="premium">
 
 1. In the [TiDB Cloud console](https://tidbcloud.com/), navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Premium instance to go to its overview page.
-2. In the left navigation pane, click **Settings** > **Integrations** > **Integration to Datadog (PREVIEW)**.
-3. Enter your Datadog API key and choose your Datadog Region.
-4. Click **Test Integration**.
+2. In the left navigation pane, click **Settings** > **Integrations**.
+3. On the **Integrations** page, locate the **Datadog (PREVIEW)** integration and click **Connect**.
+4. Enter your Datadog API key, choose your Datadog Region, and then click **Test Integration**.
 
     - If the test succeeds, the **Confirm** button is displayed.
     - If the test fails, an error message is displayed. Follow the message for troubleshooting and retry the integration.
