@@ -19,7 +19,7 @@ TiDB Dashboard 界面内置于 TiDB 4.0 或更高版本的 PD 组件中，无需
 
 > **注意：**
 >
-> TiDB Dashboard 目前不能在低于 4.0 版本的集群中部署或使用。
+> TiDB Dashboard 目前不能在低于 4.0 版本的集群中部署或使用。 
 
 ## 多 PD 实例部署
 
