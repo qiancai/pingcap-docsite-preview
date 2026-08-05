@@ -52,7 +52,7 @@ if [ ! -e website-docs/.git ]; then
     rm -rf website-docs
   fi
   # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch add-search-entry-for-ai-docs https://github.com/qiancai/website-docs
+  git clone --single-branch --branch show-lake-zh-ja-doc-entry-in-gray https://github.com/qiancai/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
