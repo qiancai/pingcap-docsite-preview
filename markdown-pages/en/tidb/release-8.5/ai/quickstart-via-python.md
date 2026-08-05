@@ -6,7 +6,7 @@ aliases: ['/tidb/stable/vector-search-get-started-using-python/','/tidb/dev/vect
 
 # Get Started with TiDB + AI via Python
 
-This document demonstrates how to get started with [Vector Search](/ai/concepts/vector-search-overview.md) in TiDB using Python SDK. Follow along to build your first AI application working with TiDB.
+This document demonstrates how to get started with [Vector Search](/ai/concepts/vector-search-overview.md) in TiDB using Python SDK. Follow along to build your first AI application working with TiDB. 
 
 By following this document, you will learn how to:
 
