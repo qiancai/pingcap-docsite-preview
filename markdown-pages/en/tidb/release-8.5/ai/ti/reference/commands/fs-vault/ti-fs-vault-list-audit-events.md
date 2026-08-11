@@ -16,7 +16,7 @@ Lists vault audit events with optional agent, secret, and time filters.
 ```text
 ti fs-vault list-audit-events
   [--agent-id <string>]
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--limit <int32>]
@@ -28,7 +28,7 @@ ti fs-vault list-audit-events
 ## Options
 
 - `--agent-id <string>`: Filter by agent ID.
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--limit <int32>`: Maximum events to return. \[default: 100]
@@ -44,14 +44,14 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Inspect recent access and mutation events for the selected secret.
-    ti fs-vault list-audit-events --file-system-name workspace --secret-name db-prod --limit 20
+    ti fs-vault list-audit-events --file-system-id <file-system-id> --secret-name db-prod --limit 20
     ```
 
 - List recent events for an agent:
 
     ```bash
     # Filter the audit trail to one delegated identity and time range.
-    ti fs-vault list-audit-events --file-system-name workspace --agent-id deploy-agent --since 24h
+    ti fs-vault list-audit-events --file-system-id <file-system-id> --agent-id deploy-agent --since 24h
     ```
 
 ## Related documentation

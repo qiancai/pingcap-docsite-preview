@@ -1,6 +1,6 @@
 ---
 title: Run a Daily TiDB Cloud CLI Workflow
-summary: Inspect projects, manage a Starter cluster and Filesystem, check for TiDB Cloud CLI updates, and clean up resources.
+summary: Inspect resources, manage a Starter cluster and Filesystem, check for TiDB Cloud CLI updates, and clean up resources.
 ---
 
 # Run a Daily TiDB Cloud CLI Workflow
@@ -16,10 +16,9 @@ This example follows a typical operator workflow across TiDB Cloud Starter and T
 - Install `ti` and run `ti configure`.
 - Ensure your organization has capacity for one Starter cluster and one Filesystem.
 
-## Step 1. Inspect the active account
+## Step 1. Inspect current resources
 
 ```bash
-ti organization list-projects --output text
 ti db list-db-clusters --db-cluster-type starter --output text
 ti fs list-file-systems --output text
 ```
@@ -60,16 +59,13 @@ ti db execute-sql-statement \
 ## Step 4. Create and use a Filesystem
 
 ```bash
-ti fs create-file-system \
-  --file-system-name daily-workspace
+export TI_FS_FILE_SYSTEM_ID="$(ti fs create-file-system --query file_system_id --output text)"
 
 printf 'daily workflow\n' | ti fs copy-file \
-  --file-system-name daily-workspace \
   --from-stdin \
   --to-remote /notes/today.txt
 
 ti fs list-files \
-  --file-system-name daily-workspace \
   --path /notes \
   --output text
 ```
@@ -95,7 +91,7 @@ ti update
 
 ```bash
 ti fs delete-file-system \
-  --file-system-name daily-workspace
+  --file-system-id "$TI_FS_FILE_SYSTEM_ID"
 
 ti db delete-db-cluster \
   --db-cluster-id "<cluster-id>"

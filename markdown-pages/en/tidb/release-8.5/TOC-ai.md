@@ -87,7 +87,6 @@
   - [TiDB Cloud Command Line Interface Overview](/ai/ti/ti-overview.md)
   - Guides
     - [Install, Configure, and Update TiDB Cloud CLI](/ai/ti/reference/ti-install-configure-update.md)
-    - [TiDB Cloud Organization CLI Command Reference](/ai/ti/reference/ti-organization.md)
     - [TiDB Cloud Starter CLI Command Reference](/ai/ti/reference/ti-starter-database.md)
     - [TiDB Cloud Filesystem CLI Command Reference](/ai/ti/reference/ti-filesystem.md)
     - [TiDB Cloud Filesystem Git CLI Command Reference](/ai/ti/reference/ti-filesystem-git.md)
@@ -97,8 +96,6 @@
     - [TiDB Cloud CLI Command Reference](/ai/ti/reference/ti-cli-reference.md)
     - [configure](/ai/ti/reference/commands/ti/ti-configure.md)
     - [update](/ai/ti/reference/commands/ti/ti-update.md)
-    - organization
-      - [list-projects](/ai/ti/reference/commands/organization/ti-organization-list-projects.md)
     - db
       - [create-db-cluster](/ai/ti/reference/commands/db/ti-db-create-db-cluster.md)
       - [list-db-clusters](/ai/ti/reference/commands/db/ti-db-list-db-clusters.md)
@@ -114,6 +111,7 @@
       - [execute-sql-statement](/ai/ti/reference/commands/db/ti-db-execute-sql-statement.md)
     - fs
       - [create-file-system](/ai/ti/reference/commands/fs/ti-fs-create-file-system.md)
+      - [import-file-system-token](/ai/ti/reference/commands/fs/ti-fs-import-file-system-token.md)
       - [list-file-systems](/ai/ti/reference/commands/fs/ti-fs-list-file-systems.md)
       - [describe-file-system](/ai/ti/reference/commands/fs/ti-fs-describe-file-system.md)
       - [check-file-system](/ai/ti/reference/commands/fs/ti-fs-check-file-system.md)

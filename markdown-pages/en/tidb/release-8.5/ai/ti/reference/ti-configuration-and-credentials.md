@@ -1,6 +1,6 @@
 ---
 title: TiDB Cloud CLI Configuration and Credentials
-summary: Reference TiDB Cloud CLI profiles, precedence rules, local state paths, Filesystem registry, SQL credentials, mount locators, and operation logs.
+summary: Reference TiDB Cloud CLI profiles, precedence rules, local state paths, Filesystem credentials, SQL credentials, mount locators, and operation logs.
 ---
 
 # TiDB Cloud CLI Configuration and Credentials
@@ -17,14 +17,13 @@ summary: Reference TiDB Cloud CLI profiles, precedence rules, local state paths,
 # ~/.ti/config
 [default]
 region_code = "aws-us-east-1"
-project_id = "..."
 ```
 
 ```toml
 # ~/.ti/credentials
 [default]
-tidb_cloud_public_key = "..."
-tidb_cloud_private_key = "..."
+ti_public_key = "..."
+ti_private_key = "..."
 ```
 
 The credentials file uses owner-only permissions where the platform supports POSIX modes.
@@ -60,12 +59,10 @@ An explicit empty profile is invalid.
 
 Credential selection is:
 
-1. `TIDB_CLOUD_PUBLIC_KEY` and `TIDB_CLOUD_PRIVATE_KEY`, when either is set;
+1. `TI_PUBLIC_KEY` and `TI_PRIVATE_KEY`, when either is set;
 2. the selected section of `~/.ti/credentials`.
 
 Both environment values are required together. `ti` never mixes one environment half with one file half.
-
-During the v0.2.x transition, the CLI accepts the corresponding legacy `TDC_*` environment variable only when the canonical variable is absent. If both are set to different values, the command fails before changing local or remote state. New configuration writes only the canonical names shown on this page.
 
 Placement selection is:
 
@@ -75,36 +72,28 @@ Placement selection is:
 
 Command flags, environment inputs, saved configuration, and command defaults are resolved per field. Values can therefore come from different levels when they do not form an atomic pair such as the API key pair.
 
-## Default Starter project
+## Starter project placement
 
-Starter create selects a project in this order:
+The TiDB Cloud CLI does not accept or store a project selector. Starter cluster creation omits project placement and lets TiDB Cloud select its server-side default project. Project fields and labels returned by TiDB Cloud remain visible as resource metadata and are not reused for later requests.
 
-1. explicit non-empty `--project-id`;
-2. profile `project_id` discovered by `ti configure`;
-3. omit the project label and let TiDB Cloud select the account's default project.
+## Filesystem credentials and remote inventory
 
-An explicitly empty `--project-id` is invalid. When no project ID is available, `ti` omits the project label entirely rather than sending an empty value.
-
-Other DB commands identify resources by cluster or branch ID and do not use `project_id`. Filesystem commands do not consume the DB project default.
-
-## Filesystem resource registry
-
-One profile can register multiple Filesystems. Resource state is isolated from the main profile configuration:
+One profile can access multiple Filesystems. Drive9's remote inventory is authoritative for resource existence and status. Local state stores only credentials and their routing hint:
 
 ```text
-~/.ti/fs_resources/<profile-key>/<resource-key>/config
-~/.ti/fs_resources/<profile-key>/<resource-key>/credentials
+~/.ti/fs_credentials/<profile-key>/<file-system-id-key>/credentials
 ```
 
-The resource config contains the stored Filesystem name, tenant ID, cloud provider, region code, and creation time. The credentials file contains only the owner `api_key` and uses owner-only permissions.
+The credential contains the server-assigned file system ID, canonical region code, and owner `api_key`, and uses owner-only permissions. `ti fs list-file-systems` reads remote resources and joins only the non-secret `has_local_token` hint.
 
 Resource selection is:
 
-1. explicit `--file-system-name`;
-2. `TI_FS_FILE_SYSTEM_NAME`;
-3. fail with `fs.missing_file_system_name`.
+1. explicit `--file-system-id`;
+2. `TI_FS_FILE_SYSTEM_ID`;
+3. derive the ID from an explicitly supplied FS token;
+4. otherwise fail with `fs.missing_file_system_id`.
 
-`ti` never infers a Filesystem from a saved default or from the number of registered resources. Use `--file-system-name` for one command or `TI_FS_FILE_SYSTEM_NAME` for a shell, sandbox, or automation environment.
+`ti` never infers a Filesystem from a saved default or from the number of local credentials. Use `--file-system-id` for one command or `TI_FS_FILE_SYSTEM_ID` for a shell, sandbox, or automation environment.
 
 FS owner credential selection for remote `fs`, `fs-git`, `fs-journal`, and owner `fs-vault` operations is:
 
@@ -116,15 +105,14 @@ Prefer `TI_FS_TOKEN` over a flag because flags can remain in shell history or pr
 
 ## Config-free Filesystem inputs
 
-A clean sandbox can use:
+A clean sandbox needs only:
 
 ```bash
 export TI_FS_TOKEN="<owner-token>"
 export TI_REGION_CODE="aws-us-east-1"
-export TI_FS_FILE_SYSTEM_NAME="workspace"
 ```
 
-These values form an in-memory namespace only. `ti` does not write them to `~/.ti/`. Provisioning and deletion still require TiDB Cloud API credentials; deletion also requires the local resource registration.
+These values form an in-memory namespace only. `ti` derives the ID from the token and does not write either value to `~/.ti/`. `TI_FS_FILE_SYSTEM_ID` is optional and, when present, must match the token. Remote list, describe, provisioning, and deletion require TiDB Cloud API credentials; deletion does not require a local FS token.
 
 ## DB SQL credentials
 
@@ -221,7 +209,7 @@ An integration can attach explicit process-scoped metadata without changing a pr
 ```bash
 TI_TELEMETRY_TAG="e2b-preview" \
 TI_TELEMETRY_EXTRA='{"campaign":"launch","runtime":"e2b"}' \
-ti fs list-files --file-system-name workspace --path /
+ti fs list-files --file-system-id <file-system-id> --path /
 ```
 
 ## Sensitive values

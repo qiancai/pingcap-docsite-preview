@@ -18,7 +18,7 @@ ti fs move-file
   --from-remote <string>
   --to-remote <string>
   [--dry-run]
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--overwrite]
@@ -30,7 +30,7 @@ ti fs move-file
 - `--from-remote <string>`: Source file path. \[required]
 - `--to-remote <string>`: Destination file path. \[required]
 - `--dry-run`: Validate the request without applying changes.
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--overwrite`: Replace an existing destination file.
@@ -44,7 +44,7 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Rename or relocate an object entirely within the selected Filesystem.
-    ti fs move-file --file-system-name workspace --from-remote /draft.md --to-remote /reports/final.md
+    ti fs move-file --file-system-id <file-system-id> --from-remote /draft.md --to-remote /reports/final.md
     ```
 
 ## Related documentation

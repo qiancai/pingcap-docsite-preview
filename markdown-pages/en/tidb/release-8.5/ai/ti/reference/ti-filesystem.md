@@ -16,6 +16,7 @@ Use `ti fs` to provision TiDB Cloud Filesystem resources and access their data f
 ```text
 ti fs
 ├── create-file-system
+├── import-file-system-token
 ├── list-file-systems
 ├── describe-file-system
 ├── check-file-system
@@ -52,11 +53,12 @@ ti fs
 
 | Command | Purpose and key inputs | Example |
 | --- | --- | --- |
-| `create-file-system` | Provisions a Filesystem. Requires `--file-system-name`; `--wait` waits until data-plane access is ready. | `ti fs create-file-system --file-system-name workspace --wait` |
-| `list-file-systems` | Lists resources registered in the selected local profile. | `ti fs list-file-systems --output text` |
-| `describe-file-system` | Reads one locally registered resource by name. | `ti fs describe-file-system --file-system-name workspace` |
-| `check-file-system` | Verifies resource selection, endpoint resolution, credentials, and companion access. | `ti fs check-file-system --file-system-name workspace` |
-| `delete-file-system` | Requests asynchronous deletion and removes its local registration. Requires TiDB Cloud credentials and the owner resource credential. | `ti fs delete-file-system --file-system-name workspace` |
+| `create-file-system` | Provisions a Filesystem with a server-assigned ID; `--wait` waits until data-plane access is ready. | `ti fs create-file-system --wait` |
+| `import-file-system-token` | Validates and stores an existing token under its embedded file system ID. | `ti fs import-file-system-token --from-file ./fs-token --region aws-us-east-1` |
+| `list-file-systems` | Lists remote resources available to the TiDB Cloud credentials in the effective region. | `ti fs list-file-systems --output text` |
+| `describe-file-system` | Reads one remote resource by ID without requiring its FS token. | `ti fs describe-file-system --file-system-id <file-system-id>` |
+| `check-file-system` | Verifies resource selection, endpoint resolution, credentials, and companion access. | `ti fs check-file-system --file-system-id <file-system-id>` |
+| `delete-file-system` | Requests asynchronous deletion by ID and removes a matching local credential after acceptance. | `ti fs delete-file-system --file-system-id <file-system-id>` |
 
 ### Data and namespace commands
 
@@ -93,77 +95,72 @@ ti fs
 
 | Command | Purpose and key inputs | Example |
 | --- | --- | --- |
-| `mount-file-system` | Mounts a resource through automatic, FUSE, or WebDAV mode. Requires `--mount-path`; select the resource with a flag or environment variable. | `ti fs mount-file-system --file-system-name workspace --mount-path /path/to/workspace` |
+| `mount-file-system` | Mounts a resource through automatic, FUSE, or WebDAV mode. Requires `--mount-path`; select the resource with a flag or environment variable. | `ti fs mount-file-system --file-system-id <file-system-id> --mount-path /path/to/workspace` |
 | `drain-file-system` | Flushes pending FUSE work while leaving the mount online. | `ti fs drain-file-system --mount-path /path/to/workspace --timeout 30s` |
 | `unmount-file-system` | Gracefully flushes and unmounts a background FUSE or WebDAV mount. | `ti fs unmount-file-system --mount-path /path/to/workspace` |
 
 ## Prerequisites
 
-- Run `ti configure` before provisioning or deleting a Filesystem.
+- Run `ti configure` before provisioning, listing, describing, or deleting Filesystems.
 - Install `ti` with the release installer so the `ti-drive9` companion is next to the `ti` binary.
+- Install `jq` to run the JSON extraction examples as written, or use an equivalent JSON processor.
 - Treat the returned FS owner token as a secret.
 
-Data-plane commands can instead use an existing Filesystem with `TI_FS_TOKEN`, `TI_REGION_CODE`, and `TI_FS_FILE_SYSTEM_NAME`, without TiDB Cloud API keys.
+Data-plane commands can instead use an existing Filesystem with only `TI_FS_TOKEN` and `TI_REGION_CODE`, without TiDB Cloud API keys. `TI_FS_FILE_SYSTEM_ID` is an optional assertion.
 
 ## Manage Filesystem resources
 
-Create a resource and wait until data-plane access is ready:
+Create a resource, wait until data-plane access is ready, and save the server-assigned ID and one-time owner token without making the file world-readable:
 
 ```bash
-ti fs create-file-system \
-  --file-system-name workspace \
-  --wait
+umask 077
+ti fs create-file-system --wait > ./filesystem.json
+export TI_FS_FILE_SYSTEM_ID="$(jq -r '.file_system_id' ./filesystem.json)"
+export TI_FS_TOKEN="$(jq -r '.fs_token' ./filesystem.json)"
 ```
 
 Without `--wait`, `ti` returns after Drive9 accepts provisioning. With the flag, `ti` waits up to 10 minutes until the root is readable through the public Drive9 data-plane CLI. A failed wait leaves the resource and locally stored credential intact.
 
-The JSON response includes `fs_token`. Capture it without displaying the complete result:
+The JSON response includes `fs_token` exactly once. Store it in a secret manager, then delete `filesystem.json`. A configured machine can use the locally stored credential by ID without exporting the token.
 
-```bash
-export TI_FS_TOKEN="$(ti fs create-file-system \
-  --file-system-name sandbox \
-  --wait \
-  --query fs_token \
-  --output text)"
-```
-
-List and describe locally registered resources:
+List remote resources in the effective region and describe one by ID:
 
 ```bash
 ti fs list-file-systems
-ti fs describe-file-system --file-system-name workspace
+ti fs describe-file-system --file-system-id <file-system-id>
 ```
 
 Select a resource for subsequent commands in the current shell:
 
 ```bash
-export TI_FS_FILE_SYSTEM_NAME="workspace"
+export TI_FS_FILE_SYSTEM_ID="<file-system-id>"
 ```
 
 Check the selected resource and companion:
 
 ```bash
-ti fs check-file-system --file-system-name workspace
+ti fs check-file-system --file-system-id <file-system-id>
 ```
 
 Delete a resource only after removing data you need:
 
 ```bash
 ti fs delete-file-system \
-  --file-system-name workspace
+  --file-system-id <file-system-id>
 ```
 
-Create and delete support `--dry-run`. Deletion requires TiDB Cloud API keys and a locally registered resource; an FS token alone cannot delete the resource. Drive9 deletion is asynchronous, so a successfully accepted request reports `status: "deleting"` while `ti` removes the selected local registry entry and credential.
+Create and delete support `--dry-run`. Deletion requires TiDB Cloud API keys and an ID, but not a local FS token. Drive9 deletion is asynchronous, so a successfully accepted request reports `status: "deleting"` while `ti` removes only a matching ID-keyed local credential.
 
 ## Select one of multiple Filesystems
 
 One profile can own multiple resources. Selection precedence is:
 
-1. `--file-system-name`;
-2. `TI_FS_FILE_SYSTEM_NAME`;
-3. fail with `fs.missing_file_system_name`.
+1. `--file-system-id`;
+2. `TI_FS_FILE_SYSTEM_ID`;
+3. the ID embedded in an explicitly supplied FS token;
+4. otherwise fail with `fs.missing_file_system_id`.
 
-`ti` does not infer a resource from the profile registry, even when only one resource is registered. This makes scripts deterministic when resources are added or removed.
+`ti` does not infer a resource from local credential count, even when only one credential exists. This makes scripts deterministic when resources are added or removed.
 
 ## Copy and read data
 
@@ -289,7 +286,7 @@ Create the local mount path and mount in the background:
 ```bash
 mkdir -p /path/to/workspace
 ti fs mount-file-system \
-  --file-system-name workspace \
+  --file-system-id <file-system-id> \
   --mount-path /path/to/workspace
 ```
 
@@ -316,7 +313,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends ca-certificates curl fuse3 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -fsSL https://github.com/tidbcloud/ti-cli/releases/latest/download/install.sh \
+RUN curl -fsSL https://github.com/tidbcloud/ti/releases/latest/download/install.sh \
     | sh -s -- --yes --version "${TI_VERSION}"
 
 ENV PATH="/root/.ti/bin:${PATH}"
@@ -326,7 +323,7 @@ RUN mkdir -p /workspace
 CMD ["bash"]
 ```
 
-Build the image, then pass the Filesystem owner token, canonical region code, and Filesystem name at runtime:
+Build the image, then pass the Filesystem owner token and canonical region code at runtime:
 
 ```bash
 docker build -t ti-fuse .
@@ -337,11 +334,10 @@ docker run --rm -it \
   --security-opt apparmor=unconfined \
   --env TI_FS_TOKEN \
   --env TI_REGION_CODE \
-  --env TI_FS_FILE_SYSTEM_NAME \
   ti-fuse
 ```
 
-The three environment variables must already exist in the host shell. Inside the container, mount and use the Filesystem normally:
+The two environment variables must already exist in the host shell. Inside the container, mount and use the Filesystem normally:
 
 ```bash
 ti fs mount --mount-path /workspace
@@ -367,7 +363,7 @@ services:
     environment:
       TI_FS_TOKEN: ${TI_FS_TOKEN}
       TI_REGION_CODE: ${TI_REGION_CODE}
-      TI_FS_FILE_SYSTEM_NAME: ${TI_FS_FILE_SYSTEM_NAME}
+      TI_FS_FILE_SYSTEM_ID: ${TI_FS_FILE_SYSTEM_ID}
     stdin_open: true
     tty: true
 ```
@@ -388,7 +384,7 @@ macOS intentionally keeps WebDAV as the automatic choice even when macFUSE is in
 
 ```bash
 ti fs mount-file-system \
-  --file-system-name workspace \
+  --file-system-id <file-system-id> \
   --mount-path /path/to/workspace \
   --driver fuse
 ```
@@ -397,7 +393,7 @@ Explicit FUSE supports cache controls:
 
 ```bash
 ti fs mount-file-system \
-  --file-system-name workspace \
+  --file-system-id <file-system-id> \
   --mount-path /path/to/workspace \
   --driver fuse \
   --cache-dir "$HOME/.ti/cache/workspace" \
@@ -415,7 +411,7 @@ Prefer an allowed mount path:
 ```bash
 mkdir -p "$HOME/workspace"
 ti fs mount-file-system \
-  --file-system-name workspace \
+  --file-system-id <file-system-id> \
   --mount-path "$HOME/workspace"
 ```
 
@@ -425,7 +421,7 @@ For a system-level path, `/mnt/workspace` is allowed by the default profile:
 sudo mkdir -p /mnt/workspace
 sudo chown "$(id -u):$(id -g)" /mnt/workspace
 ti fs mount-file-system \
-  --file-system-name workspace \
+  --file-system-id <file-system-id> \
   --mount-path /mnt/workspace
 ```
 

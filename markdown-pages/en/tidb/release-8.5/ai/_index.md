@@ -94,9 +94,9 @@ The command reference follows the two-level `ti` command tree. Every command has
 | [TiDB Cloud CLI Command Reference](/ai/ti/reference/ti-cli-reference.md) | Command tree, global flags, output, queries, dry-run, help, errors, aliases, and links to command pages. |
 | [`ti configure`](/ai/ti/reference/commands/ti/ti-configure.md) | Configure a local profile interactively or non-interactively. |
 | [`ti update`](/ai/ti/reference/commands/ti/ti-update.md) | Check for and install release updates. |
-| [`ti organization list-projects`](/ai/ti/reference/commands/organization/ti-organization-list-projects.md) | List accessible TiDB Cloud projects. |
 | [`ti db create-db-cluster`](/ai/ti/reference/commands/db/ti-db-create-db-cluster.md) | Start with the database command reference. |
 | [`ti fs create-file-system`](/ai/ti/reference/commands/fs/ti-fs-create-file-system.md) | Start with the Filesystem command reference. |
+| [`ti fs import-file-system-token`](/ai/ti/reference/commands/fs/ti-fs-import-file-system-token.md) | Restore local access from an existing FS token. |
 | [`ti fs-git clone-git-workspace`](/ai/ti/reference/commands/fs-git/ti-fs-git-clone-git-workspace.md) | Start with the Filesystem Git command reference. |
 | [`ti fs-journal create-journal`](/ai/ti/reference/commands/fs-journal/ti-fs-journal-create-journal.md) | Start with the Filesystem journal command reference. |
 | [`ti fs-vault create-secret`](/ai/ti/reference/commands/fs-vault/ti-fs-vault-create-secret.md) | Start with the Filesystem Vault command reference. |

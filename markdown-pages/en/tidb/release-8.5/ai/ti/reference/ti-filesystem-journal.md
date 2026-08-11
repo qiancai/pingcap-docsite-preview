@@ -32,7 +32,7 @@ ti fs-journal
 
 ## Prerequisites
 
-Select a Filesystem through a profile or provide `TI_FS_TOKEN`, `TI_REGION_CODE`, and `TI_FS_FILE_SYSTEM_NAME`.
+Select a Filesystem by ID with locally stored credentials, or provide only `TI_FS_TOKEN` and `TI_REGION_CODE`; `TI_FS_FILE_SYSTEM_ID` is an optional assertion.
 
 ## Create a journal
 

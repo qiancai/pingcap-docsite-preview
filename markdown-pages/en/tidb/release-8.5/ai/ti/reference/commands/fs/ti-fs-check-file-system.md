@@ -15,7 +15,7 @@ Checks Filesystem selection, endpoint resolution, credentials, and companion acc
 
 ```text
 ti fs check-file-system
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--version]
@@ -23,7 +23,7 @@ ti fs check-file-system
 
 ## Options
 
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--version`: Display version information.
@@ -36,7 +36,7 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Verify that the selected token can reach and read the Filesystem root.
-    ti fs check-file-system --file-system-name workspace
+    ti fs check-file-system --file-system-id <file-system-id>
     ```
 
 ## Related documentation

@@ -15,7 +15,7 @@ Lists secrets visible to the active owner or delegated credential.
 
 ```text
 ti fs-vault list-secrets
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--vault-token <string>]
@@ -24,7 +24,7 @@ ti fs-vault list-secrets
 
 ## Options
 
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--vault-token <string>`: Delegated `ti fs-vault` token; prefer `TI_VAULT_TOKEN`.
@@ -38,14 +38,14 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Return secret metadata without exposing field values.
-    ti fs-vault list-secrets --file-system-name workspace
+    ti fs-vault list-secrets --file-system-id <file-system-id>
     ```
 
 - List secrets visible to a delegated token:
 
     ```bash
     # Restrict the result to secrets within the token's granted scope.
-    ti fs-vault list-secrets --file-system-name workspace --vault-token "$TI_VAULT_TOKEN"
+    ti fs-vault list-secrets --file-system-id <file-system-id> --vault-token "$TI_VAULT_TOKEN"
     ```
 
 ## Related documentation

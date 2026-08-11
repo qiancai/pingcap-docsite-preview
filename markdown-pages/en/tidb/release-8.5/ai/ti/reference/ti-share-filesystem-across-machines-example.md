@@ -21,7 +21,7 @@ Local disks do not provide a shared namespace. Commands such as `scp` and archiv
 
 ## How TiDB Cloud CLI changes the workflow
 
-Both machines select the same TiDB Cloud Filesystem. Data-plane commands and the mounted path address one remote namespace, so a write from either interface becomes visible through the other after it is flushed. Machine B needs only the Filesystem token, region code, and name; it does not need TiDB Cloud API keys or a copied profile.
+Both machines select the same TiDB Cloud Filesystem. Data-plane commands and the mounted path address one remote namespace, so a write from either interface becomes visible through the other after it is flushed. Machine B needs only the Filesystem token and region code; the token identifies the Filesystem, so it does not need TiDB Cloud API keys or a copied profile.
 
 ## Prerequisites
 
@@ -32,26 +32,23 @@ Both machines select the same TiDB Cloud Filesystem. Data-plane commands and the
 ## Step 1. Create the Filesystem on machine A
 
 ```bash
-export TI_FS_TOKEN="$(ti fs create-file-system \
-  --file-system-name shared-workspace \
-  --wait \
-  --query fs_token \
-  --output text)"
+umask 077
+ti fs create-file-system --wait > ./filesystem.json
+export FILE_SYSTEM_ID="$(jq -r '.file_system_id' ./filesystem.json)"
+export TI_FS_TOKEN="$(jq -r '.fs_token' ./filesystem.json)"
 
 printf 'from machine A\n' | ti fs copy-file \
-  --file-system-name shared-workspace \
   --from-stdin \
   --to-remote /shared/origin.txt
 ```
 
-Transfer the token through a secret manager. Also communicate the canonical region code and Filesystem name.
+Transfer the token through a secret manager and communicate the canonical region code. Keep `FILE_SYSTEM_ID` on machine A for control-plane operations, then delete `filesystem.json` after storing the token securely.
 
 ## Step 2. Configure machine B in memory
 
 ```bash
 export TI_FS_TOKEN="<owner-token-from-secret-manager>"
 export TI_REGION_CODE="aws-us-east-1"
-export TI_FS_FILE_SYSTEM_NAME="shared-workspace"
 ```
 
 No `ti configure` is required.
@@ -68,7 +65,6 @@ printf 'from machine B\n' | ti fs copy-file --from-stdin --to-remote /shared/sec
 ```bash
 mkdir -p /path/to/shared-workspace
 ti fs mount-file-system \
-  --file-system-name shared-workspace \
   --mount-path /path/to/shared-workspace
 
 cat /path/to/shared-workspace/shared/origin.txt
@@ -84,14 +80,14 @@ Stop writers and unmount either driver. A graceful FUSE unmount automatically dr
 
 ```bash
 ti fs unmount-file-system --mount-path /path/to/shared-workspace
-unset TI_FS_TOKEN TI_REGION_CODE TI_FS_FILE_SYSTEM_NAME
+unset TI_FS_TOKEN TI_REGION_CODE
 ```
 
 On machine A:
 
 ```bash
 ti fs delete-file-system \
-  --file-system-name shared-workspace
+  --file-system-id "$FILE_SYSTEM_ID"
 ```
 
 ## Security notes

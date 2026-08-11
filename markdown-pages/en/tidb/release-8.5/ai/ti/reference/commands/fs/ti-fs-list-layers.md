@@ -15,7 +15,7 @@ Lists layers for the selected Filesystem.
 
 ```text
 ti fs list-layers
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--version]
@@ -23,7 +23,7 @@ ti fs list-layers
 
 ## Options
 
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--version`: Display version information.
@@ -36,7 +36,7 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Return all layers available in the selected Filesystem.
-    ti fs list-layers --file-system-name workspace
+    ti fs list-layers --file-system-id <file-system-id>
     ```
 
 ## Related documentation

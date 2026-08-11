@@ -17,7 +17,7 @@ Creates a journal. If `--journal-id` is omitted, the service generates one.
 ti fs-journal create-journal
   [--actor <string>]
   [--dry-run]
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--journal-id <string>]
@@ -31,7 +31,7 @@ ti fs-journal create-journal
 
 - `--actor <string>`: Actor in the form `type:id`.
 - `--dry-run`: Validate the request without applying changes.
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--journal-id <string>`: Journal ID; generated when omitted.
@@ -48,14 +48,14 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Create an append-only journal for one agent task.
-    ti fs-journal create-journal --file-system-name workspace --journal-id jrn-demo --journal-kind agent --title "demo task"
+    ti fs-journal create-journal --file-system-id <file-system-id> --journal-id jrn-demo --journal-kind agent --title "demo task"
     ```
 
 - Create a labeled deployment journal:
 
     ```bash
     # Attach actor and environment metadata for later searches.
-    ti fs-journal create-journal --file-system-name workspace --journal-kind deployment --actor agent:ti --label env=dev
+    ti fs-journal create-journal --file-system-id <file-system-id> --journal-kind deployment --actor agent:ti --label env=dev
     ```
 
 ## Related documentation

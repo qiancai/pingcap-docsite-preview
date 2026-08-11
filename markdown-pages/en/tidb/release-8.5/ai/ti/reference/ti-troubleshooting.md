@@ -18,59 +18,58 @@ Symptoms include missing credentials, Digest authentication failure, or permissi
 Check that both environment values are set together:
 
 ```bash
-test -n "$TIDB_CLOUD_PUBLIC_KEY"
-test -n "$TIDB_CLOUD_PRIVATE_KEY"
+test -n "$TI_PUBLIC_KEY"
+test -n "$TI_PRIVATE_KEY"
 ```
 
 If you intend to use saved credentials, unset both variables and verify the profile:
 
 ```bash
-unset TIDB_CLOUD_PUBLIC_KEY TIDB_CLOUD_PRIVATE_KEY
-ti organization list-projects --profile default
+unset TI_PUBLIC_KEY TI_PRIVATE_KEY
+ti db list-db-clusters --db-cluster-type starter --profile default
 ```
 
-An API key can authenticate successfully but still lack the permission declared by a command. Use a key with the required organization or project access.
-
-## Configure cannot find a virtual project
-
-`ti configure` requires exactly one accessible project whose `type` is `tidbx_virtual`.
-
-```bash
-ti organization list-projects \
-  --query 'projects[].{id:id,name:name,type:type}'
-```
-
-If no virtual project appears, confirm the API key's organization and project access. If multiple virtual projects appear, report the ambiguous account state through the [`ti` issue tracker](https://github.com/tidbcloud/ti-cli/issues).
+An API key can authenticate successfully but still lack the permission declared by a command. Use a key with the access required by that operation. `ti configure` validates and stores local values without contacting TiDB Cloud, so credential failures first appear on a remote command.
 
 ## Filesystem token is missing
 
-For a clean sandbox, provide all three values:
+For a clean sandbox, provide the token and region. `ti` derives the file system ID from the token:
 
 ```bash
 export TI_FS_TOKEN="<owner-token>"
 export TI_REGION_CODE="aws-us-east-1"
-export TI_FS_FILE_SYSTEM_NAME="workspace"
 ti fs check-file-system
 ```
 
-The FS token is not the TiDB Cloud API private key.
+The FS token is not the TiDB Cloud API private key. `TI_FS_FILE_SYSTEM_ID` is optional when a token is supplied; set it only when you want `ti` to verify that a separately distributed ID matches the token.
+
+If the token is known but is not stored on the current machine, import it and then select the derived ID:
+
+```bash
+# Store a known token without requiring TiDB Cloud API keys.
+chmod 600 ./fs-token
+ti fs import-file-system-token --from-file ./fs-token --region aws-us-east-1
+ti fs list-files --file-system-id <file-system-id> --path /
+```
+
+The current Preview cannot regenerate a lost Filesystem token. A remote Filesystem can still be listed, described, or deleted with TiDB Cloud API keys, but its data cannot be read or mounted until a valid known token is supplied.
 
 ## Filesystem selection is missing
 
-List registered resources and select one explicitly:
+List remote resources in the configured region with TiDB Cloud API keys and select one explicitly:
 
 ```bash
 ti fs list-file-systems --output text
-ti fs list-files --file-system-name workspace --path /
+ti fs list-files --file-system-id <file-system-id> --path /
 ```
 
 Or select the Filesystem for subsequent commands in the current shell:
 
 ```bash
-export TI_FS_FILE_SYSTEM_NAME="workspace"
+export TI_FS_FILE_SYSTEM_ID="<file-system-id>"
 ```
 
-The TiDB Cloud CLI intentionally does not infer a Filesystem from the local registry, including when only one resource is registered.
+The TiDB Cloud CLI intentionally does not infer a Filesystem from local credential count, including when only one credential exists. Supply its ID or an FS token whose embedded ID can be derived.
 
 ## Filesystem region is unsupported
 
@@ -81,7 +80,7 @@ The configured TiDB Cloud region might not have a `tidb_cloud_native` Filesystem
 The release installer places `ti-drive9` next to `ti`. Re-run the current installer when the TiDB Cloud CLI reports a missing companion:
 
 ```bash
-curl -fsSL https://github.com/tidbcloud/ti-cli/releases/latest/download/install.sh | sh -s -- --yes
+curl -fsSL https://github.com/tidbcloud/ti/releases/latest/download/install.sh | sh -s -- --yes
 ```
 
 Verify that `PATH` resolves the expected `ti`:
@@ -195,7 +194,7 @@ List resources and identify only those created by your workflow. Use describe be
 
 ```bash
 ti db describe-db-cluster --db-cluster-id "<cluster-id>"
-ti fs describe-file-system --file-system-name "<filesystem-name>"
+ti fs describe-file-system --file-system-id "<filesystem-name>"
 ```
 
 Preview supported cleanup:
@@ -203,10 +202,10 @@ Preview supported cleanup:
 ```bash
 ti db delete-db-cluster --db-cluster-id "<cluster-id>" --dry-run
 ti fs delete-file-system \
-  --file-system-name "<filesystem-name>" \
+  --file-system-id "<filesystem-name>" \
   --dry-run
 ```
 
 ## Report a problem
 
-Include the TiDB Cloud CLI version, OS and architecture, command name, stable error code, and redacted logs. Never include API keys, FS or vault tokens, DB passwords, SQL containing private data, or file contents. Report issues at [github.com/tidbcloud/ti-cli/issues](https://github.com/tidbcloud/ti-cli/issues).
+Include the TiDB Cloud CLI version, OS and architecture, command name, stable error code, and redacted logs. Never include API keys, FS or vault tokens, DB passwords, SQL containing private data, or file contents. Report issues at [github.com/tidbcloud/ti/issues](https://github.com/tidbcloud/ti/issues).

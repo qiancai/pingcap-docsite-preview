@@ -17,7 +17,7 @@ Rolls back changes in one layer without committing them to the base.
 ti fs rollback-layer
   --layer-id <string>
   [--dry-run]
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--version]
@@ -27,7 +27,7 @@ ti fs rollback-layer
 
 - `--layer-id <string>`: The ID of the layer. \[required]
 - `--dry-run`: Validate the request without applying changes.
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--version`: Display version information.
@@ -40,7 +40,7 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Discard uncommitted changes and restore the layer's base view.
-    ti fs rollback-layer --file-system-name workspace --layer-id "<layer-id>"
+    ti fs rollback-layer --file-system-id <file-system-id> --layer-id "<layer-id>"
     ```
 
 ## Related documentation

@@ -24,7 +24,7 @@ Before you begin, obtain a TiDB Cloud API public key and private key from the [T
 On macOS or Linux, run the installer:
 
 ```bash
-curl -fsSL https://github.com/tidbcloud/ti-cli/releases/latest/download/install.sh | sh -s -- --yes
+curl -fsSL https://github.com/tidbcloud/ti/releases/latest/download/install.sh | sh -s -- --yes
 ```
 
 After installation, add `ti` to the current shell and verify it:
@@ -40,7 +40,7 @@ On Windows PowerShell, run the installer:
 
 ```powershell
 $script = "$env:TEMP\install-ti.ps1"
-iwr https://github.com/tidbcloud/ti-cli/releases/latest/download/install.ps1 -OutFile $script
+iwr https://github.com/tidbcloud/ti/releases/latest/download/install.ps1 -OutFile $script
 powershell -ExecutionPolicy Bypass -File $script -Yes
 ```
 
@@ -63,10 +63,10 @@ ti configure
 
 Enter your API public key, private key, and a canonical region code such as `aws-us-east-1`.
 
-Verify the configuration:
+Run a read-only command to verify the saved credentials and selected region:
 
 ```bash
-ti organization list-projects --output text
+ti db list-db-clusters --db-cluster-type starter --output text
 ```
 
 ## Step 3. Choose a first workflow
@@ -75,25 +75,23 @@ Complete either the Filesystem workflow or the Starter database workflow.
 
 ### Option A: Write and read a file
 
-Create a Filesystem and wait until it is ready:
+Create a Filesystem, wait until it is ready, and save its server-assigned ID:
 
 ```bash
-ti fs create-file-system \
-  --file-system-name quickstart-fs \
+export TI_FS_FILE_SYSTEM_ID="$(ti fs create-file-system \
   --wait \
-  --output text
+  --query file_system_id \
+  --output text)"
 ```
 
 `ti` stores the Filesystem credential locally. Write and read a file directly:
 
 ```bash
 printf 'hello from ti\n' | ti fs copy-file \
-  --file-system-name quickstart-fs \
   --from-stdin \
   --to-remote /hello.txt
 
 ti fs read-file \
-  --file-system-name quickstart-fs \
   --path /hello.txt
 ```
 
@@ -107,7 +105,8 @@ Clean up:
 
 ```bash
 ti fs delete-file-system \
-  --file-system-name quickstart-fs
+  --file-system-id "$TI_FS_FILE_SYSTEM_ID"
+unset TI_FS_FILE_SYSTEM_ID
 ```
 
 ### Option B: Query a Starter database

@@ -24,33 +24,31 @@ An owner uploads the corpus once. Every worker selects the same Filesystem and m
 On a trusted machine:
 
 ```bash
-ti fs create-file-system \
-  --file-system-name shared-corpus \
-  --wait
+umask 077
+ti fs create-file-system --wait > ./filesystem.json
+export TI_FS_FILE_SYSTEM_ID="$(jq -r '.file_system_id' ./filesystem.json)"
+export TI_FS_TOKEN="$(jq -r '.fs_token' ./filesystem.json)"
 
 ti fs copy-file \
-  --file-system-name shared-corpus \
   --from-local ./corpus \
   --to-remote /datasets/corpus \
   --recursive
 
 ti fs find-files \
-  --file-system-name shared-corpus \
   --path /datasets/corpus \
   --file-name-pattern "*.pdf" \
   --output text
 ```
 
-Transfer the returned FS token through a secret manager.
+Transfer the FS token and canonical region code through a secret manager. Delete `filesystem.json` after storing the token securely.
 
 ## Step 2. Mount in each worker
 
-Inject the resource token, region, and name into each worker, then run:
+Inject `TI_FS_TOKEN` and `TI_REGION_CODE` into each worker, then run:
 
 ```bash
 mkdir -p "$HOME/corpus"
 ti fs mount-file-system \
-  --file-system-name shared-corpus \
   --mount-path "$HOME/corpus" \
   --remote-path /datasets/corpus \
   --read-only

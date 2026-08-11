@@ -16,7 +16,7 @@ Writes a remote file or byte range to stdout. The command alias is `ti fs cat`.
 ```text
 ti fs read-file
   --path <string>
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--length <int64>]
@@ -27,7 +27,7 @@ ti fs read-file
 ## Options
 
 - `--path <string>`: File path in the selected file system. \[required]
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--length <int64>`: Byte length for a ranged read.
@@ -42,14 +42,14 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Write the remote file contents directly to standard output.
-    ti fs read-file --file-system-name workspace --path /reports/report.md
+    ti fs read-file --file-system-id <file-system-id> --path /reports/report.md
     ```
 
 - Read a byte range:
 
     ```bash
     # Fetch only the requested range from a large remote object.
-    ti fs read-file --file-system-name workspace --path /archives/large.bin --offset 1024 --length 4096
+    ti fs read-file --file-system-id <file-system-id> --path /archives/large.bin --offset 1024 --length 4096
     ```
 
 ## Related documentation

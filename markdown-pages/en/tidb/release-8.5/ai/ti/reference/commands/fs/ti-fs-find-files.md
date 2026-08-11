@@ -16,7 +16,7 @@ Finds remote paths by name, type, tag, size, or modification time. The command a
 ```text
 ti fs find-files
   [--file-name-pattern <string>]
-  [--file-system-name <string>]
+  [--file-system-id <string>]
   [--fs-token <string>]
   [--help]
   [--layer-id <string>]
@@ -34,7 +34,7 @@ ti fs find-files
 ## Options
 
 - `--file-name-pattern <string>`: File name pattern filter, such as `*.md`.
-- `--file-system-name <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_NAME`.
+- `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.
 - `--layer-id <string>`: Search files and directories within a specific file system layer.
@@ -56,14 +56,14 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 
     ```bash
     # Locate Markdown files recursively under the selected remote path.
-    ti fs find-files --file-system-name workspace --path /workspace --file-name-pattern "*.md"
+    ti fs find-files --file-system-id <file-system-id> --path /workspace --file-name-pattern "*.md"
     ```
 
 - Find files by metadata:
 
     ```bash
     # Select tagged files that also meet a minimum size threshold.
-    ti fs find-files --file-system-name workspace --path /workspace --tag stage=review --min-size-bytes 1024
+    ti fs find-files --file-system-id <file-system-id> --path /workspace --tag stage=review --min-size-bytes 1024
     ```
 
 ## Related documentation
