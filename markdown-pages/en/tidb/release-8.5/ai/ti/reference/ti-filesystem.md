@@ -42,9 +42,12 @@ ti fs
 ├── find-files
 ├── create-layer
 ├── list-layers
+├── fork-layer
+├── list-layer-chain
 ├── describe-layer
 ├── diff-layer
 ├── create-layer-checkpoint
+├── delete-layer
 ├── rollback-layer
 ├── commit-layer
 ├── pack-file-system
@@ -62,7 +65,7 @@ ti fs
 | --- | --- | --- |
 | `create-file-system` | Provisions a Filesystem with a server-assigned ID and optional display metadata; `--wait` waits until data-plane access is ready. | `ti fs create-file-system --display-name agent-workspace --wait` |
 | `import-file-system-token` | Validates and stores an existing token under its embedded file system ID. | `ti fs import-file-system-token --from-file ./fs-token --region aws-us-east-1` |
-| `generate-file-system-token` | Generates an additional owner token and returns its plaintext once. | `ti fs generate-file-system-token --file-system-id <file-system-id> --token-name ci --ttl 24h` |
+| `generate-file-system-token` | Uses TiDB Cloud API credentials to generate an additional owner token and returns its plaintext once. | `ti fs generate-file-system-token --file-system-id <file-system-id> --token-name ci --ttl 24h` |
 | `generate-file-system-scoped-token` | Uses an owner token to generate a finite path-and-operation-limited token. | `ti fs generate-file-system-scoped-token --ttl 24h --allow /workspace:read,list` |
 | `list-file-system-tokens` | Lists non-secret token metadata for one Filesystem. | `ti fs list-file-system-tokens --file-system-id <file-system-id>` |
 | `enable-file-system-token` | Re-enables a disabled token by immutable token ID. | `ti fs enable-file-system-token --file-system-id <file-system-id> --token-id <token-id>` |
@@ -72,7 +75,7 @@ ti fs
 | `list-file-systems` | Lists authoritative remote metadata and quota information, optionally filtered by display-name substring and one exact label. | `ti fs list-file-systems --output text` |
 | `describe-file-system` | Reads authoritative remote metadata and quota information by ID without requiring its FS token. | `ti fs describe-file-system --file-system-id <file-system-id>` |
 | `check-file-system` | Verifies resource selection, endpoint resolution, credentials, and companion access. | `ti fs check-file-system --file-system-id <file-system-id>` |
-| `delete-file-system` | Requests asynchronous deletion by ID and removes a matching local credential after acceptance. | `ti fs delete-file-system --file-system-id <file-system-id>` |
+| `delete-file-system` | Uses TiDB Cloud API credentials to request asynchronous deletion by explicit ID and removes a matching local credential after acceptance. | `ti fs delete-file-system --file-system-id <file-system-id>` |
 
 ### Data and namespace commands
 
@@ -97,9 +100,12 @@ ti fs
 | --- | --- | --- |
 | `create-layer` | Creates an isolated change layer over `--base-root-path`; returns a generated layer ID when one is not supplied. | `ti fs create-layer --base-root-path /workspace --layer-name task` |
 | `list-layers` | Lists layers for the selected Filesystem. | `ti fs list-layers --output text` |
+| `fork-layer` | Forks a copy-on-write child from a parent tip or checkpoint. | `ti fs fork-layer --parent-layer-ref research-base --layer-name experiment --checkpoint-id seed` |
+| `list-layer-chain` | Lists pinned ancestry from the root layer to a selected child. | `ti fs list-layer-chain --layer-ref experiment --output text` |
 | `describe-layer` | Reads one layer by ID. | `ti fs describe-layer --layer-id "<layer-id>"` |
 | `diff-layer` | Lists changes recorded in one layer. | `ti fs diff-layer --layer-id "<layer-id>"` |
 | `create-layer-checkpoint` | Records a named checkpoint for a layer. | `ti fs create-layer-checkpoint --layer-id "<layer-id>" --checkpoint-id before-review` |
+| `delete-layer` | Logically abandons a leaf layer, or explicitly abandons its descendants with `--cascade`. | `ti fs delete-layer --layer-ref experiment` |
 | `rollback-layer` | Restores a layer to its rollback state without committing it to the base. | `ti fs rollback-layer --layer-id "<layer-id>"` |
 | `commit-layer` | Applies a layer's changes to the base Filesystem. | `ti fs commit-layer --layer-id "<layer-id>"` |
 | `pack-file-system` | Stores selected local overlay state in a remote archive. | `ti fs pack-file-system --mount-path /path/to/workspace` |
@@ -109,7 +115,7 @@ ti fs
 
 | Command | Purpose and key inputs | Example |
 | --- | --- | --- |
-| `mount-file-system` | Mounts a resource through automatic, FUSE, or WebDAV mode. Requires `--mount-path`; select the resource with a flag or environment variable. | `ti fs mount-file-system --file-system-id <file-system-id> --mount-path /path/to/workspace` |
+| `mount-file-system` | Mounts a flat Filesystem, writable layer, or read-only checkpoint. Layer views require FUSE. | `ti fs mount-file-system --file-system-id <file-system-id> --mount-path /path/to/workspace --driver fuse --layer-ref experiment` |
 | `drain-file-system` | Flushes pending FUSE work while leaving the mount online. | `ti fs drain-file-system --mount-path /path/to/workspace --timeout 30s` |
 | `unmount-file-system` | Gracefully flushes and unmounts a background FUSE or WebDAV mount. | `ti fs unmount-file-system --mount-path /path/to/workspace` |
 
@@ -181,6 +187,8 @@ Create and delete support `--dry-run`. Deletion requires TiDB Cloud API keys and
 ## Manage Filesystem tokens
 
 One Filesystem can have multiple owner or scoped tokens. The remote service is authoritative for token inventory and lifecycle state. Each local profile stores only one selected operational token per Filesystem; it does not mirror every remote token.
+
+An owner FS token grants Filesystem use and token-management capabilities, but it does not grant TiDB Cloud resource administration. Generating another owner token requires TiDB Cloud API credentials and an explicit Filesystem ID. Listing, enabling, disabling, and deleting tokens can instead use an owner token; in that mode, `ti` derives the Filesystem ID from the token and `--file-system-id` is optional. Creating, listing, describing, and deleting Filesystem resources always require TiDB Cloud API credentials, and Filesystem deletion always requires an explicit `--file-system-id`.
 
 Generate an additional owner token for CI and save its one-time plaintext response securely:
 
@@ -303,7 +311,7 @@ ti fs find-files --path /workspace --file-name-pattern "*.md" --tag stage=review
 
 ## Use layers and checkpoints
 
-A layer records changes over a base root before you commit or discard them:
+A layer records changes over a base root before you commit or discard them. Use `copy-file --layer-id` for individual files. Recursive copy and `--layer-id` are mutually exclusive; seed a directory tree through a writable FUSE layer mount instead.
 
 ```bash
 ti fs create-layer \
@@ -313,7 +321,7 @@ ti fs create-layer \
   --tag task=review
 ```
 
-Use the returned layer ID:
+Use the returned layer ID for individual file writes and inspection:
 
 ```bash
 ti fs copy-file \
@@ -326,11 +334,28 @@ ti fs describe-layer --layer-id "<layer-id>"
 ti fs diff-layer --layer-id "<layer-id>"
 ti fs create-layer-checkpoint \
   --layer-id "<layer-id>" \
-  --checkpoint-id before-review \
+  --checkpoint-id seed \
   --label "before review"
 ```
 
-Finish the layer by rolling it back or committing it:
+Fork independent copy-on-write timelines from the checkpoint, inspect their ancestry, and mount a child through FUSE:
+
+```bash
+ti fs fork-layer \
+  --parent-layer-ref "<layer-id>" \
+  --layer-name experiment \
+  --checkpoint-id seed
+
+ti fs list-layer-chain --layer-ref experiment
+ti fs mount-file-system \
+  --file-system-id <file-system-id> \
+  --mount-path /path/to/experiment \
+  --remote-path /workspace \
+  --driver fuse \
+  --layer-ref experiment
+```
+
+Drain and unmount a writable layer before creating a checkpoint, rolling it back, or committing it. Finish the layer by rolling it back or committing it:
 
 ```bash
 ti fs rollback-layer --layer-id "<layer-id>"
