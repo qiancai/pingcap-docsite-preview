@@ -32,9 +32,9 @@
 
 - [Select Your Plan](/tidb-cloud/select-cluster-tier.md)
 - [Manage TiDB Cloud Resources and Projects](/tidb-cloud/manage-projects-and-resources.md)
-- Manage {{{ .starter }}} Instances
-  - [Create a {{{ .starter }}} Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
-  - Connect to Your {{{ .starter }}} Instance
+- Manage TiDB Cloud Starter Instances
+  - [Create a TiDB Cloud Starter Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
+  - Connect to Your TiDB Cloud Starter Instance
     - [Network Connection Overview](/tidb-cloud/connect-to-tidb-cluster-serverless.md)
     - [Connect via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md)
     - [Connect via Private Endpoint with AWS](/tidb-cloud/set-up-private-endpoint-connections-serverless.md)
@@ -114,7 +114,7 @@
       - [Configuration](/garbage-collection-configuration.md)
     - [Tune TiFlash Performance](/tiflash/tune-tiflash-performance.md)
   - [Upgrade the TiDB Version](/tidb-cloud/upgrade-tidb-cluster.md)
-  - [Delete a {{{ .starter }}} Instance](/tidb-cloud/delete-tidb-cluster.md)
+  - [Delete a TiDB Cloud Starter Instance](/tidb-cloud/delete-tidb-cluster.md)
 - Migrate or Import Data
   - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
   - Migrate Data into TiDB Cloud
@@ -535,7 +535,7 @@
     - [TiDB Cloud Partners](/tidb-cloud/tidb-cloud-partners.md)
     - [MSP Customer](/tidb-cloud/managed-service-provider-customer.md)
     - [Reseller's Customer](/tidb-cloud/cppo-customer.md)
-  - [{{{ .starter }}} and Essential Limitations](/tidb-cloud/serverless-limitations.md)
+  - [TiDB Cloud Starter and Essential Limitations](/tidb-cloud/serverless-limitations.md)
   - [Limited SQL Features on TiDB X Instances](/tidb-cloud/limited-sql-features-tidb-x.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - [System Variables](/system-variables.md)
@@ -544,7 +544,7 @@
   - [URI Formats of External Storage Services](/external-storage-uri.md)
   - [Troubleshoot Inconsistency Between Data and Indexes](/troubleshoot-data-inconsistency-errors.md)
   - [Notifications](/tidb-cloud/notifications.md)
-  - [Project API Migration Guide for {{{ .starter }}} and Essential](/tidb-cloud/tidbx-starter-essential-project-api-migration-guide.md)
+  - [Project API Migration Guide for TiDB Cloud Starter and Essential](/tidb-cloud/tidbx-starter-essential-project-api-migration-guide.md)
 - Support Plan
   - [Connected Care Overview](/tidb-cloud/connected-care-overview.md)
   - [Connected Care Details](/tidb-cloud/connected-care-detail.md)
@@ -559,6 +559,6 @@
   - [Get Support](/tidb-cloud/tidb-cloud-support.md)
 - FAQs
   - [TiDB Cloud FAQs](/tidb-cloud/tidb-cloud-faq.md)
-  - [{{{ .starter }}} FAQs](/tidb-cloud/serverless-faqs.md)
+  - [TiDB Cloud Starter FAQs](/tidb-cloud/serverless-faqs.md)
   - [Project Migration FAQ for TiDB X Instances](/tidb-cloud/tidbx-instance-move-faq.md)
 - [Glossary](/tidb-cloud/tidb-cloud-glossary.md)
