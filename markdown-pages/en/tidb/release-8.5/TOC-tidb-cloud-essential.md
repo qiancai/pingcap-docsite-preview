@@ -30,9 +30,9 @@
 
 - [Select Your Plan](/tidb-cloud/select-cluster-tier.md)
 - [Manage TiDB Cloud Resources and Projects](/tidb-cloud/manage-projects-and-resources.md)
-- Manage TiDB Cloud Essential Instances
-  - [Create a TiDB Cloud Essential Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
-  - Connect to Your TiDB Cloud Essential Instance
+- Manage {{{ .essential }}} Instances
+  - [Create a {{{ .essential }}} Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
+  - Connect to Your {{{ .essential }}} Instance
     - [Network Connection Overview](/tidb-cloud/connect-to-tidb-cluster-serverless.md)
     - [Connect via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md)
     - [Connect via Private Endpoint with AWS](/tidb-cloud/set-up-private-endpoint-connections-serverless.md)
@@ -54,6 +54,7 @@
     - [Overview](/tidb-cloud/monitor-tidb-cluster.md)
     - [Built-in Metrics](/tidb-cloud/built-in-monitoring.md)
     - [Top RU](/tidb-cloud/top-ru.md) ![PREVIEW](/media/tidb-cloud/blank_transparent_placeholder.png)
+    - [Statement Insight](/tidb-cloud/statement-insight.md) ![PREVIEW](/media/tidb-cloud/blank_transparent_placeholder.png)
     - [Built-in Alerting](/tidb-cloud/monitor-built-in-alerting.md)
     - [Integrate TiDB Cloud with Prometheus and Grafana](/tidb-cloud/prometheus-grafana-integration.md)
     - Subscribe to Alert Notifications
@@ -63,11 +64,13 @@
       - [Subscribe via Flashduty](/tidb-cloud/monitor-alert-flashduty.md)
       - [Subscribe via PagerDuty](/tidb-cloud/monitor-alert-pagerduty.md)
       - [Subscribe via Webhook](/tidb-cloud/monitor-alert-webhook.md)
+      - [Subscribe via Lark](/tidb-cloud/monitor-alert-lark.md)
     - [Events](/tidb-cloud/tidb-cloud-events.md)
     - [Integrate TiDB Cloud with Datadog](/tidb-cloud/monitor-datadog-integration-for-tidb-x.md)
   - Tune Performance
     - [Overview](/tidb-cloud/tidb-cloud-tune-performance-overview.md)
     - [Analyze Performance](/tidb-cloud/tune-performance.md)
+    - [Use Plan Replayer to Troubleshoot SQL Performance](/tidb-cloud/plan-replayer.md)
     - SQL Tuning
       - [Overview](/tidb-cloud/tidb-cloud-sql-tuning-overview.md)
       - Understanding the Query Execution Plan
@@ -118,7 +121,7 @@
        - [Configuration](/garbage-collection-configuration.md)
     - [Tune TiFlash Performance](/tiflash/tune-tiflash-performance.md)
   - [Upgrade the TiDB Version](/tidb-cloud/upgrade-tidb-cluster.md)
-  - [Delete a TiDB Cloud Essential Instance](/tidb-cloud/delete-tidb-cluster.md)
+  - [Delete a {{{ .essential }}} Instance](/tidb-cloud/delete-tidb-cluster.md)
 - Migrate or Import Data
   - [Overview](/tidb-cloud/tidb-cloud-migration-overview.md)
   - Migrate Data into TiDB Cloud
@@ -547,7 +550,7 @@
     - [TiDB Cloud Partners](/tidb-cloud/tidb-cloud-partners.md)
     - [MSP Customer](/tidb-cloud/managed-service-provider-customer.md)
     - [Reseller's Customer](/tidb-cloud/cppo-customer.md)
-  - [TiDB Cloud Starter and Essential Limitations](/tidb-cloud/serverless-limitations.md)
+  - [{{{ .starter }}} and Essential Limitations](/tidb-cloud/serverless-limitations.md)
   - [Limited SQL Features on TiDB X Instances](/tidb-cloud/limited-sql-features-tidb-x.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - [System Variables](/system-variables.md)
@@ -556,7 +559,7 @@
   - [URI Formats of External Storage Services](/external-storage-uri.md)
   - [Troubleshoot Inconsistency Between Data and Indexes](/troubleshoot-data-inconsistency-errors.md)
   - [Notifications](/tidb-cloud/notifications.md)
-  - [Project API Migration Guide for TiDB Cloud Starter and Essential](/tidb-cloud/tidbx-starter-essential-project-api-migration-guide.md)
+  - [Project API Migration Guide for {{{ .starter }}} and Essential](/tidb-cloud/tidbx-starter-essential-project-api-migration-guide.md)
 - Support Plan
   - [Connected Care Overview](/tidb-cloud/connected-care-overview.md)
   - [Connected Care Details](/tidb-cloud/connected-care-detail.md)
@@ -568,6 +571,7 @@
       - [Subscribe via Flashduty](/tidb-cloud/monitor-alert-flashduty.md)
       - [Subscribe via PagerDuty](/tidb-cloud/monitor-alert-pagerduty.md)
       - [Subscribe via Webhook](/tidb-cloud/monitor-alert-webhook.md)
+      - [Subscribe via Lark](/tidb-cloud/monitor-alert-lark.md)
     - Connected: IM Ticket Creation and Update Subscription
       - [Create Tickets and Subscribe to Ticket Updates via Slack](/tidb-cloud/connected-slack-ticket-creation.md)
       - [Create Tickets and Subscribe to Ticket Updates via Lark](/tidb-cloud/connected-lark-ticket-creation.md)
