@@ -451,7 +451,7 @@ The `pytidb` repository provides a complete example that connects to TiDB, creat
 Before you begin, make sure you have:
 
 - Python 3.10 or later.
-- A {{{ .starter }}} instance. You can create one on [TiDB Cloud](https://tidbcloud.com/free-trial).
+- A TiDB Cloud Starter instance. You can create one on [TiDB Cloud](https://tidbcloud.com/free-trial).
 
 To run the example:
 
@@ -470,7 +470,7 @@ To run the example:
     pip install -r reqs.txt
     ```
 
-3. In the [TiDB Cloud console](https://tidbcloud.com/), go to the [**My TiDB**](https://tidbcloud.com/tidbs) page, click the name of your {{{ .starter }}} instance, and then click **Connect** in the upper-right corner to get the connection parameters.
+3. In the [TiDB Cloud console](https://tidbcloud.com/), go to the [**My TiDB**](https://tidbcloud.com/tidbs) page, click the name of your TiDB Cloud Starter instance, and then click **Connect** in the upper-right corner to get the connection parameters.
 
 4. Create a `.env` file and set the connection parameters:
 
