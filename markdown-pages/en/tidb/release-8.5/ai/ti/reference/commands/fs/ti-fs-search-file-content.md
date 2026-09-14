@@ -9,7 +9,7 @@ Searches remote file content, optionally in a layer. The command alias is `ti fs
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 
@@ -27,7 +27,7 @@ ti fs search-file-content
 
 ## Options
 
-- `--pattern <string>`: Content search matching pattern. \[required]
+- `--pattern <string>`: Text query used for full-text and, when configured, semantic search over extracted file content and descriptions. The value is not a regular expression or glob. \[required]
 - `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.

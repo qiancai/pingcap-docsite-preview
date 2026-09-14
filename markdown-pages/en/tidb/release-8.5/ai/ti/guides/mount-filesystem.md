@@ -1,29 +1,30 @@
 ---
 title: Mount a TiDB Cloud Filesystem
-summary: Learn how to safely mount, use, drain, and unmount a TiDB Cloud Filesystem on macOS, Linux, Windows, or in a container.
+summary: Learn how to safely mount, use, drain, and unmount a TiDB Cloud Filesystem on macOS, Linux, or in a container.
 ---
 
 # Mount a TiDB Cloud Filesystem
 
-Mount a TiDB Cloud Filesystem when an application needs to access remote data through a local filesystem path.
+In TiDB Cloud CLI, you can mount a TiDB Cloud Filesystem when an application needs to access remote data through a local filesystem path.
 
 ## Prerequisites
 
-- Obtain access to a TiDB Cloud Filesystem.
+- [Install and configure TiDB Cloud CLI](/ai/ti/reference/ti-install-configure-update.md).
+- Select a Filesystem by passing `--file-system-id`, setting `TI_FS_FILE_SYSTEM_ID`, or supplying an FS token that identifies the Filesystem.
+- Provide an FS token through `--fs-token`, `TI_FS_TOKEN`, or the local credential stored for the selected Filesystem.
 - On Linux, install FUSE3 and provide access to `/dev/fuse`.
-- On Windows, enable the Windows WebClient service.
 
 ## Choose a mount driver
 
 | Platform | `--driver auto` | Notes |
 |---|---|---|
 | macOS | WebDAV | Install macFUSE and select `--driver fuse` for FUSE support. |
-| Linux | FUSE | Install `davfs2` to select WebDAV explicitly. |
-| Windows | WebDAV | Use a drive letter such as `X:`. FUSE is unavailable. |
+| Linux | FUSE | WebDAV mounting is not supported. |
+| Windows | Not supported | Use `ti fs` data-plane commands without a mount. |
 
 ## Mount the Filesystem
 
-Create a local path and mount the Filesystem in the background:
+On macOS or Linux, create a local path and mount the Filesystem in the background:
 
 ```shell
 mkdir -p /path/to/workspace
@@ -31,6 +32,8 @@ ti fs mount-file-system \
   --file-system-id "<file-system-id>" \
   --mount-path /path/to/workspace
 ```
+
+The CLI starts a background mount process and writes a local mount locator so that the drain and unmount commands can find the correct process.
 
 Use `--remote-path` to expose a subtree or `--read-only` to prevent writes. To mount a layer or checkpoint, select the FUSE driver and pass the appropriate layer options described in the [`mount-file-system` reference](/ai/ti/reference/commands/fs/ti-fs-mount-file-system.md).
 
@@ -45,6 +48,7 @@ docker run --rm -it \
   --security-opt apparmor=unconfined \
   --env TI_FS_TOKEN \
   --env TI_REGION_CODE \
+  --env TI_FS_FILE_SYSTEM_ID \
   <image>
 ```
 
@@ -100,25 +104,27 @@ For related errors, see [Troubleshoot TiDB Cloud CLI](/ai/ti/reference/ti-troubl
 
 ## Drain or unmount
 
-A normal unmount flushes open handles and pending FUSE work before stopping the mount:
+When you run `unmount-file-system`, the CLI automatically flushes open file handles and pending FUSE work before stopping the mount:
 
 ```shell
 ti fs unmount-file-system --mount-path /path/to/workspace
 ```
 
-Use drain when you need a durability barrier while keeping a FUSE mount online:
+If you need a durability barrier while keeping a FUSE mount online (for example, before creating a layer checkpoint), run `drain-file-system` explicitly. This command flushes pending writes and waits for them to complete without unmounting:
 
 ```shell
 ti fs drain-file-system --mount-path /path/to/workspace --timeout 30s
 ```
 
-Drain is not supported for WebDAV.
+> **Note:**
+>
+> Drain is supported only for FUSE mounts. WebDAV mounts flush writes through normal file close operations.
 
 > **Warning:**
 >
-> Do not terminate a machine while writes remain pending or after unmount returns an error. In-memory writes and local-only overlay files can be lost.
+> Do not terminate a machine while writes remain pending or after an unmount returns an error. In-memory writes and local-only overlay files can be lost. For a FUSE mount, run `drain-file-system` before shutdown to confirm that pending writes have reached the remote Filesystem. For a WebDAV mount, close files in the application and verify that `unmount-file-system` succeeds.
 
 ## What's next
 
-- [Manage Filesystem Layers and Checkpoints](/ai/ti/guides/manage-filesystem-layers.md)
+- [Manage TiDB Cloud Filesystem Layers and Checkpoints](/ai/ti/guides/manage-filesystem-layers.md)
 - [TiDB Cloud Filesystem CLI Command Reference](/ai/ti/reference/ti-filesystem.md)

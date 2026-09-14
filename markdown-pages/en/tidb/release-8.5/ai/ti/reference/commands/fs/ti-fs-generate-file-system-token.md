@@ -9,7 +9,7 @@ Generates an owner token for one Filesystem by using TiDB Cloud API credentials.
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 
@@ -19,8 +19,10 @@ ti fs generate-file-system-token
   --token-name <string>
   (--ttl <duration> | --no-expiration)
   [--dry-run]
+  [--help]
   [--replace]
   [--store-locally]
+  [--version]
 ```
 
 ## Options
@@ -32,6 +34,8 @@ ti fs generate-file-system-token
 - `--store-locally`: Store and select the generated token for this profile and Filesystem.
 - `--replace`: Replace an existing selected local token. Requires `--store-locally` and does not revoke the previous remote token.
 - `--dry-run`: Validate credentials, region, lifetime, and local storage preconditions without generating a token.
+- `--help`: Display help information.
+- `--version`: Display version information.
 
 For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli-reference.md#global-options).
 

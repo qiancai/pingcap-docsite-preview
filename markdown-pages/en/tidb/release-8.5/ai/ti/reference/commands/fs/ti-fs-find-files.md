@@ -9,7 +9,7 @@ Finds remote paths by name, type, tag, size, or modification time. The command a
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 
@@ -41,11 +41,11 @@ ti fs find-files
 - `--limit <int32>`: Maximum number of results; 0 uses the service default.
 - `--max-size-bytes <int64>`: Maximum file size in bytes.
 - `--min-size-bytes <int64>`: Minimum file size in bytes.
-- `--newer <string>`: Only return files newer than the filter.
-- `--older <string>`: Only return files older than the filter.
+- `--newer <string>`: Return files newer than the specified date in `YYYY-MM-DD` format.
+- `--older <string>`: Return files older than the specified date in `YYYY-MM-DD` format.
 - `--path <string>`: File path prefix. \[default: /]
 - `--resource-type <string>`: Resource type filter: `file` or `directory`.
-- `--tag <string>`: Tag filter.
+- `--tag <string>`: Match an exact tag by `key=value`, or match any value for a tag key by specifying only `key`.
 - `--version`: Display version information.
 
 For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli-reference.md#global-options).

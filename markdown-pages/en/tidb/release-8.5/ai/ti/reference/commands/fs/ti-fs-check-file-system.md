@@ -5,11 +5,11 @@ summary: Check TiDB Cloud Filesystem connectivity.
 
 # ti fs check-file-system
 
-Checks Filesystem selection, endpoint resolution, credentials, and companion access.
+Checks Filesystem selection, endpoint resolution, credentials, and Filesystem data-plane access.
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 

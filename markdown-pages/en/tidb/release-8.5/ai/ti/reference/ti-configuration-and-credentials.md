@@ -9,7 +9,7 @@ summary: Reference TiDB Cloud CLI profiles, precedence rules, local state paths,
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Main files
 
@@ -22,8 +22,8 @@ region_code = "aws-us-east-1"
 ```toml
 # ~/.ti/credentials
 [default]
-ti_public_key = "..."
-ti_private_key = "..."
+tidb_cloud_public_key = "..."
+tidb_cloud_private_key = "..."
 ```
 
 The credentials file uses owner-only permissions where the platform supports POSIX modes.
@@ -59,7 +59,7 @@ An explicit empty profile is invalid.
 
 Credential selection is:
 
-1. `TI_PUBLIC_KEY` and `TI_PRIVATE_KEY`, when either is set;
+1. `TIDB_CLOUD_PUBLIC_KEY` and `TIDB_CLOUD_PRIVATE_KEY`, when either is set;
 2. the selected section of `~/.ti/credentials`.
 
 Both environment values are required together. `ti` never mixes one environment half with one file half.
@@ -78,7 +78,7 @@ The TiDB Cloud CLI does not accept or store a project selector. TiDB Cloud Start
 
 ## Filesystem credentials and remote inventory
 
-One profile can access multiple Filesystems. Drive9's remote inventory is authoritative for resource existence and status. Local state stores only credentials and their routing hint:
+One profile can access multiple Filesystems. The region-scoped remote inventory is authoritative for resource existence and status. Local state stores only credentials and their routing hint:
 
 ```text
 ~/.ti/fs_credentials/<profile-key>/<file-system-id-key>/credentials
@@ -146,9 +146,19 @@ password = "..."
 
 `ti db create-db-sql-users` creates or repairs these stable users. They are not stored in the main credentials file.
 
+The three access modes map to TiDB Cloud built-in database roles:
+
+| `ti` access mode | TiDB Cloud built-in role | Intended use |
+| --- | --- | --- |
+| `read_only` | `role_readonly` | Query and verify data without modifying it |
+| `read_write` | `role_readwrite` | Query and modify application data |
+| `admin` | `role_admin` | Make schema changes and manage privileges |
+
+For the complete TiDB Cloud role model, see [Manage Database Users and Roles](/tidb-cloud/configure-sql-users.md).
+
 ## Companion state and mount locators
 
-Each registered Filesystem has an isolated companion home:
+The installer includes `ti-drive9`, the companion runtime that executes `ti fs`, `ti fs-git`, `ti fs-journal`, and `ti fs-vault` operations. You do not invoke it directly. Each registered Filesystem has an isolated companion home:
 
 ```text
 ~/.ti/drive9-home/<profile-key>/<resource-key>/

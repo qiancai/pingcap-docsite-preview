@@ -5,11 +5,15 @@ summary: Rotate one TiDB Cloud Filesystem token and return its replacement plain
 
 # ti fs refresh-file-system-token
 
-Rotates the supplied bearer token in place. Refresh is not idempotent: if the request commits but its response is lost, do not retry with the old token.
+Rotates the supplied bearer token in place.
+
+> **Warning:**
+>
+> Refresh is not idempotent. If the request succeeds but you do not receive the response, do not retry with the old token. Generate and distribute a replacement token instead.
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 
@@ -19,6 +23,8 @@ ti fs refresh-file-system-token
   [--fs-token <string>]
   [--ttl <duration>]
   [--dry-run]
+  [--help]
+  [--version]
 ```
 
 ## Options
@@ -27,6 +33,8 @@ ti fs refresh-file-system-token
 - `--fs-token <string>`: Supply the current token. Prefer `TI_FS_TOKEN` to avoid shell history and process-list exposure. Defaults to `TI_FS_TOKEN`, then the selected local credential.
 - `--ttl <duration>`: Set a new positive lifetime in whole seconds, up to 365 days. Omit it to preserve the previous lifetime period.
 - `--dry-run`: Validate token selection, region, TTL, and known local mount conflicts without rotating the token.
+- `--help`: Display help information.
+- `--version`: Display version information.
 
 For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli-reference.md#global-options).
 

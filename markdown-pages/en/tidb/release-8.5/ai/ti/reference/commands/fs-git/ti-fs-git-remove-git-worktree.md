@@ -9,7 +9,7 @@ Removes a linked worktree without recursively deleting shared clean-tree data.
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 
@@ -41,7 +41,14 @@ For options shared by all commands, see [Global options](/ai/ti/reference/ti-cli
 - Remove a Git worktree:
 
     ```bash
-    # Force removal when the isolated worktree still contains local changes.
+    # Remove a clean linked worktree.
+    ti fs-git remove-git-worktree --file-system-id <file-system-id> --worktree-path /path/to/workspace/tidb-feature
+    ```
+
+- Force removal of a Git worktree:
+
+    ```bash
+    # Discard local changes only after deciding that they are no longer needed.
     ti fs-git remove-git-worktree --file-system-id <file-system-id> --worktree-path /path/to/workspace/tidb-feature --force
     ```
 

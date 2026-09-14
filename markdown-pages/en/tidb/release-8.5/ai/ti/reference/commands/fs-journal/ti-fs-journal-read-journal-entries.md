@@ -9,7 +9,7 @@ Reads entries from one journal in sequence order.
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 
@@ -27,7 +27,7 @@ ti fs-journal read-journal-entries
 ## Options
 
 - `--journal-id <string>`: Journal ID. \[required]
-- `--after-seq <int64>`: Read entries after this sequence.
+- `--after-seq <int64>`: Read entries after this sequence. If omitted or set to `0`, reading starts with the earliest entry.
 - `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
 - `--fs-token <string>`: Set the file system user token. If omitted, uses `TI_FS_TOKEN`.
 - `--help`: Display help information.

@@ -9,35 +9,26 @@ This reference describes current placement, authentication, platform, and previe
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
-## TiDB Cloud regions
+## Supported regions
 
-The TiDB Cloud CLI accepts one canonical region code:
+When using TiDB Cloud CLI, you need to configure a default region for CLI operations.
 
-| Canonical code | Provider | Location |
-| --- | --- | --- |
-| `aws-us-east-1` | AWS | N. Virginia |
-| `aws-us-west-2` | AWS | Oregon |
-| `aws-eu-central-1` | AWS | Frankfurt |
-| `aws-ap-northeast-1` | AWS | Tokyo |
-| `aws-ap-southeast-1` | AWS | Singapore |
-| `alicloud-ap-southeast-1` | Alibaba Cloud | Singapore |
+The following table lists the supported regions for TiDB Cloud CLI and shows which TiDB Cloud CLI services are available in each region.
 
-Alibaba Cloud currently supports only the Singapore region in the TiDB Cloud CLI. Users cannot configure raw service URLs.
+| Provider | Location | Canonical region code | TiDB Cloud Starter | TiDB Cloud Filesystem |
+| --- | --- | --- | --- | --- |
+| AWS | N. Virginia | `aws-us-east-1` | Supported | Supported |
+| AWS | Oregon | `aws-us-west-2` | Supported | Supported |
+| AWS | Singapore | `aws-ap-southeast-1` | Supported | Supported |
+| AWS | Frankfurt | `aws-eu-central-1` | Supported | Not supported |
+| AWS | Tokyo | `aws-ap-northeast-1` | Supported | Not supported |
+| Alibaba Cloud | Singapore | `alicloud-ap-southeast-1` | Supported | Supported |
 
-## Filesystem regions
+If your configured region supports TiDB Cloud Starter but not TiDB Cloud Filesystem, you can manage Starter instances in that region. Filesystem commands fail with an `unsupported endpoint` error.
 
-The TiDB Cloud CLI includes endpoint mappings for the following TiDB Cloud Filesystem regions:
-
-| Cloud provider | Canonical region code |
-| --- | --- |
-| AWS | `aws-ap-southeast-1` |
-| AWS | `aws-us-east-1` |
-| AWS | `aws-us-west-2` |
-| Alibaba Cloud | `alicloud-ap-southeast-1` |
-
-The TiDB Cloud CLI does not download a Drive9 region manifest at runtime. A profile in another TiDB Cloud region can manage Starter databases but receives an unsupported Filesystem endpoint error until that placement is included in a TiDB Cloud CLI release.
+Supported Filesystem regions are built into each `ti` release. To use Filesystem in a region added after your installed version was released, upgrade `ti`. You cannot enable an unsupported region by specifying a service URL.
 
 ## Credential requirements
 
@@ -73,11 +64,11 @@ TiDB Cloud API calls use Digest authentication. SQL HTTPS execution uses generat
 
 ## Mount platform limitations
 
-| Platform | Default | Limitations |
-| --- | --- | --- |
-| macOS | WebDAV | Install macFUSE and explicitly use `--driver fuse` for FUSE caches, drain, and complete POSIX-oriented behavior |
-| Linux | FUSE | Requires FUSE3 and `/dev/fuse`; explicit WebDAV requires `davfs2` |
-| Windows | WebDAV | Requires the WebClient service and a drive-letter mount path; FUSE and vault mount are unavailable |
+| Platform | Filesystem mount | Vault mount | Requirements and alternatives |
+| --- | --- | --- | --- |
+| macOS | WebDAV by default; FUSE with explicit `--driver fuse` | FUSE | The built-in WebDAV helper supports Filesystem mounts. Install macFUSE and approve its system extension for FUSE or Vault mounts. |
+| Linux | FUSE | FUSE | Install FUSE3 and provide access to `/dev/fuse`. WebDAV mounting is not supported. |
+| Windows | Not supported | Not supported | Use `ti fs` data-plane commands and non-mount Vault commands instead. |
 
 FUSE and WebDAV are implemented by the bundled [Drive9](https://github.com/mem9-ai/drive9) companion. The TiDB Cloud CLI does not fall back to a separate native mount implementation.
 
@@ -106,7 +97,7 @@ Ubuntu 26.04 additionally confines `fusermount3` with AppArmor. Use a mount path
 - OpenAI provider interfaces are supported for embedding and image, audio, and video extraction. Alibaba Cloud Model Studio Qwen ASR is supported only for audio extraction. Other vendors are conditionally compatible only through the exact OpenAI-compatible contract; native Anthropic, Gemini, Vertex AI, Bedrock, and Azure OpenAI interfaces are not supported.
 - App-managed embedding requires a provider model that returns exactly 1024 dimensions. Filesystems that report `source=database_auto` use database-managed embedding and reject app-managed configuration.
 - Telemetry management commands are intentionally not implemented. Control telemetry through `~/.ti/.preferences` or `TI_TELEMETRY`; serverless-function deployment, Homebrew, and Scoop distribution are not implemented.
-- The TiDB Cloud CLI depends on its installed `ti-drive9` companion for all public Filesystem runtime behavior.
+- The TiDB Cloud CLI depends on its installed `ti-drive9` companion for all public Filesystem runtime behavior, including direct file operations, layers, mounts, Git workspaces, journals, and Vault operations.
 
 ## Related documentation
 

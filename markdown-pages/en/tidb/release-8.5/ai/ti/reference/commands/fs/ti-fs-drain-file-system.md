@@ -5,11 +5,11 @@ summary: Drain a mounted TiDB Cloud Filesystem.
 
 # ti fs drain-file-system
 
-Flushes dirty FUSE state while leaving the mount online. The command alias is `ti fs drain`.
+Flushes dirty FUSE state while leaving the mount online. The command alias is `ti fs drain`. This command applies only to FUSE mounts. For a WebDAV mount, stop writers and use `ti fs unmount-file-system`; running `drain-file-system` for it returns an error.
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 

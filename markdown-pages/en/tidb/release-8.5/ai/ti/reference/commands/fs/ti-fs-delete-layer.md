@@ -9,7 +9,7 @@ Logically abandons a layer. The command does not physically erase layer history 
 
 > **Note:**
 >
-> The TiDB Cloud Command Line Interface — `ti` — is currently in preview. Its features and command-line interface might change without prior notice.
+> TiDB Cloud CLI (`ti`) is currently in public preview. Its features and command-line interface are subject to change without notice.
 
 ## Syntax
 
@@ -26,7 +26,7 @@ ti fs delete-layer
 
 ## Options
 
-- `--layer-ref <string>`: Layer ID, unique name, or supported tag reference. \[required]
+- `--layer-ref <string>`: Layer ID, unique name, or [tag reference](/ai/ti/reference/ti-filesystem.md#layer-references). \[required]
 - `--cascade`: Abandon live descendants before abandoning the selected layer.
 - `--dry-run`: Validate the request without applying changes.
 - `--file-system-id <string>`: Select the file system. You can also set `TI_FS_FILE_SYSTEM_ID`.
