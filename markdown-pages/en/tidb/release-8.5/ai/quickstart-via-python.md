@@ -18,7 +18,7 @@ By following this document, you will learn how to:
 > **Note:**
 >
 > - The vector search feature is in public preview and might be changed without prior notice. If you find a bug, you can report an [issue](https://github.com/pingcap/tidb/issues) on GitHub.
-> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [{{{ .starter }}}](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
+> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
 
 ## Prerequisites
 
@@ -47,7 +47,7 @@ pip install "pytidb[models]"
 
 You can get these connection parameters from the [TiDB Cloud console](https://tidbcloud.com/tidbs):
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed, with connection parameters listed.
 
 For example, if the connection parameters are displayed as follows:

@@ -27,7 +27,7 @@ ACID refers to the four key properties of a transaction: atomicity, consistency,
 
 Chat2Query is an AI-powered feature integrated into SQL Editor that assists users in generating, debugging, or rewriting SQL queries using natural language instructions. For more information, see [Explore your data with AI-assisted SQL Editor](/tidb-cloud/explore-data-with-chat2query.md).
 
-In addition, TiDB Cloud provides a Chat2Query API for {{{ .starter }}} instances hosted on AWS. After it is enabled, TiDB Cloud will automatically create a system Data App called **Chat2Query** and a Chat2Data endpoint in Data Service. You can call this endpoint to let AI generate and execute SQL statements by providing instructions. For more information, see [Get started with Chat2Query API](/tidb-cloud/use-chat2query-api.md).
+In addition, TiDB Cloud provides a Chat2Query API for TiDB Cloud Starter instances hosted on AWS. After it is enabled, TiDB Cloud will automatically create a system Data App called **Chat2Query** and a Chat2Data endpoint in Data Service. You can call this endpoint to let AI generate and execute SQL statements by providing instructions. For more information, see [Get started with Chat2Query API](/tidb-cloud/use-chat2query-api.md).
 
 ### Cluster
 
@@ -117,12 +117,12 @@ A document that defines permissions applying to a role, user, or organization, s
 
 In TiDB Cloud, you can use projects to group and manage your TiDB resources.
 
-- For TiDB X instances (including {{{ .starter }}}, Essential, and Premium instances), projects are optional, which means you can either group these instances in a project or keep these instances at the organization level.
-- For {{{ .dedicated }}} clusters, projects are required.
+- For TiDB X instances (including TiDB Cloud Starter, Essential, and Premium instances), projects are optional, which means you can either group these instances in a project or keep these instances at the organization level.
+- For TiDB Cloud Dedicated clusters, projects are required.
 
 The function of a project varies by project type. Currently, there are three types of projects:
 
-- **TiDB Dedicated project**: This project type is used only for {{{ .dedicated }}} clusters. It helps you manage settings for {{{ .dedicated }}} clusters separately by project, such as RBAC, networks, maintenance, alert subscriptions, and encryption access.
+- **TiDB Dedicated project**: This project type is used only for TiDB Cloud Dedicated clusters. It helps you manage settings for TiDB Cloud Dedicated clusters separately by project, such as RBAC, networks, maintenance, alert subscriptions, and encryption access.
 - **TiDB X project**: This project type is used only for TiDB X instances. It helps you manage RBAC for TiDB X instances by project. A TiDB X project is the default project type when you create a project on the [**My TiDB**](https://tidbcloud.com/tidbs) page.
 - **TiDB X virtual project**: This project is virtual and does not provide any management capabilities. It acts as a virtual container for TiDB X instances that do not belong to any project, so these instances can be accessed through the TiDB Cloud API by using a project ID. Each organization has a unique virtual project ID. You can get this ID from the [List all accessible projects](https://docs.pingcap.com/tidbcloud/api/v1beta/#tag/Project/operation/ListProjects) endpoint of the TiDB Cloud API.
 
@@ -142,9 +142,9 @@ Once a backed-up TiDB Cloud resource is deleted, the existing backup files of it
 
 Currently, only the following types of TiDB Cloud resources support the Recycle Bin feature:
 
-- {{{ .essential }}} instances
-- {{{ .premium }}} instances
-- {{{ .dedicated }}} clusters
+- TiDB Cloud Essential instances
+- TiDB Cloud Premium instances
+- TiDB Cloud Dedicated clusters
 
 ### region
 
@@ -166,18 +166,18 @@ TiDB Cloud measures the capacity of [changefeeds](/tidb-cloud/changefeed-overvie
 
 ### Request Capacity Unit (RCU)
 
-For {{{ .essential }}} and {{{ .premium }}}, a Request Capacity Unit (RCU) is a unit of measure used to represent the provisioned compute capacity for your {{{ .essential }}} or {{{ .premium }}} instance. One RCU provides a fixed amount of compute resources that can process a certain number of RUs per second. The number of RCUs you provision determines the baseline performance and throughput capacity of your instance. However, the way RCUs are managed differs between {{{ .essential }}} and {{{ .premium }}}:
+For TiDB Cloud Essential and TiDB Cloud Premium, a Request Capacity Unit (RCU) is a unit of measure used to represent the provisioned compute capacity for your TiDB Cloud Essential or TiDB Cloud Premium instance. One RCU provides a fixed amount of compute resources that can process a certain number of RUs per second. The number of RCUs you provision determines the baseline performance and throughput capacity of your instance. However, the way RCUs are managed differs between TiDB Cloud Essential and TiDB Cloud Premium:
 
-- {{{ .essential }}} automatically provisions RCUs based on your workload. As your QPS increases, TiDB Cloud dynamically scales up the provisioned RCUs to maintain performance. For more information, see [{{{ .essential }}} Pricing Details](https://www.pingcap.com/tidb-cloud-essential-pricing-details/).
-- {{{ .premium }}} lets you specify the maximum number of RCUs (`RCU_max`) for your workload. TiDB Cloud automatically scales capacity within the range of `0.25 * RCU_max` to `RCU_max` based on real-time demand. For more information, see [Request units and capacity in {{{ .premium }}}](https://docs.pingcap.com/tidbcloud/architecture-concepts/?plan=premium#request-units-and-capacity-in-premium).
+- TiDB Cloud Essential automatically provisions RCUs based on your workload. As your QPS increases, TiDB Cloud dynamically scales up the provisioned RCUs to maintain performance. For more information, see [TiDB Cloud Essential Pricing Details](https://www.pingcap.com/tidb-cloud-essential-pricing-details/).
+- TiDB Cloud Premium lets you specify the maximum number of RCUs (`RCU_max`) for your workload. TiDB Cloud automatically scales capacity within the range of `0.25 * RCU_max` to `RCU_max` based on real-time demand. For more information, see [Request units and capacity in TiDB Cloud Premium](https://docs.pingcap.com/tidbcloud/architecture-concepts/?plan=premium#request-units-and-capacity-in-premium).
 
 ### Request Unit (RU)
 
-For {{{ .starter }}}, Essential, and Premium, a Request Unit (RU) is a unit of measure used to represent the amount of resources consumed by a single request to the database. The amount of RUs consumed by a request depends on various factors, such as the operation type and the amount of data being retrieved or modified. However, the billing models for these plans are different:
+For TiDB Cloud Starter, Essential, and Premium, a Request Unit (RU) is a unit of measure used to represent the amount of resources consumed by a single request to the database. The amount of RUs consumed by a request depends on various factors, such as the operation type and the amount of data being retrieved or modified. However, the billing models for these plans are different:
 
-- {{{ .starter }}} is billed based on the total number of RUs consumed. For more information, see [{{{ .starter }}} Pricing Details](https://www.pingcap.com/tidb-cloud-starter-pricing-details/).
-- {{{ .essential }}} is billed based on the number of provisioned [Request Capacity Units (RCUs)](#request-capacity-unit-rcu). One RCU provides a fixed amount of compute resources that can process a certain number of RUs-per-second. For more information, see [{{{ .essential }}} Pricing Details](https://www.pingcap.com/tidb-cloud-essential-pricing-details/).
-- {{{ .premium }}} is billed based on the actual Request Capacity Unit (RCU) consumed by your workload. TiDB Cloud calculates the average RUs per second every minute and uses the average value as [Request Capacity Units (RCUs)](#request-capacity-unit-rcu) for billing. For more information, see [Request units and capacity in {{{ .premium }}}](https://docs.pingcap.com/tidbcloud/architecture-concepts/?plan=premium#request-units-and-capacity-in-premium).
+- TiDB Cloud Starter is billed based on the total number of RUs consumed. For more information, see [TiDB Cloud Starter Pricing Details](https://www.pingcap.com/tidb-cloud-starter-pricing-details/).
+- TiDB Cloud Essential is billed based on the number of provisioned [Request Capacity Units (RCUs)](#request-capacity-unit-rcu). One RCU provides a fixed amount of compute resources that can process a certain number of RUs-per-second. For more information, see [TiDB Cloud Essential Pricing Details](https://www.pingcap.com/tidb-cloud-essential-pricing-details/).
+- TiDB Cloud Premium is billed based on the actual Request Capacity Unit (RCU) consumed by your workload. TiDB Cloud calculates the average RUs per second every minute and uses the average value as [Request Capacity Units (RCUs)](#request-capacity-unit-rcu) for billing. For more information, see [Request units and capacity in TiDB Cloud Premium](https://docs.pingcap.com/tidbcloud/architecture-concepts/?plan=premium#request-units-and-capacity-in-premium).
 
 For TiDB Cloud Dedicated and TiDB Self-Managed, a Request Unit (RU) is a resource abstraction unit that represents system resource consumption, which currently includes CPU, IOPS, and IO bandwidth metrics. It is used by the resource control feature to limit, isolate, and manage resources consumed by database requests, **not for billing purposes**. For more information, see [Use Resource Control to Achieve Resource Group Limitation and Flow Control](/tidb-resource-control-ru-groups.md).
 
@@ -185,7 +185,7 @@ For TiDB Cloud Dedicated and TiDB Self-Managed, a Request Unit (RU) is a resourc
 
 ### Spending limit
 
-[Spending limit](/tidb-cloud/manage-serverless-spend-limit.md) refers to the maximum amount of money that you are willing to spend on a particular workload in a month. It is a cost-control mechanism that enables you to set a budget for your {{{ .starter }}} instances. If the spending limit is set to 0, the {{{ .starter }}} instance remains free. If the spending limit is greater than 0, you need to add a credit card.
+[Spending limit](/tidb-cloud/manage-serverless-spend-limit.md) refers to the maximum amount of money that you are willing to spend on a particular workload in a month. It is a cost-control mechanism that enables you to set a budget for your TiDB Cloud Starter instances. If the spending limit is set to 0, the TiDB Cloud Starter instance remains free. If the spending limit is greater than 0, you need to add a credit card.
 
 ## T
 
@@ -199,26 +199,26 @@ A TiDB Cloud Filesystem is a serverless distributed file system designed for AI 
 
 ### TiDB node
 
-The computing node that aggregates data from queries returned from transactional or analytical stores. Increasing the number of TiDB nodes will increase the number of concurrent queries that the {{{ .dedicated }}} cluster can handle.
+The computing node that aggregates data from queries returned from transactional or analytical stores. Increasing the number of TiDB nodes will increase the number of concurrent queries that the TiDB Cloud Dedicated cluster can handle.
 
 ### TiDB Cloud resource
 
 A TiDB Cloud resource is a manageable TiDB Cloud deployment unit. It can be one of the following:
 
-- A TiDB X instance (a service-oriented TiDB Cloud offering built on the [TiDB X architecture](/tidb-cloud/tidb-x-architecture.md)), such as a {{{ .starter }}}, Essential, or Premium instance
-- A {{{ .dedicated }}} cluster
+- A TiDB X instance (a service-oriented TiDB Cloud offering built on the [TiDB X architecture](/tidb-cloud/tidb-x-architecture.md)), such as a TiDB Cloud Starter, Essential, or Premium instance
+- A TiDB Cloud Dedicated cluster
 
 ### TiDB X
 
 A new distributed SQL architecture that makes cloud-native object storage the backbone of TiDB. By decoupling compute and storage, TiDB X enables TiDB to scale intelligently, adapting in real time to workload patterns, business cycles, and data characteristics.
 
-The TiDB X architecture is now available in {{{ .starter }}}, Essential, and Premium. For more information, see [Introducing TiDB X: A New Foundation for Distributed SQL in the Era of AI](https://www.pingcap.com/blog/introducing-tidb-x-a-new-foundation-distributed-sql-ai-era/) and [PingCAP Launches TiDB X and New AI Capabilities at SCaiLE Summit 2025](https://www.pingcap.com/press-release/pingcap-launches-tidb-x-new-ai-capabilities/).
+The TiDB X architecture is now available in TiDB Cloud Starter, Essential, and Premium. For more information, see [Introducing TiDB X: A New Foundation for Distributed SQL in the Era of AI](https://www.pingcap.com/blog/introducing-tidb-x-a-new-foundation-distributed-sql-ai-era/) and [PingCAP Launches TiDB X and New AI Capabilities at SCaiLE Summit 2025](https://www.pingcap.com/press-release/pingcap-launches-tidb-x-new-ai-capabilities/).
 
 ### TiDB X instance
 
 A TiDB X instance is a service-oriented TiDB Cloud offering built on the [TiDB X architecture](/tidb-cloud/tidb-x-architecture.md). It does not require you to manage or understand the underlying cluster topology.
 
-Among TiDB Cloud plans, {{{ .starter }}}, Essential, and Premium are using the TiDB X architecture. Therefore, when "TiDB X instance" is mentioned, it refers to a {{{ .starter }}}, Essential, or Premium instance.
+Among TiDB Cloud plans, TiDB Cloud Starter, Essential, and Premium are using the TiDB X architecture. Therefore, when "TiDB X instance" is mentioned, it refers to a TiDB Cloud Starter, Essential, or Premium instance.
 
 ### TiFlash node
 

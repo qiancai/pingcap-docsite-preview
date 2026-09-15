@@ -11,7 +11,7 @@ This tutorial walks you through how to use [peewee](https://docs.peewee-orm.com/
 > **Note:**
 >
 > - The vector search feature in public preview. It might be changed without prior notice. If you find a bug, you can report an [issue](https://github.com/pingcap/tidb/issues) on GitHub.
-> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [{{{ .starter }}}](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
+> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ To complete this tutorial, you need:
 
 **If you don't have a TiDB cluster, you can create one as follows:**
 
-- (Recommended) [Create a {{{ .starter }}} instance](/develop/dev-guide-build-cluster-in-cloud.md).
+- (Recommended) [Create a TiDB Cloud Starter instance](/develop/dev-guide-build-cluster-in-cloud.md).
 - [Deploy a local test TiDB Self-Managed cluster](/quick-start-with-tidb.md#deploy-a-local-test-cluster) or [Deploy a production TiDB Self-Managed cluster](/production-deployment-using-tiup.md).
 
 ## Run the sample app
@@ -67,11 +67,11 @@ pip install peewee pymysql python-dotenv tidb-vector
 Configure the environment variables depending on the TiDB deployment option you've selected.
 
 <SimpleTab>
-<div label="{{{ .starter }}}">
+<div label="TiDB Cloud Starter">
 
-For a {{{ .starter }}} instance, take the following steps to obtain the connection string and configure environment variables:
+For a TiDB Cloud Starter instance, take the following steps to obtain the connection string and configure environment variables:
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
 
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed.
 
@@ -94,8 +94,8 @@ For a {{{ .starter }}} instance, take the following steps to obtain the connecti
 
 5. In the root directory of your Python project, create a `.env` file and paste the connection parameters to the corresponding environment variables.
 
-    - `TIDB_HOST`: The host of the {{{ .starter }}} instance.
-    - `TIDB_PORT`: The port of the {{{ .starter }}} instance.
+    - `TIDB_HOST`: The host of the TiDB Cloud Starter instance.
+    - `TIDB_PORT`: The port of the TiDB Cloud Starter instance.
     - `TIDB_USERNAME`: The username to connect to TiDB.
     - `TIDB_PASSWORD`: The password to connect to TiDB.
     - `TIDB_DATABASE`: The database name to connect to.
