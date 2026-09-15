@@ -8,12 +8,12 @@ aliases: ['/tidb/stable/vector-search-get-started-using-python/','/tidb/dev/vect
 
 This tutorial demonstrates how to develop a simple AI application that provides **semantic search** features. Unlike traditional keyword search, semantic search intelligently understands the meaning behind your query and returns the most relevant result. For example, if you have documents titled "dog", "fish", and "tree", and you search for "a swimming animal", the application would identify "fish" as the most relevant result.
 
-Throughout this tutorial, you will develop this AI application using [TiDB Vector Search](/ai/concepts/vector-search-overview.md), Python, [TiDB Vector SDK for Python](https://github.com/pingcap/tidb-vector-python), and AI models.
+Throughout this tutorial, you will develop this AI application using [TiDB Vector Search](/ai/guides/vector-search-overview.md), Python, [TiDB Vector SDK for Python](https://github.com/pingcap/tidb-vector-python), and AI models.
 
 > **Note:**
 >
 > - The vector search feature in public preview. It might be changed without prior notice. If you find a bug, you can report an [issue](https://github.com/pingcap/tidb/issues) on GitHub.
-> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
+> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [{{{ .starter }}}](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
 
 ## Prerequisites
 
@@ -25,7 +25,7 @@ To complete this tutorial, you need:
 
 **If you don't have a TiDB cluster, you can create one as follows:**
 
-- (Recommended) [Create a TiDB Cloud Starter instance](/develop/dev-guide-build-cluster-in-cloud.md).
+- (Recommended) [Create a {{{ .starter }}} instance](/develop/dev-guide-build-cluster-in-cloud.md).
 - [Deploy a local test TiDB Self-Managed cluster](/quick-start-with-tidb.md#deploy-a-local-test-cluster) or [Deploy a production TiDB Self-Managed cluster](/production-deployment-using-tiup.md).
 
 ## Get started
@@ -51,18 +51,18 @@ pip install sqlalchemy pymysql sentence-transformers tidb-vector python-dotenv
 ```
 
 - `tidb-vector`: the Python client for interacting with TiDB vector search.
-- [`sentence-transformers`](https://sbert.net): a Python library that provides pre-trained models for generating [vector embeddings](/ai/concepts/vector-search-overview.md#vector-embedding) from text.
+- [`sentence-transformers`](https://sbert.net): a Python library that provides pre-trained models for generating [vector embeddings](/ai/guides/vector-search-overview.md#vector-embedding) from text.
 
 ### Step 3. Configure the TiDB connection string
 
 Configure the connection string depending on the TiDB deployment option you've selected.
 
 <SimpleTab>
-<div label="TiDB Cloud Starter">
+<div label="{{{ .starter }}}">
 
-For a TiDB Cloud Starter instance, take the following steps to obtain the connection string and configure environment variables:
+For a {{{ .starter }}} instance, take the following steps to obtain the connection string and configure environment variables:
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
 
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed.
 
@@ -117,7 +117,7 @@ The following are descriptions for each parameter:
 
 ### Step 4. Initialize the embedding model
 
-An [embedding model](/ai/concepts/vector-search-overview.md#embedding-model) transforms data into [vector embeddings](/ai/concepts/vector-search-overview.md#vector-embedding). This example uses the pre-trained model [**msmarco-MiniLM-L12-cos-v5**](https://huggingface.co/sentence-transformers/msmarco-MiniLM-L12-cos-v5) for text embedding. This lightweight model, provided by the `sentence-transformers` library, transforms text data into 384-dimensional vector embeddings.
+An [embedding model](/ai/guides/vector-search-overview.md#embedding-model) transforms data into [vector embeddings](/ai/guides/vector-search-overview.md#vector-embedding). This example uses the pre-trained model [**msmarco-MiniLM-L12-cos-v5**](https://huggingface.co/sentence-transformers/msmarco-MiniLM-L12-cos-v5) for text embedding. This lightweight model, provided by the `sentence-transformers` library, transforms text data into 384-dimensional vector embeddings.
 
 To set up the model, copy the following code into the `example.py` file. This code initializes a `SentenceTransformer` instance and defines a `text_to_embedding()` function for later use.
 

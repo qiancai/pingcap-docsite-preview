@@ -6,12 +6,12 @@ aliases: ['/tidb/stable/vector-search-integrate-with-llamaindex/','/tidb/dev/vec
 
 # Integrate Vector Search with LlamaIndex
 
-This tutorial demonstrates how to integrate [TiDB Vector Search](/ai/concepts/vector-search-overview.md) with [LlamaIndex](https://www.llamaindex.ai).
+This tutorial demonstrates how to integrate [TiDB Vector Search](/ai/guides/vector-search-overview.md) with [LlamaIndex](https://www.llamaindex.ai).
 
 > **Note:**
 >
 > - The vector search feature in public preview. It might be changed without prior notice. If you find a bug, you can report an [issue](https://github.com/pingcap/tidb/issues) on GitHub.
-> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
+> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [{{{ .starter }}}](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
 
 > **Tip**
 >
@@ -28,7 +28,7 @@ To complete this tutorial, you need:
 
 **If you don't have a TiDB cluster, you can create one as follows:**
 
-- (Recommended) [Create a TiDB Cloud Starter instance](/develop/dev-guide-build-cluster-in-cloud.md).
+- (Recommended) [Create a {{{ .starter }}} instance](/develop/dev-guide-build-cluster-in-cloud.md).
 - [Deploy a local test TiDB Self-Managed cluster](/quick-start-with-tidb.md#deploy-a-local-test-cluster) or [Deploy a production TiDB Self-Managed cluster](/production-deployment-using-tiup.md).
 
 ## Get started
@@ -67,11 +67,11 @@ from llama_index.vector_stores.tidbvector import TiDBVectorStore
 Configure the environment variables depending on the TiDB deployment option you've selected.
 
 <SimpleTab>
-<div label="TiDB Cloud Starter">
+<div label="{{{ .starter }}}">
 
-For a TiDB Cloud Starter instance, take the following steps to obtain the connection string and configure environment variables:
+For a {{{ .starter }}} instance, take the following steps to obtain the connection string and configure environment variables:
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
 
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed.
 

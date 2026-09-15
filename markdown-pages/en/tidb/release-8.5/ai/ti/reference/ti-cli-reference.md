@@ -5,7 +5,7 @@ summary: Reference TiDB Cloud CLI command groups, syntax, global options, output
 
 # TiDB Cloud CLI (`ti`) Command Reference
 
-This page describes the command structure and behavior shared by TiDB Cloud CLI `ti` commands. For the syntax and options of an individual command, select its command group or use the documentation navigation.
+This page describes the command structure and behavior shared by [TiDB Cloud CLI (`ti`)](/ai/ti/ti-overview.md) commands. For the syntax and options of an individual command, select its command group or use the documentation navigation.
 
 > **Note:**
 >
@@ -49,8 +49,8 @@ Use the following table to find the reference for a top-level command or command
 
 | Command or command group | Purpose | Reference |
 | --- | --- | --- |
-| `configure` | Configure local profiles, API keys, and the default region. | [`ti configure`](/ai/ti/reference/commands/ti/ti-configure.md) |
-| `update` | Check for and install TiDB Cloud CLI updates. | [`ti update`](/ai/ti/reference/commands/ti/ti-update.md) |
+| `configure` | Configure local profiles, API keys, and the default region. | [`ti configure`](/ai/ti/reference/ti-configure.md) |
+| `update` | Check for and install TiDB Cloud CLI updates. | [`ti update`](/ai/ti/reference/ti-update.md) |
 | `db` | Manage TiDB Cloud Starter instances, branches, SQL users, connections, and SQL statements. | [`ti db` commands](/ai/ti/reference/ti-starter-database.md) |
 | `fs` | Manage Filesystem resources, AI providers, tokens, data, layers, and mounts. | [`ti fs` commands](/ai/ti/reference/ti-filesystem.md) |
 | `fs-git` | Manage Git workspaces on mounted Filesystems. | [`ti fs-git` commands](/ai/ti/reference/ti-filesystem-git.md) |
@@ -161,3 +161,7 @@ For configuration, security, compatibility, and troubleshooting details, see the
 | [TiDB Cloud CLI Regions, Security, and Limitations](/ai/ti/reference/ti-regions-security-and-limitations.md) | Review supported regions, credential boundaries, platform support, and limitations |
 | [Migrate from `tdc` to TiDB Cloud CLI](/ai/ti/reference/ti-migrate-from-tdc.md) | Migrate local state and environment variables from `tdc` v0.1.x |
 | [Troubleshoot TiDB Cloud CLI](/ai/ti/reference/ti-troubleshooting.md) | Diagnose configuration, authentication, routing, and command failures |
+
+## Release notes
+
+For the latest changes to TiDB Cloud CLI (`ti`), see the [TiDB Cloud CLI (`ti`) Release Notes](https://github.com/tidbcloud/ti-cli/releases).

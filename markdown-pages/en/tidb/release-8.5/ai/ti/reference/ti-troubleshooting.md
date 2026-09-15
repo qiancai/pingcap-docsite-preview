@@ -37,7 +37,7 @@ For a clean sandbox, provide the token and region. `ti` derives the file system 
 
 ```bash
 export TI_FS_TOKEN="<owner-token>"
-export TI_REGION_CODE="aws-us-east-1"
+export TI_REGION_CODE="<filesystem-region-code>"
 ti fs check-file-system
 ```
 
@@ -48,7 +48,7 @@ If the token is known but is not stored on the current machine, import it and th
 ```bash
 # Store a known token without requiring TiDB Cloud API keys.
 chmod 600 ./fs-token
-ti fs import-file-system-token --from-file ./fs-token --region aws-us-east-1
+ti fs import-file-system-token --from-file ./fs-token --region <filesystem-region-code>
 ti fs list-files --file-system-id <file-system-id> --path /
 ```
 
@@ -241,4 +241,4 @@ ti fs delete-file-system \
 
 ## Report a problem
 
-Include the TiDB Cloud CLI version, OS and architecture, command name, stable error code, and redacted logs. Never include API keys, FS or vault tokens, DB passwords, SQL containing private data, or file contents. Report issues at [github.com/tidbcloud/ti/issues](https://github.com/tidbcloud/ti/issues).
+Include the TiDB Cloud CLI version, OS and architecture, command name, stable error code, and redacted logs. Never include API keys, FS or vault tokens, DB passwords, SQL containing private data, or file contents. Report issues at [github.com/tidbcloud/ti-cli/issues](https://github.com/tidbcloud/ti-cli/issues).

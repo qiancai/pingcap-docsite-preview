@@ -7,17 +7,22 @@ summary: Provides an overview of the ticloud CLI for TiDB Cloud Starter and Esse
 
 > **Note:**
 >
-> Currently, TiDB Cloud CLI is in public preview and not applicable to TiDB Cloud Dedicated clusters.
+> TiDB Cloud currently provides two CLIs with different scopes: [`ti`](https://github.com/tidbcloud/ti-cli) and [`ticloud`](https://github.com/tidbcloud/tidbcloud-cli).
+>
+> - `ti` is recommended for new automation workflows with TiDB Cloud Starter when it supports the operations you need. You can also use `ti` to manage TiDB Cloud Filesystems. To get started, see [TiDB Cloud CLI (`ti`) Quick Start](/ai/ti/ti-quick-start.md).
+> - `ticloud` remains the CLI for TiDB Cloud Essential and for operations that [`ti`](/ai/ti/ti-overview.md) does not yet support, such as data import, data export, and audit log operations.
+>
+> For more information about when to use `ti` or `ticloud`, see [Differences between `ti` and `ticloud`](/ai/ti/ti-overview.md#differences-between-ti-and-ticloud).
+
+The `ticloud` CLI is a command-line interface that lets you operate TiDB Cloud from your terminal. It manages {{{ .starter }}} and Essential instances, imports and exports data, and supports other CLI workflows.
 
 > **Note:**
 >
-> `ticloud` is the TiDB Cloud CLI for Essential. `ti` does not replace `ticloud` for Essential. For new TiDB Cloud Starter automation and TiDB Cloud Filesystem workflows, use the [TiDB Cloud Command Line Interface](/ai/ti/ti-overview.md). Continue to use `ticloud` for Essential and for operations that `ti` does not provide, such as import, export, and audit-log commands.
-
-The `ticloud` CLI is a command-line interface that lets you operate TiDB Cloud from your terminal. It manages TiDB Cloud Starter and Essential instances, imports and exports data, and supports other CLI workflows.
+> The `ticloud` CLI is currently in public preview and does not support TiDB Cloud Dedicated clusters.
 
 ## Before you begin
 
-Make sure to first [set up your TiDB Cloud CLI environment](/tidb-cloud/get-started-with-cli.md). Once you have installed the `ticloud` CLI, you can use it to manage your TiDB Cloud Starter and Essential instances from the command lines.
+Make sure to first [set up your TiDB Cloud CLI environment](/tidb-cloud/get-started-with-cli.md). Once you have installed the `ticloud` CLI, you can use it to manage your {{{ .starter }}} and Essential instances from the command lines.
 
 ## Commands available
 
@@ -28,12 +33,12 @@ To use the `ticloud` CLI in your terminal, run `ticloud [command] [subcommand]`.
 | Command               | Subcommand                                                            | Description                                    |
 |-----------------------|-----------------------------------------------------------------------|------------------------------------------------|
 | auth                  | login, logout, whoami                                                 | Login and logout                               |
-| serverless (alias: s) | create, delete, describe, list, update, spending-limit, region, shell | Manage TiDB Cloud Starter or TiDB Cloud Essential instance          |
-| serverless branch     | create, delete, describe, list, shell                                 | Manage branches for your TiDB Cloud Starter or TiDB Cloud Essential instance          |
-| serverless import     | cancel, describe, list, start                                         | Manage import tasks for your TiDB Cloud Starter or TiDB Cloud Essential instance      |
-| serverless export     | create, describe, list, cancel, download                              | Manage export tasks for your TiDB Cloud Starter or TiDB Cloud Essential instance      |
-| serverless sql-user   | create, list, delete, update                                          | Manage SQL users for your TiDB Cloud Starter or TiDB Cloud Essential instance         |
-| serverless audit-log  | config, describe, filter-rule (alias: filter), download                                    | Manage database audit logging for your TiDB Cloud Starter or TiDB Cloud Essential instance         |
+| serverless (alias: s) | create, delete, describe, list, update, spending-limit, region, shell | Manage {{{ .starter }}} or {{{ .essential }}} instance          |
+| serverless branch     | create, delete, describe, list, shell                                 | Manage branches for your {{{ .starter }}} or {{{ .essential }}} instance          |
+| serverless import     | cancel, describe, list, start                                         | Manage import tasks for your {{{ .starter }}} or {{{ .essential }}} instance      |
+| serverless export     | create, describe, list, cancel, download                              | Manage export tasks for your {{{ .starter }}} or {{{ .essential }}} instance      |
+| serverless sql-user   | create, list, delete, update                                          | Manage SQL users for your {{{ .starter }}} or {{{ .essential }}} instance         |
+| serverless audit-log  | config, describe, filter-rule (alias: filter), download                                    | Manage database audit logging for your {{{ .starter }}} or {{{ .essential }}} instance         |
 | completion            | bash, fish, powershell, zsh                                           | Generate completion script for specified shell |
 | config                | create, delete, describe, edit, list, set, use                        | Configure user profiles                        |
 | project               | list                                                                  | Manage projects                                |

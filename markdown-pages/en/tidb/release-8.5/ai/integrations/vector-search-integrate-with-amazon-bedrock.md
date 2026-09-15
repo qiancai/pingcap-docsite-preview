@@ -10,12 +10,12 @@ aliases: ['/tidbcloud/vector-search-integrate-with-amazon-bedrock/']
 >
 > This document is applicable to TiDB Cloud only and not applicable to TiDB Self-Managed.
 
-This tutorial demonstrates how to integrate [TiDB Vector Search](/ai/concepts/vector-search-overview.md) with [Amazon Bedrock](https://aws.amazon.com/bedrock/) to build a Retrieval-Augmented Generation (RAG) Q&A bot.
+This tutorial demonstrates how to integrate [TiDB Vector Search](/ai/guides/vector-search-overview.md) with [Amazon Bedrock](https://aws.amazon.com/bedrock/) to build a Retrieval-Augmented Generation (RAG) Q&A bot.
 
 > **Note:**
 >
 > - The vector search feature in public preview. It might be changed without prior notice. If you find a bug, you can report an [issue](https://github.com/pingcap/tidb/issues) on GitHub.
-> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
+> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [{{{ .starter }}}](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
 
 > **Tip**
 >
@@ -35,9 +35,9 @@ To complete this tutorial, you need:
     aws configure set region <your-region>
     ```
 
-- A TiDB Cloud Starter instance
+- A {{{ .starter }}} instance
 
-    [Create a TiDB Cloud Starter instance](/tidb-cloud/select-cluster-tier.md#starter) if you don't have one.
+    [Create a {{{ .starter }}} instance](/tidb-cloud/select-cluster-tier.md#starter) if you don't have one.
 
 - An AWS account with the [required permissions for Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/security_iam_id-based-policy-examples.html) and access to the following models:
 
@@ -54,7 +54,7 @@ This section provides step-by-step instructions to integrate TiDB Vector Search 
 
 Get the TiDB connection information from the [TiDB Cloud console](https://tidbcloud.com/) and set the environment variables in your development environment as follows:
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
 
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed.
 
@@ -240,9 +240,9 @@ class Entity(Base):
 Base.metadata.create_all(engine)
 ```
 
-### Step 7. Save the vector data to TiDB Cloud Starter
+### Step 7. Save the vector data to {{{ .starter }}}
 
-In `demo.py`, add the following code to save the vector data to your TiDB Cloud Starter instance:
+In `demo.py`, add the following code to save the vector data to your {{{ .starter }}} instance:
 
 ```python
 # ---- Saving Vectors to TiDB ----

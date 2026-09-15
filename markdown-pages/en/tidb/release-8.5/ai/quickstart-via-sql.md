@@ -6,7 +6,7 @@ aliases: ['/tidb/stable/vector-search-get-started-using-sql/','/tidb/dev/vector-
 
 # Get Started with TiDB + AI via SQL
 
-TiDB extends MySQL syntax to support [Vector Search](/ai/concepts/vector-search-overview.md) and introduce new [Vector data types](/ai/reference/vector-search-data-types.md) and several [vector functions](/ai/reference/vector-search-functions-and-operators.md).
+TiDB extends MySQL syntax to support [Vector Search](/ai/guides/vector-search-overview.md) and introduce new [Vector data types](/ai/reference/vector-search-data-types.md) and several [vector functions](/ai/reference/vector-search-functions-and-operators.md).
 
 This document demonstrates how to get started with TiDB Vector Search just using SQL statements. You will learn how to use the [MySQL command-line client](https://dev.mysql.com/doc/refman/8.4/en/mysql.html) to complete the following operations:
 
@@ -18,7 +18,7 @@ This document demonstrates how to get started with TiDB Vector Search just using
 > **Note:**
 >
 > - The vector search feature in public preview and might be changed without prior notice. If you find a bug, you can report an [issue](https://github.com/pingcap/tidb/issues) on GitHub.
-> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [TiDB Cloud Starter](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
+> - The vector search feature is available on [TiDB Self-Managed](/overview.md) and [{{{ .starter }}}](/tidb-cloud/select-cluster-tier.md#starter). For TiDB Self-Managed, the TiDB version must be v8.4.0 or later (v8.5.0 or later is recommended).
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ To complete steps in this document, you need:
 
 **If you don't have a TiDB cluster, you can create one as follows:**
 
-- (Recommended) [Create a TiDB Cloud Starter instance](/develop/dev-guide-build-cluster-in-cloud.md).
+- (Recommended) [Create a {{{ .starter }}} instance](/develop/dev-guide-build-cluster-in-cloud.md).
 - [Deploy a local test TiDB Self-Managed cluster](/quick-start-with-tidb.md#deploy-a-local-test-cluster) or [Deploy a production TiDB Self-Managed cluster](/production-deployment-using-tiup.md).
 
 ## Get started
@@ -39,9 +39,9 @@ To complete steps in this document, you need:
 Connect to TiDB depending on the TiDB deployment option you've selected.
 
 <SimpleTab>
-<div label="TiDB Cloud Starter">
+<div label="{{{ .starter }}}">
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} instance to go to its overview page.
 
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed.
 
@@ -72,7 +72,7 @@ mysql --comments --host 127.0.0.1 --port 4000 -u root
 
 ### Step 2. Create a vector table
 
-When creating a table, you can define a column as a [vector](/ai/concepts/vector-search-overview.md#vector-embedding) column by specifying the `VECTOR` data type.
+When creating a table, you can define a column as a [vector](/ai/guides/vector-search-overview.md#vector-embedding) column by specifying the `VECTOR` data type.
 
 For example, to create a table `embedded_documents` with a three-dimensional `VECTOR` column, execute the following SQL statements using your MySQL CLI:
 
@@ -95,7 +95,7 @@ Query OK, 0 rows affected (0.27 sec)
 
 ### Step 3. Insert vector embeddings to the table
 
-Insert three documents with their [vector embeddings](/ai/concepts/vector-search-overview.md#vector-embedding) into the `embedded_documents` table:
+Insert three documents with their [vector embeddings](/ai/guides/vector-search-overview.md#vector-embedding) into the `embedded_documents` table:
 
 ```sql
 INSERT INTO embedded_documents
@@ -116,7 +116,7 @@ Records: 3  Duplicates: 0  Warnings: 0
 >
 > This example simplifies the dimensions of the vector embeddings and uses only 3-dimensional vectors for demonstration purposes.
 >
-> In real-world applications, [embedding models](/ai/concepts/vector-search-overview.md#embedding-model) often produce vector embeddings with hundreds or thousands of dimensions.
+> In real-world applications, [embedding models](/ai/guides/vector-search-overview.md#embedding-model) often produce vector embeddings with hundreds or thousands of dimensions.
 
 ### Step 4. Query the vector table
 
