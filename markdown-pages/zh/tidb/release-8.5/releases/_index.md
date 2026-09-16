@@ -1,7 +1,7 @@
 ---
 title: TiDB 版本发布历史
 summary: 介绍 TiDB 版本发布历史。
-aliases: ['/zh/tidb/stable/release-notes/','/zh/tidb/v8.5/release-notes/','/docs-cn/dev/releases/release-notes/','/docs-cn/dev/releases/rn/']
+aliases: ['/zh/tidb/dev/release-notes/','/zh/tidb/stable/release-notes/','/zh/tidb/v8.5/release-notes/','/zh/tidb/v5.4/release-notes','/zh/tidb/v6.1/release-notes','/zh/tidb/v6.5/release-notes','/zh/tidb/v7.1/release-notes','/zh/tidb/v7.5/release-notes','/zh/tidb/v8.1/release-notes']
 ---
 
 # TiDB 版本发布历史
@@ -14,6 +14,7 @@ aliases: ['/zh/tidb/stable/release-notes/','/zh/tidb/v8.5/release-notes/','/docs
 
 ## 8.5
 
+- [8.5.8](/releases/release-8.5.8.md): 2026-08-27
 - [8.5.7](/releases/release-8.5.7.md): 2026-07-09
 - [8.5.6](/releases/release-8.5.6.md): 2026-04-14
 - [8.5.5](/releases/release-8.5.5.md): 2026-01-15
@@ -51,6 +52,7 @@ aliases: ['/zh/tidb/stable/release-notes/','/zh/tidb/v8.5/release-notes/','/docs
 
 ## 7.5
 
+- [7.5.8](/releases/release-7.5.8.md): 2026-09-17
 - [7.5.7](/releases/release-7.5.7.md): 2025-09-04
 - [7.5.6](/releases/release-7.5.6.md): 2025-03-14
 - [7.5.5](/releases/release-7.5.5.md): 2024-12-31
