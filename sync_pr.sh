@@ -128,9 +128,10 @@ process_cloud_toc() {
 # TiDB TOC namespace files are served from the stable branch path.
 TOC_NAMESPACE_PATTERN="^(ai|best-practices|api|develop|releases)/|^TOC.*\.md$"
 
-# TiDB Cloud Lake files are served from a dedicated product path.
-CLOUD_LAKE_PATTERN="^(TOC-tidb-cloud-lake\.md$|tidb-cloud-lake/)"
-CLOUD_LAKE_DEST="markdown-pages/en/tidb-cloud-lake/master"
+# TiDB Cloud Lake and TiDB Cloud Filesystem files are served from dedicated product paths.
+# For each product, tidb-cloud-<product>/ and TOC-tidb-cloud-<product>.md are routed to
+# markdown-pages/en/tidb-cloud-<product>/master.
+DEDICATED_PRODUCTS=("lake" "filesystem")
 
 perform_sync_task() {
   generate_sync_tasks
@@ -165,30 +166,36 @@ perform_sync_task() {
     # Only sync modified or added files.
     CHANGED_FILES=$(git -C "$SRC_DIR" diff --merge-base --name-only --diff-filter=AMR origin/"$BASE_BRANCH" --relative)
 
-    # Route TiDB Cloud Lake files to their dedicated product path and exclude them from the default TiDB destination.
-    CLOUD_LAKE_FILES=$(echo "$CHANGED_FILES" | grep -E "$CLOUD_LAKE_PATTERN" || true)
-    if [[ -n "$CLOUD_LAKE_FILES" ]]; then
-      mkdir -p "$CLOUD_LAKE_DEST"
+    # Route files of dedicated cloud products (TiDB Cloud Lake, TiDB Cloud Filesystem)
+    # to their dedicated product paths and exclude them from the default TiDB destination.
+    for PRODUCT in "${DEDICATED_PRODUCTS[@]}"; do
+      PRODUCT_PATTERN="^(TOC-tidb-cloud-${PRODUCT}\.md$|tidb-cloud-${PRODUCT}/)"
+      PRODUCT_DEST="markdown-pages/en/tidb-cloud-${PRODUCT}/master"
 
-      if [[ -f "$SRC_DIR/variables.json" ]]; then
-        rsync -av "$SRC_DIR/variables.json" "$CLOUD_LAKE_DEST/"
+      PRODUCT_FILES=$(echo "$CHANGED_FILES" | grep -E "$PRODUCT_PATTERN" || true)
+      if [[ -n "$PRODUCT_FILES" ]]; then
+        mkdir -p "$PRODUCT_DEST"
+
+        if [[ -f "$SRC_DIR/variables.json" ]]; then
+          rsync -av "$SRC_DIR/variables.json" "$PRODUCT_DEST/"
+        fi
+
+        echo "$PRODUCT_FILES" | tee /dev/fd/2 |
+          rsync -av --files-from=- "$SRC_DIR" "$PRODUCT_DEST"
+
+        # Get the current commit SHA.
+        CURRENT_COMMIT=$(git -C "$REPO_DIR" rev-parse HEAD)
+        commit_changes "Sync TiDB Cloud ${PRODUCT} files for PR https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER (commit: https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER/commits/$CURRENT_COMMIT)"
+
+        if [[ -f "$PRODUCT_DEST/variables.json" ]]; then
+          ./scripts/replace_variables.py "$PRODUCT_DEST" "$PRODUCT_DEST/variables.json"
+        fi
+        (cd "$PRODUCT_DEST" && remove_copyable)
+
+        commit_changes "Post-process TiDB Cloud ${PRODUCT} docs (variables replaced, copyable removed)"
       fi
-
-      echo "$CLOUD_LAKE_FILES" | tee /dev/fd/2 |
-        rsync -av --files-from=- "$SRC_DIR" "$CLOUD_LAKE_DEST"
-
-      # Get the current commit SHA.
-      CURRENT_COMMIT=$(git -C "$REPO_DIR" rev-parse HEAD)
-      commit_changes "Sync TiDB Cloud Lake files for PR https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER (commit: https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER/commits/$CURRENT_COMMIT)"
-
-      if [[ -f "$CLOUD_LAKE_DEST/variables.json" ]]; then
-        ./scripts/replace_variables.py "$CLOUD_LAKE_DEST" "$CLOUD_LAKE_DEST/variables.json"
-      fi
-      (cd "$CLOUD_LAKE_DEST" && remove_copyable)
-
-      commit_changes "Post-process TiDB Cloud Lake docs (variables replaced, copyable removed)"
-    fi
-    CHANGED_FILES=$(echo "$CHANGED_FILES" | grep -vE "$CLOUD_LAKE_PATTERN" || true)
+      CHANGED_FILES=$(echo "$CHANGED_FILES" | grep -vE "$PRODUCT_PATTERN" || true)
+    done
 
     if [[ -n "$CHANGED_FILES" ]]; then
       # Ensure variables.json is always available for processing.
