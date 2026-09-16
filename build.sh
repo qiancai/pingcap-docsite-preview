@@ -51,8 +51,8 @@ if [ ! -e website-docs/.git ]; then
   if [ -d "website-docs" ]; then
     rm -rf website-docs
   fi
-  # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch master https://github.com/pingcap/website-docs
+  # Clone the website-docs branch that adds TiDB Cloud Filesystem navigation and routing (pingcap/website-docs#736).
+  git clone --single-branch --branch docs/filesystem-product-navigation https://github.com/Icemap/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
