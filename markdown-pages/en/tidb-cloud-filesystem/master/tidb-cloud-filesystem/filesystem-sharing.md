@@ -1,9 +1,9 @@
 ---
-title: Share TiDB Cloud Filesystems
+title: Share a TiDB Cloud Filesystem
 summary: Share a remote workspace across machines and sandboxes with separate access tokens, and hand off files after writes reach the service.
 ---
 
-# Share TiDB Cloud Filesystems
+# Share a TiDB Cloud Filesystem
 
 Sharing a Filesystem gives participants access to the same remote namespace, not independent copies. For example, an agent can produce a report in a sandbox and a reviewer can open that report from a laptop without downloading and redistributing an archive for every revision.
 
@@ -56,6 +56,7 @@ Deliver `REVIEW_TOKEN` and the Filesystem's region code securely to machine B. R
 Inject the reviewer's token and matching region into the environment:
 
 ```bash
+# In production, inject the token from a secret manager instead of pasting it into a shell.
 # No ti configure is needed on the receiving machine.
 export TI_FS_TOKEN="<reviewer-token>"
 export TI_REGION_CODE="<filesystem-region-code>"
@@ -84,7 +85,7 @@ A successful write to a FUSE-mounted file might still be buffered on the produci
 
 Use a direct remote read to verify a handoff independently of another mount's cache. Existing open handles and client caches can retain older content; do not assume every reader instantly sees each local write.
 
-Coordinate writers to the same path. Shared storage is not a distributed lock or an automatic merge system. Use separate paths or [layers](/tidb-cloud-filesystem/filesystem-branches-checkpoints.md) for independent drafts, and publish only after review.
+Coordinate writers to the same path. Shared storage is not a distributed lock or an automatic merge system. Use separate paths or [layers](/tidb-cloud-filesystem/filesystem-layers-checkpoints.md) for independent drafts, and publish only after review.
 
 ## End access without deleting the workspace
 
@@ -109,5 +110,5 @@ Do not delete the Filesystem to disconnect one participant: resource deletion af
 
 ## What's next
 
-- [Use branches to compare independent drafts](/tidb-cloud-filesystem/filesystem-branches-checkpoints.md).
+- [Understand layers and checkpoints for independent drafts](/tidb-cloud-filesystem/filesystem-layers-checkpoints.md).
 - [Run the agent sandbox example](/ai/ti/guides/ti-agent-sandbox-example.md).
