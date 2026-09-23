@@ -5,11 +5,11 @@ summary: Learn how to query and import Parquet data into PostgreSQL-compatible T
 
 # Import Parquet Data
 
-PostgreSQL-compatible {{{ .starter }}} supports the `parquet` extension for reading Parquet data and importing it into SQL tables.
+PostgreSQL-compatible TiDB Cloud Starter supports the `parquet` extension for reading Parquet data and importing it into SQL tables.
 
 > **Note:**
 >
-> PostgreSQL-compatible {{{ .starter }}} is currently in Limited Public Preview.
+> PostgreSQL-compatible TiDB Cloud Starter is currently in Limited Public Preview.
 
 This document describes Parquet access through HTTP or HTTPS URLs. The source URL must be reachable from TiDB Cloud.
 

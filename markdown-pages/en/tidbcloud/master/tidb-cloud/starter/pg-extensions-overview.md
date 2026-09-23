@@ -5,11 +5,11 @@ summary: Learn about the PostgreSQL extensions and built-in capabilities support
 
 # PostgreSQL Extensions
 
-PostgreSQL-compatible {{{ .starter }}} provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
+PostgreSQL-compatible TiDB Cloud Starter provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
 
 > **Note:**
 >
-> PostgreSQL-compatible {{{ .starter }}} is currently in Limited Public Preview. Extension availability and functionality might change during the preview.
+> PostgreSQL-compatible TiDB Cloud Starter is currently in Limited Public Preview. Extension availability and functionality might change during the preview.
 
 ## Supported extensions and capabilities
 

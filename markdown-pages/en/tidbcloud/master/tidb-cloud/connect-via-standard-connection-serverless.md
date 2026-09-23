@@ -1,18 +1,18 @@
 ---
-title: Connect to {{{ .starter }}} or Essential via Public Endpoint
-summary: Learn how to connect to your {{{ .starter }}} or {{{ .essential }}} instance via public endpoint.
+title: Connect to TiDB Cloud Starter or Essential via Public Endpoint
+summary: Learn how to connect to your TiDB Cloud Starter or TiDB Cloud Essential instance via public endpoint.
 ---
 
-# Connect to {{{ .starter }}} or Essential via Public Endpoint
+# Connect to TiDB Cloud Starter or Essential via Public Endpoint
 
-This document describes how to connect to your {{{ .starter }}} or {{{ .essential }}} instance via a public endpoint, using a SQL client from your computer, as well as how to disable a public endpoint.
+This document describes how to connect to your TiDB Cloud Starter or TiDB Cloud Essential instance via a public endpoint, using a SQL client from your computer, as well as how to disable a public endpoint.
 
 ## Choose an endpoint model
 
 Depending on your TiDB Cloud plan, choose the appropriate endpoint model:
 
-- For {{{ .starter }}} instances or for {{{ .essential }}} instances created before July 1, 2026, use the [**endpoint shared model**](#connect-via-a-public-endpoint-endpoint-shared-model). In this model, a single public endpoint can be shared by multiple {{{ .starter }}} and Essential instances in the same region.
-- For {{{ .essential }}} instances created starting July 1, 2026, use the [**endpoint exclusive model**](#connect-via-a-public-endpoint-endpoint-exclusive-model). In this model, each {{{ .essential }}} instance uses its own standalone public endpoint. This model eliminates the need to include the [account prefix](/tidb-cloud/select-cluster-tier.md#user-name-prefix) when connecting, but you need to repeat the setup steps for each {{{ .essential }}} instance.
+- For TiDB Cloud Starter instances or for TiDB Cloud Essential instances created before July 1, 2026, use the [**endpoint shared model**](#connect-via-a-public-endpoint-endpoint-shared-model). In this model, a single public endpoint can be shared by multiple TiDB Cloud Starter and Essential instances in the same region.
+- For TiDB Cloud Essential instances created starting July 1, 2026, use the [**endpoint exclusive model**](#connect-via-a-public-endpoint-endpoint-exclusive-model). In this model, each TiDB Cloud Essential instance uses its own standalone public endpoint. This model eliminates the need to include the [account prefix](/tidb-cloud/select-cluster-tier.md#user-name-prefix) when connecting, but you need to repeat the setup steps for each TiDB Cloud Essential instance.
 
 ## Connect via a public endpoint (endpoint shared model)
 
@@ -20,9 +20,9 @@ Depending on your TiDB Cloud plan, choose the appropriate endpoint model:
 >
 > To learn how to connect to a TiDB Cloud Dedicated cluster via public endpoint, see [Connect to TiDB Cloud Dedicated via Public Connection](/tidb-cloud/connect-via-standard-connection.md).
 
-To connect to a {{{ .starter }}} or {{{ .essential }}} instance via public endpoint using the shared model, take the following steps:
+To connect to a TiDB Cloud Starter or TiDB Cloud Essential instance via public endpoint using the shared model, take the following steps:
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} or Essential instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter or Essential instance to go to its overview page.
 
 2. Click **Connect** in the upper-right corner. A connection dialog is displayed.
 
@@ -32,47 +32,47 @@ To connect to a {{{ .starter }}} or {{{ .essential }}} instance via public endpo
 
     > **Note:**
     >
-    > - Keeping the connection type as `Public` means the connection is via standard TLS connection. For more information, see [TLS Connection to {{{ .starter }}} or Essential](/tidb-cloud/secure-connections-to-serverless-clusters.md).
-    > - PostgreSQL-compatible {{{ .starter }}} currently supports public endpoints only. Private endpoints are not supported.
-    > - For MySQL-compatible {{{ .starter }}} and {{{ .essential }}} instances, you can also choose **Private Endpoint** in the **Connection Type** drop-down list. For more information, see the following documents:
+    > - Keeping the connection type as `Public` means the connection is via standard TLS connection. For more information, see [TLS Connection to TiDB Cloud Starter or Essential](/tidb-cloud/secure-connections-to-serverless-clusters.md).
+    > - PostgreSQL-compatible TiDB Cloud Starter currently supports public endpoints only. Private endpoints are not supported.
+    > - For MySQL-compatible TiDB Cloud Starter and TiDB Cloud Essential instances, you can also choose **Private Endpoint** in the **Connection Type** drop-down list. For more information, see the following documents:
     >
-    >     - [Connect to {{{ .starter }}} or Essential via AWS PrivateLink](/tidb-cloud/set-up-private-endpoint-connections-serverless.md)
-    >     - [Connect to {{{ .starter }}} or Essential via Alibaba Cloud Private Endpoint](/tidb-cloud/set-up-private-endpoint-connections-on-alibaba-cloud.md)
+    >     - [Connect to TiDB Cloud Starter or Essential via AWS PrivateLink](/tidb-cloud/set-up-private-endpoint-connections-serverless.md)
+    >     - [Connect to TiDB Cloud Starter or Essential via Alibaba Cloud Private Endpoint](/tidb-cloud/set-up-private-endpoint-connections-on-alibaba-cloud.md)
     </CustomContent>
 
     <CustomContent language="ja">
 
     > **Note:**
     >
-    > - Keeping the connection type as `Public` means the connection is via standard TLS connection. For more information, see [TLS Connection to {{{ .starter }}} or Essential](/tidb-cloud/secure-connections-to-serverless-clusters.md).
-    > - PostgreSQL-compatible {{{ .starter }}} currently supports public endpoints only. Private endpoints are not supported.
-    > - For MySQL-compatible {{{ .starter }}} and {{{ .essential }}} instances, you can also choose **Private Endpoint** in the **Connection Type** drop-down list. For more information, see [Connect to {{{ .starter }}} or Essential via AWS PrivateLink](/tidb-cloud/set-up-private-endpoint-connections-serverless.md).
+    > - Keeping the connection type as `Public` means the connection is via standard TLS connection. For more information, see [TLS Connection to TiDB Cloud Starter or Essential](/tidb-cloud/secure-connections-to-serverless-clusters.md).
+    > - PostgreSQL-compatible TiDB Cloud Starter currently supports public endpoints only. Private endpoints are not supported.
+    > - For MySQL-compatible TiDB Cloud Starter and TiDB Cloud Essential instances, you can also choose **Private Endpoint** in the **Connection Type** drop-down list. For more information, see [Connect to TiDB Cloud Starter or Essential via AWS PrivateLink](/tidb-cloud/set-up-private-endpoint-connections-serverless.md).
     </CustomContent>
 
-4. TiDB Cloud lets you create [branches](https://docs.pingcap.com/tidbcloud/branch-overview/?plan=starter) for your MySQL-compatible {{{ .starter }}} instance. After a branch is created, you can choose to connect to the branch via the **Branch** drop-down list. `main` represents the {{{ .starter }}} instance itself.
+4. TiDB Cloud lets you create [branches](https://docs.pingcap.com/tidbcloud/branch-overview/?plan=starter) for your MySQL-compatible TiDB Cloud Starter instance. After a branch is created, you can choose to connect to the branch via the **Branch** drop-down list. `main` represents the TiDB Cloud Starter instance itself.
 
     > **Note:**
     >
-    > PostgreSQL-compatible {{{ .starter }}} does not currently support branches.
+    > PostgreSQL-compatible TiDB Cloud Starter does not currently support branches.
 
 5. If you have not set a password yet, click **Generate Password** to generate a random password. The generated password will not show again, so save your password in a secure location.
 
-6. Connect to your {{{ .starter }}} or Essential instance with the connection string.
+6. Connect to your TiDB Cloud Starter or Essential instance with the connection string.
 
     > **Note:**
     >
-    > When you connect to a {{{ .starter }}} or {{{ .essential }}} instance, you must include the prefix for your {{{ .starter }}} or Essential instance in the user name and wrap the name with quotation marks. For more information, see [User name prefix](/tidb-cloud/select-cluster-tier.md#user-name-prefix).
-    > Your client IP must be in the allowed IP rules of the public endpoint of your {{{ .starter }}} or Essential instance. For more information, see [Configure {{{ .starter }}} or Essential Firewall Rules for Public Endpoints](/tidb-cloud/configure-serverless-firewall-rules-for-public-endpoints.md).
+    > When you connect to a TiDB Cloud Starter or TiDB Cloud Essential instance, you must include the prefix for your TiDB Cloud Starter or Essential instance in the user name and wrap the name with quotation marks. For more information, see [User name prefix](/tidb-cloud/select-cluster-tier.md#user-name-prefix).
+    > Your client IP must be in the allowed IP rules of the public endpoint of your TiDB Cloud Starter or Essential instance. For more information, see [Configure TiDB Cloud Starter or Essential Firewall Rules for Public Endpoints](/tidb-cloud/configure-serverless-firewall-rules-for-public-endpoints.md).
 
 ## Connect via a public endpoint (endpoint exclusive model)
 
 > **Note:**
 >
-> Currently, the endpoint exclusive model is available only for {{{ .essential }}} instances created starting July 1, 2026, in certain regions. If it is not available for your instance, you can use the [endpoint shared model](#connect-via-a-public-endpoint-endpoint-shared-model) instead.
+> Currently, the endpoint exclusive model is available only for TiDB Cloud Essential instances created starting July 1, 2026, in certain regions. If it is not available for your instance, you can use the [endpoint shared model](#connect-via-a-public-endpoint-endpoint-shared-model) instead.
 
-In the endpoint exclusive model, each {{{ .essential }}} instance uses its own standalone public endpoint. This model eliminates the need to include the [account prefix](/tidb-cloud/select-cluster-tier.md#user-name-prefix) when connecting, but you need to repeat the setup steps for each {{{ .essential }}} instance.
+In the endpoint exclusive model, each TiDB Cloud Essential instance uses its own standalone public endpoint. This model eliminates the need to include the [account prefix](/tidb-cloud/select-cluster-tier.md#user-name-prefix) when connecting, but you need to repeat the setup steps for each TiDB Cloud Essential instance.
 
-To connect to a {{{ .essential }}} instance via a public endpoint using the exclusive model, take the following steps:
+To connect to a TiDB Cloud Essential instance via a public endpoint using the exclusive model, take the following steps:
 
 1. Open the overview page of the target instance.
 
@@ -90,17 +90,17 @@ To connect to a {{{ .essential }}} instance via a public endpoint using the excl
 
     - If the public connection is disabled, click **Settings** > **Networking** in the left pane, and then enable the **Public Endpoint** option on the **Networking** page.
     - If you have not configured the IP access list, click **Configure IP Access List** to configure it before your first connection.
-    - If you have not configured a root password for your {{{ .essential }}} instance, click **Set Root Password** and set it.
+    - If you have not configured a root password for your TiDB Cloud Essential instance, click **Set Root Password** and set it.
 
-4. Click **CA cert** to download the CA cert for TLS connection to {{{ .essential }}} instances. The CA cert supports TLS 1.2 by default.
+4. Click **CA cert** to download the CA cert for TLS connection to TiDB Cloud Essential instances. The CA cert supports TLS 1.2 by default.
 
 5. Choose your preferred connection method in the **Connection with** drop-down list, and then refer to the connection string to connect to your instance.
 
 ## Disable a public endpoint
 
-If you do not need to use a public endpoint of a {{{ .starter }}} or {{{ .essential }}} instance, you can disable it to prevent connections from the internet:
+If you do not need to use a public endpoint of a TiDB Cloud Starter or TiDB Cloud Essential instance, you can disable it to prevent connections from the internet:
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} or Essential instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter or Essential instance to go to its overview page.
 
 2. In the left navigation pane, click **Settings** > **Networking**.
 
@@ -108,7 +108,7 @@ If you do not need to use a public endpoint of a {{{ .starter }}} or {{{ .essent
 
 4. Click **Disable** in the confirmation dialog.
 
-After disabling the public endpoint, the `Public` entry in the **Connection Type** drop-down list of the connect dialog is disabled. If users are still trying to access the {{{ .starter }}} or Essential instance from the public endpoint, they will get an error.
+After disabling the public endpoint, the `Public` entry in the **Connection Type** drop-down list of the connect dialog is disabled. If users are still trying to access the TiDB Cloud Starter or Essential instance from the public endpoint, they will get an error.
 
 > **Note:**
 >
@@ -116,7 +116,7 @@ After disabling the public endpoint, the `Public` entry in the **Connection Type
 
 You can re-enable the public endpoint after disabling it:
 
-1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target {{{ .starter }}} or Essential instance to go to its overview page.
+1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page, and then click the name of your target TiDB Cloud Starter or Essential instance to go to its overview page.
 
 2. In the left navigation pane, click **Settings** > **Networking**.
 
@@ -124,4 +124,4 @@ You can re-enable the public endpoint after disabling it:
 
 ## What's next
 
-After you have successfully connected to your {{{ .starter }}} or Essential instance, you can [explore SQL statements with TiDB](/basic-sql-operations.md).
+After you have successfully connected to your TiDB Cloud Starter or Essential instance, you can [explore SQL statements with TiDB](/basic-sql-operations.md).
