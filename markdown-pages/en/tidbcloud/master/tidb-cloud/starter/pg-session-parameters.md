@@ -5,7 +5,7 @@ summary: Learn how to view and configure PostgreSQL-compatible session parameter
 
 # PostgreSQL Session Parameters
 
-PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
+PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
 
 
 ## Set and view parameters
@@ -101,7 +101,7 @@ The following commonly used parameters are supported:
 | `max_identifier_length` | `63` | No | Maximum identifier length in bytes. |
 | `lc_messages` | `C` | Yes | Locale used for server messages. |
 
-`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible {{{ .starter }}} instance.
+`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible TiDB Cloud Starter instance.
 
 ## Search path
 
@@ -230,7 +230,7 @@ SET work_mem = '64MB';
 SHOW work_mem;
 ```
 
-The configured value does not control query execution memory in PostgreSQL-compatible {{{ .starter }}}.
+The configured value does not control query execution memory in PostgreSQL-compatible TiDB Cloud Starter.
 
 ### `check_function_bodies`
 

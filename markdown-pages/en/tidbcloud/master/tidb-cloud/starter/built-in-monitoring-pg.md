@@ -18,20 +18,20 @@ To view the metrics on the **Metrics** page, take the following steps:
 
 In TiDB Cloud, the metrics data is kept for 7 days.
 
-## Metrics for PostgreSQL-compatible {{{ .starter }}} Instances
+## Metrics for PostgreSQL-compatible TiDB Cloud Starter Instances
 
-The following sections illustrate the metrics on the **Metrics** page for PostgreSQL-compatible {{{ .starter }}} instances.
+The following sections illustrate the metrics on the **Metrics** page for PostgreSQL-compatible TiDB Cloud Starter instances.
 
 ### Overview
 
-The following sections illustrate the metrics on the **Metrics** page for PostgreSQL-compatible {{{ .starter }}} instances.
+The following sections illustrate the metrics on the **Metrics** page for PostgreSQL-compatible TiDB Cloud Starter instances.
 
 | Metric name  | Labels | Description                                   |
 | :------------| :------| :-------------------------------------------- |
 | Used Storage Size | Row-based storage, Row-based standard storage, Columnar storage | The size of row-based storage, row-based standard storage, and columnar storage. TiDB Cloud displays this metric only when the size of each storage type is 50 MiB or larger. **Row-based standard storage** has the same meaning as **Row-based storage**. |
 | Query Per Second | All, {SQL type} | The number of SQL statements executed per second, which are collected by SQL types, such as `SELECT`, `INSERT`, and `UPDATE`. |
-| Query Duration | Avg, P99, P99-{SQL type} | The duration from receiving a request from the client to the {{{ .starter }}} or {{{ .essential }}} instance until the instance executes the request and returns the result to the client. |
-| Total Connection | All | The number of connections to the {{{ .starter }}} or {{{ .essential }}} instance. |
+| Query Duration | Avg, P99, P99-{SQL type} | The duration from receiving a request from the client to the TiDB Cloud Starter or TiDB Cloud Essential instance until the instance executes the request and returns the result to the client. |
+| Total Connection | All | The number of connections to the TiDB Cloud Starter or TiDB Cloud Essential instance. |
 
 
 ## FAQ

@@ -5,7 +5,7 @@ summary: Learn how to use PostgreSQL-compatible row-level security policies on P
 
 # PostgreSQL Row-Level Security
 
-PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible Row-Level Security (RLS). RLS lets you control which rows a database role can view, insert, update, or delete.
+PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible Row-Level Security (RLS). RLS lets you control which rows a database role can view, insert, update, or delete.
 
 RLS policies are evaluated by the database for each applicable query. This makes RLS useful for multi-tenant applications and other workloads that require row-specific access controls.
 
