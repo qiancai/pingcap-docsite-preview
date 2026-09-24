@@ -5,18 +5,22 @@ summary: Learn how to view and configure PostgreSQL-compatible session parameter
 
 # PostgreSQL Session Parameters
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
 
 
 ## Set and view parameters
 
 Use `SET` to change a parameter for the current session:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET statement_timeout = '120s';
 ```
 
 Use `SET LOCAL` to change a parameter only for the current transaction:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN;
@@ -31,11 +35,15 @@ COMMIT;
 
 Use `SHOW` to view the current value:
 
+{{< copyable "sql" >}}
+
 ```sql
 SHOW statement_timeout;
 ```
 
 List all recognized parameters:
+
+{{< copyable "sql" >}}
 
 ```sql
 SHOW ALL;
@@ -43,11 +51,15 @@ SHOW ALL;
 
 Use `RESET` to restore one parameter to its default value:
 
+{{< copyable "sql" >}}
+
 ```sql
 RESET statement_timeout;
 ```
 
 Reset all session parameters:
+
+{{< copyable "sql" >}}
 
 ```sql
 RESET ALL;
@@ -57,11 +69,15 @@ RESET ALL;
 
 Use `current_setting()` to read a parameter:
 
+{{< copyable "sql" >}}
+
 ```sql
 SELECT current_setting('statement_timeout');
 ```
 
 Use `set_config()` to change a parameter:
+
+{{< copyable "sql" >}}
 
 ```sql
 SELECT set_config(
@@ -101,7 +117,7 @@ The following commonly used parameters are supported:
 | `max_identifier_length` | `63` | No | Maximum identifier length in bytes. |
 | `lc_messages` | `C` | Yes | Locale used for server messages. |
 
-`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible TiDB Cloud Starter instance.
+`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible {{{ .starter }}} instance.
 
 ## Search path
 
@@ -109,11 +125,15 @@ The `search_path` parameter controls the schema resolution order.
 
 View the current search path:
 
+{{< copyable "sql" >}}
+
 ```sql
 SHOW search_path;
 ```
 
 Change it for the current session:
+
+{{< copyable "sql" >}}
 
 ```sql
 SET search_path = app, public;
@@ -125,17 +145,23 @@ After this change, an unqualified name is resolved against `app` before `public`
 
 View the current time zone:
 
+{{< copyable "sql" >}}
+
 ```sql
 SHOW timezone;
 ```
 
 Set the session time zone:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET timezone = 'America/Los_Angeles';
 ```
 
 Or:
+
+{{< copyable "sql" >}}
 
 ```sql
 SET TIME ZONE 'UTC';
@@ -149,11 +175,15 @@ The default statement timeout is 60 seconds.
 
 Increase it for a long-running operation:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET statement_timeout = '180s';
 ```
 
 Disable the statement timeout for the current session:
+
+{{< copyable "sql" >}}
 
 ```sql
 SET statement_timeout = 0;
@@ -165,17 +195,23 @@ Use a larger timeout carefully for operations such as index creation or large da
 
 Set the default isolation level for subsequent transactions:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET default_transaction_isolation = 'repeatable read';
 ```
 
 Make new transactions read-only by default:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET default_transaction_read_only = on;
 ```
 
 View the current transaction settings:
+
+{{< copyable "sql" >}}
 
 ```sql
 SHOW transaction_isolation;
@@ -225,12 +261,14 @@ Some PostgreSQL parameters are accepted so that PostgreSQL clients and framework
 
 `work_mem` is accepted and its session value can be changed:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET work_mem = '64MB';
 SHOW work_mem;
 ```
 
-The configured value does not control query execution memory in PostgreSQL-compatible TiDB Cloud Starter.
+The configured value does not control query execution memory in PostgreSQL-compatible {{{ .starter }}}.
 
 ### `check_function_bodies`
 
@@ -258,11 +296,15 @@ The `default_text_search_config` parameter controls the default full-text search
 
 View the current value:
 
+{{< copyable "sql" >}}
+
 ```sql
 SHOW default_text_search_config;
 ```
 
 Set it for the current session:
+
+{{< copyable "sql" >}}
 
 ```sql
 SET default_text_search_config = 'simple';
@@ -275,11 +317,15 @@ The `hnsw.ef_search` parameter controls the HNSW candidate list size for the cur
 
 View it:
 
+{{< copyable "sql" >}}
+
 ```sql
 SHOW hnsw.ef_search;
 ```
 
 Set it:
+
+{{< copyable "sql" >}}
 
 ```sql
 SET hnsw.ef_search = 100;
@@ -293,6 +339,8 @@ The default value is `40`. A higher value can improve recall at the cost of addi
 The `embedding.dimensions` parameter controls the output dimension used by supported server-side embedding functions.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 SET embedding.dimensions = 512;

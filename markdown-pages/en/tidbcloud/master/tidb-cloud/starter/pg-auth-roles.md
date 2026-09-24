@@ -5,7 +5,7 @@ summary: Learn how to manage PostgreSQL-compatible database roles and privileges
 
 # PostgreSQL Authentication and Roles
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible database roles, role attributes, object privileges, and session role switching.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible database roles, role attributes, object privileges, and session role switching.
 
 This page describes database-level authentication and authorization. TiDB Cloud organization, project, and instance access is managed separately through TiDB Cloud Identity and Access Management.
 
@@ -13,6 +13,8 @@ This page describes database-level authentication and authorization. TiDB Cloud 
 ## Create a role
 
 Use `CREATE ROLE ... LOGIN` to create a role that can connect to the database.
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE ROLE app_user
@@ -22,11 +24,15 @@ PASSWORD 'SecurePass1';
 
 A role without `LOGIN` can be used as a group role for privilege management:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE ROLE readonly;
 ```
 
 Grant the group role to a login role:
+
+{{< copyable "sql" >}}
 
 ```sql
 GRANT readonly TO app_user;
@@ -36,12 +42,16 @@ GRANT readonly TO app_user;
 
 Change a role password:
 
+{{< copyable "sql" >}}
+
 ```sql
 ALTER ROLE app_user
 PASSWORD 'NewSecurePass1';
 ```
 
 Grant or revoke selected role attributes:
+
+{{< copyable "sql" >}}
 
 ```sql
 ALTER ROLE app_user CREATEDB;
@@ -66,6 +76,8 @@ Grant `BYPASSRLS` only to trusted administrative or service roles.
 
 Grant one or more privileges on a table:
 
+{{< copyable "sql" >}}
+
 ```sql
 GRANT SELECT, INSERT
 ON todos
@@ -74,6 +86,8 @@ TO app_user;
 
 Grant all supported table privileges:
 
+{{< copyable "sql" >}}
+
 ```sql
 GRANT ALL
 ON todos
@@ -81,6 +95,8 @@ TO app_user;
 ```
 
 Grant privileges on all tables in a schema:
+
+{{< copyable "sql" >}}
 
 ```sql
 GRANT SELECT
@@ -92,6 +108,8 @@ TO readonly;
 
 Revoke privileges previously granted to a role:
 
+{{< copyable "sql" >}}
+
 ```sql
 REVOKE INSERT
 ON todos
@@ -99,6 +117,8 @@ FROM app_user;
 ```
 
 Revoke all privileges on a table:
+
+{{< copyable "sql" >}}
 
 ```sql
 REVOKE ALL
@@ -110,6 +130,8 @@ FROM app_user;
 
 Use `USAGE` to let a role access objects in a schema:
 
+{{< copyable "sql" >}}
+
 ```sql
 GRANT USAGE
 ON SCHEMA analytics
@@ -117,6 +139,8 @@ TO app_user;
 ```
 
 Grant permission to create objects in a schema:
+
+{{< copyable "sql" >}}
 
 ```sql
 GRANT CREATE
@@ -127,6 +151,8 @@ TO app_user;
 Granting `USAGE` on a schema does not automatically grant privileges on tables in that schema. Grant the required table privileges separately.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 GRANT USAGE
@@ -144,6 +170,8 @@ Sequence privileges are enforced.
 
 For example:
 
+{{< copyable "sql" >}}
+
 ```sql
 GRANT USAGE, SELECT
 ON SEQUENCE order_seq
@@ -159,6 +187,8 @@ The following sequence privileges are relevant:
 | `UPDATE` | Required for operations that change the sequence value, such as `setval()`. |
 
 For example, grant permission to reposition a sequence:
+
+{{< copyable "sql" >}}
 
 ```sql
 GRANT UPDATE
@@ -176,6 +206,8 @@ Use `ALTER DEFAULT PRIVILEGES` to configure privileges for subsequently created 
 
 For example, grant `SELECT` on future tables:
 
+{{< copyable "sql" >}}
+
 ```sql
 ALTER DEFAULT PRIVILEGES
 IN SCHEMA public
@@ -183,6 +215,8 @@ GRANT SELECT ON TABLES TO readonly;
 ```
 
 For explicitly created sequences:
+
+{{< copyable "sql" >}}
 
 ```sql
 ALTER DEFAULT PRIVILEGES
@@ -198,11 +232,15 @@ Default privileges on sequences apply to sequences created explicitly with `CREA
 
 Grant one role to another role:
 
+{{< copyable "sql" >}}
+
 ```sql
 GRANT readonly TO app_user;
 ```
 
 Revoke membership:
+
+{{< copyable "sql" >}}
 
 ```sql
 REVOKE readonly FROM app_user;
@@ -212,11 +250,15 @@ REVOKE readonly FROM app_user;
 
 Use `SET ROLE` to switch to a role that has been granted to the current session user:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET ROLE app_user;
 ```
 
 Return to the original authenticated role:
+
+{{< copyable "sql" >}}
 
 ```sql
 RESET ROLE;
@@ -226,6 +268,8 @@ Role switching is enforced. You cannot `SET ROLE` to a role that has not been gr
 
 Check the current and session roles:
 
+{{< copyable "sql" >}}
+
 ```sql
 SELECT CURRENT_USER, SESSION_USER;
 ```
@@ -233,6 +277,8 @@ SELECT CURRENT_USER, SESSION_USER;
 ## Inspect roles and privileges
 
 List database roles:
+
+{{< copyable "sql" >}}
 
 ```sql
 SELECT
@@ -245,6 +291,8 @@ ORDER BY rolname;
 ```
 
 List role memberships:
+
+{{< copyable "sql" >}}
 
 ```sql
 SELECT
@@ -259,6 +307,8 @@ ORDER BY member_role.rolname, granted_role.rolname;
 ```
 
 List table privileges:
+
+{{< copyable "sql" >}}
 
 ```sql
 SELECT
@@ -277,12 +327,16 @@ Before dropping a role, revoke privileges and role memberships that depend on it
 
 For example:
 
+{{< copyable "sql" >}}
+
 ```sql
 REVOKE SELECT ON todos FROM app_user;
 REVOKE USAGE ON SCHEMA public FROM app_user;
 ```
 
 Then drop the role:
+
+{{< copyable "sql" >}}
 
 ```sql
 DROP ROLE app_user;
@@ -293,6 +347,8 @@ DROP ROLE app_user;
 Database roles can be referenced by row-level security policies.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 ALTER TABLE todos ENABLE ROW LEVEL SECURITY;

@@ -5,11 +5,11 @@ summary: Learn about PL/pgSQL, triggers, sequences, custom types, and collations
 
 # PostgreSQL Advanced SQL
 
-PostgreSQL-compatible TiDB Cloud Starter supports common advanced PostgreSQL SQL features, including PL/pgSQL functions, triggers, sequences, enum and composite types, and custom collations.
+PostgreSQL-compatible {{{ .starter }}} supports common advanced PostgreSQL SQL features, including PL/pgSQL functions, triggers, sequences, enum and composite types, and custom collations.
 
 ## PL/pgSQL
 
-PostgreSQL-compatible TiDB Cloud Starter supports PL/pgSQL functions and `DO` blocks with commonly used procedural constructs.
+PostgreSQL-compatible {{{ .starter }}} supports PL/pgSQL functions and `DO` blocks with commonly used procedural constructs.
 
 Supported constructs include:
 
@@ -30,6 +30,8 @@ Supported constructs include:
 
 For example:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE FUNCTION increment_value(val INTEGER)
 RETURNS INTEGER AS $$
@@ -41,6 +43,8 @@ $$ LANGUAGE plpgsql;
 
 Call the function:
 
+{{< copyable "sql" >}}
+
 ```sql
 SELECT increment_value(41);
 ```
@@ -48,6 +52,8 @@ SELECT increment_value(41);
 ### Declare variables
 
 Use a `DECLARE` block:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE FUNCTION user_count()
@@ -69,6 +75,8 @@ Declarations can span multiple lines.
 
 Use `IF`, `ELSIF`, and `ELSE`:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE FUNCTION size_label(n INTEGER)
 RETURNS TEXT AS $$
@@ -86,6 +94,8 @@ $$ LANGUAGE plpgsql;
 
 `CASE` statements are also supported:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE FUNCTION category_label(n INTEGER)
 RETURNS TEXT AS $$
@@ -101,11 +111,13 @@ $$ LANGUAGE plpgsql;
 
 > **Note:**
 >
-> Always include an `ELSE` branch in a PL/pgSQL `CASE` statement. If no branch matches and `ELSE` is omitted, PostgreSQL-compatible TiDB Cloud Starter can fall through instead of raising PostgreSQL's `CASE_NOT_FOUND` error.
+> Always include an `ELSE` branch in a PL/pgSQL `CASE` statement. If no branch matches and `ELSE` is omitted, PostgreSQL-compatible {{{ .starter }}} can fall through instead of raising PostgreSQL's `CASE_NOT_FOUND` error.
 
 ### `SELECT ... INTO`
 
 Assign a query result to a variable:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE FUNCTION active_user_count()
@@ -125,6 +137,8 @@ $$ LANGUAGE plpgsql;
 ### `RETURNING ... INTO`
 
 Capture values returned by DML:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE FUNCTION create_order(p_item TEXT)
@@ -147,6 +161,8 @@ $$ LANGUAGE plpgsql;
 
 Use `EXECUTE` for dynamic SQL:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE FUNCTION count_rows(table_name TEXT)
 RETURNS INTEGER AS $$
@@ -163,6 +179,8 @@ $$ LANGUAGE plpgsql;
 ```
 
 Parameterize dynamic SQL with `USING`:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE FUNCTION double_it(p INTEGER)
@@ -182,6 +200,8 @@ $$ LANGUAGE plpgsql;
 ### Exception handling
 
 `BEGIN ... EXCEPTION` blocks are supported in `DO` blocks:
+
+{{< copyable "sql" >}}
 
 ```sql
 DO $$
@@ -220,6 +240,8 @@ Row-level `BEFORE` and `AFTER` triggers are supported for:
 
 Create a trigger function:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE FUNCTION audit_trigger()
 RETURNS TRIGGER AS $$
@@ -234,6 +256,8 @@ $$ LANGUAGE plpgsql;
 
 Create the trigger:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TRIGGER users_audit
 AFTER INSERT OR UPDATE ON users
@@ -247,6 +271,8 @@ A `BEFORE` trigger can modify `NEW`, skip a row with `RETURN NULL`, or reject a 
 
 For example:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE FUNCTION normalize_user_name()
 RETURNS TRIGGER AS $$
@@ -257,6 +283,8 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TRIGGER normalize_user
 BEFORE INSERT OR UPDATE ON users
@@ -265,6 +293,8 @@ EXECUTE FUNCTION normalize_user_name();
 ```
 
 Reject invalid input:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE FUNCTION reject_invalid_user()
@@ -329,6 +359,8 @@ For predictable behavior, use `FOR EACH ROW` explicitly.
 
 Use `IF EXISTS` when dropping a trigger:
 
+{{< copyable "sql" >}}
+
 ```sql
 DROP TRIGGER IF EXISTS users_audit ON users;
 ```
@@ -336,6 +368,8 @@ DROP TRIGGER IF EXISTS users_audit ON users;
 ## Sequences
 
 Create and use a sequence:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE SEQUENCE order_seq
@@ -349,6 +383,8 @@ SELECT setval('order_seq', 2000);
 ```
 
 Drop the sequence:
+
+{{< copyable "sql" >}}
 
 ```sql
 DROP SEQUENCE order_seq;
@@ -371,6 +407,8 @@ The following options can be specified when creating a sequence:
 
 Create an enum type:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TYPE mood AS ENUM (
     'happy',
@@ -381,12 +419,16 @@ CREATE TYPE mood AS ENUM (
 
 Add an enum value:
 
+{{< copyable "sql" >}}
+
 ```sql
 ALTER TYPE mood
 ADD VALUE 'excited';
 ```
 
 Use the type in a table:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE TABLE user_mood (
@@ -401,6 +443,8 @@ CREATE TABLE user_mood (
 
 For example:
 
+{{< copyable "sql" >}}
+
 ```sql
 SELECT mood
 FROM user_mood
@@ -414,6 +458,8 @@ ORDER BY array_position(
 
 Create a composite type:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TYPE address AS (
     street TEXT,
@@ -426,6 +472,8 @@ CREATE TYPE address AS (
 
 Create a collation:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE COLLATION my_collation (
     LOCALE = 'en_US.utf8'
@@ -434,6 +482,8 @@ CREATE COLLATION my_collation (
 
 Use it on a column:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE names (
     value TEXT COLLATE my_collation
@@ -441,6 +491,8 @@ CREATE TABLE names (
 ```
 
 Drop the collation:
+
+{{< copyable "sql" >}}
 
 ```sql
 DROP COLLATION my_collation;

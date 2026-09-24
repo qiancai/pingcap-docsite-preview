@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL-compatible data types supported by PostgreSQ
 
 # PostgreSQL Data Types
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
 
 ## Supported data types
 
@@ -48,6 +48,8 @@ The following common PostgreSQL types are not supported:
 
 Use `INTEGER` or `BIGINT` for integer values:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE counters (
     id BIGSERIAL PRIMARY KEY,
@@ -58,6 +60,8 @@ CREATE TABLE counters (
 
 Use `NUMERIC` when exact decimal values are required:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE products (
     id BIGSERIAL PRIMARY KEY,
@@ -66,6 +70,8 @@ CREATE TABLE products (
 ```
 
 Use `DOUBLE PRECISION` for floating-point values:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE TABLE measurements (
@@ -78,6 +84,8 @@ CREATE TABLE measurements (
 
 Use `TEXT` for variable-length text:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE documents (
     id BIGSERIAL PRIMARY KEY,
@@ -88,6 +96,8 @@ CREATE TABLE documents (
 
 Use `VARCHAR(n)` when you want to enforce a maximum character length:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE users (
     id BIGSERIAL PRIMARY KEY,
@@ -96,6 +106,8 @@ CREATE TABLE users (
 ```
 
 Use `BYTEA` to store binary data:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE TABLE files (
@@ -106,9 +118,11 @@ CREATE TABLE files (
 
 ## Date and time types
 
-PostgreSQL-compatible TiDB Cloud Starter supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
+PostgreSQL-compatible {{{ .starter }}} supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE TABLE events (
@@ -122,6 +136,8 @@ CREATE TABLE events (
 ```
 
 Use PostgreSQL typed literals when needed:
+
+{{< copyable "sql" >}}
 
 ```sql
 SELECT
@@ -146,6 +162,8 @@ Intervals preserve month-based and sub-month components separately, which enable
 
 You can add, subtract, multiply, divide, and negate intervals:
 
+{{< copyable "sql" >}}
+
 ```sql
 SELECT
     INTERVAL '1 day' * 2 AS two_days,
@@ -161,6 +179,8 @@ SELECT
 
 Use `UUID` to store 128-bit UUID values:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE sessions (
     id UUID PRIMARY KEY,
@@ -173,6 +193,8 @@ CREATE TABLE sessions (
 
 Use `INET` to store IPv4 or IPv6 host or network addresses:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE access_log (
     id BIGSERIAL PRIMARY KEY,
@@ -181,6 +203,8 @@ CREATE TABLE access_log (
 ```
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 INSERT INTO access_log (client_ip)
@@ -197,6 +221,8 @@ Equality and ordering comparisons are supported. Some PostgreSQL network operato
 Use `JSON` when preserving the original JSON text representation is important. Use `JSONB` for a canonical representation and operations such as JSON containment.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE TABLE profiles (
@@ -216,6 +242,8 @@ WHERE settings @> '{"theme":"dark"}';
 
 Use `type[]` to define an array:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE articles (
     id BIGSERIAL PRIMARY KEY,
@@ -224,6 +252,8 @@ CREATE TABLE articles (
 ```
 
 Insert and access array values:
+
+{{< copyable "sql" >}}
 
 ```sql
 INSERT INTO articles (tags)
@@ -238,6 +268,8 @@ FROM articles;
 
 `VECTOR(n)` is available for vector search:
 
+{{< copyable "sql" >}}
+
 ```sql
 CREATE TABLE embeddings (
     id BIGSERIAL PRIMARY KEY,
@@ -249,6 +281,8 @@ For vector operators and HNSW indexes, see [Vector Search](/tidb-cloud/starter/p
 
 `TSVECTOR` and `TSQUERY` are available for PostgreSQL-compatible full-text search:
 
+{{< copyable "sql" >}}
+
 ```sql
 SELECT
     to_tsvector('simple', 'PostgreSQL full text search')
@@ -259,13 +293,15 @@ For more information, see [Full-Text Search](/tidb-cloud/starter/pg-full-text-se
 
 ## Type coercion
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-style type coercion in common SQL contexts.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-style type coercion in common SQL contexts.
 
 ### `UNION`, `CASE`, `COALESCE`, and `VALUES`
 
 When text is combined with another typed value, the expression can resolve to text.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 SELECT 1
@@ -278,6 +314,8 @@ SELECT 'a';
 When a text literal is compared with a typed value, the text literal is coerced to the type of the other operand when possible.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 CREATE TABLE example (
@@ -312,6 +350,8 @@ Common temporal expressions are promoted as follows:
 ## Type casts
 
 Use either PostgreSQL cast syntax:
+
+{{< copyable "sql" >}}
 
 ```sql
 SELECT CAST('42' AS INTEGER);

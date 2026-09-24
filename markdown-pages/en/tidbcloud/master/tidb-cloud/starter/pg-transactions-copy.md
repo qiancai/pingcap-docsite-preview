@@ -5,11 +5,13 @@ summary: Learn about transaction control and COPY support in PostgreSQL-compatib
 
 # PostgreSQL Transactions and COPY
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL transaction control, savepoints, common transaction isolation levels, and the PostgreSQL `COPY` protocol for bulk data transfer.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL transaction control, savepoints, common transaction isolation levels, and the PostgreSQL `COPY` protocol for bulk data transfer.
 
 ## Transaction control
 
 Use `BEGIN` to start an explicit transaction and `COMMIT` to persist the changes:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN;
@@ -26,6 +28,8 @@ COMMIT;
 ```
 
 Use `ROLLBACK` to discard all changes in the current transaction:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN;
@@ -47,6 +51,8 @@ Each statement runs in its own transaction and is committed automatically if it 
 Use savepoints to roll back part of a transaction without discarding the entire transaction.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN;
@@ -89,6 +95,8 @@ The following isolation levels can be requested:
 
 Start a transaction at a specific isolation level:
 
+{{< copyable "sql" >}}
+
 ```sql
 BEGIN ISOLATION LEVEL REPEATABLE READ;
 
@@ -100,17 +108,21 @@ COMMIT;
 
 You can check the effective isolation level:
 
+{{< copyable "sql" >}}
+
 ```sql
 SHOW transaction_isolation;
 ```
 
 > **Note:**
 >
-> If `SERIALIZABLE` is requested over the PostgreSQL wire protocol, PostgreSQL-compatible TiDB Cloud Starter uses `REPEATABLE READ` instead. Applications that require PostgreSQL Serializable Snapshot Isolation should be reviewed before migration. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+> If `SERIALIZABLE` is requested over the PostgreSQL wire protocol, PostgreSQL-compatible {{{ .starter }}} uses `REPEATABLE READ` instead. Applications that require PostgreSQL Serializable Snapshot Isolation should be reviewed before migration. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ## Read-only transactions
 
 Use `BEGIN READ ONLY` to start a read-only transaction:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN READ ONLY;
@@ -122,6 +134,8 @@ COMMIT;
 ```
 
 You can also set a transaction to read-only after `BEGIN`:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN;
@@ -138,6 +152,8 @@ DML and DDL writes are rejected in a read-only transaction.
 
 You can also set the default mode for new transactions in the current session:
 
+{{< copyable "sql" >}}
+
 ```sql
 SET default_transaction_read_only = on;
 ```
@@ -149,6 +165,8 @@ Sequence operations such as `nextval()` are non-transactional, matching PostgreS
 If a transaction calls `nextval()` and later rolls back, the generated sequence value is not reused.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN;
@@ -165,6 +183,8 @@ The sequence remains advanced after the rollback. Do not rely on sequences for g
 If a statement fails inside an explicit transaction, the transaction enters a failed state.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 BEGIN;
@@ -183,11 +203,13 @@ After a transaction enters the failed state, roll it back before continuing with
 
 The PostgreSQL `COPY` protocol provides efficient bulk data transfer over the PostgreSQL wire protocol.
 
-PostgreSQL-compatible TiDB Cloud Starter supports the table form of `COPY` for text and CSV data.
+PostgreSQL-compatible {{{ .starter }}} supports the table form of `COPY` for text and CSV data.
 
 ### Import data with `COPY FROM STDIN`
 
 Use `COPY ... FROM STDIN` to stream data from a PostgreSQL client:
+
+{{< copyable "sql" >}}
 
 ```sql
 COPY users (name, email)
@@ -210,6 +232,8 @@ When using `psql`, you can use the `\copy` client command to read a local file a
 The table form of `COPY ... TO STDOUT` can be used to stream table data to the client.
 
 For example:
+
+{{< copyable "sql" >}}
 
 ```sql
 COPY users (id, name, email)
