@@ -5,7 +5,7 @@ summary: Learn about the basic PostgreSQL SQL statements supported by PostgreSQL
 
 # Explore PostgreSQL SQL with TiDB Cloud
 
-PostgreSQL-compatible TiDB Cloud Starter supports the PostgreSQL wire protocol and common PostgreSQL SQL syntax. You can use most PostgreSQL clients, drivers, and ORMs to work with your instance.
+PostgreSQL-compatible {{{ .starter }}} supports the PostgreSQL wire protocol and common PostgreSQL SQL syntax. You can use most PostgreSQL clients, drivers, and ORMs to work with your instance.
 
 This page walks you through basic PostgreSQL SQL operations, including DDL, DML, DQL, DCL, and transaction control.
 
@@ -161,7 +161,7 @@ VALUES
     ('Bob', DATE '1993-08-08');
 ```
 
-PostgreSQL-compatible TiDB Cloud Starter supports `RETURNING`. For example, return the generated ID after inserting a row:
+PostgreSQL-compatible {{{ .starter }}} supports `RETURNING`. For example, return the generated ID after inserting a row:
 
 ```sql
 INSERT INTO person (name, birthday)
@@ -234,7 +234,7 @@ WHERE birthday >= DATE '1992-01-01'
 ORDER BY birthday;
 ```
 
-PostgreSQL-compatible TiDB Cloud Starter also supports common PostgreSQL query features such as joins, subqueries, CTEs, recursive CTEs, window functions, and set operations.
+PostgreSQL-compatible {{{ .starter }}} also supports common PostgreSQL query features such as joins, subqueries, CTEs, recursive CTEs, window functions, and set operations.
 
 For example, use a CTE to filter data:
 
