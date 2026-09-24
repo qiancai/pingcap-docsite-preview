@@ -9,7 +9,7 @@ on:
 
 # specify the preview branch for the multiple PRs
 env:
-  MULT_PR_PREVIEW_BRANCH: tidbcloud-filesystem
+  MULT_PR_PREVIEW_BRANCH: stater-pg
 
 jobs:
   sync_scheduler:
