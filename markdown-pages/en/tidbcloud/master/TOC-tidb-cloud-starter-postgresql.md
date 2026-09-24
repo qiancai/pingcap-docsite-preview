@@ -16,15 +16,15 @@
 
 - [Select Your Plan](/tidb-cloud/select-cluster-tier.md)
 - [Manage TiDB Cloud Resources and Projects](/tidb-cloud/manage-projects-and-resources.md)
-- Manage TiDB Cloud Starter Instances
-  - [Create a TiDB Cloud Starter Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
-  - [Connect to Your TiDB Cloud Starter Instance via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md)
+- Manage {{{ .starter }}} Instances
+  - [Create a {{{ .starter }}} Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
+  - [Connect to Your {{{ .starter }}} Instance via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md)
   - [Back Up and Restore TiDB Cloud Data](/tidb-cloud/backup-and-restore-serverless.md)
   - Monitor and Alert
     - [Overview](/tidb-cloud/monitor-tidb-cluster.md)
     - [Built-in Metrics](/tidb-cloud/starter/built-in-monitoring-pg.md)
     - [Events](/tidb-cloud/tidb-cloud-events.md)
-  - [Delete a TiDB Cloud Starter Instance](/tidb-cloud/delete-tidb-cluster.md)
+  - [Delete a {{{ .starter }}} Instance](/tidb-cloud/delete-tidb-cluster.md)
 - [Migrate from PostgreSQL to TiDB Cloud Starter](/tidb-cloud/starter/import-with-psql.md)
 - Security
   - [Security Overview](/tidb-cloud/security-overview.md)
@@ -78,7 +78,7 @@
     - [TiDB Cloud Partners](/tidb-cloud/tidb-cloud-partners.md)
     - [MSP Customer](/tidb-cloud/managed-service-provider-customer.md)
     - [Reseller's Customer](/tidb-cloud/cppo-customer.md)
-  - [TiDB Cloud Starter and Essential Limitations](/tidb-cloud/serverless-limitations.md)
+  - [{{{ .starter }}} and Essential Limitations](/tidb-cloud/serverless-limitations.md)
   - [Limited SQL Features on TiDB X Instances](/tidb-cloud/limited-sql-features-tidb-x.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - [System Variables](/system-variables.md)

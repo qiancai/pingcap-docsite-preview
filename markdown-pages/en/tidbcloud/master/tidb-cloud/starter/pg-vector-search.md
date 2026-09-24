@@ -5,11 +5,11 @@ summary: Learn how to store embeddings, perform similarity search, and create HN
 
 # Vector Search
 
-PostgreSQL-compatible TiDB Cloud Starter provides pgvector-compatible vector storage and similarity search, including the `VECTOR` type, distance operators, HNSW indexes, and server-side embedding functions.
+PostgreSQL-compatible {{{ .starter }}} provides pgvector-compatible vector storage and similarity search, including the `VECTOR` type, distance operators, HNSW indexes, and server-side embedding functions.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in limited public preview.
 
 ## Enable vector search
 
@@ -50,7 +50,7 @@ The number of dimensions in a vector must match the dimension declared by the ta
 
 ## Distance operators
 
-PostgreSQL-compatible TiDB Cloud Starter supports the following pgvector-compatible distance operators:
+PostgreSQL-compatible {{{ .starter }}} supports the following pgvector-compatible distance operators:
 
 | Operator | Distance metric | Function equivalent |
 | --- | --- | --- |
@@ -125,7 +125,7 @@ WITH (m = 16, ef_construction = 64);
 
 | Parameter | Default | Description |
 | --- | --- | --- |
-| `m` | 16 | Number of connections per layer. A higher value can improve recall at the cost of additional memory. |
+| `m` | 16 | Maximum number of connections per layer. A higher value can improve recall at the cost of additional memory. |
 | `ef_construction` | 64 | Search width during index construction. A higher value can improve index quality at the cost of a slower build. |
 
 You can configure the HNSW search expansion factor for the current session:
@@ -143,8 +143,8 @@ The optimizer can use an HNSW index when all of the following conditions are met
 - The query orders by a distance expression on the indexed vector column and a constant vector.
 - The query contains a `LIMIT` clause.
 - The HNSW index uses an operator class that matches the distance metric in the query.
-- The index is ready.
-- The vector-search query itself does not contain a `WHERE` filter.
+- The HNSW index has finished building and is available for queries.
+- The query does not contain a `WHERE` clause.
 
 For example:
 
@@ -159,7 +159,7 @@ If these conditions are not met, the query falls back to an exact sequential sca
 
 > **Note:**
 >
-> A bound parameter in the vector probe position is not treated as a constant for HNSW planning. For example, `ORDER BY embedding <=> $1::vector LIMIT 10` falls back to a sequential scan.
+> A bound parameter used as the query vector is not treated as a constant for HNSW planning. For example, `ORDER BY embedding <=> $1::vector LIMIT 10` falls back to a sequential scan.
 
 ## Generate embeddings in SQL
 

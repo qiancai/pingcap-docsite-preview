@@ -1,11 +1,11 @@
 ---
 title: PostgreSQL Session Parameters
-summary: Learn how to view and configure PostgreSQL-compatible session parameters on PostgreSQL-compatible TiDB Cloud Starter.
+summary: Learn how to view and configure PostgreSQL session parameters on PostgreSQL-compatible TiDB Cloud Starter.
 ---
 
 # PostgreSQL Session Parameters
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
 
 
 ## Set and view parameters
@@ -101,7 +101,7 @@ The following commonly used parameters are supported:
 | `max_identifier_length` | `63` | No | Maximum identifier length in bytes. |
 | `lc_messages` | `C` | Yes | Locale used for server messages. |
 
-`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible TiDB Cloud Starter instance.
+`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible {{{ .starter }}} instance.
 
 ## Search path
 
@@ -202,7 +202,7 @@ The following PostgreSQL-compatible parameters are also recognized:
 - `row_security`
 - `xmloption`
 
-The following server-state parameters are readable with `SHOW`:
+The following additional parameters are readable with `SHOW`:
 
 - `is_superuser`
 - `listen_addresses`
@@ -230,7 +230,7 @@ SET work_mem = '64MB';
 SHOW work_mem;
 ```
 
-The configured value does not control query execution memory in PostgreSQL-compatible TiDB Cloud Starter.
+The configured value does not control query execution memory in PostgreSQL-compatible {{{ .starter }}}.
 
 ### `check_function_bodies`
 
@@ -290,7 +290,7 @@ The default value is `40`. A higher value can improve recall at the cost of addi
 
 ## Embedding parameter
 
-The `embedding.dimensions` parameter controls the output dimension used by supported server-side embedding functions.
+After you enable the `embedding` extension, the `embedding.dimensions` parameter controls the output dimension used by supported server-side embedding functions.
 
 For example:
 

@@ -5,11 +5,11 @@ summary: Learn about the PostgreSQL extensions and built-in capabilities support
 
 # PostgreSQL Extensions
 
-PostgreSQL-compatible TiDB Cloud Starter provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
+PostgreSQL-compatible {{{ .starter }}} provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview. Extension availability and functionality might change during the preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in limited public preview. Extension availability and functionality might change during the preview.
 
 ## Supported extensions and capabilities
 
@@ -17,13 +17,13 @@ The following extensions and capabilities are currently supported:
 
 | Extension or capability | Description | Enablement |
 | --- | --- | --- |
-| `vector` | Provides pgvector-compatible `VECTOR` types, distance operators, similarity search, and HNSW indexing. | Built in. `CREATE EXTENSION vector` can be used to register extension metadata. |
+| `vector` | Provides the pgvector-compatible `VECTOR` type, distance operators, similarity search, and HNSW indexing. | Built in. `CREATE EXTENSION vector` can be used to register extension metadata. |
 | `embedding` | Provides server-side text embedding functions such as `embedding()` and `embed_text()`. | Run `CREATE EXTENSION embedding`. |
 | Full-Text Search | Provides PostgreSQL-compatible full-text search using `tsvector`, `tsquery`, ranking functions, and GIN indexes. | Built in. |
-| `zhparser` | Provides Chinese-language tokenization for full-text search. | Built in and always available. |
+| Chinese tokenization (`zhparser`-compatible) | Provides Chinese-language tokenization for full-text search. | Built in and always available. |
 | `parquet` | Enables querying and importing Parquet data from supported URLs. | Run `CREATE EXTENSION parquet`. |
 | `http` | Enables HTTP requests directly from SQL. | Pre-enabled. |
-| `pg_cron` | Provides PostgreSQL-compatible cron metadata and management interfaces. Scheduled job execution is not currently available during the limited public preview. | Pre-enabled. |
+| `pg_cron` | Provides `pg_cron`-compatible metadata and management interfaces. Scheduled job execution is not currently available during the limited public preview. | Pre-enabled. |
 | `uuid-ossp` | Provides common UUID generation functions, such as `uuid_generate_v4()`. | Built in. `CREATE EXTENSION "uuid-ossp"` can be used to register extension metadata. |
 
 

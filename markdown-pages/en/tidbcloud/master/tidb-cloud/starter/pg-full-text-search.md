@@ -1,15 +1,15 @@
 ---
 title: Full-Text Search
-summary: Learn how to use PostgreSQL-compatible full-text search on PostgreSQL-compatible TiDB Cloud Starter.
+summary: Learn how to use full-text search on PostgreSQL-compatible TiDB Cloud Starter.
 ---
 
 # Full-Text Search
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible full-text search with `tsvector`, `tsquery`, language-specific tokenizers, ranking functions, and GIN indexes.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible full-text search with `tsvector`, `tsquery`, language-specific tokenizers, ranking functions, and GIN indexes.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in limited public preview.
 
 Full-text search is built in and does not require installing a separate extension. Chinese tokenization is also available through `zhparser`-compatible configurations.
 
@@ -69,11 +69,9 @@ When the expression used by the `@@` operator matches the indexed expression, th
 
 Use `simple` for exact token matching:
 
-```sql
-CREATE INDEX idx_documents_simple
-ON documents
-USING GIN (to_tsvector('simple', content));
+The following query can use the GIN expression index created in the previous section because it uses the same `to_tsvector('simple', content)` expression.
 
+```sql
 SELECT *
 FROM documents
 WHERE to_tsvector('simple', content)
@@ -116,7 +114,7 @@ The aliases `chinese` and `zhparser` use the same Chinese tokenization capabilit
 
 ## Query functions
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL text-search query functions:
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL text-search query functions:
 
 | Function | Description | Example |
 | --- | --- | --- |
@@ -175,8 +173,8 @@ For example:
 ```sql
 CREATE TABLE articles (
     id BIGSERIAL PRIMARY KEY,
-    title TEXT,
-    body TEXT,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
     tsv TSVECTOR
 );
 

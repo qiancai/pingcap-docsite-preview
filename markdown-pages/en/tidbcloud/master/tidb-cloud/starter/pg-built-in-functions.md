@@ -1,11 +1,11 @@
 ---
 title: PostgreSQL Built-in Functions
-summary: Learn about the PostgreSQL-compatible built-in functions supported by PostgreSQL-compatible TiDB Cloud Starter.
+summary: Learn about the built-in functions supported by PostgreSQL-compatible TiDB Cloud Starter.
 ---
 
 # PostgreSQL Built-in Functions
 
-PostgreSQL-compatible TiDB Cloud Starter provides built-in functions for common string, numeric, date and time, aggregate, window, JSON, array, regular expression, sequence, and system operations.
+PostgreSQL-compatible {{{ .starter }}} provides built-in functions for common string, numeric, date and time, aggregate, window, JSON, array, regular expression, sequence, and system operations.
 
 ## String functions
 
@@ -43,7 +43,7 @@ The following common string functions are supported:
 | `FORMAT(format, ...)` | Formats a string using PostgreSQL-style format specifiers. |
 | `QUOTE_IDENT(text)` | Quotes a SQL identifier when necessary. |
 | `QUOTE_LITERAL(text)` | Quotes a SQL literal. |
-| `QUOTE_NULLABLE(text)` | Quotes a SQL literal and returns `NULL` for a null input. |
+| `QUOTE_NULLABLE(text)` | Quotes a SQL literal and returns the string `NULL` for a null input. |
 
 For example:
 
@@ -165,7 +165,7 @@ FROM users;
 
 ## Window functions
 
-PostgreSQL-compatible TiDB Cloud Starter supports common ranking and value-access window functions.
+PostgreSQL-compatible {{{ .starter }}} supports common ranking and value-access window functions.
 
 ### Ranking functions
 
@@ -451,7 +451,7 @@ SELECT value
 FROM unnest(ARRAY['a', 'b', 'c']) AS t(value);
 ```
 
-Function call position can differ from PostgreSQL for some scalar and set-returning functions. For portability, use scalar functions in expression position and follow the documented form for set-returning functions.
+Function call position can differ from PostgreSQL for some scalar and set-returning functions. For portability, use set-returning functions in the `FROM` clause, as shown in the preceding examples.
 
 ## Extension-specific functions
 

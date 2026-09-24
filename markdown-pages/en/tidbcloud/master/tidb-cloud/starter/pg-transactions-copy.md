@@ -5,7 +5,7 @@ summary: Learn about transaction control and COPY support in PostgreSQL-compatib
 
 # PostgreSQL Transactions and COPY
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL transaction control, savepoints, common transaction isolation levels, and the PostgreSQL `COPY` protocol for bulk data transfer.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL transaction control, savepoints, common transaction isolation levels, and the PostgreSQL `COPY` protocol for bulk data transfer.
 
 ## Transaction control
 
@@ -106,7 +106,7 @@ SHOW transaction_isolation;
 
 > **Note:**
 >
-> If `SERIALIZABLE` is requested over the PostgreSQL wire protocol, PostgreSQL-compatible TiDB Cloud Starter uses `REPEATABLE READ` instead. Applications that require PostgreSQL Serializable Snapshot Isolation should be reviewed before migration. For more information, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+> If `SERIALIZABLE` is requested over the PostgreSQL wire protocol, PostgreSQL-compatible {{{ .starter }}} uses `REPEATABLE READ` instead. Applications that require PostgreSQL Serializable Snapshot Isolation should be reviewed before migration. For more information, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ## Read-only transactions
 
@@ -172,18 +172,18 @@ BEGIN;
 INSERT INTO users (id, name)
 VALUES (1, 'Alice');
 
--- If the next statement fails, the transaction enters a failed state.
+-- If a statement fails here, the transaction enters a failed state.
 
 ROLLBACK;
 ```
 
-After a transaction enters the failed state, roll it back before continuing with normal SQL operations.
+After a transaction enters the failed state, either use `ROLLBACK` or roll back to a prior savepoint before continuing with normal SQL operations.
 
 ## COPY
 
 The PostgreSQL `COPY` protocol provides efficient bulk data transfer over the PostgreSQL wire protocol.
 
-PostgreSQL-compatible TiDB Cloud Starter supports the table form of `COPY` for text and CSV data.
+PostgreSQL-compatible {{{ .starter }}} supports the table form of `COPY` for text and CSV data.
 
 ### Import data with `COPY FROM STDIN`
 
