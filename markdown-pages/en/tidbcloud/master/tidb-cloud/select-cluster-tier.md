@@ -12,30 +12,30 @@ TiDB Cloud provides the following options of plans. Whether you are just getting
 
 <CustomContent plan="starter,essential,premium,dedicated">
 
-- [TiDB Cloud Starter](#starter)
-- [TiDB Cloud Essential](#essential)
-- [TiDB Cloud Premium](#premium)
-- [TiDB Cloud Dedicated](#tidb-cloud-dedicated)
-- [TiDB Cloud Lake](#lake)
+- [{{{ .starter }}}](#starter)
+- [{{{ .essential }}}](#essential)
+- [{{{ .premium }}}](#premium)
+- [{{{ .dedicated }}}](#tidb-cloud-dedicated)
+- [{{{ .lake }}}](#lake)
 
 </CustomContent>
 
 <CustomContent plan="byoc">
 
-- [TiDB Cloud Starter](#starter)
-- [TiDB Cloud Essential](#essential)
-- [TiDB Cloud Premium](#premium)
-- [TiDB Cloud BYOC](#byoc)
-- [TiDB Cloud Dedicated](#tidb-cloud-dedicated)
-- [TiDB Cloud Lake](#lake)
+- [{{{ .starter }}}](#starter)
+- [{{{ .essential }}}](#essential)
+- [{{{ .premium }}}](#premium)
+- [{{{ .byoc }}}](#byoc)
+- [{{{ .dedicated }}}](#tidb-cloud-dedicated)
+- [{{{ .lake }}}](#lake)
 
 </CustomContent>
 
 > **Note:**
 >
-> Some of TiDB Cloud features are partially supported or not supported on TiDB Cloud Starter and TiDB Cloud Essential. See [TiDB Cloud Starter and Essential Limitations](/tidb-cloud/serverless-limitations.md) for details.
+> Some of TiDB Cloud features are partially supported or not supported on {{{ .starter }}} and {{{ .essential }}}. See [{{{ .starter }}} and Essential Limitations](/tidb-cloud/serverless-limitations.md) for details.
 
-## TiDB Cloud Starter {#starter}
+## {{{ .starter }}} {#starter}
 
 TiDB Cloud Starter is a fully managed, multi-tenant database offering that provides instant, autoscaling database instances for developers and small teams.
 
@@ -43,9 +43,9 @@ TiDB Cloud Starter supports the following compatibility modes:
 
 - **MySQL-compatible**: provides MySQL protocol compatibility. Each eligible instance includes a monthly free quota, and you can enable consumption-based billing to continue using the instance after exceeding the free quota.
 
-- **PostgreSQL-compatible (Limited Public Preview)**: provides PostgreSQL wire protocol compatibility. PostgreSQL-compatible Starter instances are currently free during the Limited Public Preview.
+- **PostgreSQL-compatible (limited public preview)**: provides PostgreSQL wire protocol compatibility. PostgreSQL-compatible Starter instances are currently free during the limited public preview.
 
-The free plan is ideal for developers and small teams getting started with TiDB Cloud Starter. Each compatibility mode includes a monthly free quota for storage and Request Units (RUs). The quota varies by compatibility mode.
+The free plan is ideal for developers and small teams getting started with {{{ .starter }}}. Each compatibility mode includes a monthly free quota for storage and Request Units (RUs). The quota varies by compatibility mode.
 
 - **No cost**: This plan is free when usage is within the [free quota](https://www.pingcap.com/tidb-cloud-starter-pricing-details/). No credit card is required to get started.
 
@@ -54,9 +54,9 @@ The free plan is ideal for developers and small teams getting started with TiDB 
 
 ### MySQL-compatible Starter
 
-For each organization in TiDB Cloud, you can create a maximum of five free MySQL-compatible TiDB Cloud Starter instances by default. To create more TiDB Cloud Starter instances, you need to add a credit card and specify a spending limit.
+For each organization in TiDB Cloud, you can create a maximum of five free MySQL-compatible {{{ .starter }}} instances by default. To create more {{{ .starter }}} instances, you need to add a credit card and specify a spending limit.
 
-For the first five MySQL-compatible TiDB Cloud Starter instances in your organization, whether they are free or scalable, TiDB Cloud provides a free usage quota for each of them as follows:
+For the first five MySQL-compatible {{{ .starter }}} instances in your organization, whether they are free or scalable, TiDB Cloud provides a free usage quota for each of them as follows:
 
 - Row-based storage: 5 GiB
 - Columnar storage: 5 GiB
@@ -64,40 +64,40 @@ For the first five MySQL-compatible TiDB Cloud Starter instances in your organiz
 
 A Request Unit (RU) is a unit of measure used to represent the amount of resources consumed by a single request to the database. The amount of RUs consumed by a request depends on various factors, such as the operation type or the amount of data being retrieved or modified.
 
-Once a TiDB Cloud Starter instance reaches its usage quota, it immediately denies any new connection attempts until you [increase the quota](/tidb-cloud/manage-serverless-spend-limit.md#update-spending-limit) or the usage is reset upon the start of a new month. Existing connections established before reaching the quota will remain active but will experience throttling. For example, when the row-based storage of a TiDB Cloud Starter instance exceeds 5 GiB for a free TiDB Cloud Starter instance, the instance automatically restricts any new connection attempts.
+Once a {{{ .starter }}} instance reaches its usage quota, it immediately denies any new connection attempts until you [increase the quota](/tidb-cloud/manage-serverless-spend-limit.md#update-spending-limit) or the usage is reset upon the start of a new month. Existing connections established before reaching the quota will remain active but will experience throttling. For example, when the row-based storage of a {{{ .starter }}} instance exceeds 5 GiB for a free {{{ .starter }}} instance, the instance automatically restricts any new connection attempts.
 
-To learn more about the RU consumption of different resources (including read, write, SQL CPU, and network egress), the pricing details, and the throttled information, see [TiDB Cloud Starter Pricing Details](https://www.pingcap.com/tidb-cloud-starter-pricing-details/).
+To learn more about the RU consumption of different resources (including read, write, SQL CPU, and network egress), the pricing details, and the throttled information, see [{{{ .starter }}} Pricing Details](https://www.pingcap.com/tidb-cloud-starter-pricing-details/).
 
 ### PostgreSQL-compatible Starter
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in Limited Public Preview.
+> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview.
 
-PostgreSQL-compatible TiDB Cloud Starter instances are currently free during the Limited Public Preview.
+PostgreSQL-compatible {{{ .starter }}} instances are currently free during the limited public preview.
 
-For the first 10 PostgreSQL-compatible TiDB Cloud Starter instances in your organization, TiDB Cloud provides the following monthly free quota for each instance:
+For the first 10 PostgreSQL-compatible {{{ .starter }}} instances in your organization, TiDB Cloud provides the following monthly free quota for each instance:
 
 - Row-based storage: 50 GiB
 
 - Request Units (RUs): 500 million RUs per month
 
-When a PostgreSQL-compatible TiDB Cloud Starter instance reaches its free quota, new connection attempts are rejected. Existing connections remain active but are throttled.
+When a PostgreSQL-compatible {{{ .starter }}} instance reaches its free quota, new connection attempts are rejected. Existing connections remain active but are throttled.
 
 
 ### Instance Capacity Plan
 
-The following instance capacity limits apply to MySQL-compatible TiDB Cloud Starter instances.
+The following instance capacity limits apply to MySQL-compatible {{{ .starter }}} instances.
 
-For each organization in TiDB Cloud, you can create a maximum of five [branches](/tidb-cloud/branch-overview.md) across all TiDB Cloud Starter and Essential instances by default.
+For each organization in TiDB Cloud, you can create a maximum of five [branches](/tidb-cloud/branch-overview.md) across all {{{ .starter }}} and Essential instances by default.
 
-For each paid organization in TiDB Cloud, you can create up to 100 TiDB Cloud Starter instances and branches in total, with each branch counted as a separate instance.
+For each paid organization in TiDB Cloud, you can create up to 100 {{{ .starter }}} instances and branches in total, with each branch counted as a separate instance.
 
-For paid organizations building agent platforms or other services that require a large number of instances and branches, TiDB Cloud offers the **Instance Capacity Plan**. With this plan, each paid TiDB Cloud organization can create more than five branches and is not subject to the limit of 100 TiDB Cloud Starter instances and branches. To learn more and apply for the Instance Capacity Plan, fill out the [application form](https://www.pingcap.com/programs/agentic-ai-instance-capacity).
+For paid organizations building agent platforms or other services that require a large number of instances and branches, TiDB Cloud offers the **Instance Capacity Plan**. With this plan, each paid TiDB Cloud organization can create more than five branches and is not subject to the limit of 100 {{{ .starter }}} instances and branches. To learn more and apply for the Instance Capacity Plan, fill out the [application form](https://www.pingcap.com/programs/agentic-ai-instance-capacity).
 
 You will receive an email notification once your application for the TiDB Cloud Instance Capacity Plan is approved. 
 
 
-## TiDB Cloud Essential {#essential}
+## {{{ .essential }}} {#essential}
 
 For applications experiencing growing workloads and needing scalability in real time, the Essential plan provides the flexibility and performance to keep pace with your business growth with the following features:
 
@@ -110,11 +110,11 @@ For applications experiencing growing workloads and needing scalability in real 
 
 <!--Important: Do not update the section name "User name prefix" because this section is referenced by TiDB backend error messages.-->
 
-For each TiDB Cloud Starter or TiDB Cloud Essential instance, TiDB Cloud generates a unique prefix to distinguish it from other instances.
+For each {{{ .starter }}} or {{{ .essential }}} instance, TiDB Cloud generates a unique prefix to distinguish it from other instances.
 
-Whenever you use or set a database user name, you must include the prefix in the user name. For example, assume that the prefix of your TiDB Cloud Starter or TiDB Cloud Essential instance is `3pTAoNNegb47Uc8`.
+Whenever you use or set a database user name, you must include the prefix in the user name. For example, assume that the prefix of your {{{ .starter }}} or {{{ .essential }}} instance is `3pTAoNNegb47Uc8`.
 
-- To connect to your TiDB Cloud Starter or TiDB Cloud Essential instance:
+- To connect to your {{{ .starter }}} or {{{ .essential }}} instance:
 
     ```shell
     mysql -u '3pTAoNNegb47Uc8.root' -h <host> -P 4000 -D test --ssl-mode=VERIFY_IDENTITY --ssl-ca=<CA_root_path> -p
@@ -122,7 +122,7 @@ Whenever you use or set a database user name, you must include the prefix in the
 
     > **Note:**
     >
-    > TiDB Cloud Starter and TiDB Cloud Essential require TLS connection. To find the CA root path on your system, see [Root certificate default path](/tidb-cloud/secure-connections-to-serverless-clusters.md#root-certificate-default-path).
+    > {{{ .starter }}} and {{{ .essential }}} require TLS connection. To find the CA root path on your system, see [Root certificate default path](/tidb-cloud/secure-connections-to-serverless-clusters.md#root-certificate-default-path).
 
 - To create a database user:
 
@@ -130,13 +130,13 @@ Whenever you use or set a database user name, you must include the prefix in the
     CREATE USER '3pTAoNNegb47Uc8.jeffrey';
     ```
 
-To get the prefix for your TiDB Cloud Starter or TiDB Cloud Essential instance, take the following steps:
+To get the prefix for your {{{ .starter }}} or {{{ .essential }}} instance, take the following steps:
 
 1. Navigate to the [**My TiDB**](https://tidbcloud.com/tidbs) page.
-2. Click the name of your target TiDB Cloud Starter or Essential instance to go to its overview page, and then click **Connect** in the upper-right corner. A connection dialog is displayed.
+2. Click the name of your target {{{ .starter }}} or Essential instance to go to its overview page, and then click **Connect** in the upper-right corner. A connection dialog is displayed.
 3. In the dialog, get the prefix from the connection string.
 
-## TiDB Cloud Premium {#premium}
+## {{{ .premium }}} {#premium}
 
 For mission-critical enterprise workloads that require large-scale capacity and consistent high performance, the Premium plan provides a cloud-native experience with the following features:
 
@@ -148,11 +148,11 @@ For mission-critical enterprise workloads that require large-scale capacity and 
 
 <CustomContent plan="byoc">
 
-## TiDB Cloud BYOC {#byoc}
+## {{{ .byoc }}} {#byoc}
 
-TiDB Cloud BYOC is designed for enterprise workloads that require stronger control over data location, cloud resources, network boundaries, and compliance posture. With TiDB Cloud BYOC, the TiDB Cloud control plane is managed by PingCAP, while the data plane runs in your own cloud account.
+{{{ .byoc }}} is designed for enterprise workloads that require stronger control over data location, cloud resources, network boundaries, and compliance posture. With {{{ .byoc }}}, the TiDB Cloud control plane is managed by PingCAP, while the data plane runs in your own cloud account.
 
-TiDB Cloud BYOC provides a managed TiDB Cloud experience with the following features:
+{{{ .byoc }}} provides a managed TiDB Cloud experience with the following features:
 
 - **Customer-owned data plane**: keeps TiDB service resources, storage, networking, and data in your cloud account.
 - **Managed operations**: uses TiDB Cloud for deployment, scaling, monitoring, upgrades, backup and restore, and lifecycle management.
@@ -174,7 +174,7 @@ To create a TiDB Cloud Dedicated cluster, you need to [add a payment method](/ti
 >
 > You cannot decrease the node storage after your TiDB Cloud Dedicated cluster is created.
 
-## TiDB Cloud Lake {#lake}
+## {{{ .lake }}} {#lake}
 
 [TiDB Cloud Lake](https://docs.pingcap.com/tidbcloudlake/) is a cloud-native data warehouse service for analytics workloads. It separates compute and storage, allowing you to provision warehouses independently, scale with workload changes, and store data cost-effectively in object storage.
 

@@ -5,7 +5,7 @@ summary: Learn how to manage PostgreSQL-compatible database roles and privileges
 
 # PostgreSQL Authentication and Roles
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible database roles, role attributes, object privileges, and session role switching.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible database roles, role attributes, object privileges, and session role switching.
 
 This page describes database-level authentication and authorization. TiDB Cloud organization, project, and instance access is managed separately through TiDB Cloud Identity and Access Management.
 

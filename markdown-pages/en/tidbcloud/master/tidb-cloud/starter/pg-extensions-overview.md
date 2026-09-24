@@ -5,11 +5,11 @@ summary: Learn about the PostgreSQL extensions and built-in capabilities support
 
 # PostgreSQL Extensions
 
-PostgreSQL-compatible TiDB Cloud Starter provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
+PostgreSQL-compatible {{{ .starter }}} provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in Limited Public Preview. Extension availability and functionality might change during the preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in limited public preview. Extension availability and functionality might change during the preview.
 
 ## Supported extensions and capabilities
 
@@ -23,7 +23,7 @@ The following extensions and capabilities are currently supported:
 | `zhparser` | Provides Chinese-language tokenization for full-text search. | Built in and always available. |
 | `parquet` | Enables querying and importing Parquet data from supported URLs. | Run `CREATE EXTENSION parquet`. |
 | `http` | Enables HTTP requests directly from SQL. | Pre-enabled. |
-| `pg_cron` | Provides PostgreSQL-compatible cron metadata and management interfaces. Scheduled job execution is not currently available during the Limited Public Preview. | Pre-enabled. |
+| `pg_cron` | Provides PostgreSQL-compatible cron metadata and management interfaces. Scheduled job execution is not currently available during the limited public preview. | Pre-enabled. |
 | `uuid-ossp` | Provides common UUID generation functions, such as `uuid_generate_v4()`. | Built in. `CREATE EXTENSION "uuid-ossp"` can be used to register extension metadata. |
 
 
@@ -65,4 +65,4 @@ The following limitations apply:
 - Only extensions and built-in capabilities explicitly provided by TiDB Cloud are supported.
 - You cannot install arbitrary custom or third-party PostgreSQL extensions.
 - Some supported extensions provide only a subset of the behavior available in upstream PostgreSQL or the corresponding open-source extension.
-- Extension availability and behavior might change during the Limited Public Preview.
+- Extension availability and behavior might change during the limited public preview.

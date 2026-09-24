@@ -5,11 +5,11 @@ summary: Learn how to use PostgreSQL-compatible full-text search on PostgreSQL-c
 
 # Full-Text Search
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible full-text search with `tsvector`, `tsquery`, language-specific tokenizers, ranking functions, and GIN indexes.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible full-text search with `tsvector`, `tsquery`, language-specific tokenizers, ranking functions, and GIN indexes.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in Limited Public Preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in limited public preview.
 
 Full-text search is built in and does not require installing a separate extension. Chinese tokenization is also available through `zhparser`-compatible configurations.
 
@@ -116,7 +116,7 @@ The aliases `chinese` and `zhparser` use the same Chinese tokenization capabilit
 
 ## Query functions
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL text-search query functions:
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL text-search query functions:
 
 | Function | Description | Example |
 | --- | --- | --- |
@@ -198,7 +198,7 @@ ORDER BY rank DESC;
 
 ## Limitations
 
-The following limitations apply during the Limited Public Preview:
+The following limitations apply during the limited public preview:
 
 - Only the text search configurations listed in [Supported text search configurations](#supported-text-search-configurations) are supported.
 - The `english` configuration does not perform PostgreSQL-style stemming. Use `english_stem` for stemmed English search.
