@@ -5,11 +5,11 @@ summary: Learn how to store embeddings, perform similarity search, and create HN
 
 # Vector Search
 
-PostgreSQL-compatible {{{ .starter }}} provides pgvector-compatible vector storage and similarity search, including the `VECTOR` type, distance operators, HNSW indexes, and server-side embedding functions.
+PostgreSQL-compatible TiDB Cloud Starter provides pgvector-compatible vector storage and similarity search, including the `VECTOR` type, distance operators, HNSW indexes, and server-side embedding functions.
 
 > **Note:**
 >
-> PostgreSQL-compatible {{{ .starter }}} is currently in Limited Public Preview.
+> PostgreSQL-compatible TiDB Cloud Starter is currently in Limited Public Preview.
 
 ## Enable vector search
 
@@ -50,7 +50,7 @@ The number of dimensions in a vector must match the dimension declared by the ta
 
 ## Distance operators
 
-PostgreSQL-compatible {{{ .starter }}} supports the following pgvector-compatible distance operators:
+PostgreSQL-compatible TiDB Cloud Starter supports the following pgvector-compatible distance operators:
 
 | Operator | Distance metric | Function equivalent |
 | --- | --- | --- |

@@ -31,13 +31,13 @@ Currently, TiDB Cloud supports the majority of MySQL 5.7 and MySQL 8.0 syntax wi
 
 Yes. PostgreSQL-compatible TiDB Cloud Starter is currently available in Limited Public Preview.
 
-PostgreSQL-compatible {{{ .starter }}} instances support the PostgreSQL wire protocol (pgwire v3) and common PostgreSQL SQL syntax. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+PostgreSQL-compatible TiDB Cloud Starter instances support the PostgreSQL wire protocol (pgwire v3) and common PostgreSQL SQL syntax. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ### What programming languages can I use to work with TiDB Cloud?
 
 For MySQL-compatible TiDB Cloud resources, you can use any programming language supported by a MySQL client or driver.
 
-For PostgreSQL-compatible {{{ .starter }}} instances, you can use programming languages and frameworks that support standard PostgreSQL clients or drivers.
+For PostgreSQL-compatible TiDB Cloud Starter instances, you can use programming languages and frameworks that support standard PostgreSQL clients or drivers.
 
 ### Where can I run TiDB Cloud?
 
@@ -50,8 +50,8 @@ No.
 ### What versions of TiDB are supported on TiDB Cloud?
 
 - For new TiDB Cloud Dedicated clusters, the default TiDB version is [v8.5.8](https://docs.pingcap.com/tidb/v8.5/release-8.5.8) starting from August 28, 2026.
-- For {{{ .starter }}} instances, the TiDB version is [v8.5.3](https://docs.pingcap.com/tidb/stable/release-8.5.3) starting from February 10, 2026.
-- For {{{ .essential }}} instances, the TiDB version is [v7.5.2](https://docs.pingcap.com/tidb/stable/release-7.5.2) starting from April 22, 2025.
+- For TiDB Cloud Starter instances, the TiDB version is [v8.5.3](https://docs.pingcap.com/tidb/stable/release-8.5.3) starting from February 10, 2026.
+- For TiDB Cloud Essential instances, the TiDB version is [v7.5.2](https://docs.pingcap.com/tidb/stable/release-7.5.2) starting from April 22, 2025.
 
 For more information, see [TiDB Cloud Release Notes](/tidb-cloud/releases/tidb-cloud-release-notes.md).
 
@@ -73,8 +73,8 @@ The best way to learn about TiDB Cloud is to follow our step-by-step tutorial. C
 
 - [TiDB Cloud Introduction](/tidb-cloud/tidb-cloud-intro.md)
 - [Get Started](/tidb-cloud/tidb-cloud-quickstart.md)
-- [Create a {{{ .starter }}} or Essential Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
-- [Create a {{{ .premium }}} Instance](/tidb-cloud/premium/create-tidb-instance-premium.md)
+- [Create a TiDB Cloud Starter or Essential Instance](/tidb-cloud/create-tidb-cluster-serverless.md)
+- [Create a TiDB Cloud Premium Instance](/tidb-cloud/premium/create-tidb-instance-premium.md)
 - [Create a TiDB Cloud Dedicated Cluster](/tidb-cloud/create-tidb-cluster.md)
 
 ### What does `XXX's Org/default project/Cluster0` refer to when deleting a cluster?
@@ -119,7 +119,7 @@ TiDB is highly compatible with MySQL. You can migrate data from any MySQL-compat
 
 ### Does TiDB Cloud support incremental backups?
 
-No. If you need to restore data to any point in time within the backup retention period, you can use PITR (Point-in-time Recovery). For more information, see [Use PITR in a TiDB Cloud Dedicated cluster](/tidb-cloud/backup-and-restore.md#turn-on-auto-backup) or [Use PITR in a {{{ .essential }}} instance](/tidb-cloud/backup-and-restore-serverless.md#restore).
+No. If you need to restore data to any point in time within the backup retention period, you can use PITR (Point-in-time Recovery). For more information, see [Use PITR in a TiDB Cloud Dedicated cluster](/tidb-cloud/backup-and-restore.md#turn-on-auto-backup) or [Use PITR in a TiDB Cloud Essential instance](/tidb-cloud/backup-and-restore-serverless.md#restore).
 
 ## HTAP FAQs
 
@@ -164,7 +164,7 @@ No. TiDB Cloud is Database-as-a-Service (DBaaS) and runs only in the TiDB Cloud 
 
 ### Is my TiDB Cloud resource secure?
 
-In TiDB Cloud, you can use a TiDB Cloud Dedicated cluster, a {{{ .premium }}} instance, a {{{ .starter }}} instance, or a {{{ .essential }}} instance according to your needs.
+In TiDB Cloud, you can use a TiDB Cloud Dedicated cluster, a TiDB Cloud Premium instance, a TiDB Cloud Starter instance, or a TiDB Cloud Essential instance according to your needs.
 
 For TiDB Cloud Dedicated clusters, TiDB Cloud ensures cluster security with the following measures:
 
@@ -173,7 +173,7 @@ For TiDB Cloud Dedicated clusters, TiDB Cloud ensures cluster security with the 
 - Creates server-side TLS certificates and component-level TLS certificates for each cluster to encrypt cluster data in transit.
 - Provide IP access rules for each cluster to ensure that only allowed source IP addresses can access your cluster.
 
-For {{{ .starter }}} and {{{ .essential }}} instances, TiDB Cloud ensures instance security with the following measures:
+For TiDB Cloud Starter and TiDB Cloud Essential instances, TiDB Cloud ensures instance security with the following measures:
 
 - Creates independent sub-accounts for each instance.
 - Sets up firewall rules to isolate external connections.
@@ -195,14 +195,14 @@ For more information, see [Connect to Your TiDB Cloud Dedicated Cluster](/tidb-c
 
 </div>
 
-<div label="{{{ .starter }}}/Essential">
+<div label="TiDB Cloud Starter/Essential">
 
-For a {{{ .starter }}} or Essential instance, the steps to connect to your instance are simplified as follows:
+For a TiDB Cloud Starter or Essential instance, the steps to connect to your instance are simplified as follows:
 
 1. Set a database user and login credential.
-2. Choose a SQL client, get an auto-generated connection string displayed on the TiDB Cloud UI, and then connect to your {{{ .starter }}} or Essential instance through the SQL client using the string.
+2. Choose a SQL client, get an auto-generated connection string displayed on the TiDB Cloud UI, and then connect to your TiDB Cloud Starter or Essential instance through the SQL client using the string.
 
-For more information, see [Connect to Your {{{ .starter }}} or Essential Instance](/tidb-cloud/connect-to-tidb-cluster-serverless.md).
+For more information, see [Connect to Your TiDB Cloud Starter or Essential Instance](/tidb-cloud/connect-to-tidb-cluster-serverless.md).
 
 </div>
 </SimpleTab>
