@@ -5,19 +5,19 @@ summary: Learn about the compatibility of PostgreSQL-compatible TiDB Cloud Start
 
 # PostgreSQL Compatibility
 
-PostgreSQL-compatible {{{ .starter }}} instances support the PostgreSQL wire protocol (pgwire v3) and common PostgreSQL SQL syntax and application patterns. Most PostgreSQL clients, drivers, and ORMs can connect by using standard PostgreSQL connection strings.
+PostgreSQL-compatible TiDB Cloud Starter instances support the PostgreSQL wire protocol (pgwire v3) and common PostgreSQL SQL syntax and application patterns. Most PostgreSQL clients, drivers, and ORMs can connect by using standard PostgreSQL connection strings.
 
 However, the implementation is not identical to PostgreSQL. Some PostgreSQL features are not supported or behave differently, especially features that depend on PostgreSQL-specific storage, replication, extension, or transaction semantics.
 
 > **Note:**
 >
-> This page describes general PostgreSQL compatibility for PostgreSQL-compatible {{{ .starter }}} instances. It does not apply to MySQL-compatible TiDB clusters.
+> This page describes general PostgreSQL compatibility for PostgreSQL-compatible TiDB Cloud Starter instances. It does not apply to MySQL-compatible TiDB clusters.
 >
 > During the limited public preview, compatibility coverage and behavior might continue to evolve. Before migrating a production workload, validate the PostgreSQL features that your application depends on.
 
 ## Supported features
 
-PostgreSQL-compatible {{{ .starter }}} instances support the following PostgreSQL features:
+PostgreSQL-compatible TiDB Cloud Starter instances support the following PostgreSQL features:
 
 + **Wire protocol**: PostgreSQL wire protocol v3, including Simple Query and Extended Query (`Parse`/`Bind`/`Describe`/`Execute`).
 + **DDL**: `CREATE`, `ALTER`, and `DROP` for tables; B-tree, GIN, and HNSW indexes; views; materialized views; schemas; sequences; functions; triggers; types; and collations.
@@ -156,7 +156,7 @@ The following limitations apply:
 
 ### Extensions
 
-PostgreSQL-compatible {{{ .starter }}} instances provide a predefined set of extensions and built-in capabilities.
+PostgreSQL-compatible TiDB Cloud Starter instances provide a predefined set of extensions and built-in capabilities.
 
 Arbitrary custom or third-party PostgreSQL extensions cannot be installed. Only extensions explicitly supported by TiDB Cloud are available.
 
@@ -170,7 +170,7 @@ Some publication and replication-slot catalog objects or functions might be pres
 
 ### System catalogs and tooling
 
-PostgreSQL-compatible {{{ .starter }}} instances implement commonly used `pg_catalog` and `information_schema` objects for schema introspection.
+PostgreSQL-compatible TiDB Cloud Starter instances implement commonly used `pg_catalog` and `information_schema` objects for schema introspection.
 
 The catalog surface is not identical to PostgreSQL. Some catalog views, columns, statistics, and PostgreSQL-specific server functions are unavailable or only partially implemented.
 
