@@ -1,11 +1,11 @@
 ---
-title: Create a TiDB Cloud Starter or Essential Instance
-summary: Learn how to create a TiDB Cloud Starter or TiDB Cloud Essential instance.
+title: Create a {{{ .starter }}} or Essential Instance
+summary: Learn how to create a {{{ .starter }}} or {{{ .essential }}} instance.
 ---
 
-# Create a TiDB Cloud Starter or Essential Instance
+# Create a {{{ .starter }}} or Essential Instance
 
-This document describes how to create a TiDB Cloud Starter or TiDB Cloud Essential instance in the [TiDB Cloud console](https://tidbcloud.com/).
+This document describes how to create a {{{ .starter }}} or {{{ .essential }}} instance in the [TiDB Cloud console](https://tidbcloud.com/).
 
 > **Tip:**
 >
@@ -98,10 +98,10 @@ The instance creation process starts, and your instance will be created in appro
 
 ## What's next
 
-- After your TiDB Cloud Starter or Essential instance is created, follow the instructions in [Connect to TiDB Cloud via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) to create a password for your instance.
+- After your {{{ .starter }}} or Essential instance is created, follow the instructions in [Connect to TiDB Cloud via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) to create a password for your instance.
 
     > **Note:**
     >
-    > If you do not set a password, you cannot connect to the TiDB Cloud Starter or Essential instance.
+    > If you do not set a password, you cannot connect to the {{{ .starter }}} or Essential instance.
 
 - To manage your instance using the TiDB Cloud CLI, see [TiDB Cloud CLI Reference (PREVIEW)](/tidb-cloud/cli-reference.md).
