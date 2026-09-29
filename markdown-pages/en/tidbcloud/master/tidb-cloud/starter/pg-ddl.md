@@ -21,7 +21,7 @@ CREATE TABLE users (
 );
 ```
 
-The following common constraints are supported:
+The following common constraints and column properties are supported:
 
 - `NOT NULL`
 - `DEFAULT`
@@ -53,7 +53,7 @@ Foreign keys support the following common `ON DELETE` and `ON UPDATE` actions:
 `CREATE TABLE ... AS SELECT` and `SELECT ... INTO` are supported:
 
 ```sql
-CREATE TABLE active_users AS
+CREATE TABLE active_users_snapshot AS
 SELECT id, name, email
 FROM users
 WHERE active = true;
@@ -67,7 +67,7 @@ FROM users;
 
 > **Note:**
 >
-> Tables created using `CREATE TABLE ... AS SELECT` or `SELECT ... INTO` contain an additional `_rowid` primary key column. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+> Tables created using `CREATE TABLE ... AS SELECT` or `SELECT ... INTO` contain an additional `_rowid` primary key column. For other DDL compatibility differences, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ### Identity columns
 
@@ -87,7 +87,7 @@ CREATE TABLE tasks (
 );
 ```
 
-Identity sequence options have compatibility differences. If you need a custom starting value or increment, use an explicit sequence.
+Identity columns have compatibility differences for sequence options such as custom starting values and increments. If you need a custom starting value or increment, use an explicit sequence.
 
 For example:
 
@@ -187,7 +187,7 @@ FROM documents
 WHERE metadata @> '{"type":"pdf"}';
 ```
 
-GIN indexes can also be used for full-text search. For details, see [Full-Text Search](/tidb-cloud/starter/pg-full-text-search.md).
+GIN indexes can also be used for full-text search. For more information, see [Full-Text Search](/tidb-cloud/starter/pg-full-text-search.md).
 
 ## Create and manage views
 
@@ -243,7 +243,7 @@ The following common `ALTER TABLE` operations are supported:
 | Drop a constraint | `ALTER TABLE users DROP CONSTRAINT users_email_unique;` |
 | Rename a constraint | `ALTER TABLE users RENAME CONSTRAINT old_name TO new_name;` |
 
-Changing the type of a primary-key column or the referencing column of a foreign key is not supported. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+Changing the type of a primary-key column or the referencing column of a foreign key is not supported. For more information, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ## Drop database objects
 
@@ -256,13 +256,13 @@ DROP VIEW IF EXISTS active_users;
 DROP MATERIALIZED VIEW IF EXISTS user_summary;
 ```
 
-`CASCADE` can be used for dependent views and materialized views where applicable:
+`CASCADE` can be used to drop dependent objects such as views and materialized views, but foreign-key dependencies must be handled separately:
 
 ```sql
 DROP TABLE users CASCADE;
 ```
 
-Before dropping a table referenced by a foreign key, remove the referencing foreign-key constraints first. Foreign-key dependency handling differs from PostgreSQL. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+To avoid leaving dangling foreign-key constraints, remove any foreign-key constraints that reference a table before dropping the table. Foreign-key dependency handling differs from PostgreSQL. For more information, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ## Truncate a table
 
@@ -328,7 +328,7 @@ Use `setval()` to reposition a sequence:
 SELECT setval('invoice_seq', 2000);
 ```
 
-`ALTER SEQUENCE` supports ownership operations such as `OWNER TO` and `OWNED BY`. Other PostgreSQL `ALTER SEQUENCE` options are not supported. For details, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+`ALTER SEQUENCE` supports ownership operations such as `OWNER TO` and `OWNED BY`. Other PostgreSQL `ALTER SEQUENCE` options are not supported. For more information, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ## Other DDL statements
 

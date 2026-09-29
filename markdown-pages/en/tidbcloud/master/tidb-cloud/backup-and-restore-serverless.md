@@ -38,7 +38,7 @@ Automatic backup settings vary between TiDB Cloud Starter instances and TiDB Clo
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter instances are currently free during the Limited Public Preview, but their automatic backup settings are the same as those of TiDB Cloud Starter instances with a spending limit greater than 0:
+> PostgreSQL-compatible TiDB Cloud Starter instances are currently free during the limited public preview, but their automatic backup settings are the same as those of TiDB Cloud Starter instances with a spending limit greater than 0:
 >
 > - Backup retention is configurable from 1 to 30 days.
 > - Backup time is configurable.

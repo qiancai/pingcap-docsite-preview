@@ -13,7 +13,7 @@ However, the implementation is not identical to PostgreSQL. Some PostgreSQL feat
 >
 > This page describes general PostgreSQL compatibility for PostgreSQL-compatible TiDB Cloud Starter instances. It does not apply to MySQL-compatible TiDB clusters.
 >
-> During the Limited Public Preview, compatibility coverage and behavior might continue to evolve. Before migrating a production workload, validate the PostgreSQL features that your application depends on.
+> During the limited public preview, compatibility coverage and behavior might continue to evolve. Before migrating a production workload, validate the PostgreSQL features that your application depends on.
 
 ## Supported features
 
@@ -26,7 +26,7 @@ PostgreSQL-compatible TiDB Cloud Starter instances support the following Postgre
 + **Transactions**: `BEGIN`, `COMMIT`, `ROLLBACK`, savepoints, and autocommit.
 + **Data types**: Boolean, integer, bigint, double precision, numeric, text, varchar, bytea, timestamp/timestamptz, date, time, interval, UUID, JSON/JSONB, arrays, serial/bigserial, vector, tsvector, and tsquery.
 + **PL/pgSQL**: Functions, procedures, control flow, and dynamic `EXECUTE`, with some limitations. `WHILE`, `FOREACH`, and cursors are not supported. `EXCEPTION` and nested blocks require a `DO` block.
-+ **Triggers**: `BEFORE` and `AFTER` triggers on `INSERT`, `UPDATE`, and `DELETE`, with some limitations. For details, see [PL/pgSQL](#plpgsql).
++ **Triggers**: `BEFORE` and `AFTER` triggers on `INSERT`, `UPDATE`, and `DELETE`, with some limitations. For more information, see [PL/pgSQL](#plpgsql).
 + **Indexes**: B-tree (default), GIN, partial indexes, expression indexes, `CREATE INDEX CONCURRENTLY`, and HNSW vector indexes. GiST, Hash, SP-GiST, and BRIN indexes are not supported.
 
 ## Unsupported features
@@ -175,7 +175,6 @@ PostgreSQL-compatible TiDB Cloud Starter instances implement commonly used `pg_c
 The catalog surface is not identical to PostgreSQL. Some catalog views, columns, statistics, and PostgreSQL-specific server functions are unavailable or only partially implemented.
 
 Tools that depend on PostgreSQL-specific catalog or statistics behavior should be validated before use.
-
 
 ## Migration considerations
 

@@ -10,7 +10,7 @@
   - [Features](/tidb-cloud/features.md)
   - [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md)
 - Get Started
-  - [Try Out TiDB Cloud](/tidb-cloud/starter/pg-quickstart.md)
+  - [Try Out TiDB Cloud Starter](/tidb-cloud/starter/pg-quickstart.md)
 
 ## GUIDES
 
@@ -25,7 +25,7 @@
     - [Built-in Metrics](/tidb-cloud/starter/built-in-monitoring-pg.md)
     - [Events](/tidb-cloud/tidb-cloud-events.md)
   - [Delete a TiDB Cloud Starter Instance](/tidb-cloud/delete-tidb-cluster.md)
-- [Migrate from PostgreSQL to TiDB Cloud Starter](/tidb-cloud/starter/Import-with-psql.md)
+- [Migrate from PostgreSQL to TiDB Cloud Starter](/tidb-cloud/starter/import-with-psql.md)
 - Security
   - [Security Overview](/tidb-cloud/security-overview.md)
   - Identity Access Control

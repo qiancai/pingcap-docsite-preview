@@ -1,6 +1,6 @@
 ---
 title: Full-Text Search
-summary: Learn how to use PostgreSQL-compatible full-text search on PostgreSQL-compatible TiDB Cloud Starter.
+summary: Learn how to use full-text search on PostgreSQL-compatible TiDB Cloud Starter.
 ---
 
 # Full-Text Search
@@ -9,7 +9,7 @@ PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible full-tex
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in Limited Public Preview.
+> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview.
 
 Full-text search is built in and does not require installing a separate extension. Chinese tokenization is also available through `zhparser`-compatible configurations.
 
@@ -69,11 +69,9 @@ When the expression used by the `@@` operator matches the indexed expression, th
 
 Use `simple` for exact token matching:
 
-```sql
-CREATE INDEX idx_documents_simple
-ON documents
-USING GIN (to_tsvector('simple', content));
+The following query can use the GIN expression index created in the previous section because it uses the same `to_tsvector('simple', content)` expression.
 
+```sql
 SELECT *
 FROM documents
 WHERE to_tsvector('simple', content)
@@ -175,8 +173,8 @@ For example:
 ```sql
 CREATE TABLE articles (
     id BIGSERIAL PRIMARY KEY,
-    title TEXT,
-    body TEXT,
+    title TEXT NOT NULL,
+    body TEXT NOT NULL,
     tsv TSVECTOR
 );
 
@@ -198,7 +196,7 @@ ORDER BY rank DESC;
 
 ## Limitations
 
-The following limitations apply during the Limited Public Preview:
+The following limitations apply during the limited public preview:
 
 - Only the text search configurations listed in [Supported text search configurations](#supported-text-search-configurations) are supported.
 - The `english` configuration does not perform PostgreSQL-style stemming. Use `english_stem` for stemmed English search.
