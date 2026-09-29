@@ -102,11 +102,41 @@ generate_sync_tasks() {
   esac
 }
 
-remove_copyable() {
-  # Remove copyable strings ({{< copyable "..." >}}\n) from Markdown files.
-  $FIND . -name '*.md' | while IFS= read -r FILE; do
-    $SED -i '/{{< copyable ".*" >}}/{N;d}' "$FILE"
-  done
+record_sync_file() {
+  # Record complete PR file replacements for reconciliation with remote changes.
+  if [[ -n "$SYNC_FILES_MANIFEST" ]]; then
+    printf '%s\0' "$1" >> "$SYNC_FILES_MANIFEST"
+  fi
+}
+
+prepare_variables() {
+  # Preserve existing configuration unless the PR changes it explicitly.
+  if [[ -f "$SRC_DIR/variables.json" && ! -e "$1/variables.json" ]]; then
+    cp "$SRC_DIR/variables.json" "$1/variables.json"
+    record_sync_file "$1/variables.json"
+  fi
+}
+
+post_process_files() {
+  local destination="$1"
+  local files="$2"
+  local file
+  local variables="$destination/variables.json"
+  if [[ -n "$3" ]]; then
+    variables="$3"
+  elif [[ -f "$SRC_DIR/variables.json" ]]; then
+    variables="$SRC_DIR/variables.json"
+  fi
+  while IFS= read -r file; do
+    [[ -n "$file" ]] || continue
+    record_sync_file "$destination/$file"
+    if [[ "$file" == *.md ]]; then
+      if [[ -f "$variables" ]]; then
+        ./scripts/replace_variables.py "$destination/$file" "$variables"
+      fi
+      $SED -i '/{{< copyable ".*" >}}/{N;d}' "$destination/$file"
+    fi
+  done <<< "$files"
 }
 
 clone_repo() {
@@ -160,7 +190,7 @@ perform_sync_task() {
   for TASK in "${SYNC_TASKS[@]}"; do
 
     SRC_DIR="$REPO_DIR/$(echo "$TASK" | cut -d',' -f1)"
-    DEST_DIR="markdown-pages/$(echo "$TASK" | cut -d',' -f2)/$DIR_SUFFIX"
+    DEST_DIR="markdown-pages/$(echo "$TASK" | cut -d',' -f2)$DIR_SUFFIX"
     mkdir -p "$DEST_DIR"
 
     # Only sync modified or added files.
@@ -176,21 +206,16 @@ perform_sync_task() {
       if [[ -n "$PRODUCT_FILES" ]]; then
         mkdir -p "$PRODUCT_DEST"
 
-        if [[ -f "$SRC_DIR/variables.json" ]]; then
-          rsync -av "$SRC_DIR/variables.json" "$PRODUCT_DEST/"
-        fi
+        prepare_variables "$PRODUCT_DEST"
 
         echo "$PRODUCT_FILES" | tee /dev/fd/2 |
-          rsync -av --files-from=- "$SRC_DIR" "$PRODUCT_DEST"
+          rsync -av --checksum --files-from=- "$SRC_DIR" "$PRODUCT_DEST"
 
         # Get the current commit SHA.
         CURRENT_COMMIT=$(git -C "$REPO_DIR" rev-parse HEAD)
         commit_changes "Sync TiDB Cloud ${PRODUCT} files for PR https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER (commit: https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER/commits/$CURRENT_COMMIT)"
 
-        if [[ -f "$PRODUCT_DEST/variables.json" ]]; then
-          ./scripts/replace_variables.py "$PRODUCT_DEST" "$PRODUCT_DEST/variables.json"
-        fi
-        (cd "$PRODUCT_DEST" && remove_copyable)
+        post_process_files "$PRODUCT_DEST" "$PRODUCT_FILES"
 
         commit_changes "Post-process TiDB Cloud ${PRODUCT} docs (variables replaced, copyable removed)"
       fi
@@ -198,27 +223,21 @@ perform_sync_task() {
     done
 
     if [[ -n "$CHANGED_FILES" ]]; then
-      # Ensure variables.json is always available for processing.
-      if [[ -f "$SRC_DIR/variables.json" ]]; then
-        rsync -av "$SRC_DIR/variables.json" "$DEST_DIR"
-      fi
+      prepare_variables "$DEST_DIR"
 
       echo "$CHANGED_FILES" | tee /dev/fd/2 |
-        rsync -av --files-from=- "$SRC_DIR" "$DEST_DIR"
+        rsync -av --checksum --files-from=- "$SRC_DIR" "$DEST_DIR"
 
       # Get the current commit SHA.
       CURRENT_COMMIT=$(git -C "$REPO_DIR" rev-parse HEAD)
       commit_changes "Sync files for PR https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER (commit: https://github.com/$REPO_OWNER/$REPO_NAME/pull/$PR_NUMBER/commits/$CURRENT_COMMIT)"
 
-      # Replace variables in Markdown files with values from variables.json.
-      if [[ -f "$DEST_DIR/variables.json" ]]; then
-        ./scripts/replace_variables.py "$DEST_DIR" "$DEST_DIR/variables.json"
-      fi
-      # Remove copyable strings.
-      (cd "$DEST_DIR" && remove_copyable)
+      post_process_files "$DEST_DIR" "$CHANGED_FILES"
 
-      if [[ "$IS_CLOUD" && -f "$DEST_DIR/TOC-tidb-cloud.md" ]]; then
+      if [[ "$IS_CLOUD" && -f "$DEST_DIR/TOC-tidb-cloud.md" ]] &&
+        [[ $'\n'"$CHANGED_FILES"$'\n' == *$'\nTOC-tidb-cloud.md\n'* ]]; then
         process_cloud_toc "$DEST_DIR"
+        record_sync_file "$DEST_DIR/TOC.md"
       fi
 
       commit_changes "Post-process docs (variables replaced, copyable removed)"
@@ -235,18 +254,13 @@ perform_sync_task() {
         if [[ -n "$TOC_FILES" ]]; then
           mkdir -p "$TOC_TARGET_DIR"
 
-          if [[ -f "$SRC_DIR/variables.json" ]]; then
-            rsync -av "$SRC_DIR/variables.json" "$TOC_TARGET_DIR/"
-          fi
+          prepare_variables "$TOC_TARGET_DIR"
 
           echo "$TOC_FILES" | tee /dev/fd/2 |
-            rsync -av --files-from=- "$SRC_DIR" "$TOC_TARGET_DIR/"
+            rsync -av --checksum --files-from=- "$SRC_DIR" "$TOC_TARGET_DIR/"
 
-          # Use the target branch's variables.json, which might differ from BASE_BRANCH.
-          if [[ -f "$TOC_TARGET_DIR/variables.json" ]]; then
-            ./scripts/replace_variables.py "$TOC_TARGET_DIR" "$TOC_TARGET_DIR/variables.json"
-          fi
-          (cd "$TOC_TARGET_DIR" && remove_copyable)
+          # Keep stable-branch substitutions tied to the destination configuration.
+          post_process_files "$TOC_TARGET_DIR" "$TOC_FILES" "$TOC_TARGET_DIR/variables.json"
 
           commit_changes "Sync TOC namespace files from ${TARGET_BRANCH} to ${TOC_TARGET_BRANCH} for preview (task: ${TASK})"
         fi
@@ -267,8 +281,7 @@ commit_changes() {
   git commit -m "$mess" || echo "No changes to commit"
 }
 
-# Select appropriate versions of find and sed depending on the operating system.
-FIND=$(which gfind || which find)
+# Select the appropriate version of sed depending on the operating system.
 SED=$(which gsed || which sed)
 
 # Get the directory of this script.
