@@ -18,7 +18,7 @@
   - [2021](/tidb-cloud/releases/release-notes-2021.md)
   - [2020](/tidb-cloud/releases/release-notes-2020.md)
 
-## TiDB X KERNEL RELEASE NOTES
+## TiDB X KERNEL RELEASE NOTES 
 
 - [Kernel Versioning for TiDB Cloud Premium](/tidb-cloud/releases/tidb-cloud-kernel-versioning.md)
 - [TiDB-X-CLOUD.202510.1 Release Notes](/tidb-cloud/releases/tidb-x-cloud.202510.1.md)
