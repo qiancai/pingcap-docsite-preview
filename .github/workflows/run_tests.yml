@@ -27,4 +27,5 @@ jobs:
         echo "RELEASE_DIR=release-6.7" >> .env
     - name: Run test script
       run: |
+        python3 -m unittest discover -s test -p test_sync_preservation.py -v
         python3 test/test.py

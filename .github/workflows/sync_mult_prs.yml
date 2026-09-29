@@ -20,9 +20,12 @@ jobs:
 
     - name: Run sync_mult_prs script
       run: |
+        mkdir -p temp
+        : > "$SYNC_FILES_MANIFEST"
         git config user.name "Docsite Preview Bot"
         git config user.email ""
         ./sync_mult_prs.sh
         ./.github/git_push.sh ${{ github.ref_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SYNC_FILES_MANIFEST: temp/preview-sync-files
