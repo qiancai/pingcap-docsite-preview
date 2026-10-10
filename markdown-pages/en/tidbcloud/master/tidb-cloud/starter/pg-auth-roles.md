@@ -5,7 +5,7 @@ summary: Learn how to manage database roles and privileges on PostgreSQL-compati
 
 # PostgreSQL Authentication and Roles
 
-PostgreSQL-compatible TiDB Cloud Starter supports database roles, role attributes, object privileges, and session role switching.
+PostgreSQL-compatible {{{ .starter }}} supports database roles, role attributes, object privileges, and session role switching.
 
 This page describes database-level authentication and authorization. TiDB Cloud organization, project, and instance access is managed separately through TiDB Cloud Identity and Access Management.
 
@@ -168,7 +168,7 @@ TO app_user;
 
 > **Note:**
 >
-> `SERIAL` and `BIGSERIAL` defaults do not require a separate sequence grant when the role inserts into the table using the default value. Direct calls to sequence functions still require the corresponding sequence privileges.
+> A non-superuser role that uses a `SERIAL` or `BIGSERIAL` default needs `USAGE` or `UPDATE` on the underlying sequence, unless ownership or inherited privileges already provide that authority. Granting `INSERT` on the table alone is not sufficient.
 
 ## Grant privileges on future objects
 
