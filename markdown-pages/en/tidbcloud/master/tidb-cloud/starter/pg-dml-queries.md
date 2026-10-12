@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL data manipulation and query features support
 
 # PostgreSQL DML and Queries
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL Data Manipulation Language (DML) statements and query features, including `INSERT`, `UPDATE`, `DELETE`, `RETURNING`, upsert, joins, aggregation, window functions, common table expressions (CTEs), subqueries, and set operations.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL Data Manipulation Language (DML) statements and query features, including `INSERT`, `UPDATE`, `DELETE`, `RETURNING`, upsert, joins, aggregation, window functions, common table expressions (CTEs), subqueries, and set operations.
 
 ## Insert data
 
@@ -133,7 +133,7 @@ CREATE TABLE orders (
 );
 ```
 
-PostgreSQL-compatible TiDB Cloud Starter uses `MATCH SIMPLE` semantics by default. If any referencing column is `NULL`, the foreign-key check for that row is skipped.
+PostgreSQL-compatible {{{ .starter }}} uses `MATCH SIMPLE` semantics by default. If any referencing column is `NULL`, the foreign-key check for that row is skipped.
 
 ## Query data
 
