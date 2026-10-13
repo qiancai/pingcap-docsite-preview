@@ -5,11 +5,11 @@ summary: Learn how to query and import Parquet data into PostgreSQL-compatible T
 
 # Import Parquet Data
 
-PostgreSQL-compatible TiDB Cloud Starter supports the `parquet` extension for reading Parquet data and importing it into SQL tables.
+PostgreSQL-compatible {{{ .starter }}} supports the `parquet` extension for reading Parquet data and importing it into SQL tables.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in limited public preview.
 
 This document describes Parquet access through HTTP or HTTPS URLs. The source URL must be reachable from TiDB Cloud.
 
@@ -73,15 +73,15 @@ The following common Parquet types are mapped to PostgreSQL-compatible types:
 | `BOOLEAN` | `BOOLEAN` |
 | `INT32` | `INTEGER` |
 | `INT64` | `BIGINT` |
-| `FLOAT` | `REAL` |
+| `FLOAT` | `DOUBLE PRECISION` |
 | `DOUBLE` | `DOUBLE PRECISION` |
 | `BYTE_ARRAY` with UTF-8 annotation | `TEXT` |
 | Binary `BYTE_ARRAY` | `BYTEA` |
 | `INT96` timestamp | `TIMESTAMP` |
 | `DATE` logical type | `DATE` |
-| `TIME` logical type | `TIME` |
+| `TIME` logical type | Not supported |
 | `TIMESTAMP` logical type | `TIMESTAMP` |
-| `DECIMAL` logical type | `NUMERIC` |
+| `DECIMAL` logical type | `NUMERIC`, limited to Decimal128 with precision at most 28 |
 
 Before importing data, verify that the Parquet schema is compatible with the target table schema.
 

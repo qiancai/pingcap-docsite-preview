@@ -5,13 +5,13 @@ summary: Learn about SQL engine limits and constraints for PostgreSQL-compatible
 
 # PostgreSQL Limits and Constraints
 
-This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible TiDB Cloud Starter.
+This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible {{{ .starter }}}.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview. Limits and constraints might change during the preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in limited public preview. Limits and constraints might change during the preview.
 
-This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible TiDB Cloud Starter, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
+This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible {{{ .starter }}}, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
 
 ## Engine limits
 
@@ -25,6 +25,7 @@ The following limits apply:
 | Pending portals per connection | 32 |
 | Identifier length | 63 bytes |
 | Encoding | UTF-8 only |
+| `NUMERIC` fractional digits | Up to 28 |
 
 The statement timeout can be changed for the current session.
 
@@ -42,7 +43,7 @@ SET statement_timeout = 0;
 
 ## Character encoding
 
-PostgreSQL-compatible TiDB Cloud Starter stores text in UTF-8.
+PostgreSQL-compatible {{{ .starter }}} stores text in UTF-8.
 
 The server encoding is reported as:
 

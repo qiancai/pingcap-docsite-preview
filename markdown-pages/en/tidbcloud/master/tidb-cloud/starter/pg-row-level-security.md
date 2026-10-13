@@ -5,7 +5,7 @@ summary: Learn how to use row-level security policies on PostgreSQL-compatible T
 
 # PostgreSQL Row-Level Security
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible Row-Level Security (RLS). RLS further restricts which rows a database role can view, insert, update, or delete, in addition to the role's table privileges.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible Row-Level Security (RLS). RLS further restricts which rows a database role can view, insert, update, or delete, in addition to the role's table privileges.
 
 RLS policies are evaluated by the database for each applicable query. This makes RLS useful for multi-tenant applications and other workloads that require row-specific access controls.
 
@@ -41,7 +41,7 @@ To restore the default owner behavior:
 ALTER TABLE todos NO FORCE ROW LEVEL SECURITY;
 ```
 
-Roles with the `BYPASSRLS` attribute bypass RLS even when `FORCE ROW LEVEL SECURITY` is enabled.
+Superusers and roles with the `BYPASSRLS` attribute bypass RLS even when `FORCE ROW LEVEL SECURITY` is enabled. `FORCE ROW LEVEL SECURITY` subjects a table owner to policies only when the owner is not a superuser and does not have `BYPASSRLS`.
 
 ## Create a policy
 

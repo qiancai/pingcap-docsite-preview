@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL-compatible data types supported by PostgreSQ
 
 # PostgreSQL Data Types
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
 
 ## Supported data types
 
@@ -17,7 +17,7 @@ The following data types are supported:
 | `INTEGER` | `INT`, `INT4` | 4-byte signed integer. |
 | `BIGINT` | `INT8` | 8-byte signed integer. |
 | `DOUBLE PRECISION` | `FLOAT8` | 8-byte IEEE 754 floating-point number. |
-| `NUMERIC` | `NUMERIC(p,s)`, `DECIMAL` | Exact numeric value with optional precision and scale. |
+| `NUMERIC` | `NUMERIC(p,s)`, `DECIMAL` | Exact numeric value with a 96-bit coefficient and up to 28 fractional digits. |
 | `TEXT` | - | Variable-length UTF-8 text. |
 | `VARCHAR(n)` | `CHARACTER VARYING(n)` | Variable-length text with a maximum length of `n` characters. |
 | `BYTEA` | - | Binary data. |
@@ -38,11 +38,11 @@ The following data types are supported:
 | `TSQUERY` | - | Full-text search query representation. |
 | `NAME` | - | PostgreSQL-compatible identifier type used by system catalogs. |
 
-The following common PostgreSQL types are not supported:
+The following PostgreSQL data types are accepted but have compatibility differences:
 
-- `SMALLINT` and `INT2`: use `INTEGER` instead.
-- `REAL` and `FLOAT4`: use `DOUBLE PRECISION` instead.
-- `CHAR(n)` and `CHARACTER(n)`: use `VARCHAR(n)` instead.
+- `SMALLINT` and `INT2`: stored internally as `INTEGER`. The PostgreSQL `SMALLINT` range is not enforced.
+- `REAL` and `FLOAT4`: stored internally as `DOUBLE PRECISION`, without PostgreSQL single-precision floating-point semantics.
+- `CHAR(n)` and `CHARACTER(n)`: stored internally as `VARCHAR`, without PostgreSQL fixed-length blank-padding semantics.
 
 ## Numeric types
 
@@ -64,6 +64,11 @@ CREATE TABLE products (
     price NUMERIC(10, 2)
 );
 ```
+PostgreSQL-compatible {{{ .starter }}} supports `NUMERIC` with a 96-bit coefficient and up to 28 fractional digits.
+
+Declaring a larger precision, such as `NUMERIC(38,0)`, does not increase the supported runtime range. A declared scale greater than 28 is limited to 28 fractional digits.
+
+Before migrating data from PostgreSQL, verify that your numeric values are within the supported range.
 
 Use `DOUBLE PRECISION` for floating-point values:
 
@@ -106,7 +111,7 @@ CREATE TABLE files (
 
 ## Date and time types
 
-PostgreSQL-compatible TiDB Cloud Starter supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
+PostgreSQL-compatible {{{ .starter }}} supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
 
 For example:
 
@@ -144,7 +149,7 @@ For example, `TIMESTAMP(3)` can still preserve six fractional digits.
 
 Intervals preserve month-based and sub-month components separately, which enables calendar-aware date arithmetic.
 
-You can add, subtract, multiply, divide, and negate intervals:
+You can add, subtract, multiply, and divide intervals:
 
 ```sql
 SELECT
@@ -153,7 +158,7 @@ SELECT
     INTERVAL '1 day' / 2 AS half_day,
     INTERVAL '1 day' + INTERVAL '1 hour' AS day_and_hour,
     INTERVAL '3 days' - INTERVAL '1 day' AS two_days,
-    -INTERVAL '1 day' AS negative_day,
+    INTERVAL '0 day' - INTERVAL '1 day' AS negative_day,
     NOW() - 7 * INTERVAL '1 day' AS one_week_ago;
 ```
 
@@ -259,7 +264,7 @@ For more information, see [Full-Text Search](/tidb-cloud/starter/pg-full-text-se
 
 ## Type coercion
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-style type coercion in common SQL contexts.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-style type coercion in common SQL contexts.
 
 ### `UNION`, `CASE`, `COALESCE`, and `VALUES`
 

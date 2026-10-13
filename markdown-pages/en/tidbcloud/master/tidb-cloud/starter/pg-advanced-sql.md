@@ -5,11 +5,11 @@ summary: Learn about PL/pgSQL, triggers, sequences, custom types, and collations
 
 # PostgreSQL Advanced SQL
 
-PostgreSQL-compatible TiDB Cloud Starter supports common advanced PostgreSQL features, including PL/pgSQL functions, triggers, sequences, enum and composite types, and custom collations.
+PostgreSQL-compatible {{{ .starter }}} supports common advanced PostgreSQL features, including PL/pgSQL functions, triggers, sequences, enum and composite types, and custom collations.
 
 ## PL/pgSQL
 
-PostgreSQL-compatible TiDB Cloud Starter supports PL/pgSQL functions and `DO` blocks with commonly used procedural constructs.
+PostgreSQL-compatible {{{ .starter }}} supports PL/pgSQL functions and `DO` blocks with commonly used procedural constructs.
 
 Supported constructs include:
 
@@ -25,6 +25,29 @@ Supported constructs include:
 - `RAISE`
 - `RETURN`
 - Dynamic `EXECUTE`, including `INTO` and `USING`
+
+### Prepare sample tables
+
+Some examples in this document use the `users`, `orders`, and `audit_log` tables. Before running these examples, create the following sample tables:
+
+```sql
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    active BOOLEAN DEFAULT TRUE
+);
+
+CREATE TABLE orders (
+    id BIGSERIAL PRIMARY KEY,
+    item TEXT NOT NULL
+);
+
+CREATE TABLE audit_log (
+    table_name TEXT,
+    action TEXT,
+    changed_at TIMESTAMPTZ
+);
+```
 
 ### Create a PL/pgSQL function
 
@@ -101,7 +124,7 @@ $$ LANGUAGE plpgsql;
 
 > **Note:**
 >
-> Always include an `ELSE` branch in a PL/pgSQL `CASE` statement. If no branch matches and `ELSE` is omitted, PostgreSQL-compatible TiDB Cloud Starter can fall through instead of raising PostgreSQL's `CASE_NOT_FOUND` error.
+> Always include an `ELSE` branch in a PL/pgSQL `CASE` statement. If no branch matches and `ELSE` is omitted, PostgreSQL-compatible {{{ .starter }}} can fall through instead of raising PostgreSQL's `CASE_NOT_FOUND` error.
 
 ### `SELECT ... INTO`
 

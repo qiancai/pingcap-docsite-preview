@@ -5,19 +5,19 @@ summary: Learn about the compatibility of PostgreSQL-compatible TiDB Cloud Start
 
 # PostgreSQL Compatibility
 
-PostgreSQL-compatible TiDB Cloud Starter instances support the PostgreSQL wire protocol (pgwire v3) and common PostgreSQL SQL syntax and application patterns. Most PostgreSQL clients, drivers, and ORMs can connect by using standard PostgreSQL connection strings.
+PostgreSQL-compatible {{{ .starter }}} instances support the PostgreSQL wire protocol (pgwire v3) and common PostgreSQL SQL syntax and application patterns. Most PostgreSQL clients, drivers, and ORMs can connect by using standard PostgreSQL connection strings.
 
 However, the implementation is not identical to PostgreSQL. Some PostgreSQL features are not supported or behave differently, especially features that depend on PostgreSQL-specific storage, replication, extension, or transaction semantics.
 
 > **Note:**
 >
-> This page describes general PostgreSQL compatibility for PostgreSQL-compatible TiDB Cloud Starter instances. It does not apply to MySQL-compatible TiDB clusters.
+> This page describes general PostgreSQL compatibility for PostgreSQL-compatible {{{ .starter }}} instances. It does not apply to MySQL-compatible TiDB clusters.
 >
 > During the limited public preview, compatibility coverage and behavior might continue to evolve. Before migrating a production workload, validate the PostgreSQL features that your application depends on.
 
 ## Supported features
 
-PostgreSQL-compatible TiDB Cloud Starter instances support the following PostgreSQL features:
+PostgreSQL-compatible {{{ .starter }}} instances support the following PostgreSQL features:
 
 + **Wire protocol**: PostgreSQL wire protocol v3, including Simple Query and Extended Query (`Parse`/`Bind`/`Describe`/`Execute`).
 + **DDL**: `CREATE`, `ALTER`, and `DROP` for tables; B-tree, GIN, and HNSW indexes; views; materialized views; schemas; sequences; functions; triggers; types; and collations.
@@ -26,7 +26,7 @@ PostgreSQL-compatible TiDB Cloud Starter instances support the following Postgre
 + **Transactions**: `BEGIN`, `COMMIT`, `ROLLBACK`, savepoints, and autocommit.
 + **Data types**: Boolean, integer, bigint, double precision, numeric, text, varchar, bytea, timestamp/timestamptz, date, time, interval, UUID, JSON/JSONB, arrays, serial/bigserial, vector, tsvector, and tsquery.
 + **PL/pgSQL**: Functions, procedures, control flow, and dynamic `EXECUTE`, with some limitations. `WHILE`, `FOREACH`, and cursors are not supported. `EXCEPTION` and nested blocks require a `DO` block.
-+ **Triggers**: `BEFORE` and `AFTER` triggers on `INSERT`, `UPDATE`, and `DELETE`, with some limitations. For more information, see [PL/pgSQL](#plpgsql).
++ **Triggers**: `BEFORE` and `AFTER` triggers on `INSERT`, `UPDATE`, and `DELETE`, with some limitations. For more information, see [Triggers](#triggers).
 + **Indexes**: B-tree (default), GIN, partial indexes, expression indexes, `CREATE INDEX CONCURRENTLY`, and HNSW vector indexes. GiST, Hash, SP-GiST, and BRIN indexes are not supported.
 
 ## Unsupported features
@@ -68,7 +68,7 @@ SHOW transaction_isolation;
 
 The effective isolation level is `REPEATABLE READ`.
 
-If your application relies on true serializability, use explicit row locking such as `SELECT ... FOR UPDATE` or database constraints to protect application invariants.
+If your application relies on PostgreSQL `SERIALIZABLE` semantics, review and redesign your transaction logic as needed. Explicit row locking or database constraints can protect specific invariants, but they do not provide PostgreSQL Serializable Snapshot Isolation (SSI) semantics.
 
 ### Data types
 
@@ -76,13 +76,13 @@ Most commonly used PostgreSQL data types are supported, but the following types 
 
 | PostgreSQL type | Behavior |
 | --- | --- |
-| `SMALLINT` / `INT2` | Accepted, but stored internally as a 32-bit integer. |
-| `REAL` / `FLOAT4` | Accepted, but stored internally as double precision. |
-| `CHAR(n)` / `CHARACTER(n)` | Accepted, but stored internally as `VARCHAR`. Fixed-length padding semantics differ from PostgreSQL. |
+| `SMALLINT` / `INT2` | Accepted and stored internally as a 32-bit integer. The PostgreSQL `SMALLINT` range (-32768 to 32767) is not enforced. |
+| `REAL` / `FLOAT4` | Accepted and stored internally as `DOUBLE PRECISION`. PostgreSQL single-precision floating-point semantics are not preserved. |
+| `CHAR(n)` / `CHARACTER(n)` | Accepted and stored internally as `VARCHAR`. Values are not blank-padded as in PostgreSQL, so comparisons against space-padded strings might produce different results. |
 | `INET` | IPv4 and IPv6 host or network addresses are supported for equality and ordering. PostgreSQL network-specific operators and functions are not supported. |
-| `INT4RANGE` | Partially supported. Common range operators are available, but some PostgreSQL range functions are not supported or behave differently. |
+| `INT4RANGE` | Partially supported. Equality (`=`) and overlap (`&&`) operators are supported. Containment operators (`@>` and `<@`) are not supported. PostgreSQL range accessor functions, such as `upper()` and `isempty()`, are unavailable or do not behave as expected. |
 | Composite types | Can be declared and written using text literals, but values cannot be read field by field. |
-| `BIT` / `VARBIT` | Accepted with compatibility differences. In particular, over-length values can be silently truncated instead of returning an error. |
+| `BIT` / `VARBIT` | Accepted with compatibility differences. Values use `BYTEA` semantics, and the declared bit length is not enforced. Over-length values are preserved rather than rejected or truncated. PostgreSQL bit-string literals such as `B'1010'` are not supported. |
 | Arrays | One-dimensional arrays are supported. Multi-dimensional arrays are not supported. |
 
 The following PostgreSQL data types are not supported:
@@ -102,11 +102,17 @@ The following PostgreSQL data types are not supported:
 Most common PostgreSQL DDL is supported, but some operations differ:
 
 + `CREATE TABLE AS` and `SELECT INTO` are supported, but the resulting table contains an additional `_rowid` primary key column that is visible in `SELECT *`.
-+ `ALTER SEQUENCE` supports only ownership-related operations such as `OWNER TO` and `OWNED BY`. Other clauses, including `RESTART` and `INCREMENT BY`, are not supported.
++ `ALTER SEQUENCE` supports only ownership-related operations such as `OWNER TO` and `OWNED BY`. Other clauses, including `RESTART`, `INCREMENT BY`, and `RENAME TO`, are not supported. To change a sequence's current value, use `setval()`.
 + `TRUNCATE` supports only the basic single-table form. Multi-table `TRUNCATE` and optional clauses such as `CASCADE`, `RESTRICT`, `ONLY`, `RESTART IDENTITY`, and `CONTINUE IDENTITY` are not supported.
-+ Foreign keys and the `CASCADE`, `SET NULL`, `SET DEFAULT`, `RESTRICT`, and `NO ACTION` referential actions are supported. However, dropping a referenced table does not perform the same foreign-key dependency check as PostgreSQL and can leave a dangling foreign-key constraint.
++ Foreign keys support the `CASCADE`, `SET NULL`, `SET DEFAULT`, `RESTRICT`, and `NO ACTION` referential actions.
++ Foreign-key dependency handling differs from PostgreSQL. Dropping a referenced table, including with `CASCADE` or `RESTRICT`, can leave dangling foreign-key constraints. These constraints can cause queries against `pg_constraint` and `information_schema.referential_constraints` to fail. To avoid this issue, drop the referencing foreign-key constraints before dropping the referenced table.
++ Deferred foreign-key enforcement is not supported. Foreign-key constraints declared with `DEFERRABLE INITIALLY DEFERRED` are accepted but enforced immediately rather than at transaction commit. Applications that rely on deferred foreign-key checks might experience transaction failures.
 + Enum types are supported, but enum values sort by label text rather than declaration order.
 + PostgreSQL table partitioning and table inheritance are not supported.
+
+> **Note:**
+>
+> If a dangling foreign-key constraint already exists, drop the constraint using `ALTER TABLE ... DROP CONSTRAINT` or drop the referencing table. Recreating the referenced table with the same name does not restore the original foreign-key dependency.
 
 ### Indexes
 
@@ -123,11 +129,11 @@ The following PostgreSQL index access methods are not supported:
 
 HNSW is the supported approximate nearest-neighbor index type for vector workloads. It has additional structural and query-shape requirements.
 
-PostgreSQL vector index types that are not provided by TiDB Cloud, such as IVFFlat, are not available.
+Other pgvector index types that are not provided by TiDB Cloud, such as IVFFlat, are not available.
 
 ### `COPY`
 
-`COPY FROM` supports text and CSV formats over the PostgreSQL wire protocol.
+`COPY ... FROM STDIN` supports text and CSV formats over the PostgreSQL wire protocol.
 
 The following PostgreSQL `COPY` capabilities are not supported:
 
@@ -146,6 +152,12 @@ The following limitations apply:
 + Exception handling with `BEGIN ... EXCEPTION` is supported only in `DO` blocks.
 + Nested procedural blocks are supported only in `DO` blocks.
 
+> **Note:**
+>
+> Some PL/pgSQL statements are validated only when a function is called, rather than when it is created. As a result, `CREATE FUNCTION` might succeed even if the function contains unsupported constructs.
+>
+> To verify compatibility, test your functions by executing them after creation.
+
 ### Triggers
 
 `BEFORE` and `AFTER` triggers on `INSERT`, `UPDATE`, and `DELETE` are supported, with the following compatibility differences:
@@ -156,11 +168,11 @@ The following limitations apply:
 
 ### Extensions
 
-PostgreSQL-compatible TiDB Cloud Starter instances provide a predefined set of extensions and built-in capabilities.
+PostgreSQL-compatible {{{ .starter }}} instances provide a predefined set of extensions and built-in capabilities.
 
 Arbitrary custom or third-party PostgreSQL extensions cannot be installed. Only extensions explicitly supported by TiDB Cloud are available.
 
-For the list of available extensions and extension-specific limitations, see [Supported PostgreSQL extensions](<link>).
+For the list of available extensions and extension-specific limitations, see [Supported PostgreSQL extensions](/tidb-cloud/starter/pg-extensions-overview.md).
 
 ### Replication
 
@@ -170,7 +182,7 @@ Some publication and replication-slot catalog objects or functions might be pres
 
 ### System catalogs and tooling
 
-PostgreSQL-compatible TiDB Cloud Starter instances implement commonly used `pg_catalog` and `information_schema` objects for schema introspection.
+PostgreSQL-compatible {{{ .starter }}} instances implement commonly used `pg_catalog` and `information_schema` objects for schema introspection.
 
 The catalog surface is not identical to PostgreSQL. Some catalog views, columns, statistics, and PostgreSQL-specific server functions are unavailable or only partially implemented.
 

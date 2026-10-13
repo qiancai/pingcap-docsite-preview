@@ -1,11 +1,11 @@
 ---
-title: Create a TiDB Cloud Starter or Essential Instance
-summary: Learn how to create a TiDB Cloud Starter or TiDB Cloud Essential instance.
+title: Create a {{{ .starter }}} or Essential Instance
+summary: Learn how to create a {{{ .starter }}} or {{{ .essential }}} instance.
 ---
 
-# Create a TiDB Cloud Starter or Essential Instance
+# Create a {{{ .starter }}} or Essential Instance
 
-This document describes how to create a TiDB Cloud Starter or TiDB Cloud Essential instance in the [TiDB Cloud console](https://tidbcloud.com/).
+This document describes how to create a {{{ .starter }}} or {{{ .essential }}} instance in the [TiDB Cloud console](https://tidbcloud.com/).
 
 > **Tip:**
 >
@@ -38,7 +38,7 @@ If you do not have a TiDB Cloud account, click [here](https://tidbcloud.com/sign
 >
 > PostgreSQL-compatible TiDB Cloud Starter is currently available in limited public preview. To request access, contact [TiDB Cloud Support](/tidb-cloud/tidb-cloud-support.md).
 >
-> After preview access is enabled, the **Compatibility Mode** section is displayed when you create a Starter instance.
+> After preview access is enabled, the **Compatibility Mode** section is displayed when you create a TiDB Cloud Starter instance.
 
 ## Steps
 
@@ -57,7 +57,7 @@ If you have the `Organization Owner` or `Project Owner` role, you can create a T
 4. If you select **Starter** and PostgreSQL preview access is enabled for your organization, the **Compatibility Mode** section is displayed. Choose one of the following compatibility modes:
 
     - **MySQL Compatible**: the default compatibility mode for TiDB Cloud Starter.
-    - **PostgreSQL Compatible**: provides PostgreSQL compatibility and is currently in limited public preview. This compatibility mode is available only for TiDB Cloud Starter.
+    - **PostgreSQL Compatible**: provides PostgreSQL compatibility and is currently in public preview. This compatibility mode is available only for TiDB Cloud Starter.
 
 5. Enter a name for your instance, and then choose a cloud provider and a region where you want to host your instance.
 
@@ -69,23 +69,11 @@ If you have the `Organization Owner` or `Project Owner` role, you can create a T
 
         - You can update the spending limit for your TiDB Cloud Starter instance. If the spending limit is set to 0, the instance remains free. If the spending limit is greater than 0, you need to add a credit card before creating the instance.
         - By default, each organization can create up to five free MySQL-compatible Starter instances. To create additional instances, you must add a credit card and specify a spending limit.
-        - Each of the first five MySQL-compatible Starter instances in your organization includes the following monthly free quota:
-            - 5 GiB of row-based storage
-            - 5 GiB of columnar storage
-            - 50 million Request Units (RUs)
 
     - **PostgreSQL-compatible Starter**:
 
-        PostgreSQL-compatible Starter instances are currently free during the limited public preview.
-
-        For the first 10 PostgreSQL-compatible Starter instances in your organization, each instance includes the following monthly free quota:
-
-        - 50 GiB of row-based storage
-        - 500 million Request Units (RUs)
-
-        When the free quota is exhausted, new connection attempts are rejected. Existing connections remain active but are throttled.
-
-        If you need more quota, contact [TiDB Cloud Support](/tidb-cloud/tidb-cloud-support.md).
+        During Public Preview, each organization can create up to 10 free PostgreSQL-compatible Starter instances. Creating additional instances may result in usage restrictions or service suspension. If you anticipate exceeding these allowances, please contact support@pingcap.com to discuss your requirements.
+        
 
     - **Essential**:
 
@@ -98,10 +86,10 @@ The instance creation process starts, and your instance will be created in appro
 
 ## What's next
 
-- After your TiDB Cloud Starter or Essential instance is created, follow the instructions in [Connect to TiDB Cloud via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) to create a password for your instance.
+- After your {{{ .starter }}} or Essential instance is created, follow the instructions in [Connect to TiDB Cloud via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) to create a password for your instance.
 
     > **Note:**
     >
-    > If you do not set a password, you cannot connect to the TiDB Cloud Starter or Essential instance.
+    > If you do not set a password, you cannot connect to the {{{ .starter }}} or Essential instance.
 
 - To manage your instance using the TiDB Cloud CLI, see [TiDB Cloud CLI Reference (PREVIEW)](/tidb-cloud/cli-reference.md).
