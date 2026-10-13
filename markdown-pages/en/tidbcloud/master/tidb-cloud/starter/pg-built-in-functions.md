@@ -5,7 +5,7 @@ summary: Learn about the built-in functions supported by PostgreSQL-compatible T
 
 # PostgreSQL Built-in Functions
 
-PostgreSQL-compatible {{{ .starter }}} provides built-in functions for common string, numeric, date and time, aggregate, window, JSON, array, regular expression, sequence, and system operations.
+PostgreSQL-compatible TiDB Cloud Starter provides built-in functions for common string, numeric, date and time, aggregate, window, JSON, array, regular expression, sequence, and system operations.
 
 ## String functions
 
@@ -165,7 +165,7 @@ FROM users;
 
 ## Window functions
 
-PostgreSQL-compatible {{{ .starter }}} supports common ranking and value-access window functions.
+PostgreSQL-compatible TiDB Cloud Starter supports common ranking and value-access window functions.
 
 ### Ranking functions
 
