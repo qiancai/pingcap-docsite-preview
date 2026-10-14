@@ -1,29 +1,29 @@
 ---
-title: Limitations and Quotas of TiDB Cloud Starter and Essential
-summary: Learn about the limitations of TiDB Cloud Starter.
+title: Limitations and Quotas of {{{ .starter }}} and Essential
+summary: Learn about the limitations of {{{ .starter }}}.
 aliases: ['/tidbcloud/serverless-tier-limitations']
 ---
 
-# Limitations and Quotas of TiDB Cloud Starter and Essential
+# Limitations and Quotas of {{{ .starter }}} and Essential
 
 <!-- markdownlint-disable MD026 -->
 
-TiDB Cloud Starter and Essential work with almost all workloads that TiDB supports, but there are some feature differences compared with TiDB Self-Managed or TiDB Cloud Dedicated clusters. This document describes the limitations of TiDB Cloud Starter and TiDB Cloud Essential.
+{{{ .starter }}} and Essential work with almost all workloads that TiDB supports, but there are some feature differences compared with TiDB Self-Managed or TiDB Cloud Dedicated clusters. This document describes the limitations of {{{ .starter }}} and {{{ .essential }}}.
 
-We are constantly filling in the feature gaps between TiDB Cloud Starter/Essential and TiDB Cloud Dedicated. If you require these features or capabilities in the gap, use [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) or [contact us](https://www.pingcap.com/contact-us/?from=en) for a feature request.
+We are constantly filling in the feature gaps between {{{ .starter }}}/Essential and TiDB Cloud Dedicated. If you require these features or capabilities in the gap, use [TiDB Cloud Dedicated](/tidb-cloud/select-cluster-tier.md#tidb-cloud-dedicated) or [contact us](https://www.pingcap.com/contact-us/?from=en) for a feature request.
 
 ## Limitations
 
 ### Audit logs
 
-- [Database audit logging](/tidb-cloud/essential-database-audit-logging.md) is currently unavailable for TiDB Cloud Starter instances.
+- [Database audit logging](/tidb-cloud/essential-database-audit-logging.md) is currently unavailable for {{{ .starter }}} instances.
 
 ### Connection
 
-- Only [Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) and [Private Endpoint](/tidb-cloud/set-up-private-endpoint-connections-serverless.md) can be used. You cannot use [VPC Peering](/tidb-cloud/set-up-vpc-peering-connections.md) to connect to TiDB Cloud Starter or TiDB Cloud Essential instances.
+- Only [Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) and [Private Endpoint](/tidb-cloud/set-up-private-endpoint-connections-serverless.md) can be used. You cannot use [VPC Peering](/tidb-cloud/set-up-vpc-peering-connections.md) to connect to {{{ .starter }}} or {{{ .essential }}} instances.
 - No [Firewall Rules](/tidb-cloud/configure-serverless-firewall-rules-for-public-endpoints.md) support for Private Endpoint.
 - Your database client connections might be terminated unexpectedly if they remain open for more than 30 minutes. This can occur when a TiDB server shuts down, restarts, or undergoes maintenance, potentially causing application disruptions. To avoid this issue, configure a maximum connection lifetime. It is recommended to start with 5 minutes and increase it gradually if it affects tail latency. For more information, see [Recommended settings for connection pools](/develop/dev-guide-connection-parameters.md).
-- For a TiDB Cloud Starter instance, you can have up to 400 concurrent connections. If you set a [spending limit](/tidb-cloud/manage-serverless-spend-limit.md), this limit increases to 5,000.
+- For a {{{ .starter }}} instance, you can have up to 400 concurrent connections. If you set a [spending limit](/tidb-cloud/manage-serverless-spend-limit.md), this limit increases to 5,000.
 
 > **Note:**
 >
@@ -31,7 +31,7 @@ We are constantly filling in the feature gaps between TiDB Cloud Starter/Essenti
 
 ### Encryption
 
-- Data persisted in your TiDB Cloud Starter or TiDB Cloud Essential instance is encrypted using the encryption tool provided by the cloud provider that manages your instance. For TiDB Cloud Starter (with spending limit > 0) and TiDB Cloud Essential instances, an optional second layer of encryption is available during the instance creation process, providing an additional level of security beyond the default encryption at rest.
+- Data persisted in your {{{ .starter }}} or {{{ .essential }}} instance is encrypted using the encryption tool provided by the cloud provider that manages your instance. For {{{ .starter }}} (with spending limit > 0) and {{{ .essential }}} instances, an optional second layer of encryption is available during the instance creation process, providing an additional level of security beyond the default encryption at rest.
 - Using [customer-managed encryption keys (CMEK)](/tidb-cloud/tidb-cloud-encrypt-cmek-aws.md) is currently unavailable.
 
 ### Maintenance window
@@ -46,16 +46,16 @@ We are constantly filling in the feature gaps between TiDB Cloud Starter/Essenti
 
 ### Self-service upgrades
 
-- TiDB Cloud Starter and TiDB Cloud Essential are fully managed deployments of TiDB. Major and minor version upgrades of TiDB Cloud Starter and TiDB Cloud Essential are handled by TiDB Cloud and therefore cannot be initiated by users.
+- {{{ .starter }}} and {{{ .essential }}} are fully managed deployments of TiDB. Major and minor version upgrades of {{{ .starter }}} and {{{ .essential }}} are handled by TiDB Cloud and therefore cannot be initiated by users.
 
 ### Stream data
 
-- [Changefeed](/tidb-cloud/changefeed-overview.md) is not supported for TiDB Cloud Starter currently.
-- [Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md) is not supported for TiDB Cloud Starter currently.
+- [Changefeed](/tidb-cloud/changefeed-overview.md) is not supported for {{{ .starter }}} currently.
+- [Data Migration](/tidb-cloud/migrate-from-mysql-using-data-migration.md) is not supported for {{{ .starter }}} currently.
 
 ### Time to live (TTL)
 
-- In TiDB Cloud Starter and TiDB Cloud Essential, the [`TTL_JOB_INTERVAL`](/time-to-live.md#ttl-job) attribute for a table is fixed at `15m` and cannot be modified. This means that TiDB Cloud Starter and TiDB Cloud Essential schedule a background job every 15 minutes to clean up expired data.
+- In {{{ .starter }}} and {{{ .essential }}}, the [`TTL_JOB_INTERVAL`](/time-to-live.md#ttl-job) attribute for a table is fixed at `15m` and cannot be modified. This means that {{{ .starter }}} and {{{ .essential }}} schedule a background job every 15 minutes to clean up expired data.
 
 ### Others
 
@@ -68,23 +68,23 @@ TiDB Cloud Starter provides free usage quotas for both MySQL-compatible and Post
 
 ### MySQL-compatible Starter
 
-By default, each organization can create up to five free MySQL-compatible TiDB Cloud Starter instances. To create additional instances, you need to add a credit card and [set a monthly spending limit](/tidb-cloud/manage-serverless-spend-limit.md).
+By default, each organization can create up to five free MySQL-compatible {{{ .starter }}} instances. To create additional instances, you need to add a credit card and [set a monthly spending limit](/tidb-cloud/manage-serverless-spend-limit.md).
 
-For the first five TiDB Cloud Starter instances in your organization, TiDB Cloud provides a free usage quota for each of them as follows:
+For the first five {{{ .starter }}} instances in your organization, TiDB Cloud provides a free usage quota for each of them as follows:
 
 - Row-based storage: 5 GiB
 - Columnar storage: 5 GiB
 - [Request Units (RUs)](/tidb-cloud/tidb-cloud-glossary.md#request-unit-ru): 50 million RUs per month
 
-The Request Unit (RU) is a unit of measurement used to track the resource consumption of a query or transaction. It is a metric that allows you to estimate the computational resources required to process a specific request in the database. The request unit is also the billing unit for TiDB Cloud Starter service.
+The Request Unit (RU) is a unit of measurement used to track the resource consumption of a query or transaction. It is a metric that allows you to estimate the computational resources required to process a specific request in the database. The request unit is also the billing unit for {{{ .starter }}} service.
 
 Once a MySQL-compatible Starter instance reaches its usage quota, it immediately denies any new connection attempts until you [increase the quota](/tidb-cloud/manage-serverless-spend-limit.md#update-spending-limit) or the usage is reset upon the start of a new month. Existing connections established before reaching the quota will remain active but will experience throttling.
 
-To learn more about the RU consumption of different resources (including read, write, SQL CPU, and network egress), the pricing details, and the throttled information, see [TiDB Cloud Starter Pricing Details](https://www.pingcap.com/tidb-cloud-starter-pricing-details/).
+To learn more about the RU consumption of different resources (including read, write, SQL CPU, and network egress), the pricing details, and the throttled information, see [{{{ .starter }}} Pricing Details](https://www.pingcap.com/tidb-cloud-starter-pricing-details/).
 
-If you want to create a TiDB Cloud Starter instance with an additional quota, you can set the monthly spending limit on the TiDB Cloud Starter instance creation page. For more information, see [Create a TiDB Cloud Starter instance](/tidb-cloud/create-tidb-cluster-serverless.md).
+If you want to create a {{{ .starter }}} instance with an additional quota, you can set the monthly spending limit on the {{{ .starter }}} instance creation page. For more information, see [Create a {{{ .starter }}} instance](/tidb-cloud/create-tidb-cluster-serverless.md).
 
-After creating a TiDB Cloud Starter instance, you can still check and edit the spending limit on the overview page of your TiDB Cloud Starter instance. For more information, see [Manage Spending Limit for TiDB Cloud Starter Instances](/tidb-cloud/manage-serverless-spend-limit.md).
+After creating a {{{ .starter }}} instance, you can still check and edit the spending limit on the overview page of your {{{ .starter }}} instance. For more information, see [Manage Spending Limit for {{{ .starter }}} Instances](/tidb-cloud/manage-serverless-spend-limit.md).
 
 ### PostgreSQL-compatible Starter (Public Preview)
 
@@ -95,4 +95,4 @@ For each of the first 10 PostgreSQL-compatible Starter instances, TiDB Cloud pro
 - Row-based storage: 50 GiB
 - Request Units (RUs): 500 million RUs per month
 
-When a PostgreSQL-compatible TiDB Cloud Starter instance reaches its free quota, excessive resource consumption may be subject to usage restrictions or service suspension. If you anticipate exceeding these allowances, please contact support@pingcap.com to discuss your requirements.
+When a PostgreSQL-compatible {{{ .starter }}} instance reaches its free quota, excessive resource consumption may be subject to usage restrictions or service suspension. If you anticipate exceeding these allowances, please contact support@pingcap.com to discuss your requirements.
