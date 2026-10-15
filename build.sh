@@ -52,7 +52,7 @@ if [ ! -e website-docs/.git ]; then
     rm -rf website-docs
   fi
   # Clone the website-docs branch that adds TiDB Cloud Filesystem navigation and routing (pingcap/website-docs#736).
-  git clone --single-branch --branch docs/filesystem-product-navigation https://github.com/Icemap/website-docs
+  git clone --single-branch --branch show-filesytem-entry https://github.com/qiancai/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
