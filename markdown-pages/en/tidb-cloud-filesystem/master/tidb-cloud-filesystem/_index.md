@@ -17,23 +17,25 @@ summary: TiDB Cloud Filesystem provides persistent, shared file storage for appl
 
 <LearningPath label="Try" icon="cloud5">
 
-[Quick Start](/tidb-cloud-filesystem/filesystem-quick-start.md)
+[Quick Start via Console](/tidb-cloud-filesystem/filesystem-quick-start-console.md)
+
+[Quick Start via CLI](/tidb-cloud-filesystem/filesystem-quick-start.md)
 
 </LearningPath>
 
 <LearningPath label="Connect" icon="doc8">
 
-[Access an Existing TiDB Cloud Filesystem](/tidb-cloud-filesystem/access-filesystem.md)
+[Access an Existing File System](/tidb-cloud-filesystem/access-filesystem.md)
 
-[Share a TiDB Cloud Filesystem](/tidb-cloud-filesystem/filesystem-sharing.md)
+[Share a File System](/tidb-cloud-filesystem/filesystem-sharing.md)
 
-[Mount a Filesystem](/tidb-cloud-filesystem/filesystem-mount.md)
+[Mount a File System](/tidb-cloud-filesystem/filesystem-mount.md)
 
 </LearningPath>
 
 <LearningPath label="Use" icon="cloud4">
 
-[Manage TiDB Cloud Filesystem](/tidb-cloud-filesystem/manage-filesystem-resources.md)
+[Manage File Systems](/tidb-cloud-filesystem/manage-filesystem-resources.md)
 
 [Work with Files and Directories](/tidb-cloud-filesystem/work-with-filesystem-data.md)
 
@@ -47,17 +49,19 @@ summary: TiDB Cloud Filesystem provides persistent, shared file storage for appl
 
 [Authorization](/tidb-cloud-filesystem/filesystem-authorization.md)
 
-[Manage Filesystem Tokens](/tidb-cloud-filesystem/manage-filesystem-tokens.md)
+[Manage File System Tokens](/tidb-cloud-filesystem/manage-filesystem-tokens.md)
 
-[Manage Filesystem Vault Secrets](/tidb-cloud-filesystem/manage-filesystem-vault-secrets.md)
+[Manage Vault Secrets for a File System](/tidb-cloud-filesystem/manage-filesystem-vault-secrets.md)
 
 </LearningPath>
 
 <LearningPath label="Reference" icon="cloud-dev">
 
-[Filesystem CLI Commands](/ai/ti/reference/ti-filesystem.md)
+[File System CLI Commands](/ai/ti/reference/ti-filesystem.md)
 
 [Regions and Limitations](/tidb-cloud-filesystem/filesystem-regions-and-limitations.md)
+
+[FAQ](/tidb-cloud-filesystem/filesystem-faq.md)
 
 [Troubleshooting](/tidb-cloud-filesystem/filesystem-troubleshooting.md)
 
