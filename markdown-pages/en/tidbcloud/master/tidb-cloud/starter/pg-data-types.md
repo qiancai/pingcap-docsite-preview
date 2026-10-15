@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL-compatible data types supported by PostgreSQ
 
 # PostgreSQL Data Types
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
 
 ## Supported data types
 
@@ -65,9 +65,12 @@ CREATE TABLE products (
 );
 ```
 
-PostgreSQL-compatible TiDB Cloud Starter supports `NUMERIC` with a 96-bit coefficient and up to 28 fractional digits.
+PostgreSQL-compatible {{{ .starter }}} stores `NUMERIC` values using a 96-bit coefficient, which holds approximately 28–29 significant decimal digits. The decimal point can be placed to allow up to 28 fractional digits.
 
-Declaring a larger precision, such as `NUMERIC(38,0)`, does not increase the supported runtime range. A declared scale greater than 28 is limited to 28 fractional digits.
+These limits apply even if you declare a larger precision or scale:
+
+- `NUMERIC(38,0)` does not allow storing a 38-digit integer. The largest supported integer is `79228162514264337593543950335`; larger integers cannot be stored.
+- A declared scale greater than 28 does not preserve more than 28 fractional digits. For example, storing `0.12345678901234567890123456789012345` in a `NUMERIC(60,35)` column rounds it to `0.1234567890123456789012345679`.
 
 Before migrating data from PostgreSQL, verify that your numeric values are within the supported range.
 
@@ -112,7 +115,7 @@ CREATE TABLE files (
 
 ## Date and time types
 
-PostgreSQL-compatible TiDB Cloud Starter supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
+PostgreSQL-compatible {{{ .starter }}} supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
 
 For example:
 
@@ -263,7 +266,7 @@ For more information, see [Full-Text Search](/tidb-cloud/starter/pg-full-text-se
 
 ## Type coercion
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-style type coercion in common SQL contexts.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-style type coercion in common SQL contexts.
 
 ### `UNION`, `CASE`, `COALESCE`, and `VALUES`
 
@@ -302,6 +305,16 @@ When numeric types are combined, the result is promoted according to the followi
 ```text
 INTEGER -> BIGINT -> DOUBLE PRECISION -> NUMERIC
 ```
+
+Unlike PostgreSQL, combining `DOUBLE PRECISION` and `NUMERIC` produces a `NUMERIC` result. For example:
+
+```sql
+SELECT pg_typeof(1::double precision + 2::numeric);
+```
+
+This query returns `numeric`.
+
+If your application requires a `DOUBLE PRECISION` result, cast the `NUMERIC` operand to `DOUBLE PRECISION` explicitly.
 
 ### Temporal type promotion
 

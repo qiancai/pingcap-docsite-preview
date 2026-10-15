@@ -78,57 +78,50 @@ TiDB Cloud provides the following deployment options:
 
 - TiDB Cloud Starter
 
-    TiDB Cloud Starter is a fully managed, multi-tenant TiDB offering. It delivers an instant, autoscaling database with MySQL compatibility, while PostgreSQL compatibility is available in public preview. MySQL-compatible Starter offers a monthly free quota, with consumption-based billing available for usage beyond the free allowance. PostgreSQL-compatible Starter is available free of charge during Public Preview, subject to usage allowances. It is intended for development and evaluation and is not recommended for production workloads.
+    {{{ .starter }}} is a fully managed, multi-tenant TiDB offering. It delivers an instant, autoscaling database with MySQL compatibility, while PostgreSQL compatibility is available in public preview.
+
+    - MySQL-compatible Starter offers a monthly free quota, with consumption-based billing available for usage beyond the free allowance. <CustomContent language="en,zh">Currently, {{{ .starter }}} is generally available on AWS and in public preview on Alibaba Cloud. </CustomContent>
+    - PostgreSQL-compatible Starter is available free of charge during public preview, subject to usage allowances. The preview is intended for development and evaluation and is not recommended for production workloads.
+
+- {{{ .essential }}}
+
+    For applications experiencing growing workloads and needing scalability in real time, {{{ .essential }}} provides the flexibility and performance to keep pace with your business growth.
 
     <CustomContent language="en,zh">
 
-    Currently, TiDB Cloud Starter is generally available on AWS and in public preview on Alibaba Cloud.
+    Currently, {{{ .essential }}} is in public preview on AWS and Alibaba Cloud.
 
-    </CustomContent>
-
-- TiDB Cloud Essential
-
-    For applications experiencing growing workloads and needing scalability in real time, TiDB Cloud Essential provides the flexibility and performance to keep pace with your business growth.
-
-    <CustomContent language="en,zh">
-
-    Currently, TiDB Cloud Essential is in public preview on AWS and Alibaba Cloud.
-
-    For feature comparison between TiDB Cloud Starter and TiDB Cloud Essential on Alibaba Cloud, see [TiDB on Alibaba Cloud](https://www.pingcap.com/partners/alibaba-cloud/).
+    For feature comparison between {{{ .starter }}} and {{{ .essential }}} on Alibaba Cloud, see [TiDB on Alibaba Cloud](https://www.pingcap.com/partners/alibaba-cloud/).
 
     </CustomContent>
 
     <CustomContent language="ja">
 
-    Currently, TiDB Cloud Essential is in public preview on AWS.
+    Currently, {{{ .essential }}} is in public preview on AWS.
 
     </CustomContent>
 
-- TiDB Cloud Premium
+- {{{ .premium }}}
 
-    TiDB Cloud Premium is designed for mission-critical businesses that demand unlimited real-time scalability. It delivers workload-aware auto-scaling and comprehensive enterprise capabilities.
+    {{{ .premium }}} is designed for mission-critical businesses that demand unlimited real-time scalability. It delivers workload-aware auto-scaling and comprehensive enterprise capabilities.
 
     <CustomContent language="en,zh">
 
-    Currently, TiDB Cloud Premium is in public preview on AWS and Alibaba Cloud.
+    Currently, {{{ .premium }}} is in public preview on AWS and Alibaba Cloud.
 
     </CustomContent>
 
     <CustomContent language="ja">
 
-    Currently, TiDB Cloud Premium is in public preview on AWS.
+    Currently, {{{ .premium }}} is in public preview on AWS.
 
     </CustomContent>
 
-<CustomContent plan="byoc">
+- {{{ .byoc }}}
 
-- TiDB Cloud BYOC
+    {{{ .byoc }}} is designed for large-scale production workloads that require greater control, security, and compliance. It enables you to run the data plane in your own AWS account while benefiting from TiDB Cloud's automated operations, elastic scalability, and enterprise-grade security.
 
-    TiDB Cloud BYOC is designed for large-scale production workloads that require greater control, security, and compliance. It enables you to run the data plane in your own AWS account while benefiting from TiDB Cloud's automated operations, elastic scalability, and enterprise-grade security.
-
-    Currently, TiDB Cloud BYOC is in private preview on AWS.
-
-</CustomContent>
+    Currently, {{{ .byoc }}} is in public preview on AWS.
 
 - TiDB Cloud Dedicated
 
@@ -136,7 +129,7 @@ TiDB Cloud provides the following deployment options:
 
     Currently, TiDB Cloud Dedicated is generally available on AWS, Azure, and Google Cloud. For more information, see [TiDB Cloud Dedicated](https://www.pingcap.com/tidb-cloud-dedicated).
 
-- TiDB Cloud Lake
+- {{{ .lake }}}
 
     TiDB Cloud Lake is a cloud-native data warehouse service for analytics workloads. It separates compute and storage, and supports ANSI SQL, semi-structured data processing, and AI-oriented workflows. For more details, see [TiDB Cloud Lake Overview](https://docs.pingcap.com/tidbcloudlake/lake-overview/).
 
@@ -156,13 +149,9 @@ TiDB Cloud provides the following deployment options:
 
     You can connect to your TiDB Cloud resource via private endpoint connection or VPC peering connection. Refer to [Set Up Private Endpoint Connections](/tidb-cloud/set-up-private-endpoint-connections.md) or [Set up VPC Peering Connection](/tidb-cloud/set-up-vpc-peering-connections.md) for details.
 
-<CustomContent plan="byoc">
-
 > **Note:**
 >
 > TiDB Cloud BYOC uses a different architecture from other TiDB Cloud deployment options. In BYOC, the TiDB Cloud control plane is managed by PingCAP, while the data plane runs in your own cloud account. For details, see the [TiDB Cloud BYOC architecture](/tidb-cloud/architecture-concepts.md#tidb-cloud-byoc).
-
-</CustomContent>
 
 ## Related resources
 
