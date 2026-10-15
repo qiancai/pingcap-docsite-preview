@@ -5,13 +5,13 @@ summary: Learn about SQL engine limits and constraints for PostgreSQL-compatible
 
 # PostgreSQL Limits and Constraints
 
-This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible TiDB Cloud Starter.
+This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible {{{ .starter }}}.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in public preview. Limits and constraints might change during the preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in public preview. Limits and constraints might change during the preview.
 
-This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible TiDB Cloud Starter, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
+This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible {{{ .starter }}}, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
 
 ## Engine limits
 
@@ -43,7 +43,7 @@ SET statement_timeout = 0;
 
 ## Character encoding
 
-PostgreSQL-compatible TiDB Cloud Starter stores text in UTF-8.
+PostgreSQL-compatible {{{ .starter }}} stores text in UTF-8.
 
 The server encoding is reported as:
 
@@ -61,7 +61,7 @@ Make sure imported text data is valid UTF-8.
 
 ## Identifier length
 
-PostgreSQL-compatible TiDB Cloud Starter reports a maximum identifier length of 63 bytes for PostgreSQL compatibility. However, this limit is not currently enforced.
+PostgreSQL-compatible {{{ .starter }}} reports a maximum identifier length of 63 bytes for PostgreSQL compatibility. However, this limit is not currently enforced.
 
 You can view the reported value using:
 
@@ -75,7 +75,7 @@ The result is:
 63
 ```
 
-Unlike PostgreSQL, PostgreSQL-compatible TiDB Cloud Starter can accept identifiers longer than 63 bytes without automatically truncating them.
+Unlike PostgreSQL, PostgreSQL-compatible {{{ .starter }}} can accept identifiers longer than 63 bytes without automatically truncating them.
 
 For portability, keep schema, table, column, index, constraint, function, and role names within 63 bytes. Longer identifiers might be truncated when migrating to PostgreSQL, potentially causing naming conflicts or schema migration failures.
 
@@ -175,7 +175,7 @@ Queries that do not meet the HNSW planning requirements fall back to an exact sc
 PostgreSQL-compatible full-text search has the following notable constraints:
 
 - Only the documented text search configurations are supported.
-- Prefix matching using the `:*` flag is not supported. The prefix flag is silently ignored rather than rejected, causing prefix queries to behave as exact-match queries. For example, `to_tsquery('english', 'qui:*')` is interpreted as `to_tsquery('english', 'qui')`, which does not match `quick`. Do not rely on prefix matching during Public Preview.
+- Prefix matching using the `:*` flag is not supported. The prefix flag is silently ignored rather than rejected, causing prefix queries to behave as exact-match queries. For example, `to_tsquery('english', 'qui:*')` is interpreted as `to_tsquery('english', 'qui')`, which does not match `quick`. Do not rely on prefix matching during public preview.
 - Lexeme weight modifiers in `tsquery` expressions, such as `:A`, are also silently ignored. For example, `to_tsquery('english', 'qui:A')` is interpreted without the weight modifier. Do not rely on these modifiers for weighted query matching.
 - `ts_headline()` does not highlight Chinese Han-script terms.
 - The maximum `TSVECTOR` value size is 1 MiB.
@@ -237,7 +237,6 @@ If application logic depends on enum order, use an explicit rank instead of rely
 
 Custom collations are supported with the following limitations:
 
-- The specified locale does not select distinct locale-specific behavior.
 - Text without an explicit custom collation uses bytewise ordering.
 - Aggregate and window `ORDER BY` expressions do not apply custom collation ordering.
 - Custom collations are not fully represented in the PostgreSQL system catalogs.

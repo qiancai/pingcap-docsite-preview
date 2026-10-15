@@ -5,11 +5,11 @@ summary: Learn about the PostgreSQL extensions and built-in capabilities support
 
 # PostgreSQL Extensions
 
-PostgreSQL-compatible TiDB Cloud Starter provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
+PostgreSQL-compatible {{{ .starter }}} provides a predefined set of PostgreSQL extensions and built-in capabilities for vector search, full-text search, data import, integration, and common PostgreSQL development workflows.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in public preview. Extension availability and functionality might change during the preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in public preview. Extension availability and functionality might change during the preview.
 
 ## Supported extensions and capabilities
 
@@ -57,4 +57,4 @@ The following limitations apply:
 - You cannot install arbitrary custom or third-party PostgreSQL extensions.
 - Some supported extensions provide only a subset of the behavior available in upstream PostgreSQL or the corresponding open-source extension.
 - Extension availability and behavior might change during the public preview.
-- `pg_cron` job scheduling is not supported during Public Preview. Although `CREATE EXTENSION pg_cron` might succeed, scheduling functions such as `cron.schedule()` are not available, and scheduled jobs cannot be executed. Querying `cron.job` might return an empty result, but this does not indicate that `pg_cron` is operational.
+- `pg_cron` job scheduling is not supported during public preview. Although `CREATE EXTENSION pg_cron` might succeed, scheduling functions such as `cron.schedule()` are not available, and scheduled jobs cannot be executed. Querying `cron.job` might return an empty result, but this does not indicate that `pg_cron` is operational.

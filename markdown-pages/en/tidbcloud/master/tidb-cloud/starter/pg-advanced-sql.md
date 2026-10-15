@@ -5,11 +5,11 @@ summary: Learn about PL/pgSQL, triggers, sequences, custom types, and collations
 
 # PostgreSQL Advanced SQL
 
-PostgreSQL-compatible TiDB Cloud Starter supports common advanced PostgreSQL features, including PL/pgSQL functions, triggers, sequences, enum and composite types, and custom collations.
+PostgreSQL-compatible {{{ .starter }}} supports common advanced PostgreSQL features, including PL/pgSQL functions, triggers, sequences, enum and composite types, and custom collations.
 
 ## PL/pgSQL
 
-PostgreSQL-compatible TiDB Cloud Starter supports PL/pgSQL functions and `DO` blocks with commonly used procedural constructs.
+PostgreSQL-compatible {{{ .starter }}} supports PL/pgSQL functions and `DO` blocks with commonly used procedural constructs.
 
 Supported constructs include:
 
@@ -124,7 +124,7 @@ $$ LANGUAGE plpgsql;
 
 > **Note:**
 >
-> Always include an `ELSE` branch in a PL/pgSQL `CASE` statement. If no branch matches and `ELSE` is omitted, PostgreSQL-compatible TiDB Cloud Starter can fall through instead of raising PostgreSQL's `CASE_NOT_FOUND` error.
+> Always include an `ELSE` branch in a PL/pgSQL `CASE` statement. If no branch matches and `ELSE` is omitted, PostgreSQL-compatible {{{ .starter }}} can fall through instead of raising PostgreSQL's `CASE_NOT_FOUND` error.
 
 ### `SELECT ... INTO`
 
@@ -468,13 +468,12 @@ Drop the collation:
 DROP COLLATION my_collation;
 ```
 
-A custom collation changes plain text comparison and `ORDER BY` behavior.
+A custom collation changes plain text comparison and `ORDER BY` behavior. The `LOCALE` value selects the sorting rules. For example, `en_US.utf8` sorts `å`, `ä`, and `ö` before `z`, while `sv_SE.utf8` sorts these letters after `z`.
 
 ### Collation limitations
 
 Keep the following differences in mind:
 
-- The specified `LOCALE` value does not select distinct locale-specific behavior. A custom collation uses one locale-aware ordering mode.
 - Text without an explicit custom collation uses bytewise ordering.
 - Collation is not applied to `ORDER BY` inside aggregate functions.
 - Collation is not applied to window-function `ORDER BY`.
