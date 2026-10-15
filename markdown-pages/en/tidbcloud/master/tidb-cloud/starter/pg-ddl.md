@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL Data Definition Language statements supporte
 
 # PostgreSQL DDL
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL Data Definition Language (DDL) statements for creating and managing database objects.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL Data Definition Language (DDL) statements for creating and managing database objects.
 
 ## Create a table
 
@@ -344,4 +344,3 @@ The following common DDL statements are also supported:
 | `CREATE COLLATION` / `DROP COLLATION` | Create or drop a collation. |
 | `CREATE EXTENSION` / `DROP EXTENSION` | Manage extensions provided by TiDB Cloud. |
 | `COMMENT ON` | Add comments to selected object types. |
-

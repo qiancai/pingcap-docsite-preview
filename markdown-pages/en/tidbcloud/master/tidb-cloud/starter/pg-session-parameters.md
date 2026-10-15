@@ -5,8 +5,7 @@ summary: Learn how to view and configure PostgreSQL session parameters on Postgr
 
 # PostgreSQL Session Parameters
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
-
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
 
 ## Set and view parameters
 
@@ -101,7 +100,7 @@ The following commonly used parameters are supported:
 | `max_identifier_length` | `63` | No | Reports the PostgreSQL-compatible identifier length of 63 bytes. This limit is not currently enforced. |
 | `lc_messages` | `C` | Yes | Locale used for server messages. |
 
-`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible TiDB Cloud Starter instance.
+`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible {{{ .starter }}} instance.
 
 ## Search path
 
@@ -182,7 +181,6 @@ SHOW transaction_isolation;
 SHOW transaction_read_only;
 ```
 
-
 ## Other accepted PostgreSQL parameters
 
 The following PostgreSQL-compatible parameters are also recognized:
@@ -230,7 +228,7 @@ SET work_mem = '64MB';
 SHOW work_mem;
 ```
 
-The configured value does not control query execution memory in PostgreSQL-compatible TiDB Cloud Starter.
+The configured value does not control query execution memory in PostgreSQL-compatible {{{ .starter }}}.
 
 ### `check_function_bodies`
 
@@ -268,7 +266,6 @@ Set it for the current session:
 SET default_text_search_config = 'simple';
 ```
 
-
 ## Vector search parameter
 
 The `hnsw.ef_search` parameter controls the HNSW candidate list size for the current session.
@@ -287,7 +284,6 @@ SET hnsw.ef_search = 100;
 
 The default value is `40`. A higher value can improve recall at the cost of additional query latency.
 
-
 ## Embedding parameter
 
 After you enable the `embedding` extension, the `embedding.dimensions` parameter controls the output dimension used by supported server-side embedding functions.
@@ -297,4 +293,3 @@ For example:
 ```sql
 SET embedding.dimensions = 512;
 ```
-

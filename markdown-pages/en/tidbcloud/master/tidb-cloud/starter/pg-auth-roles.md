@@ -5,10 +5,9 @@ summary: Learn how to manage database roles and privileges on PostgreSQL-compati
 
 # PostgreSQL Authentication and Roles
 
-PostgreSQL-compatible TiDB Cloud Starter supports database roles, role attributes, object privileges, and session role switching.
+PostgreSQL-compatible {{{ .starter }}} supports database roles, role attributes, object privileges, and session role switching.
 
 This page describes database-level authentication and authorization. TiDB Cloud organization, project, and instance access is managed separately through TiDB Cloud Identity and Access Management.
-
 
 ## Create a role
 
@@ -60,7 +59,6 @@ The following common role attributes are supported:
 | `BYPASSRLS` / `NOBYPASSRLS` | Controls whether the role bypasses row-level security policies. |
 
 Set the `BYPASSRLS` attribute only to trusted administrative or service roles.
-
 
 ## Grant table privileges
 
