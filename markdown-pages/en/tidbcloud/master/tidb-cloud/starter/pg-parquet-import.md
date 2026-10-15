@@ -5,11 +5,11 @@ summary: Learn how to query and import Parquet data into PostgreSQL-compatible T
 
 # Import Parquet Data
 
-PostgreSQL-compatible TiDB Cloud Starter supports the `parquet` extension for reading Parquet data and importing it into SQL tables.
+PostgreSQL-compatible {{{ .starter }}} supports the `parquet` extension for reading Parquet data and importing it into SQL tables.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in public preview.
 
 This document describes Parquet access through HTTP or HTTPS URLs. The source URL must be reachable from TiDB Cloud.
 
@@ -49,7 +49,7 @@ For example:
 
 ```sql
 CREATE TABLE users (
-    id BIGINT,
+    id BIGINT PRIMARY KEY,
     name TEXT,
     created_at TIMESTAMP
 );
@@ -97,7 +97,7 @@ The following Parquet formats are supported:
 
 ## Limitations
 
-The following limitations apply during the limited public preview:
+The following limitations apply during the public preview:
 
 - The target table must exist before you run `COPY ... WITH (FORMAT parquet)`.
 - Use an HTTP or HTTPS URL that is reachable from TiDB Cloud.

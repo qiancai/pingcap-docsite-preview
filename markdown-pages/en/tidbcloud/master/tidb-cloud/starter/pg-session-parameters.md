@@ -5,7 +5,7 @@ summary: Learn how to view and configure PostgreSQL session parameters on Postgr
 
 # PostgreSQL Session Parameters
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-compatible session parameters that control transaction behavior, schema resolution, time zones, query timeouts, output formats, and other session settings.
 
 
 ## Set and view parameters
@@ -98,10 +98,10 @@ The following commonly used parameters are supported:
 | `transaction_isolation` | `read committed` | Yes | Current transaction isolation level. |
 | `lock_timeout` | `0` | Yes | Lock acquisition timeout. |
 | `password_encryption` | `scram-sha-256` | Yes | Password hashing algorithm. |
-| `max_identifier_length` | `63` | No | Maximum identifier length in bytes. |
+| `max_identifier_length` | `63` | No | Reports the PostgreSQL-compatible identifier length of 63 bytes. This limit is not currently enforced. |
 | `lc_messages` | `C` | Yes | Locale used for server messages. |
 
-`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible TiDB Cloud Starter instance.
+`SHOW ALL` is the best way to inspect the complete parameter set available in the current PostgreSQL-compatible {{{ .starter }}} instance.
 
 ## Search path
 
@@ -230,7 +230,7 @@ SET work_mem = '64MB';
 SHOW work_mem;
 ```
 
-The configured value does not control query execution memory in PostgreSQL-compatible TiDB Cloud Starter.
+The configured value does not control query execution memory in PostgreSQL-compatible {{{ .starter }}}.
 
 ### `check_function_bodies`
 

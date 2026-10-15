@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL Data Definition Language statements supporte
 
 # PostgreSQL DDL
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL Data Definition Language (DDL) statements for creating and managing database objects.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL Data Definition Language (DDL) statements for creating and managing database objects.
 
 ## Create a table
 
@@ -104,10 +104,9 @@ CREATE TABLE sequence_orders (
 
 ### Generated columns
 
-Stored generated columns are supported:
-
 ```sql
 CREATE TABLE products (
+    id BIGSERIAL PRIMARY KEY,
     price NUMERIC,
     tax NUMERIC,
     total NUMERIC GENERATED ALWAYS AS (price + tax) STORED

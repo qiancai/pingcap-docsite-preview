@@ -5,13 +5,13 @@ summary: Learn about SQL engine limits and constraints for PostgreSQL-compatible
 
 # PostgreSQL Limits and Constraints
 
-This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible TiDB Cloud Starter.
+This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible {{{ .starter }}}.
 
 > **Note:**
 >
-> PostgreSQL-compatible TiDB Cloud Starter is currently in limited public preview. Limits and constraints might change during the preview.
+> PostgreSQL-compatible {{{ .starter }}} is currently in public preview. Limits and constraints might change during the preview.
 
-This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible TiDB Cloud Starter, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
+This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible {{{ .starter }}}, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
 
 ## Engine limits
 
@@ -23,7 +23,7 @@ The following limits apply:
 | Idle transaction timeout | 600 seconds (10 minutes) by default |
 | View nesting depth | 64 levels |
 | Pending portals per connection | 32 |
-| Identifier length | 63 bytes |
+| Identifier length | Reports 63 bytes for PostgreSQL compatibility; not currently enforced |
 | Encoding | UTF-8 only |
 | `NUMERIC` fractional digits | Up to 28 |
 
@@ -43,7 +43,7 @@ SET statement_timeout = 0;
 
 ## Character encoding
 
-PostgreSQL-compatible TiDB Cloud Starter stores text in UTF-8.
+PostgreSQL-compatible {{{ .starter }}} stores text in UTF-8.
 
 The server encoding is reported as:
 
@@ -61,15 +61,23 @@ Make sure imported text data is valid UTF-8.
 
 ## Identifier length
 
-PostgreSQL-compatible identifiers are limited to 63 bytes.
+PostgreSQL-compatible {{{ .starter }}} reports a maximum identifier length of 63 bytes for PostgreSQL compatibility. However, this limit is not currently enforced.
 
-You can view the limit using:
+You can view the reported value using:
 
 ```sql
 SHOW max_identifier_length;
 ```
 
-For portability, keep schema, table, column, index, constraint, function, and role names within this limit.
+The result is:
+
+```text
+63
+```
+
+Unlike PostgreSQL, PostgreSQL-compatible {{{ .starter }}} can accept identifiers longer than 63 bytes without automatically truncating them.
+
+For portability, keep schema, table, column, index, constraint, function, and role names within 63 bytes. Longer identifiers might be truncated when migrating to PostgreSQL, potentially causing naming conflicts or schema migration failures.
 
 ## Recursive CTE limit
 
@@ -167,7 +175,8 @@ Queries that do not meet the HNSW planning requirements fall back to an exact sc
 PostgreSQL-compatible full-text search has the following notable constraints:
 
 - Only the documented text search configurations are supported.
-- Prefix matching with the `:*` flag is not supported.
+- Prefix matching using the `:*` flag is not supported. The prefix flag is silently ignored rather than rejected, causing prefix queries to behave as exact-match queries. For example, `to_tsquery('english', 'qui:*')` is interpreted as `to_tsquery('english', 'qui')`, which does not match `quick`. Do not rely on prefix matching during Public Preview.
+- Lexeme weight modifiers in `tsquery` expressions, such as `:A`, are also silently ignored. For example, `to_tsquery('english', 'qui:A')` is interpreted without the weight modifier. Do not rely on these modifiers for weighted query matching.
 - `ts_headline()` does not highlight Chinese Han-script terms.
 - The maximum `TSVECTOR` value size is 1 MiB.
 

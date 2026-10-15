@@ -5,7 +5,39 @@ summary: Learn about transaction control and COPY support in PostgreSQL-compatib
 
 # PostgreSQL Transactions and COPY
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL transaction control, savepoints, common transaction isolation levels, and the PostgreSQL `COPY` protocol for bulk data transfer.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL transaction control, savepoints, common transaction isolation levels, and the PostgreSQL `COPY` protocol for bulk data transfer.
+
+## Set up sample data
+
+Some examples on this page use sample tables. Before running these examples, create the required tables and insert sample data into a test database.
+
+```sql
+CREATE TABLE accounts (
+    id BIGINT PRIMARY KEY,
+    balance NUMERIC(12, 2) NOT NULL
+);
+
+CREATE TABLE orders (
+    id BIGINT PRIMARY KEY
+);
+
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    email TEXT
+);
+
+CREATE SEQUENCE order_seq START WITH 1000;
+
+INSERT INTO accounts (id, balance) VALUES
+    (1, 1000.00),
+    (2, 500.00);
+
+INSERT INTO orders (id) VALUES
+    (100);
+```
+
+Run this setup once before executing the examples. The `users` table is initially empty so that the savepoint examples can insert sample rows.
 
 ## Transaction control
 
@@ -106,7 +138,7 @@ SHOW transaction_isolation;
 
 > **Note:**
 >
-> If `SERIALIZABLE` is requested over the PostgreSQL wire protocol, PostgreSQL-compatible TiDB Cloud Starter uses `REPEATABLE READ` instead. Applications that require PostgreSQL Serializable Snapshot Isolation should be reviewed before migration. For more information, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
+> If `SERIALIZABLE` is requested over the PostgreSQL wire protocol, PostgreSQL-compatible {{{ .starter }}} uses `REPEATABLE READ` instead. Applications that require PostgreSQL Serializable Snapshot Isolation should be reviewed before migration. For more information, see [PostgreSQL Compatibility](/tidb-cloud/starter/postgresql-compatibility.md).
 
 ## Read-only transactions
 
@@ -183,7 +215,7 @@ After a transaction enters the failed state, either use `ROLLBACK` or roll back 
 
 The PostgreSQL `COPY` protocol provides efficient bulk data transfer over the PostgreSQL wire protocol.
 
-PostgreSQL-compatible TiDB Cloud Starter supports the table form of `COPY` for text and CSV data.
+PostgreSQL-compatible {{{ .starter }}} supports the table form of `COPY` for text and CSV data.
 
 ### Import data with `COPY FROM STDIN`
 
