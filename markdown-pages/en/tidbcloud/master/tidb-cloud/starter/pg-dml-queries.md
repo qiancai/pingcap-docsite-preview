@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL data manipulation and query features support
 
 # PostgreSQL DML and Queries
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL Data Manipulation Language (DML) statements and query features, including `INSERT`, `UPDATE`, `DELETE`, `RETURNING`, upsert, joins, aggregation, window functions, common table expressions (CTEs), subqueries, and set operations.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL Data Manipulation Language (DML) statements and query features, including `INSERT`, `UPDATE`, `DELETE`, `RETURNING`, upsert, joins, aggregation, window functions, common table expressions (CTEs), subqueries, and set operations.
 
 ## Prepare sample tables
 
@@ -159,7 +159,7 @@ The `excluded` pseudo-table represents the row proposed for insertion.
 
 ## Update data
 
-In PostgreSQL-compatible TiDB Cloud Starter, `UPDATE` requires the target table to have a primary key. Unlike PostgreSQL, updating a table without a primary key fails with `ERROR: No PK`, even if the `WHERE` condition matches no rows.
+In PostgreSQL-compatible {{{ .starter }}}, `UPDATE` requires the target table to have a primary key. Unlike PostgreSQL, updating a table without a primary key fails with `ERROR: No PK`, even if the `WHERE` condition matches no rows.
 
 If a table already contains data but has no primary key, adding a primary key directly to the populated table is not supported. To enable updates, back up or copy the existing rows to another table, remove the rows from the original table, add a primary key, and then reinsert the data. Ensure that the primary key values are unique and non-null before restoring the rows.
 
@@ -216,7 +216,7 @@ CREATE TABLE orders_with_cascade (
 );
 ```
 
-PostgreSQL-compatible TiDB Cloud Starter uses `MATCH SIMPLE` semantics by default. If any referencing column is `NULL`, the foreign-key check for that row is skipped.
+PostgreSQL-compatible {{{ .starter }}} uses `MATCH SIMPLE` semantics by default. If any referencing column is `NULL`, the foreign-key check for that row is skipped.
 
 ## Query data
 
