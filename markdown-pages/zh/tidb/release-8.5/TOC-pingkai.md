@@ -80,10 +80,10 @@
       - [Stale Read](/develop/dev-guide-use-stale-read.md)
     - [HTAP 查询](/develop/dev-guide-hybrid-oltp-and-olap-queries.md)
   - 向量搜索
-    - [概述](/ai/concepts/vector-search-overview.md)
+    - [概述](/ai/guides/vector-search-overview.md)
     - 快速入门
-      - [使用 SQL 开始向量搜索](/ai/quickstart-via-sql.md)
-      - [使用 Python 开始向量搜索](/ai/quickstart-via-python.md)
+      - [通过 SQL 快速上手向量搜索](/ai/quickstart-via-sql.md)
+      - [通过 Python 快速上手向量搜索](/ai/quickstart-via-python.md)
     - 集成
       - [集成概览](/ai/integrations/vector-search-integration-overview.md)
       - AI 框架
@@ -177,6 +177,7 @@
       - [同步数据到存储服务](/ticdc/ticdc-sink-to-cloud-storage.md)
     - [管理 Changefeed](/ticdc/ticdc-manage-changefeed.md)
     - [日志过滤器](/ticdc/ticdc-filter.md)
+    - [表路由](/ticdc/ticdc-table-routing.md)
     - [DDL 同步](/ticdc/ticdc-ddl.md)
     - [双向复制](/ticdc/ticdc-bidirectional-replication.md)
   - 监控告警
@@ -342,6 +343,7 @@
 - 性能调优
   - 优化手册
     - [优化概述](/performance-tuning-overview.md)
+    - [配置 TiDB 以优化性能](/tidb-performance-tuning-config.md)
     - [优化方法](/performance-tuning-methods.md)
     - [OLTP 负载性能优化实践](/performance-tuning-practices.md)
     - [TiFlash 性能分析方法](/tiflash-performance-tuning-methods.md)
@@ -381,6 +383,7 @@
         - [子查询相关的优化](/subquery-optimization.md)
         - [列裁剪](/column-pruning.md)
         - [关联子查询去关联](/correlated-subquery-optimization.md)
+        - [横向派生表](/lateral-derived-tables.md)
         - [Max/Min 消除](/max-min-eliminate.md)
         - [谓词下推](/predicate-push-down.md)
         - [分区裁剪](/partition-pruning.md)
@@ -1107,6 +1110,8 @@
   - [版本周期支持策略](https://pingkai.cn/tidb-release-support-policy)
   - [TiDB 离线包](/binary-package.md)
   - v8.5
+    - [8.5.8](/releases/release-8.5.8.md)
+    - [8.5.7](/releases/release-8.5.7.md)
     - [8.5.6](/releases/release-8.5.6.md)
     - [8.5.5](/releases/release-8.5.5.md)
     - [8.5.4](/releases/release-8.5.4.md)
@@ -1129,6 +1134,7 @@
   - v7.6
     - [7.6.0-DMR](/releases/release-7.6.0.md)
   - v7.5
+    - [7.5.8](/releases/release-7.5.8.md)
     - [7.5.7](/releases/release-7.5.7.md)
     - [7.5.6](/releases/release-7.5.6.md)
     - [7.5.5](/releases/release-7.5.5.md)

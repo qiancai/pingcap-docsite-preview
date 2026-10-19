@@ -52,16 +52,24 @@
   - 监控和告警
     - [概览](/tidb-cloud/monitor-tidb-cluster.md)
     - [内置指标](/tidb-cloud/premium/built-in-monitoring-premium.md)
-    - [Top RU](/tidb-cloud/top-ru.md)
+    - [Top RU](/tidb-cloud/top-ru.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+    - [Statement Insight](/tidb-cloud/statement-insight.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
     - [内置告警](/tidb-cloud/monitor-built-in-alerting.md)
     - [将 TiDB Cloud 与 Prometheus 和 Grafana 集成](/tidb-cloud/prometheus-grafana-integration.md)
     - 订阅告警通知
       - [通过电子邮件订阅](/tidb-cloud/monitor-alert-email.md)
       - [通过 Slack 订阅](/tidb-cloud/monitor-alert-slack.md)
       - [通过 Zoom 订阅](/tidb-cloud/monitor-alert-zoom.md)
+      - [通过 Flashduty 订阅](/tidb-cloud/monitor-alert-flashduty.md)
+      - [通过 PagerDuty 订阅](/tidb-cloud/monitor-alert-pagerduty.md)
+      - [通过 Webhook 订阅](/tidb-cloud/monitor-alert-webhook.md)
+      - [通过 Lark 订阅](/tidb-cloud/monitor-alert-lark.md)
+    - [事件](/tidb-cloud/tidb-cloud-events.md)
+    - [集成 TiDB Cloud 与 Datadog](/tidb-cloud/monitor-datadog-integration-for-tidb-x.md)
   - 性能调优
     - [概览](/tidb-cloud/tidb-cloud-tune-performance-overview.md)
     - [分析性能](/tidb-cloud/tune-performance.md)
+    - [使用 Plan Replayer 排查 SQL 性能问题](/tidb-cloud/plan-replayer.md)
     - SQL 调优
       - [概览](/tidb-cloud/tidb-cloud-sql-tuning-overview.md)
       - 理解 TiDB 执行计划
@@ -134,9 +142,11 @@
   - [Changefeed 概述](/tidb-cloud/changefeed-overview.md)
   - [到 MySQL Sink](/tidb-cloud/changefeed-sink-to-mysql.md)
   - [到 Kafka Sink](/tidb-cloud/changefeed-sink-to-apache-kafka.md)
+  - [到 Cloud Storage](/tidb-cloud/changefeed-sink-to-cloud-storage.md)
   - 参考
     - [在 AWS 中设置自托管 Kafka Private Link 服务](/tidb-cloud/setup-aws-self-hosted-kafka-private-link-service.md)
     - [为 Changefeed 设置 Private Endpoint](/tidb-cloud/premium/set-up-sink-private-endpoint-premium.md)
+    - [通过 AWS PrivateLink 设置 Amazon MSK Provisioned 集群](/tidb-cloud/setup-aws-msk-provisioned-private-link-service.md)
 - 安全
   - [安全概览](/tidb-cloud/security-overview.md)
   - 身份访问控制
@@ -169,6 +179,7 @@
 - 集成
   - [Airbyte](/tidb-cloud/integrate-tidbcloud-with-airbyte.md)
   - [Cloudflare](/tidb-cloud/integrate-tidbcloud-with-cloudflare.md)
+  - [Datadog](/tidb-cloud/monitor-datadog-integration-for-tidb-x.md)
   - [dbt](/tidb-cloud/integrate-tidbcloud-with-dbt.md)
   - [Gitpod](/develop/dev-guide-playground-gitpod.md)
   - [n8n](/tidb-cloud/integrate-tidbcloud-with-n8n.md)
@@ -222,6 +233,7 @@
     - [`ANALYZE TABLE`](/sql-statements/sql-statement-analyze-table.md)
     - [`BATCH`](/sql-statements/sql-statement-batch.md)
     - [`BEGIN`](/sql-statements/sql-statement-begin.md)
+    - [`CANCEL DISTRIBUTION JOB`](/sql-statements/sql-statement-cancel-distribution-job.md)
     - [`CANCEL IMPORT JOB`](/sql-statements/sql-statement-cancel-import-job.md)
     - [`COMMIT`](/sql-statements/sql-statement-commit.md)
     - [`CREATE [GLOBAL|SESSION] BINDING`](/sql-statements/sql-statement-create-binding.md)
@@ -237,6 +249,7 @@
     - [`DELETE`](/sql-statements/sql-statement-delete.md)
     - [`DESC`](/sql-statements/sql-statement-desc.md)
     - [`DESCRIBE`](/sql-statements/sql-statement-describe.md)
+    - [`DISTRIBUTE TABLE`](/sql-statements/sql-statement-distribute-table.md)
     - [`DO`](/sql-statements/sql-statement-do.md)
     - [`DROP [GLOBAL|SESSION] BINDING`](/sql-statements/sql-statement-drop-binding.md)
     - [`DROP DATABASE`](/sql-statements/sql-statement-drop-database.md)
@@ -291,6 +304,7 @@
     - [`SHOW CREATE TABLE`](/sql-statements/sql-statement-show-create-table.md)
     - [`SHOW CREATE USER`](/sql-statements/sql-statement-show-create-user.md)
     - [`SHOW DATABASES`](/sql-statements/sql-statement-show-databases.md)
+    - [`SHOW DISTRIBUTION JOBS`](/sql-statements/sql-statement-show-distribution-jobs.md)
     - [`SHOW ENGINES`](/sql-statements/sql-statement-show-engines.md)
     - [`SHOW ERRORS`](/sql-statements/sql-statement-show-errors.md)
     - [`SHOW FIELDS FROM`](/sql-statements/sql-statement-show-fields-from.md)
@@ -309,6 +323,7 @@
     - [`SHOW STATS_META`](/sql-statements/sql-statement-show-stats-meta.md)
     - [`SHOW STATS_TOPN`](/sql-statements/sql-statement-show-stats-topn.md)
     - [`SHOW STATUS`](/sql-statements/sql-statement-show-status.md)
+    - [`SHOW TABLE DISTRIBUTION`](/sql-statements/sql-statement-show-table-distribution.md)
     - [`SHOW TABLE NEXT_ROW_ID`](/sql-statements/sql-statement-show-table-next-rowid.md)
     - [`SHOW TABLE STATUS`](/sql-statements/sql-statement-show-table-status.md)
     - [`SHOW TABLES`](/sql-statements/sql-statement-show-tables.md)
@@ -457,12 +472,14 @@
     - [TiDB Cloud 合作伙伴](/tidb-cloud/tidb-cloud-partners.md)
     - [MSP 客户](/tidb-cloud/managed-service-provider-customer.md)
     - [经销商的客户](/tidb-cloud/cppo-customer.md)
-  - [TiDB Cloud 上的 SQL 功能限制](/tidb-cloud/limited-sql-features.md)
+  - [TiDB X 实例上的 SQL 功能限制](/tidb-cloud/limited-sql-features-tidb-x.md)
   - [TiDB 限制](/tidb-limitations.md)
   - [系统变量](/system-variables.md)
   - [服务器状态变量](/status-variables.md)
   - [表库过滤](/table-filter.md)
   - [外部存储服务的 URI 格式](/external-storage-uri.md)
+  - [内嵌于 DDL 的 Analyze](/ddl_embedded_analyze.md)
+  - [配置慢查询的触发规则](/config-slow-query-trigger-rules.md)
   - [数据索引不一致报错](/troubleshoot-data-inconsistency-errors.md)
   - [通知](/tidb-cloud/notifications.md)
 - 支持计划
@@ -475,6 +492,8 @@
       - [通过 Zoom 订阅](/tidb-cloud/monitor-alert-zoom.md)
       - [通过 Flashduty 订阅](/tidb-cloud/monitor-alert-flashduty.md)
       - [通过 PagerDuty 订阅](/tidb-cloud/monitor-alert-pagerduty.md)
+      - [通过 Webhook 订阅](/tidb-cloud/monitor-alert-webhook.md)
+      - [通过 Lark 订阅](/tidb-cloud/monitor-alert-lark.md)
     - Connected：通过 IM 创建工单并订阅更新
       - [通过 Slack 创建工单并订阅工单更新](/tidb-cloud/connected-slack-ticket-creation.md)
       - [通过 Lark 创建工单并订阅工单更新](/tidb-cloud/connected-lark-ticket-creation.md)

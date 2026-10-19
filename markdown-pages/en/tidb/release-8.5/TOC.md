@@ -66,6 +66,7 @@
       - [Replicate Data to Storage Services](/ticdc/ticdc-sink-to-cloud-storage.md)
     - [Manage Changefeeds](/ticdc/ticdc-manage-changefeed.md)
     - [Log Filter](/ticdc/ticdc-filter.md)
+    - [Table Routing](/ticdc/ticdc-table-routing.md)
     - [DDL Replication](/ticdc/ticdc-ddl.md)
     - [Bidirectional Replication](/ticdc/ticdc-bidirectional-replication.md)
   - Monitor and Alert
@@ -212,6 +213,7 @@
   - Issue Scenarios
     - Slow Queries
       - [Identify Slow Queries](/identify-slow-queries.md)
+      - [Configure Trigger Rules for Slow Queries](/config-slow-query-trigger-rules.md)
       - [Analyze Slow Queries](/analyze-slow-queries.md)
     - [TiDB OOM](/troubleshoot-tidb-oom.md)
     - [Hotspot](/troubleshoot-hot-spot-issues.md)
@@ -272,6 +274,7 @@
         - [Subquery Related Optimizations](/subquery-optimization.md)
         - [Column Pruning](/column-pruning.md)
         - [Decorrelation of Correlated Subquery](/correlated-subquery-optimization.md)
+        - [LATERAL Derived Tables](/lateral-derived-tables.md)
         - [Eliminate Max/Min](/max-min-eliminate.md)
         - [Predicates Push Down](/predicate-push-down.md)
         - [Partition Pruning](/partition-pruning.md)
@@ -452,7 +455,7 @@
         - [Pessimistic Mode](/dm/feature-shard-merge-pessimistic.md)
         - [Optimistic Mode](/dm/feature-shard-merge-optimistic.md)
         - [Manually Handle Sharding DDL Lock](/dm/manually-handling-sharding-ddl-locks.md)
-      - [Migrate from MySQL Databases that Use GH-ost/PT-osc](/dm/feature-online-ddl.md)
+      - [Migrate from MySQL Databases that Use gh-ost/pt-osc](/dm/feature-online-ddl.md)
       - [Migrate Data to a Downstream TiDB Table with More Columns](/migrate-with-more-columns-downstream.md)
       - [Continuous Data Validation](/dm/dm-continuous-data-validation.md)
     - Maintain
@@ -718,6 +721,7 @@
       - [`FLASHBACK DATABASE`](/sql-statements/sql-statement-flashback-database.md)
       - [`FLASHBACK TABLE`](/sql-statements/sql-statement-flashback-table.md)
       - [`FLUSH PRIVILEGES`](/sql-statements/sql-statement-flush-privileges.md)
+      - [`FLUSH STATS_DELTA`](/sql-statements/sql-statement-flush-stats-delta.md)
       - [`FLUSH STATUS`](/sql-statements/sql-statement-flush-status.md)
       - [`FLUSH TABLES`](/sql-statements/sql-statement-flush-tables.md)
       - [`GRANT <privileges>`](/sql-statements/sql-statement-grant-privileges.md)
@@ -812,7 +816,7 @@
       - [Date and Time Types](/data-type-date-and-time.md)
       - [String Types](/data-type-string.md)
       - [JSON Type](/data-type-json.md)
-      - [Vector Types](/ai/reference/vector-search-data-types.md)
+      - [Vector Types](https://docs.pingcap.com/ai/vector-search-data-types/)
     - Functions and Operators
       - [Overview](/functions-and-operators/functions-and-operators-overview.md)
       - [Type Conversion in Expression Evaluation](/functions-and-operators/type-conversion-in-expression-evaluation.md)
@@ -826,7 +830,7 @@
       - [Encryption and Compression Functions](/functions-and-operators/encryption-and-compression-functions.md)
       - [Locking Functions](/functions-and-operators/locking-functions.md)
       - [Information Functions](/functions-and-operators/information-functions.md)
-      - [Vector Functions and Operators](/ai/reference/vector-search-functions-and-operators.md)
+      - [Vector Functions and Operators](https://docs.pingcap.com/ai/vector-search-functions-and-operators/)
       - JSON Functions
         - [Overview](/functions-and-operators/json-functions.md)
         - [Functions That Create JSON](/functions-and-operators/json-functions/json-functions-create.md)
@@ -849,7 +853,7 @@
       - [Comparisons between Functions and Syntax of Oracle and TiDB](/oracle-functions-to-tidb.md)
     - [Clustered Indexes](/clustered-indexes.md)
     - [Global Indexes](/global-indexes.md)
-    - [Vector Index](/ai/reference/vector-search-index.md)
+    - [Vector Index](https://docs.pingcap.com/ai/vector-search-index/)
     - [Constraints](/constraints.md)
     - [Generated Columns](/generated-columns.md)
     - [SQL Mode](/sql-mode.md)

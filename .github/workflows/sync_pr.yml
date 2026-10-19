@@ -15,6 +15,10 @@ concurrency:
 jobs:
 
   sync_pr:
+    # Skip when the push was produced by preview_docs.sh --local-sync, because
+    # the files have already been synchronized locally and pushing again would
+    # only duplicate work.
+    if: ${{ github.event_name != 'push' || !contains(github.event.head_commit.message, '[local-sync]') }}
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -25,9 +29,12 @@ jobs:
 
     - name: Run sync_pr script
       run: |
+        mkdir -p temp
+        : > "$SYNC_FILES_MANIFEST"
         git config user.name "Docsite Preview Bot"
         git config user.email ""
         ./sync_pr.sh
         ./.github/git_push.sh ${{ github.ref_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SYNC_FILES_MANIFEST: temp/preview-sync-files

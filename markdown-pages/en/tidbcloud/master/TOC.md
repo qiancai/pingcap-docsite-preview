@@ -20,7 +20,7 @@
   - [Transactions](/tidb-cloud/transaction-concepts.md)
   - [SQL](/tidb-cloud/sql-concepts.md)
   - [AI Features](/tidb-cloud/ai-feature-concepts.md)
-  - [Data Service](/tidb-cloud/data-service-concepts.md) ![BETA](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+  - [Data Service](/tidb-cloud/data-service-concepts.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
   - [Scalability](/tidb-cloud/scalability-concepts.md)
   - [High Availability](/tidb-cloud/high-availability-with-multi-az.md)
   - [Monitoring](/tidb-cloud/monitoring-concepts.md)
@@ -68,6 +68,10 @@
       - [Subscribe via Email](/tidb-cloud/monitor-alert-email.md)
       - [Subscribe via Slack](/tidb-cloud/monitor-alert-slack.md)
       - [Subscribe via Zoom](/tidb-cloud/monitor-alert-zoom.md)
+      - [Subscribe via Flashduty](/tidb-cloud/monitor-alert-flashduty.md)
+      - [Subscribe via PagerDuty](/tidb-cloud/monitor-alert-pagerduty.md)
+      - [Subscribe via Webhook](/tidb-cloud/monitor-alert-webhook.md)
+      - [Subscribe via Lark](/tidb-cloud/monitor-alert-lark.md)
     - [Events](/tidb-cloud/tidb-cloud-events.md)
     - Third-Party Metrics Integrations
       - [Overview](/tidb-cloud/third-party-monitoring-integrations.md)
@@ -132,6 +136,7 @@
   - Optimize Resource Allocation
     - [Overview of Resource Allocation](/tidb-cloud/optimize-resource-allocation.md)
     - Resource Manager
+      - [Calibrate Resource](/tidb-cloud/calibrate-resource.md)
       - [Use Resource Control to Achieve Resource Group Limitation and Flow Control](/tidb-resource-control-ru-groups.md)
       - [Manage Runaway Queries](/tidb-resource-control-runaway-queries.md)
       - [Manage Background Tasks](/tidb-resource-control-background-tasks.md)
@@ -166,9 +171,9 @@
     - [Precheck Errors, Migration Errors, and Alerts for Data Migration](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md)
     - [Connect AWS DMS to TiDB Cloud](/tidb-cloud/tidb-cloud-connect-aws-dms.md)
 - Explore Data
-  - [Chat2Query in SQL Editor](/tidb-cloud/explore-data-with-chat2query.md) ![BETA](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+  - [Chat2Query in SQL Editor](/tidb-cloud/explore-data-with-chat2query.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
   - [SQL Proxy Account](/tidb-cloud/sql-proxy-account.md)
-- Data Service ![BETA](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+- Data Service ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
   - [Overview](/tidb-cloud/data-service-overview.md)
   - [Get Started](/tidb-cloud/data-service-get-started.md)
   - Chat2Query API
@@ -186,17 +191,19 @@
   - [Data App Configuration Files](/tidb-cloud/data-service-app-config-files.md)
   - [Response and Status Code](/tidb-cloud/data-service-response-and-status-code.md)
 - Stream Data
-  - [Changefeed Overview](/tidb-cloud/changefeed-overview.md)
+  - [Changefeed](/tidb-cloud/changefeed-overview.md)
   - [To MySQL Sink](/tidb-cloud/changefeed-sink-to-mysql.md)
   - [To Kafka Sink](/tidb-cloud/changefeed-sink-to-apache-kafka.md)
   - [To Pulsar Sink](/tidb-cloud/changefeed-sink-to-apache-pulsar.md)
   - [To TiDB Cloud Sink](/tidb-cloud/changefeed-sink-to-tidb-cloud.md)
   - [To Cloud Storage](/tidb-cloud/changefeed-sink-to-cloud-storage.md)
+  - [To TiDB Cloud Lake](/tidb-cloud/data-pipeline-dedicated-sink-to-lake.md)
   - Reference
     - [Set Up Self-Hosted Kafka Private Link Service in AWS](/tidb-cloud/setup-aws-self-hosted-kafka-private-link-service.md)
     - [Set Up Self-Hosted Kafka Private Link Service in Azure](/tidb-cloud/setup-azure-self-hosted-kafka-private-link-service.md)
     - [Set Up Self-Hosted Kafka Private Service Connect in Google Cloud](/tidb-cloud/setup-self-hosted-kafka-private-service-connect.md)
     - [Set Up Private Endpoint for Changefeeds](/tidb-cloud/set-up-sink-private-endpoint.md)
+    - [SQL Compatibility for TiDB Cloud Lake Integration](/tidb-cloud/data-pipeline-lake-sql-compatibility.md)
 - Security
   - [Security Overview](/tidb-cloud/security-overview.md)
   - Identity Access Control
@@ -219,7 +226,7 @@
   - Database Access Control
     - [Configure Cluster Password Settings](/tidb-cloud/configure-security-settings.md)
   - Audit Management
-    - [TiDB Cloud Dedicated Database Audit Logging](/tidb-cloud/tidb-cloud-auditing.md)
+    - [Database Audit Logging](/tidb-cloud/tidb-cloud-auditing.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
     - [Console Audit Logging](/tidb-cloud/tidb-cloud-console-auditing.md)
 - Billing
   - [Invoices](/tidb-cloud/tidb-cloud-billing.md#invoices)
@@ -589,7 +596,7 @@
     - [Introduction](/tidb-distributed-execution-framework.md)
     - [TiDB Global Sort](/tidb-global-sort.md)
   - [TiDB Cloud Dedicated Limitations and Quotas](/tidb-cloud/limitations-and-quotas.md)
-  - [Limited SQL Features on TiDB Cloud](/tidb-cloud/limited-sql-features.md)
+  - [Limited SQL Features on TiDB Cloud Dedicated](/tidb-cloud/limited-sql-features.md)
   - [TiDB Limitations](/tidb-limitations.md)
   - Benchmarks
     - TiDB v8.5
@@ -627,6 +634,8 @@
       - [Subscribe via Zoom](/tidb-cloud/monitor-alert-zoom.md)
       - [Subscribe via Flashduty](/tidb-cloud/monitor-alert-flashduty.md)
       - [Subscribe via PagerDuty](/tidb-cloud/monitor-alert-pagerduty.md)
+      - [Subscribe via Webhook](/tidb-cloud/monitor-alert-webhook.md)
+      - [Subscribe via Lark](/tidb-cloud/monitor-alert-lark.md)
     - Connected: IM Ticket Creation and Update Subscription
       - [Create Tickets and Subscribe to Ticket Updates via Slack](/tidb-cloud/connected-slack-ticket-creation.md)
       - [Create Tickets and Subscribe to Ticket Updates via Lark](/tidb-cloud/connected-lark-ticket-creation.md)
@@ -641,3 +650,4 @@
 ## _BUILD_ALLOWLIST
 
 - [Manage Database Users and Roles](/tidb-cloud/configure-sql-users.md)
+- [Database Audit Logging (Legacy)](/tidb-cloud/tidb-cloud-auditing-legacy.md)

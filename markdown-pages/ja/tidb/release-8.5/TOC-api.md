@@ -2,19 +2,19 @@
 
 <!-- markdownlint-disable MD041 -->
 
-# 目次 {#table-of-contents}
+# 目次
 
-## TIDBクラウド {#tidb-cloud}
+## TiDB Cloud
 
--   [APIの概要](/api/tidb-cloud-api-overview.md)
--   [API v1beta2](/api/tidb-cloud-api-v1beta2.md)
--   [API v1beta1](/api/tidb-cloud-api-v1beta1.md)
--   [API v1beta](/api/tidb-cloud-api-v1beta.md)
+- [APIの概要](/api/tidb-cloud-api-overview.md)
+- [API v1beta2](/api/tidb-cloud-api-v1beta2.md)
+- [API v1beta1](/api/tidb-cloud-api-v1beta1.md)
+- [API v1beta](/api/tidb-cloud-api-v1beta.md)
 
-## TIDB セルフマネージド {#tidb-self-managed}
+## TiDB Self-Managed
 
--   [TiProxy API](/api/tiproxy-api-overview.md)
--   [データ移行API](/api/dm-api-overview.md)
--   [モニタリングAPI](/api/monitoring-api-overview.md)
--   [TiCDC API](/api/ticdc-api-overview.md)
--   [TiDB OperatorAPI](/api/tidb-operator-api-overview.md)
+- [TiProxy API](/api/tiproxy-api-overview.md)
+- [データ移行API](/api/dm-api-overview.md)
+- [モニタリングAPI](/api/monitoring-api-overview.md)
+- [TiCDC API](/api/ticdc-api-overview.md)
+- [TiDB Operator API](/api/tidb-operator-api-overview.md)

@@ -10,36 +10,6 @@
 
 ## Guides
 
-- Resources
-  - [Dashboards](/tidb-cloud-lake/guides/dashboards.md)
-  - [Task Flow](/tidb-cloud-lake/guides/task-flow.md)
-  - [Warehouses](/tidb-cloud-lake/guides/warehouse.md)
-  - [Worksheets](/tidb-cloud-lake/guides/worksheet.md)
-- Administration
-  - [AI-Powered Features](/tidb-cloud-lake/guides/ai-powered-features.md)
-  - [Manage Costs](/tidb-cloud-lake/guides/manage-costs.md)
-  - [Monitor Usage](/tidb-cloud-lake/guides/monitor-usage.md)
-- Security
-  - [Authenticate with AWS IAM Role](/tidb-cloud-lake/guides/authenticate-with-aws-iam-role.md)
-  - [Connect with AWS PrivateLink](/tidb-cloud-lake/guides/connect-with-aws-privatelink.md)
-- Data Integration
-  - [Overview](/tidb-cloud-lake/guides/data-integration-overview.md)
-  - Data Sources
-    - [Overview](/tidb-cloud-lake/guides/data-sources.md)
-    - [Amazon S3 - Credentials](/tidb-cloud-lake/guides/aws-credentials.md)
-    - [Amazon SQS (S3) - IAM Role](/tidb-cloud-lake/guides/amazon-sqs-s3-iam-role.md) ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
-    - [MySQL - Credentials](/tidb-cloud-lake/guides/mysql-credentials.md)
-    - [PostgreSQL - Credentials](/tidb-cloud-lake/guides/postgresql-credentials.md)
-    - [FeiShuBot](/tidb-cloud-lake/guides/feishubot.md)
-    - [Kafka - Credentials](/tidb-cloud-lake/guides/kafka-credentials.md) ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
-  - Integration Tasks
-    - [Overview](/tidb-cloud-lake/guides/integration-tasks.md)
-    - [Task Management](/tidb-cloud-lake/guides/task-management.md)
-    - [Amazon S3 Integration Task](/tidb-cloud-lake/guides/integrate-with-amazon-s3.md)
-    - [Amazon SQS (S3) Integration Task](/tidb-cloud-lake/guides/integrate-with-amazon-sqs-s3.md) ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
-    - [MySQL Integration Task](/tidb-cloud-lake/guides/integrate-with-mysql.md)
-    - [PostgreSQL Integration Task](/tidb-cloud-lake/guides/integrate-with-postgresql.md)
-    - [Kafka Consumer Integration Task](/tidb-cloud-lake/guides/integrate-with-kafka.md) ![BETA](/media/tidb-cloud/blank_transparent_placeholder.png)
 - Connect
   - [Overview](/tidb-cloud-lake/guides/connection-overview.md)
   - SQL Clients
@@ -51,10 +21,44 @@
     - [Node.js](/tidb-cloud-lake/guides/connect-using-node-js.md)
     - [Python](/tidb-cloud-lake/guides/connect-using-python.md)
     - [Rust](/tidb-cloud-lake/guides/connect-using-rust.md)
+  - AI Tools
+    - [External AI Functions](/tidb-cloud-lake/guides/external-ai-functions.md)
+    - [MCP Client Integration](/tidb-cloud-lake/guides/mcp-client-integration.md)
+    - [MCP Server](/tidb-cloud-lake/guides/mcp-server.md)
   - Visualization
     - [Tableau](/tidb-cloud-lake/guides/tableau.md)
     - [Deepnote](/tidb-cloud-lake/guides/deepnote.md)
-- Data Loading
+    - [Jupyter Notebook](/tidb-cloud-lake/guides/jupyter-notebook.md)
+    - [Superset](/tidb-cloud-lake/guides/superset.md)
+  - Network Access
+    - [Connect with AWS PrivateLink](/tidb-cloud-lake/guides/connect-with-aws-privatelink.md)
+    - [Connect with Alibaba Cloud PrivateLink](/tidb-cloud-lake/guides/connect-with-alibaba-cloud-privatelink.md)
+- Manage Resources
+  - [Dashboards](/tidb-cloud-lake/guides/dashboards.md)
+  - [Task Flow](/tidb-cloud-lake/guides/task-flow.md)
+  - [Warehouses](/tidb-cloud-lake/guides/warehouse.md)
+  - [Worksheets](/tidb-cloud-lake/guides/worksheet.md)
+- Data Integration
+  - [Overview](/tidb-cloud-lake/guides/data-integration-overview.md)
+  - Data Sources
+    - [Overview](/tidb-cloud-lake/guides/data-sources.md)
+    - [Amazon S3 - Credentials](/tidb-cloud-lake/guides/aws-credentials.md)
+    - [Amazon SQS (S3) - IAM Role](/tidb-cloud-lake/guides/amazon-sqs-s3-iam-role.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+    - [MySQL - Credentials](/tidb-cloud-lake/guides/mysql-credentials.md)
+    - [PostgreSQL - Credentials](/tidb-cloud-lake/guides/postgresql-credentials.md)
+    - [FeiShuBot](/tidb-cloud-lake/guides/feishubot.md)
+    - [Kafka - Credentials](/tidb-cloud-lake/guides/kafka-credentials.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+    - [TiDB Data Source](/tidb-cloud-lake/guides/tidb-data-source.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+  - Integration Tasks
+    - [Overview](/tidb-cloud-lake/guides/integration-tasks.md)
+    - [Task Management](/tidb-cloud-lake/guides/task-management.md)
+    - [Amazon S3 Integration Task](/tidb-cloud-lake/guides/integrate-with-amazon-s3.md)
+    - [Amazon SQS (S3) Integration Task](/tidb-cloud-lake/guides/integrate-with-amazon-sqs-s3.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+    - [MySQL Integration Task](/tidb-cloud-lake/guides/integrate-with-mysql.md)
+    - [PostgreSQL Integration Task](/tidb-cloud-lake/guides/integrate-with-postgresql.md)
+    - [Kafka Consumer Integration Task](/tidb-cloud-lake/guides/integrate-with-kafka.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+    - [TiDB Integration Task](/tidb-cloud-lake/guides/integrate-with-tidb.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+- Load Data
   - Work with Stages
     - [Stage Overview](/tidb-cloud-lake/guides/stage-overview.md)
     - [Upload to Stage](/tidb-cloud-lake/guides/upload-to-stage.md)
@@ -64,8 +68,10 @@
     - [Load from Bucket](/tidb-cloud-lake/guides/load-from-bucket.md)
     - [Load from Local File](/tidb-cloud-lake/guides/load-from-local-file.md)
     - [Load from Remote File](/tidb-cloud-lake/guides/load-from-remote-file.md)
-  - Load Semi-structured Formats
-    - [Overview](/tidb-cloud-lake/guides/load-semi-structured-formats.md)
+  - Load with Platforms
+    - [Load with dbt](/tidb-cloud-lake/guides/load-with-dbt.md)
+  - Load Semi-structured Data
+    - [Overview](/tidb-cloud-lake/guides/load-semi-structured-data.md)
     - [Load Parquet](/tidb-cloud-lake/guides/load-parquet.md)
     - [Load CSV](/tidb-cloud-lake/guides/load-csv.md)
     - [Load TSV](/tidb-cloud-lake/guides/load-tsv.md)
@@ -86,7 +92,7 @@
     - [Overview](/tidb-cloud-lake/guides/continuous-data-pipelines.md)
     - [Track and Transform Data via Streams](/tidb-cloud-lake/guides/track-and-transform-data-via-streams.md)
     - [Automate Data Loading with Tasks](/tidb-cloud-lake/guides/automate-data-loading-with-tasks.md)
-- Data Unloading
+- Unload Data
   - [Overview](/tidb-cloud-lake/guides/unload-data.md)
   - [Unload Parquet File](/tidb-cloud-lake/guides/unload-parquet-file.md)
   - [Unload CSV File](/tidb-cloud-lake/guides/unload-csv-file.md)
@@ -100,7 +106,7 @@
   - [Vector Search](/tidb-cloud-lake/guides/vector-search-guide.md)
   - [Geo Analytics](/tidb-cloud-lake/guides/geo-analytics.md)
   - [Lakehouse ETL](/tidb-cloud-lake/guides/lakehouse-etl.md)
-- Performance Optimization
+- Performance Tuning
   - [Overview](/tidb-cloud-lake/guides/performance-optimization.md)
   - [Cluster Key](/tidb-cloud-lake/guides/cluster-key-performance.md)
   - [Virtual Column](/tidb-cloud-lake/guides/virtual-column.md)
@@ -115,20 +121,26 @@
     - [Privileges](/tidb-cloud-lake/guides/privileges.md)
     - [Roles](/tidb-cloud-lake/guides/roles.md)
     - [Ownership](/tidb-cloud-lake/guides/ownership.md)
-  - [Audit Trail](/tidb-cloud-lake/guides/audit-trail.md)
-  - Data Protection
+  - Data Protection Policies
     - [Overview](/tidb-cloud-lake/guides/data-protection-policies.md)
     - [Masking Policy](/tidb-cloud-lake/guides/masking-policy.md)
     - [Row Access Policy](/tidb-cloud-lake/guides/row-access-policy.md)
-  - [Fail-Safe](/tidb-cloud-lake/guides/fail-safe.md)
+  - [Audit Trail](/tidb-cloud-lake/guides/audit-trail.md)
   - [Network Policy](/tidb-cloud-lake/guides/network-policy.md)
   - [Password Policy](/tidb-cloud-lake/guides/password-policy.md)
+  - [Authenticate with AWS IAM Role](/tidb-cloud-lake/guides/authenticate-with-aws-iam-role.md)
+  - [Compliance & Security](/tidb-cloud-lake/guides/compliance-security.md)
+  - [Fail-Safe](/tidb-cloud-lake/guides/fail-safe.md)
   - [Recovery from Operational Errors](/tidb-cloud-lake/guides/recovery-from-operational-errors.md)
-- Data Management
-  - [Overview](/tidb-cloud-lake/guides/data-management.md)
+- Management
+  - [AI-Powered Features](/tidb-cloud-lake/guides/ai-powered-features.md)
+  - [Manage Costs](/tidb-cloud-lake/guides/manage-costs.md)
+  - [Monitor Usage](/tidb-cloud-lake/guides/monitor-usage.md)
   - [Data Lifecycle](/tidb-cloud-lake/guides/data-lifecycle.md)
+  - [Data Lineage](/tidb-cloud-lake/guides/data-lineage.md)
   - [Data Protection](/tidb-cloud-lake/guides/data-protection.md)
   - [Data Purge and Recycle](/tidb-cloud-lake/guides/data-purge-and-recycle.md)
+- [Pricing & Billing](/tidb-cloud-lake/guides/pricing-billing.md)
 - [Troubleshooting](/tidb-cloud-lake/guides/troubleshooting.md)
 
 ## Tutorials
@@ -169,6 +181,7 @@
     - Table Engines
       - [Overview](/tidb-cloud-lake/sql/table-engines.md)
       - [Fuse Engine Tables](/tidb-cloud-lake/sql/fuse-engine-tables.md)
+      - [Apache Iceberg™ Tables](/tidb-cloud-lake/sql/apache-icebergtm-tables.md)
       - [Apache Hive Tables](/tidb-cloud-lake/sql/apache-hive-tables.md)
       - [Delta Lake Engine](/tidb-cloud-lake/sql/delta-lake-engine.md)
     - System Tables
@@ -249,11 +262,13 @@
         - [SHOW TABLES](/tidb-cloud-lake/sql/show-tables.md)
       - View
         - [Overview](/tidb-cloud-lake/sql/ddl-view-overview.md)
-        - [ALTER VIEW](/tidb-cloud-lake/sql/alter-view.md)
         - [CREATE VIEW](/tidb-cloud-lake/sql/create-view.md)
-        - [DROP VIEW](/tidb-cloud-lake/sql/drop-view.md)
+        - [ALTER VIEW](/tidb-cloud-lake/sql/alter-view.md)
         - [DESC VIEW](/tidb-cloud-lake/sql/desc-view.md)
         - [SHOW VIEWS](/tidb-cloud-lake/sql/show-views.md)
+        - [DROP VIEW](/tidb-cloud-lake/sql/drop-view.md)
+        - [Materialized View](/tidb-cloud-lake/sql/materialized-view.md)
+        - [REFRESH LINEAGE](/tidb-cloud-lake/sql/refresh-lineage.md)
       - User & Role
         - [Overview](/tidb-cloud-lake/sql/user-role.md)
         - [CREATE USER](/tidb-cloud-lake/sql/create-user.md)
@@ -362,6 +377,7 @@
         - [SHOW VIRTUAL COLUMNS](/tidb-cloud-lake/sql/show-virtual-columns.md)
       - User-Defined Function
         - [User-Defined Function](/tidb-cloud-lake/sql/user-defined-function.md)
+        - [Choose a User-Defined Function Type](/tidb-cloud-lake/guides/choose-a-udf-type.md)
         - [ALTER FUNCTION](/tidb-cloud-lake/sql/alter-function.md)
         - [CREATE AGGREGATE FUNCTION](/tidb-cloud-lake/sql/create-aggregate-function.md)
         - [CREATE SCALAR FUNCTION](/tidb-cloud-lake/sql/create-scalar-function.md)
@@ -369,9 +385,10 @@
         - [DROP FUNCTION](/tidb-cloud-lake/sql/drop-function.md)
         - [SHOW USER FUNCTIONS](/tidb-cloud-lake/sql/show-user-functions.md)
       - External Function
+        - [External Function](/tidb-cloud-lake/sql/external-function.md)
+        - [CREATE FUNCTION](/tidb-cloud-lake/sql/create-function.md)
         - [ALTER FUNCTION](/tidb-cloud-lake/sql/alter-function-sql.md)
         - [DROP FUNCTION](/tidb-cloud-lake/sql/drop-function-sql.md)
-        - [External Function](/tidb-cloud-lake/sql/external-function.md)
       - Masking Policy
         - [Overview](/tidb-cloud-lake/sql/masking-policy-sql.md)
         - [CREATE MASKING POLICY](/tidb-cloud-lake/sql/create-masking-policy.md)
@@ -1178,6 +1195,7 @@
       - [FLATTEN](/tidb-cloud-lake/sql/flatten.md)
       - [SYSTEM$FUSE_AMEND](/tidb-cloud-lake/sql/system-fuse-amend.md)
       - [FUSE_VACUUM_TEMPORARY_TABLE](/tidb-cloud-lake/sql/fuse-vacuum-temporary-table.md)
+      - [GET_LINEAGE](/tidb-cloud-lake/sql/get-lineage.md)
       - [ICEBERG_MANIFEST](/tidb-cloud-lake/sql/iceberg-manifest.md)
       - [ICEBERG_SNAPSHOT](/tidb-cloud-lake/sql/iceberg-snapshot.md)
       - [POLICY_REFERENCES](/tidb-cloud-lake/sql/policy-references.md)
@@ -1218,12 +1236,10 @@
     - [Optimizer](/tidb-cloud-lake/guides/how-optimizer-works.md)
     - [JSON](/tidb-cloud-lake/guides/how-json-variant-works.md)
     - [Data Sharing](/tidb-cloud-lake/guides/how-data-sharing-works.md)
-  - [Compliance & Security](/tidb-cloud-lake/guides/compliance-security.md)
   - [Editions](/tidb-cloud-lake/guides/editions.md)
   - [Platforms & Regions](/tidb-cloud-lake/guides/platforms-regions.md)
-  - [Pricing & Billing](/tidb-cloud-lake/guides/pricing-billing.md)
   - Benchmarks
     - [Data Ingestion Benchmark](/tidb-cloud-lake/guides/benchmark-data-ingestion.md)
     - [TPC-H SF100 Benchmark](/tidb-cloud-lake/guides/benchmark-tpch-sf100.md)
     - [TPC-H SF1000 Benchmark](/tidb-cloud-lake/guides/benchmark-tpch-sf1000.md)
-  - [Support Services](/tidb-cloud-lake/guides/support-services.md)
+- [Support Services](/tidb-cloud-lake/guides/support-services.md)

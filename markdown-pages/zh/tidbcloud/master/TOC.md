@@ -20,7 +20,7 @@
   - [事务](/tidb-cloud/transaction-concepts.md)
   - [SQL](/tidb-cloud/sql-concepts.md)
   - [AI 功能](/tidb-cloud/ai-feature-concepts.md)
-  - [数据服务](/tidb-cloud/data-service-concepts.md) ![BETA](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+  - [数据服务](/tidb-cloud/data-service-concepts.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
   - [可扩展性](/tidb-cloud/scalability-concepts.md)
   - [高可用性](/tidb-cloud/high-availability-with-multi-az.md)
   - [监控](/tidb-cloud/monitoring-concepts.md)
@@ -68,6 +68,10 @@
       - [通过电子邮件订阅](/tidb-cloud/monitor-alert-email.md)
       - [通过 Slack 订阅](/tidb-cloud/monitor-alert-slack.md)
       - [通过 Zoom 订阅](/tidb-cloud/monitor-alert-zoom.md)
+      - [通过 Flashduty 订阅](/tidb-cloud/monitor-alert-flashduty.md)
+      - [通过 PagerDuty 订阅](/tidb-cloud/monitor-alert-pagerduty.md)
+      - [通过 Webhook 订阅](/tidb-cloud/monitor-alert-webhook.md)
+      - [通过 Lark 订阅](/tidb-cloud/monitor-alert-lark.md)
     - [事件](/tidb-cloud/tidb-cloud-events.md)
     - 第三方指标集成
       - [概览](/tidb-cloud/third-party-monitoring-integrations.md)
@@ -132,6 +136,7 @@
   - 优化资源分配
     - [资源分配概览](/tidb-cloud/optimize-resource-allocation.md)
     - 资源管理
+      - [校准资源](/tidb-cloud/calibrate-resource.md)
       - [使用资源管控 (Resource Control) 实现资源组限制和流控](/tidb-resource-control-ru-groups.md)
       - [管理资源消耗超出预期的查询 (Runaway Queries)](/tidb-resource-control-runaway-queries.md)
       - [限制后台任务资源使用](/tidb-resource-control-background-tasks.md)
@@ -166,9 +171,9 @@
     - [数据迁移的预检查错误、迁移错误和警报](/tidb-cloud/tidb-cloud-dm-precheck-and-troubleshooting.md)
     - [将 AWS DMS 连接到 TiDB Cloud](/tidb-cloud/tidb-cloud-connect-aws-dms.md)
 - 探索数据
-  - [SQL 编辑器中的 Chat2Query](/tidb-cloud/explore-data-with-chat2query.md) ![BETA](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+  - [SQL 编辑器中的 Chat2Query](/tidb-cloud/explore-data-with-chat2query.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
   - [SQL 代理账户](/tidb-cloud/sql-proxy-account.md)
-- 数据服务 ![BETA](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
+- 数据服务 ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
   - [概述](/tidb-cloud/data-service-overview.md)
   - [快速上手](/tidb-cloud/data-service-get-started.md)
   - Chat2Query API
@@ -219,7 +224,7 @@
   - 数据库访问控制
     - [配置集群密码设置](/tidb-cloud/configure-security-settings.md)
   - 审计管理
-    - [数据库审计日志](/tidb-cloud/tidb-cloud-auditing.md)
+    - [数据库审计日志](/tidb-cloud/tidb-cloud-auditing.md) ![PREVIEW](https://docs-download.pingcap.com/media/images/docs/tidb-cloud/blank_transparent_placeholder.png)
     - [控制台审计日志](/tidb-cloud/tidb-cloud-console-auditing.md)
 - 账单
   - [发票](/tidb-cloud/tidb-cloud-billing.md#invoices)
@@ -589,7 +594,7 @@
     - [介绍](/tidb-distributed-execution-framework.md)
     - [TiDB 全局排序](/tidb-global-sort.md)
   - [TiDB Cloud Dedicated 限制和配额](/tidb-cloud/limitations-and-quotas.md)
-  - [TiDB Cloud 上的 SQL 功能限制](/tidb-cloud/limited-sql-features.md)
+  - [TiDB Cloud Dedicated 上的 SQL 功能限制](/tidb-cloud/limited-sql-features.md)
   - [TiDB 限制](/tidb-limitations.md)
   - 基准测试
     - TiDB v8.5
@@ -620,13 +625,15 @@
   - [Connected Care 概述](/tidb-cloud/connected-care-overview.md)
   - [Connected Care 详情](/tidb-cloud/connected-care-detail.md)
   - Connected Care 支持服务
-    - [Connected: Clinic Service](/tidb-cloud/tidb-cloud-clinic.md)
+    - [Connected: Clinic 服务](/tidb-cloud/tidb-cloud-clinic.md)
     - [Connected：IM 中的 AI 聊天](/tidb-cloud/connected-ai-chat-in-im.md)
     - Connected：通过 IM 订阅 TiDB Cloud 告警
       - [通过 Slack 订阅](/tidb-cloud/monitor-alert-slack.md)
       - [通过 Zoom 订阅](/tidb-cloud/monitor-alert-zoom.md)
       - [通过 Flashduty 订阅](/tidb-cloud/monitor-alert-flashduty.md)
       - [通过 PagerDuty 订阅](/tidb-cloud/monitor-alert-pagerduty.md)
+      - [通过 Webhook 订阅](/tidb-cloud/monitor-alert-webhook.md)
+      - [通过 Lark 订阅](/tidb-cloud/monitor-alert-lark.md)
     - Connected：通过 IM 创建工单并订阅更新
       - [通过 Slack 创建工单并订阅工单更新](/tidb-cloud/connected-slack-ticket-creation.md)
       - [通过 Lark 创建工单并订阅工单更新](/tidb-cloud/connected-lark-ticket-creation.md)
@@ -641,3 +648,4 @@
 ## _BUILD_ALLOWLIST
 
 - [Manage Database Users and Roles](/tidb-cloud/configure-sql-users.md)
+- [数据库审计日志（旧版）](/tidb-cloud/tidb-cloud-auditing-legacy.md)
