@@ -5,7 +5,7 @@ hide_commit: true
 summary: TiDB Cloud Filesystem provides persistent, shared file storage for applications, automation, and AI agents across machines and sessions.
 ---
 
-<LearningPathContainer platform="tidb-cloud" title="TiDB Cloud Filesystem" subTitle="TiDB Cloud Filesystem is persistent, shared file storage that applications, automation, and AI agents can access across machines and sessions.">
+<LearningPathContainer platform="tidb-cloud" title="TiDB Cloud Filesystem" subTitle="TiDB Cloud Filesystem is persistent, shared file storage that applications, automation, and AI agents can access across machines and sessions. ">
 
 <LearningPath label="Learn" icon="cloud1">
 
