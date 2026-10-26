@@ -52,7 +52,7 @@ if [ ! -e website-docs/.git ]; then
     rm -rf website-docs
   fi
   # Clone the pingcap/website-docs repository.
-  git clone --single-branch --branch fix-banner-overflow https://github.com/qiancai/website-docs
+  git clone --single-branch --branch fix-right-pane-rendering https://github.com/qiancai/website-docs
 fi
 
 # Create a symlink to markdown-pages in website-docs/docs.
