@@ -5,7 +5,7 @@ summary: TiDB Cloud Lake is a cloud-native data warehouse service for analytics 
 
 # TiDB Cloud Lake Overview
 
-TiDB Cloud Lake is a cloud-native data warehouse service for analytics workloads. It separates compute and storage, allowing you to provision warehouses independently, scale with workload changes, and store data cost-effectively in object storage.
+TiDB Cloud Lake is a cloud-native data warehouse service for analytics workloads. It separates compute and storage, allowing you to provision warehouses independently, scale with workload changes, and store data cost-effectively in object storage. 
 
 TiDB Cloud Lake supports ANSI SQL, semi-structured data processing, vector search, and AI-oriented workflows in one platform. It is designed for teams that want a managed analytics experience without operating the underlying infrastructure themselves.
 
