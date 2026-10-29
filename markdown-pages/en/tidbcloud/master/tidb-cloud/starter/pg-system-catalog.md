@@ -5,7 +5,7 @@ summary: Learn how to inspect database objects using system catalogs on PostgreS
 
 # PostgreSQL System Catalog
 
-PostgreSQL-compatible TiDB Cloud Starter provides `pg_catalog` relations and `information_schema` views for inspecting databases, schemas, tables, columns, indexes, constraints, functions, roles, and other database objects.
+PostgreSQL-compatible {{{ .starter }}} provides `pg_catalog` relations and `information_schema` views for inspecting databases, schemas, tables, columns, indexes, constraints, functions, roles, and other database objects.
 
 ## `pg_catalog` relations
 
@@ -341,7 +341,7 @@ ORDER BY extname;
 
 ## System catalog compatibility
 
-PostgreSQL-compatible TiDB Cloud Starter implements the catalog surface needed by common PostgreSQL tools and introspection workflows, but catalog contents and columns can differ from upstream PostgreSQL.
+PostgreSQL-compatible {{{ .starter }}} implements the catalog surface needed by common PostgreSQL tools and introspection workflows, but catalog contents and columns can differ from upstream PostgreSQL.
 
 In particular:
 
