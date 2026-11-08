@@ -1,11 +1,11 @@
 ---
-title: Create a TiDB Cloud Starter or Essential Instance
-summary: Learn how to create a TiDB Cloud Starter or TiDB Cloud Essential instance.
+title: Create a {{{ .starter }}} or Essential Instance
+summary: Learn how to create a {{{ .starter }}} or {{{ .essential }}} instance.
 ---
 
-# Create a TiDB Cloud Starter or Essential Instance
+# Create a {{{ .starter }}} or Essential Instance
 
-This document describes how to create a TiDB Cloud Starter or TiDB Cloud Essential instance in the [TiDB Cloud console](https://tidbcloud.com/).
+This document describes how to create a {{{ .starter }}} or {{{ .essential }}} instance in the [TiDB Cloud console](https://tidbcloud.com/).
 
 > **Tip:**
 >
@@ -76,11 +76,11 @@ If you have the `Organization Owner` or `Project Owner` role, you can create a T
 
     - **Essential**:
 
-        - For TiDB Cloud Essential instances running on CLOUD.202603.x or later, **Elastic Mode** is selected by default. In Elastic Mode, you do not set a maximum number of RCUs. Instead, your instance uses a fixed **Baseline RCU** of 2,000 RCUs, which is the minimum number of Request Capacity Units (RCUs) you are billed for and the initial capacity for autoscaling.
+        - For {{{ .essential }}} instances running on CLOUD.202603.x or later, **Elastic Mode** is selected by default. In Elastic Mode, you do not set a maximum number of RCUs. Instead, your instance uses a fixed **Baseline RCU** of 2,000 RCUs, which is the minimum number of Request Capacity Units (RCUs) you are billed for and the initial capacity for autoscaling.
 
-        - To limit the capacity, select **Limited Mode**, and then specify the maximum number of RCUs that your instance can scale up to. TiDB Cloud Essential instances on earlier versions do not support Elastic Mode; for these instances, specify both the minimum and maximum number of RCUs.
+        - To limit the capacity, select **Limited Mode**, and then specify the maximum number of RCUs that your instance can scale up to. {{{ .essential }}} instances on earlier versions do not support Elastic Mode; for these instances, specify both the minimum and maximum number of RCUs.
 
-        - RCUs represent the compute resources provisioned for your workload. TiDB Cloud automatically scales your TiDB Cloud Essential instance based on demand. If your workload consistently requires more than 100,000 RCUs, consider upgrading to TiDB Cloud Premium to avoid potential bottlenecks.
+        - RCUs represent the compute resources provisioned for your workload. TiDB Cloud automatically scales your {{{ .essential }}} instance based on demand. If your workload consistently requires more than 100,000 RCUs, consider upgrading to {{{ .premium }}} to avoid potential bottlenecks.
 
 8. Click **Create**.
 
@@ -88,10 +88,10 @@ The instance creation process starts, and your instance will be created in appro
 
 ## What's next
 
-- After your TiDB Cloud Starter or Essential instance is created, follow the instructions in [Connect to TiDB Cloud via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) to create a password for your instance.
+- After your {{{ .starter }}} or Essential instance is created, follow the instructions in [Connect to TiDB Cloud via Public Endpoint](/tidb-cloud/connect-via-standard-connection-serverless.md) to create a password for your instance.
 
     > **Note:**
     >
-    > If you do not set a password, you cannot connect to the TiDB Cloud Starter or Essential instance.
+    > If you do not set a password, you cannot connect to the {{{ .starter }}} or Essential instance.
 
 - To manage your instance using the TiDB Cloud CLI, see [TiDB Cloud CLI Reference (PREVIEW)](/tidb-cloud/cli-reference.md).
