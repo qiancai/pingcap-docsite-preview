@@ -5,7 +5,7 @@ summary: Learn about the PostgreSQL-compatible data types supported by PostgreSQ
 
 # PostgreSQL Data Types
 
-PostgreSQL-compatible TiDB Cloud Starter supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
+PostgreSQL-compatible {{{ .starter }}} supports common PostgreSQL data types for numeric, text, binary, date and time, JSON, array, vector, and full-text search workloads.
 
 ## Supported data types
 
@@ -65,7 +65,7 @@ CREATE TABLE products (
 );
 ```
 
-PostgreSQL-compatible TiDB Cloud Starter stores `NUMERIC` values using a 96-bit coefficient, which holds approximately 28–29 significant decimal digits. The decimal point can be placed to allow up to 28 fractional digits.
+PostgreSQL-compatible {{{ .starter }}} stores `NUMERIC` values using a 96-bit coefficient, which holds approximately 28–29 significant decimal digits. The decimal point can be placed to allow up to 28 fractional digits.
 
 These limits apply even if you declare a larger precision or scale:
 
@@ -115,7 +115,7 @@ CREATE TABLE files (
 
 ## Date and time types
 
-PostgreSQL-compatible TiDB Cloud Starter supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
+PostgreSQL-compatible {{{ .starter }}} supports `DATE`, `TIME`, `TIMESTAMP`, `TIMESTAMPTZ`, and `INTERVAL`.
 
 For example:
 
@@ -266,7 +266,7 @@ For more information, see [Full-Text Search](/tidb-cloud/starter/pg-full-text-se
 
 ## Type coercion
 
-PostgreSQL-compatible TiDB Cloud Starter supports PostgreSQL-style type coercion in common SQL contexts.
+PostgreSQL-compatible {{{ .starter }}} supports PostgreSQL-style type coercion in common SQL contexts.
 
 ### `UNION`, `CASE`, `COALESCE`, and `VALUES`
 
