@@ -43,6 +43,7 @@
   - リソースプール
     - [リソースプールを作成する](/tidb-cloud/byoc/create-resource-pool-byoc.md)
     - [リソースプールを管理する](/tidb-cloud/byoc/manage-resource-pools-byoc.md)
+    - [リソースプールを一時停止または再開する](/tidb-cloud/byoc/pause-or-resume-byoc-resource-pool.md)
 - インスタンスを管理
   - [TiDB Cloud BYOC インスタンスを作成する](/tidb-cloud/byoc/create-tidb-instance-byoc.md)
   - TiDB Cloud BYOC インスタンスに接続する
@@ -113,10 +114,10 @@
         - [非プリペアド実行プランキャッシュ](/sql-non-prepared-plan-cache.md)
       - 実行計画を制御する
         - [概要](/control-execution-plan.md)
-        - [オプティマイザヒント](/optimizer-hints.md)
+        - [オプティマイザーヒント](/optimizer-hints.md)
         - [SQL プラン管理](/sql-plan-management.md)
         - [最適化ルールと式プッシュダウンのブロックリスト](/blocklist-control-plan.md)
-        - [オプティマイザ修正制御](/optimizer-fix-controls.md)
+        - [オプティマイザー修正制御](/optimizer-fix-controls.md)
     - [TiKV Follower Read](/follower-read.md)
     - [コプロセッサーキャッシュ](/coprocessor-cache.md)
     - [TiFlash パフォーマンスをチューニングする](/tiflash/tune-tiflash-performance.md)
@@ -473,7 +474,7 @@
   - TiDB Cloud Partner Web Console
     - [TiDB Cloud パートナー](/tidb-cloud/tidb-cloud-partners.md)
     - [MSP Customer](/tidb-cloud/managed-service-provider-customer.md)
-    - [再販業者の顧客](/tidb-cloud/cppo-customer.md)
+    - [販売代理店の顧客](/tidb-cloud/cppo-customer.md)
   - [TiDB X インスタンスで制限される SQL 機能](/tidb-cloud/limited-sql-features-tidb-x.md)
   - [TiDB の制限事項](/tidb-limitations.md)
   - [システム変数](/system-variables.md)
