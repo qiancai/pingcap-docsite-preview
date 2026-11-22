@@ -5,13 +5,13 @@ summary: Learn about SQL engine limits and constraints for PostgreSQL-compatible
 
 # PostgreSQL Limits and Constraints
 
-This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible {{{ .starter }}}.
+This document describes SQL engine limits and constraints that apply to PostgreSQL-compatible TiDB Cloud Starter.
 
 > **Note:**
 >
-> PostgreSQL-compatible {{{ .starter }}} is currently in public preview. Limits and constraints might change during the preview.
+> PostgreSQL-compatible TiDB Cloud Starter is currently in public preview. Limits and constraints might change during the preview.
 
-This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible {{{ .starter }}}, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
+This page focuses on SQL engine behavior. For the monthly free quota and product-level limits of PostgreSQL-compatible TiDB Cloud Starter, see [TiDB Cloud Starter plan documentation](/tidb-cloud/select-cluster-tier.md#postgresql-compatible-starter).
 
 ## Engine limits
 
@@ -43,7 +43,7 @@ SET statement_timeout = 0;
 
 ## Character encoding
 
-PostgreSQL-compatible {{{ .starter }}} stores text in UTF-8.
+PostgreSQL-compatible TiDB Cloud Starter stores text in UTF-8.
 
 The server encoding is reported as:
 
@@ -61,7 +61,7 @@ Make sure imported text data is valid UTF-8.
 
 ## Identifier length
 
-PostgreSQL-compatible {{{ .starter }}} reports a maximum identifier length of 63 bytes for PostgreSQL compatibility. However, this limit is not currently enforced.
+PostgreSQL-compatible TiDB Cloud Starter reports a maximum identifier length of 63 bytes for PostgreSQL compatibility. However, this limit is not currently enforced.
 
 You can view the reported value using:
 
@@ -75,7 +75,7 @@ The result is:
 63
 ```
 
-Unlike PostgreSQL, PostgreSQL-compatible {{{ .starter }}} can accept identifiers longer than 63 bytes without automatically truncating them.
+Unlike PostgreSQL, PostgreSQL-compatible TiDB Cloud Starter can accept identifiers longer than 63 bytes without automatically truncating them.
 
 For portability, keep schema, table, column, index, constraint, function, and role names within 63 bytes. Longer identifiers might be truncated when migrating to PostgreSQL, potentially causing naming conflicts or schema migration failures.
 
